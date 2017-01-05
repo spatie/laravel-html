@@ -1,0 +1,40 @@
+{
+    "name": "spatie/html",
+    "description": "A fluent html generator",
+    "keywords": [
+        "spatie",
+        "html"
+    ],
+    "homepage": "https://github.com/spatie/:package_name",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sebastian De Deyne",
+            "email": "sebastian@spatie.be",
+            "homepage": "https://spatie.be",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php" : "^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "5.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Spatie\\Html\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Spatie\\Html\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+  }
+}

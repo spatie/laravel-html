@@ -2,6 +2,7 @@
 
 namespace Spatie\Html;
 
+use Exception;
 use Spatie\Html\Exceptions\CannotRenderChild;
 
 abstract class BaseElement
@@ -80,8 +81,6 @@ abstract class BaseElement
             if (is_string($child)) {
                 return $child;
             }
-            var_dump($child);
-            die('stop');
 
             throw CannotRenderChild::childMustBeABaseElementOrAString($child);
         }, $this->children));

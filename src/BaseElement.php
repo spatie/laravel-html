@@ -2,6 +2,8 @@
 
 namespace Spatie\Html;
 
+use Spatie\Html\Exceptions\CannotRenderChild;
+
 abstract class BaseElement
 {
     /** @var string */
@@ -15,7 +17,7 @@ abstract class BaseElement
 
     public function __construct()
     {
-        if (! $this->tag) {
+        if (!$this->tag) {
             throw new Exception;
         }
 
@@ -53,7 +55,7 @@ abstract class BaseElement
     }
 
     /**
-     * @param string|array $children
+     * @param string|iterable $children
      *
      * @return static
      */
@@ -61,49 +63,52 @@ abstract class BaseElement
     {
         $element = clone $this;
 
-        $element->children =
-            is_array($children) ?
-                $children :
-                [$children];
+        $element->children = is_iterable($children)
+            ? $children
+            : [$children];
 
         return $element;
     }
 
-    public function open(): string
-    {
-        return $this->attributes->isEmpty() ?
-            '<'.$this->tag.'>' :
-            '<'.$this->tag.' '.$this->attributes->render().'>';
-    }
+
 
     public function renderChildren(): string
     {
         return implode('', array_map(function ($child) {
-            if ($child instanceof Element) {
+            if ($child instanceof BaseElement) {
                 return $child->render();
             }
 
             if (is_string($child)) {
                 return $child;
             }
+            var_dump($child);
+            die('stop');
 
-            throw new Exception();
+            throw CannotRenderChild::childMustBeABaseElementOrAString($child);
         }, $this->children));
+    }
+
+    public function open(): string
+    {
+        return $this->attributes->isEmpty()
+            ? '<' . $this->tag . '>'
+            : "<{$this->tag} {$this->attributes->render()}>";
     }
 
     public function close(): string
     {
-        return $this->isVoidElement() ?
-            '' :
-            '<'.$this->tag.'>';
+        return $this->isVoidElement()
+            ? ''
+            : "</{$this->tag}>";
     }
 
     public function render(): string
     {
-        return $this->open().$this->renderChildren().$this->close();
+        return $this->open() . $this->renderChildren() . $this->close();
     }
 
-    public function isVoidElement() : bool
+    public function isVoidElement(): bool
     {
         return in_array($this->tag, [
             'area', 'base', 'br', 'col', 'embed', 'hr',

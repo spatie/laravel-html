@@ -18,11 +18,11 @@ class Select extends BaseElement
     protected $value = '';
 
     /**
-     * @param array $options
+     * @param iterable $options
      *
      * @return static
      */
-    public function options(array $options)
+    public function options(iterable $options)
     {
         return $this->setChildren(
             array_map(function ($value, $label) {
@@ -32,13 +32,13 @@ class Select extends BaseElement
     }
 
     /**
-     * @param array $children
+     * @param iterable|string $children
      *
      * @return static
      */
     public function setChildren($children)
     {
-        if (! is_array($children)) {
+        if (! is_iterable($children)) {
             throw new Exception;
         }
 

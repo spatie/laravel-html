@@ -10,7 +10,7 @@ class SelectTest extends TestCase
     /** @test */
     public function it_can_render_a_select_element()
     {
-        $this->assertSameHtml('<select></select>',(string)Html::select());
+        $this->assertSameHtml('<select></select>', (string) Html::select());
     }
 
     /** @test */
@@ -26,6 +26,6 @@ class SelectTest extends TestCase
             <option value="option1">value1</option>
             <option value="option2">value2</option>
         </select>',
-        (string)Html::select($options));
+        (string) Html::select($options));
     }
 }

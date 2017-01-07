@@ -3,8 +3,8 @@
 namespace Spatie\Html\Elements;
 
 use Exception;
-use Spatie\Html\BaseElement;
 use Spatie\Html\Html;
+use Spatie\Html\BaseElement;
 
 class Select extends BaseElement
 {

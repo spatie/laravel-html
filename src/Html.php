@@ -2,9 +2,9 @@
 
 namespace Spatie\Html;
 
-use Spatie\Html\Elements\Element;
 use Spatie\Html\Elements\Option;
 use Spatie\Html\Elements\Select;
+use Spatie\Html\Elements\Element;
 
 class Html
 {

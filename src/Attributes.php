@@ -16,7 +16,6 @@ class Attributes
     public function setAttributes(array $attributes)
     {
         foreach ($attributes as $attribute => $value) {
-
             if ($attribute === 'class') {
                 $this->addClass($value);
                 continue;
@@ -66,7 +65,7 @@ class Attributes
      */
     public function addClass($class)
     {
-        if (!is_array($class)) {
+        if (! is_array($class)) {
             $class = [$class];
         }
 

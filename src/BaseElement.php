@@ -17,7 +17,7 @@ abstract class BaseElement
 
     public function __construct()
     {
-        if (!$this->tag) {
+        if (! $this->tag) {
             throw new Exception;
         }
 
@@ -70,8 +70,6 @@ abstract class BaseElement
         return $element;
     }
 
-
-
     public function renderChildren(): string
     {
         return implode('', array_map(function ($child) {
@@ -92,7 +90,7 @@ abstract class BaseElement
     public function open(): string
     {
         return $this->attributes->isEmpty()
-            ? '<' . $this->tag . '>'
+            ? '<'.$this->tag.'>'
             : "<{$this->tag} {$this->attributes->render()}>";
     }
 
@@ -105,7 +103,7 @@ abstract class BaseElement
 
     public function render(): string
     {
-        return $this->open() . $this->renderChildren() . $this->close();
+        return $this->open().$this->renderChildren().$this->close();
     }
 
     public function isVoidElement(): bool

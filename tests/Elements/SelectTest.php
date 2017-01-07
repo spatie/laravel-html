@@ -15,7 +15,7 @@ class SelectTest extends TestCase
     /** @test */
     public function it_can_be_converted_to_a_string()
     {
-        $this->assertSameHtml('<select></select>', (string)(new Select()));
+        $this->assertSameHtml('<select></select>', (string) (new Select()));
     }
 
     /** @test */
@@ -26,6 +26,4 @@ class SelectTest extends TestCase
             <option value="option1">value1</option>
         </select>', (new Select())->options(['option1' => 'value1'])->render());
     }
-
-
 }

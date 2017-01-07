@@ -2,8 +2,8 @@
 
 namespace Spatie\Html\Test;
 
-use DOMDocument;
 use DOMElement;
+use DOMDocument;
 use PHPUnit_Framework_TestCase;
 
 class TestCase extends PHPUnit_Framework_TestCase

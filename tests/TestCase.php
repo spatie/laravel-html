@@ -2,27 +2,29 @@
 
 namespace Spatie\Html\Test;
 
-use DOMElement;
 use DOMDocument;
 use PHPUnit_Framework_TestCase;
 
 class TestCase extends PHPUnit_Framework_TestCase
 {
-    protected function assertSameHtml(string $expectedHtml, string $actualHtml)
+    protected function assertHtmlStringEqualsHtmlString(string $expectedHtml, string $actualHtml)
     {
-        $this->assertEqualXMLStructure(
-            $this->convertToDomElement($expectedHtml),
-            $this->convertToDomElement($actualHtml),
+        $this->assertEquals(
+            $this->convertToDomDocument($expectedHtml),
+            $this->convertToDomDocument($actualHtml),
+            '',
+            0.0,
+            10,
             true
         );
     }
 
-    protected function convertToDomElement(string $html): DOMElement
+    protected function convertToDomDocument(string $html): DOMDocument
     {
         $domDocument = new DOMDocument();
         $domDocument->loadHTML($html);
         $domDocument->preserveWhiteSpace = false;
 
-        return $domDocument->documentElement;
+        return $domDocument;
     }
 }

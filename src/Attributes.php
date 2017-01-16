@@ -69,9 +69,21 @@ class Attributes
             $class = [$class];
         }
 
+        $class = $this->filterConditionalClasses($class);
+
         $this->classes = array_unique(
             array_merge($this->classes, $class)
         );
+    }
+
+    protected function filterConditionalClasses(array $classes): array
+    {
+        return array_filter(array_map(function ($condition, $class) {
+            if (is_numeric($class)) {
+                return $condition;
+            }
+            return $condition ? $class : null;
+        }, $classes, array_keys($classes)));
     }
 
     public function isEmpty() : bool

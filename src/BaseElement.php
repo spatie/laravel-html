@@ -2,13 +2,13 @@
 
 namespace Spatie\Html;
 
-use Exception;
 use Spatie\Html\Exceptions\CannotRenderChild;
+use Spatie\Html\Exceptions\MissingTag;
 
 abstract class BaseElement
 {
     /** @var string */
-    protected $tag = '';
+    protected $tag;
 
     /** @var \Spatie\Html\Attributes */
     protected $attributes;
@@ -18,8 +18,8 @@ abstract class BaseElement
 
     public function __construct()
     {
-        if (! $this->tag) {
-            throw new Exception;
+        if (empty($this->tag)) {
+            throw MissingTag::onClass(static::class);
         }
 
         $this->attributes = new Attributes();
@@ -41,6 +41,28 @@ abstract class BaseElement
     }
 
     /**
+     * Alias for `setAttribute`
+     *
+     * @param string $attribute
+     * @param string $value
+     *
+     * @return \Spatie\Html\BaseElement
+     */
+    public function attribute(string $attribute, string $value)
+    {
+        return $this->setAttribute($attribute, $value);
+    }
+
+    public function attributes(iterable $attributes)
+    {
+        $element = clone $this;
+
+        $element->attributes->setAttributes($attributes);
+
+        return $element;
+    }
+
+    /**
      * @param string $attribute
      * @param string $value
      *
@@ -53,6 +75,20 @@ abstract class BaseElement
         $element->attributes->forgetAttribute($attribute);
 
         return $element;
+    }
+
+    public function addClass($class)
+    {
+        $element = clone $this;
+
+        $element->attributes->addClass($class);
+
+        return $element;
+    }
+
+    public function class($class)
+    {
+        return $this->addClass($class);
     }
 
     /**

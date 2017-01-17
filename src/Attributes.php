@@ -11,11 +11,12 @@ class Attributes
     protected $classes = [];
 
     /**
-     * @param array $attributes
+     * @param iterable $attributes
      */
-    public function setAttributes(array $attributes)
+    public function setAttributes(iterable $attributes)
     {
         foreach ($attributes as $attribute => $value) {
+
             if ($attribute === 'class') {
                 $this->addClass($value);
                 continue;
@@ -61,37 +62,25 @@ class Attributes
     }
 
     /**
-     * @param string|array $class
+     * @param string|iterable $class
      */
     public function addClass($class)
     {
-        if (! is_array($class)) {
-            $class = [$class];
-        }
+        $class = Arr::create($class);
 
-        $class = $this->filterConditionalClasses($class);
+        $class = Arr::getToggledValues($class);
 
         $this->classes = array_unique(
             array_merge($this->classes, $class)
         );
     }
 
-    protected function filterConditionalClasses(array $classes): array
-    {
-        return array_filter(array_map(function ($condition, $class) {
-            if (is_numeric($class)) {
-                return $condition;
-            }
-            return $condition ? $class : null;
-        }, $classes, array_keys($classes)));
-    }
-
-    public function isEmpty() : bool
+    public function isEmpty(): bool
     {
         return empty($this->attributes) && empty($this->classes);
     }
 
-    public function toArray() : array
+    public function toArray(): array
     {
         if (empty($this->classes)) {
             return $this->attributes;
@@ -100,7 +89,7 @@ class Attributes
         return array_merge(['class' => implode(' ', $this->classes)], $this->attributes);
     }
 
-    public function render() : string
+    public function render(): string
     {
         if ($this->isEmpty()) {
             return '';

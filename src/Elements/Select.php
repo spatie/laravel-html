@@ -3,7 +3,7 @@
 namespace Spatie\Html\Elements;
 
 use Exception;
-use Spatie\Html\Html;
+use Spatie\Html\Arr;
 use Spatie\Html\BaseElement;
 
 class Select extends BaseElement
@@ -24,11 +24,12 @@ class Select extends BaseElement
      */
     public function options(iterable $options)
     {
-        return $this->setChildren(
-            array_map(function ($value, $label) {
-                return Html::option($value, $label)->selectedIf($value === $this->value);
-            }, $options, array_keys($options))
-        );
+        return $this->createChildrenFrom($options, function ($text, $value) {
+            return Option::create()
+                ->value($value)
+                ->text($text)
+                ->selectedIf($value === $this->value);
+        });
     }
 
     /**
@@ -36,7 +37,7 @@ class Select extends BaseElement
      *
      * @return static
      */
-    public function setChildren($children)
+    public function children($children)
     {
         if (! is_iterable($children)) {
             throw new Exception;
@@ -48,7 +49,11 @@ class Select extends BaseElement
             }
         }
 
-        return parent::setChildren($children);
+        $element  = parent::children($children);
+
+        $element->applyValueToOptions();
+
+        return $element;
     }
 
     /**
@@ -62,6 +67,20 @@ class Select extends BaseElement
 
         $element->value = $value;
 
+        $element->applyValueToOptions();
+
         return $element;
+    }
+
+    protected function applyValueToOptions()
+    {
+        $this->children = Arr::map($this->children, function ($child) {
+
+            if ($child instanceof Option) {
+                return $child->selectedIf($this->value === $child->getAttribute('value'));
+            }
+
+            return $child;
+        });
     }
 }

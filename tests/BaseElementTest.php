@@ -3,6 +3,7 @@
 namespace Spatie\Html\Test;
 
 use Spatie\Html\BaseElement;
+use Spatie\Html\Exceptions\InvalidHtml;
 use Spatie\Html\Exceptions\MissingTag;
 
 class BaseElementTest extends TestCase
@@ -20,7 +21,7 @@ class BaseElementTest extends TestCase
     {
         $this->assertEquals(
             '<element foo="bar"></element>',
-            (new Element())->setAttribute('foo', 'bar')
+            Element::create()->attribute('foo', 'bar')->render()
         );
     }
 
@@ -29,7 +30,7 @@ class BaseElementTest extends TestCase
     {
         $this->assertEquals(
             '<element foo="bar"></element>',
-            (new Element())->attribute('foo', 'bar')
+            Element::create()->attribute('foo', 'bar')->render()
         );
     }
 
@@ -38,7 +39,7 @@ class BaseElementTest extends TestCase
     {
         $this->assertEquals(
             '<element foo bar="baz"></element>',
-            (new Element())->attributes(['foo', 'bar' => 'baz'])
+            Element::create()->attributes(['foo', 'bar' => 'baz'])->render()
         );
     }
 
@@ -47,18 +48,48 @@ class BaseElementTest extends TestCase
     {
         $this->assertEquals(
             '<element class="foo"></element>',
-            (new Element())->class('foo')
+            Element::create()->class('foo')->render()
         );
 
         $this->assertEquals(
             '<element class="foo bar"></element>',
-            (new Element())->class(['foo', 'bar'])
+            Element::create()->class(['foo', 'bar'])->render()
         );
 
         $this->assertEquals(
             '<element class="foo"></element>',
-            (new Element())->class(['foo', 'bar' => false])
+            Element::create()->class(['foo', 'bar' => false])->render()
         );
+    }
+
+    /** @test */
+    public function it_can_set_text()
+    {
+        $this->assertEquals(
+            '<element>Hi</element>',
+            Element::create()->text('Hi')->render()
+        );
+    }
+
+    /** @test */
+    public function setting_text_overwrites_existing_children()
+    {
+        $this->assertEquals(
+            '<element>Hi</element>',
+            Element::create()->child(Element::create())->text('Hi')->render()
+        );
+    }
+
+    /** @test */
+    public function it_cant_set_text_if_its_a_void_element()
+    {
+        $this->expectException(InvalidHtml::class);
+
+        $img = new class extends BaseElement {
+            protected $tag = 'img';
+        };
+
+        $img->text('Hi');
     }
 }
 

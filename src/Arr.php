@@ -52,10 +52,13 @@ class Arr
         });
     }
 
+    public static function map(array $array, callable $callback): array
+    {
+        return array_map($callback, $array, array_keys($array));
+    }
+
     public static function mapAndRemoveEmptyValues(array $array, callable $callback): array
     {
-        return array_filter(
-            array_map($callback, $array, array_keys($array))
-        );
+        return array_filter(self::map($array, $callback));
     }
 }

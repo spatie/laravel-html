@@ -106,4 +106,39 @@ class AttributesTest extends TestCase
             $attributes->toArray()
         );
     }
+
+    /** @test */
+    public function it_can_be_rendered_when_empty()
+    {
+        $attributes = new Attributes();
+
+        $this->assertEquals('', $attributes->render());
+    }
+
+    /** @test */
+    public function it_can_be_rendered_with_an_attribute()
+    {
+        $attributes = new Attributes();
+        $attributes->setAttribute('foo', 'bar');
+
+        $this->assertEquals('foo="bar"', $attributes->render());
+    }
+
+    /** @test */
+    public function it_can_be_rendered_with_multiple_attributes()
+    {
+        $attributes = new Attributes();
+        $attributes->setAttributes(['foo' => 'bar', 'baz' => 'qux']);
+
+        $this->assertEquals('foo="bar" baz="qux"', $attributes->render());
+    }
+
+    /** @test */
+    public function it_can_be_rendered_with_a_falsish_attribute()
+    {
+        $attributes = new Attributes();
+        $attributes->setAttribute('foo', '0');
+
+        $this->assertEquals('foo="0"', $attributes->render());
+    }
 }

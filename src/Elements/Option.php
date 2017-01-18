@@ -3,38 +3,21 @@
 namespace Spatie\Html\Elements;
 
 use Spatie\Html\BaseElement;
+use Spatie\Html\Traits\HasValueAttribute;
 
 class Option extends BaseElement
 {
+    use HasValueAttribute;
+
     /** @var string */
     protected $tag = 'option';
-
-    /**
-     * @param string $text
-     *
-     * @return static
-     */
-    public function text(string $text)
-    {
-        return $this->setChildren($text);
-    }
-
-    /**
-     * @param string $value
-     *
-     * @return static
-     */
-    public function value(string $value)
-    {
-        return $this->setAttribute('value', $value);
-    }
 
     /**
      * @return static
      */
     public function selected()
     {
-        return $this->setAttribute('selected', 'selected');
+        return $this->attribute('selected', 'selected');
     }
 
     /**

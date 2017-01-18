@@ -3,6 +3,7 @@
 namespace Spatie\Html;
 
 use Spatie\Html\Exceptions\CannotRenderChild;
+use Spatie\Html\Exceptions\InvalidHtml;
 use Spatie\Html\Exceptions\MissingTag;
 
 abstract class BaseElement
@@ -25,32 +26,18 @@ abstract class BaseElement
         $this->attributes = new Attributes();
     }
 
-    /**
-     * @param string $attribute
-     * @param string $value
-     *
-     * @return static
-     */
-    public function setAttribute(string $attribute, string $value)
+    public static function create()
+    {
+        return new static();
+    }
+
+    public function attribute(string $attribute, string $value)
     {
         $element = clone $this;
 
         $element->attributes->setAttribute($attribute, $value);
 
         return $element;
-    }
-
-    /**
-     * Alias for `setAttribute`
-     *
-     * @param string $attribute
-     * @param string $value
-     *
-     * @return \Spatie\Html\BaseElement
-     */
-    public function attribute(string $attribute, string $value)
-    {
-        return $this->setAttribute($attribute, $value);
     }
 
     public function attributes(iterable $attributes)
@@ -77,6 +64,11 @@ abstract class BaseElement
         return $element;
     }
 
+    public function getAttribute(string $attribute, string $fallback = '')
+    {
+        return $this->attributes->getAttribute($attribute, $fallback);
+    }
+
     public function addClass($class)
     {
         $element = clone $this;
@@ -92,19 +84,46 @@ abstract class BaseElement
     }
 
     /**
-     * @param string|iterable $children
+     * @param iterable $children
      *
      * @return static
      */
-    public function setChildren($children)
+    public function children($children)
     {
         $element = clone $this;
 
-        $element->children = is_iterable($children)
-            ? $children
-            : [$children];
+        $element->children = $children;
 
         return $element;
+    }
+
+    public function child($child)
+    {
+        return $this->children([$child]);
+    }
+
+    public function text(string $text)
+    {
+        if ($this->isVoidElement()) {
+            throw new InvalidHtml("Can't set text on `{$this->tag}` because it's a void element");
+        }
+
+        $element = clone $this;
+
+        $element->children = [$text];
+
+        return $element;
+    }
+
+    /**
+     * @param iterable $children
+     * @param callable $callback
+     *
+     * @return static
+     */
+    public function createChildrenFrom(iterable $children, callable $callback)
+    {
+        return $this->children(Arr::map($children, $callback));
     }
 
     public function renderChildren(): string

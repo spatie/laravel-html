@@ -61,6 +61,11 @@ class Attributes
         return $this;
     }
 
+    public function getAttribute(string $attribute, string $fallback): string
+    {
+        return $this->attributes[$attribute] ?? $fallback;
+    }
+
     /**
      * @param string|iterable $class
      */
@@ -98,7 +103,7 @@ class Attributes
         $attributeStrings = [];
 
         foreach ($this->toArray() as $attribute => $value) {
-            if (empty($value)) {
+            if ($value === '') {
                 $attributeStrings[] = $attribute;
                 continue;
             }

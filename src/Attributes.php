@@ -61,8 +61,12 @@ class Attributes
         return $this;
     }
 
-    public function getAttribute(string $attribute, string $fallback): string
+    public function getAttribute(string $attribute, string $fallback = null): ?string
     {
+        if ($attribute === 'class') {
+            return implode(' ', $this->classes);
+        }
+
         return $this->attributes[$attribute] ?? $fallback;
     }
 

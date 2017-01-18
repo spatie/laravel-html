@@ -96,6 +96,63 @@ class AttributesTest extends TestCase
     }
 
     /** @test */
+    public function it_can_forget_an_attribute()
+    {
+        $attributes = new Attributes();
+        $attributes->setAttribute('href', '#');
+        $attributes->forgetAttribute('href');
+
+        $this->assertNull($attributes->getAttribute('href'));
+    }
+
+    /** @test */
+    public function it_can_forget_its_classes()
+    {
+        $attributes = new Attributes();
+        $attributes->addClass('foo');
+        $attributes->forgetAttribute('class');
+
+        $this->assertEmpty($attributes->getAttribute('class'));
+    }
+
+    /** @test */
+    public function it_can_get_an_attribute()
+    {
+        $attributes = new Attributes();
+        $attributes->setAttribute('foo', 'bar');
+
+        $this->assertEquals('bar', $attributes->getAttribute('foo'));
+    }
+
+    /** @test */
+    public function it_can_get_a_class_list()
+    {
+        $attributes = new Attributes();
+
+        $this->assertEquals('', $attributes->getAttribute('class'));
+
+        $attributes->addClass(['foo', 'bar']);
+
+        $this->assertEquals('foo bar', $attributes->getAttribute('class'));
+    }
+
+    /** @test */
+    public function it_returns_null_if_an_attribute_doesnt_exist()
+    {
+        $attributes = new Attributes();
+
+        $this->assertNull($attributes->getAttribute('foo'));
+    }
+
+    /** @test */
+    public function it_can_return_a_fallback_if_an_attribute_doesnt_exist()
+    {
+        $attributes = new Attributes();
+
+        $this->assertEquals('bar', $attributes->getAttribute('foo', 'bar'));
+    }
+
+    /** @test */
     public function it_accepts_multiple_attributes()
     {
         $attributes = new Attributes();

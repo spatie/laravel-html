@@ -43,6 +43,7 @@ class BaseElementTest extends TestCase
         );
     }
 
+
     /** @test */
     public function a_class_can_be_added_with_add_class()
     {

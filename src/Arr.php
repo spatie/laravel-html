@@ -42,7 +42,7 @@ class Arr
      */
     public static function getToggledValues(iterable $map): array
     {
-        return self::mapAndDropEmptyValues(self::create($map), function ($condition, $value) {
+        return self::mapAndRemoveEmptyValues(self::create($map), function ($condition, $value) {
 
             if (is_numeric($value)) {
                 return $condition;
@@ -52,7 +52,7 @@ class Arr
         });
     }
 
-    public static function mapAndDropEmptyValues(array $array, callable $callback): array
+    public static function mapAndRemoveEmptyValues(array $array, callable $callback): array
     {
         return array_filter(
             array_map($callback, $array, array_keys($array))

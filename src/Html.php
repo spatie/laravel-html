@@ -24,7 +24,7 @@ class Html
      */
     public function element(string $tag)
     {
-        return Element::withTagName($tag);
+        return Element::withTag($tag);
     }
 
     /**

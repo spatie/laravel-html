@@ -1,6 +1,6 @@
 {
     "name": "spatie/html",
-    "description": "A fluent html generator",
+    "description": "A fluent html builder",
     "keywords": [
         "spatie",
         "html"

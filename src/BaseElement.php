@@ -2,6 +2,7 @@
 
 namespace Spatie\Html;
 
+use Illuminate\Support\HtmlString;
 use Spatie\Html\Exceptions\CannotRenderChild;
 use Spatie\Html\Exceptions\InvalidHtml;
 use Spatie\Html\Exceptions\MissingTag;
@@ -85,12 +86,15 @@ abstract class BaseElement
 
     /**
      * @param iterable $children
+     * @param callable $mapper
      *
      * @return static
      */
-    public function children($children)
+    public function children(iterable $children, callable $mapper = null)
     {
         $element = clone $this;
+
+        $children = $mapper ? Arr::map($children, $mapper) : $children;
 
         $element->children = $children;
 
@@ -115,20 +119,9 @@ abstract class BaseElement
         return $element;
     }
 
-    /**
-     * @param iterable $children
-     * @param callable $callback
-     *
-     * @return static
-     */
-    public function createChildrenFrom(iterable $children, callable $callback)
+    public function renderChildren(): HtmlString
     {
-        return $this->children(Arr::map($children, $callback));
-    }
-
-    public function renderChildren(): string
-    {
-        return implode('', array_map(function ($child) {
+        $children = Arr::map($this->children, function ($child) {
             if ($child instanceof BaseElement) {
                 return $child->render();
             }
@@ -138,26 +131,34 @@ abstract class BaseElement
             }
 
             throw CannotRenderChild::childMustBeABaseElementOrAString($child);
-        }, $this->children));
+        });
+
+        return new HtmlString(implode('', $children));
     }
 
-    public function open(): string
+    public function open(): HtmlString
     {
-        return $this->attributes->isEmpty()
-            ? '<'.$this->tag.'>'
-            : "<{$this->tag} {$this->attributes->render()}>";
+        return new HtmlString(
+            $this->attributes->isEmpty()
+                ? '<'.$this->tag.'>'
+                : "<{$this->tag} {$this->attributes->render()}>"
+        );
     }
 
-    public function close(): string
+    public function close(): HtmlString
     {
-        return $this->isVoidElement()
-            ? ''
-            : "</{$this->tag}>";
+        return new HtmlString(
+            $this->isVoidElement()
+                ? ''
+                : "</{$this->tag}>"
+        );
     }
 
-    public function render(): string
+    public function render(): HtmlString
     {
-        return $this->open().$this->renderChildren().$this->close();
+        return new HtmlString(
+            $this->open().$this->renderChildren().$this->close()
+        );
     }
 
     public function isVoidElement(): bool

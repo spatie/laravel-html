@@ -1,11 +1,11 @@
 {
-    "name": "spatie/html",
+    "name": "spatie/laravel-html",
     "description": "A fluent html builder",
     "keywords": [
         "spatie",
         "html"
     ],
-    "homepage": "https://github.com/spatie/html",
+    "homepage": "https://github.com/spatie/laravel-html",
     "license": "MIT",
     "authors": [
         {
@@ -22,7 +22,8 @@
         }
     ],
     "require": {
-        "php" : "^7.1"
+        "php": "^7.1",
+        "illuminate/support": "^5.4"
     },
     "require-dev": {
         "phpunit/phpunit": "5.*"

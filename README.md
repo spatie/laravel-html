@@ -1,12 +1,12 @@
 # Painless html generation
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/html.svg?style=flat-square)](https://packagist.org/packages/spatie/html)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-html.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-html)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/spatie/html/master.svg?style=flat-square)](https://travis-ci.org/spatie/html)
+[![Build Status](https://img.shields.io/travis/spatie/laravel-html/master.svg?style=flat-square)](https://travis-ci.org/spatie/laravel-html)
 [![SensioLabsInsight](https://img.shields.io/sensiolabs/i/143f42ef-2e74-42f0-87db-90403f253c85.svg?style=flat-square)](https://insight.sensiolabs.com/projects/143f42ef-2e74-42f0-87db-90403f253c85)
-[![Quality Score](https://img.shields.io/scrutinizer/g/spatie/html.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/html)
+[![Quality Score](https://img.shields.io/scrutinizer/g/spatie/laravel-html.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/laravel-html)
 [![StyleCI](https://styleci.io/repos/78114062/shield?branch=master)](https://styleci.io/repos/78114062)
-[![Total Downloads](https://img.shields.io/packagist/dt/spatie/html.svg?style=flat-square)](https://packagist.org/packages/spatie/html)
+[![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-html.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-html)
 
 This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
 
@@ -23,7 +23,7 @@ The best postcards will get published on the open source page on our website.
 You can install the package via composer:
 
 ``` bash
-composer require spatie/html
+composer require spatie/laravel-html
 ```
 
 ## Usage

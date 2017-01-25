@@ -5,6 +5,7 @@ namespace Spatie\Html\Elements;
 use Exception;
 use Spatie\Html\Arr;
 use Spatie\Html\BaseElement;
+use Spatie\Html\Exceptions\InvalidHtml;
 
 class Select extends BaseElement
 {
@@ -24,7 +25,7 @@ class Select extends BaseElement
      */
     public function options(iterable $options)
     {
-        return $this->createChildrenFrom($options, function ($text, $value) {
+        return $this->children($options, function ($text, $value) {
             return Option::create()
                 ->value($value)
                 ->text($text)
@@ -33,23 +34,22 @@ class Select extends BaseElement
     }
 
     /**
-     * @param iterable|string $children
+     * @param iterable $children
+     * @param callable $mapper
      *
      * @return static
      */
-    public function children($children)
+    public function children(iterable $children, callable $mapper = null)
     {
-        if (! is_iterable($children)) {
-            throw new Exception;
-        }
+        $children = $mapper ? Arr::map($children, $mapper) : $children;
 
         foreach ($children as $child) {
             if (! $child instanceof Option) {
-                throw new Exception;
+                throw new InvalidHtml('A select element can only contain options');
             }
         }
 
-        $element  = parent::children($children);
+        $element = parent::children($children);
 
         $element->applyValueToOptions();
 

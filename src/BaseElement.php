@@ -32,7 +32,13 @@ abstract class BaseElement
         return new static();
     }
 
-    public function attribute(string $attribute, string $value)
+    /**
+     * @param string $attribute
+     * @param string $value
+     *
+     * @return static
+     */
+    public function attribute(string $attribute, string $value = '')
     {
         $element = clone $this;
 
@@ -41,6 +47,25 @@ abstract class BaseElement
         return $element;
     }
 
+    /**
+     * @param bool $condition
+     * @param string $attribute
+     * @param string $value
+     *
+     * @return static
+     */
+    public function attributeIf(bool $condition, string $attribute, string $value = '')
+    {
+        return $condition ?
+            $this->attribute($attribute, $value) :
+            $this;
+    }
+
+    /**
+     * @param iterable $attributes
+     *
+     * @return static
+     */
     public function attributes(iterable $attributes)
     {
         $element = clone $this;

@@ -10,6 +10,7 @@ use Spatie\Html\Elements\Label;
 use Spatie\Html\Elements\Option;
 use Spatie\Html\Elements\Select;
 use Spatie\Html\Elements\Element;
+use Spatie\Html\Elements\Span;
 
 class Html
 {
@@ -150,6 +151,24 @@ class Html
     }
 
     /**
+     * @param iterable $options
+     *
+     * @return \Spatie\Html\Elements\Select
+     */
+    public function select(iterable $options = [])
+    {
+        return Select::create()->options($options);
+    }
+
+    /**
+     * @return \Spatie\Html\Elements\Span
+     */
+    public function span()
+    {
+        return Span::create();
+    }
+
+    /**
      * @param string $number
      * @param string $text
      *
@@ -169,15 +188,5 @@ class Html
     public function text(string $name = '', string $value = '')
     {
         return static::input('text', $name, $value);
-    }
-
-    /**
-     * @param iterable $options
-     *
-     * @return \Spatie\Html\Elements\Select
-     */
-    public function select(iterable $options = [])
-    {
-        return Select::create()->options($options);
     }
 }

@@ -2,12 +2,13 @@
 
 namespace Spatie\Html;
 
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\HtmlString;
 use Spatie\Html\Exceptions\CannotRenderChild;
 use Spatie\Html\Exceptions\InvalidHtml;
 use Spatie\Html\Exceptions\MissingTag;
 
-abstract class BaseElement
+abstract class BaseElement implements Htmlable
 {
     /** @var string */
     protected $tag;
@@ -144,7 +145,7 @@ abstract class BaseElement
         return $element;
     }
 
-    public function renderChildren(): HtmlString
+    public function renderChildren(): HtmlAble
     {
         $children = Arr::map($this->children, function ($child) {
             if ($child instanceof BaseElement) {
@@ -161,7 +162,7 @@ abstract class BaseElement
         return new HtmlString(implode('', $children));
     }
 
-    public function open(): HtmlString
+    public function open(): HtmlAble
     {
         return new HtmlString(
             $this->attributes->isEmpty()
@@ -170,7 +171,7 @@ abstract class BaseElement
         );
     }
 
-    public function close(): HtmlString
+    public function close(): HtmlAble
     {
         return new HtmlString(
             $this->isVoidElement()
@@ -179,7 +180,7 @@ abstract class BaseElement
         );
     }
 
-    public function render(): HtmlString
+    public function render(): HtmlAble
     {
         return new HtmlString(
             $this->open().$this->renderChildren().$this->close()
@@ -201,6 +202,11 @@ abstract class BaseElement
     }
 
     public function __toString(): string
+    {
+        return $this->render();
+    }
+
+    public function toHtml()
     {
         return $this->render();
     }

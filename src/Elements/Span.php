@@ -6,5 +6,5 @@ use Spatie\Html\BaseElement;
 
 class Span extends BaseElement
 {
-    protected $tag = 'div';
+    protected $tag = 'span';
 }

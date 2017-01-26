@@ -4,7 +4,6 @@ namespace Spatie\Html;
 
 use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Contracts\Session\Session;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Traits\Macroable;
 use Spatie\Html\Elements\A;
@@ -32,7 +31,7 @@ class Html
     /** @var \Illuminate\Contracts\Routing\UrlGenerator */
     protected $urlGenerator;
 
-    /** @var \Illuminate\Database\Eloquent\Model */
+    /** @var \ArrayAccess|array */
     protected $model;
 
     public function __construct(Request $request, Session $session, UrlGenerator $urlGenerator)
@@ -128,7 +127,7 @@ class Html
      *
      * @return \Spatie\Html\Elements\Form
      */
-    public function form(string $method = '', string $action = '', array $parameters = [])
+    public function form(string $method = 'POST', string $action = '', array $parameters = [])
     {
         $method = strtoupper($method);
         $form = Form::create();
@@ -144,9 +143,17 @@ class Html
             $form = $form->addChild(static::token());
         }
 
+        // If there's a model bound to the html builder, we'll unset it after
+        // the form gets closed
+        if ($this->model) {
+            $form = $form->onClose(function () {
+                $this->endModel();
+            });
+        }
+
         return $form
             ->method($method === 'GET' ? 'GET' : 'POST')
-            ->action($this->urlGenerator->action($action, $parameters));
+            ->action($action ? $this->urlGenerator->action($action, $parameters) : $action);
     }
 
     /**
@@ -282,11 +289,11 @@ class Html
     }
 
     /**
-     * @param \Illuminate\Database\Eloquent\Model $model
+     * @param \ArrayAccess|array $model
      *
      * @return $this
      */
-    public function model(Model $model)
+    public function model($model)
     {
         $this->model = $model;
 
@@ -313,7 +320,7 @@ class Html
         // If there's no default value provided, and the html builder currently
         // has a model assigned, try to retrieve a value from the model.
         if (empty($value) && $this->model) {
-            $value = data_get($this->model, $value, '');
+            $value = $this->model[$name] ?? '';
         }
 
         return $this->request->old($name, $value);

@@ -20,6 +20,9 @@ abstract class BaseElement implements Htmlable, HtmlElement
     /** @var array */
     protected $children = [];
 
+    /** @var callable[] */
+    protected $onClose = [];
+
     public function __construct()
     {
         if (empty($this->tag)) {
@@ -179,6 +182,15 @@ abstract class BaseElement implements Htmlable, HtmlElement
         return $element;
     }
 
+    public function onClose(callable $callback)
+    {
+        $element = clone $this;
+
+        $element->onClose[] = $callback;
+
+        return $element;
+    }
+
     public function renderChildren(): HtmlAble
     {
         $children = Arr::map($this->children, function ($child) {
@@ -207,6 +219,10 @@ abstract class BaseElement implements Htmlable, HtmlElement
 
     public function close(): HtmlAble
     {
+        foreach ($this->onClose as $callback) {
+            $callback();
+        }
+
         return new HtmlString(
             $this->isVoidElement()
                 ? ''

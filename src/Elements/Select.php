@@ -2,8 +2,7 @@
 
 namespace Spatie\Html\Elements;
 
-use Exception;
-use Spatie\Html\Arr;
+use Spatie\Html\Helpers\Arr;
 use Spatie\Html\BaseElement;
 use Spatie\Html\Exceptions\InvalidHtml;
 

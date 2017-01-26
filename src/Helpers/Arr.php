@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\Html;
+namespace Spatie\Html\Helpers;
 
 class Arr
 {

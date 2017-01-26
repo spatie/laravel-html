@@ -4,9 +4,9 @@ namespace Spatie\Html\Elements;
 
 use Spatie\Html\BaseElement;
 
-class Input extends BaseElement
+class Textarea extends BaseElement
 {
-    protected $tag = 'input';
+    protected $tag = 'textarea';
 
     /**
      * @param string $name
@@ -16,16 +16,6 @@ class Input extends BaseElement
     public function name(string $name)
     {
         return $this->attribute('name', $name);
-    }
-
-    /**
-     * @param string $type
-     *
-     * @return static
-     */
-    public function type(string $type)
-    {
-        return $this->attribute('type', $type);
     }
 
     /**

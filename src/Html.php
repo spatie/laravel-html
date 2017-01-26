@@ -2,7 +2,13 @@
 
 namespace Spatie\Html;
 
+use Illuminate\Contracts\Routing\UrlGenerator;
+use Illuminate\Contracts\Session\Session;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use Illuminate\Support\Traits\Macroable;
 use Spatie\Html\Elements\A;
+use Spatie\Html\Elements\Button;
 use Spatie\Html\Elements\Div;
 use Spatie\Html\Elements\Form;
 use Spatie\Html\Elements\Input;
@@ -11,9 +17,31 @@ use Spatie\Html\Elements\Option;
 use Spatie\Html\Elements\Select;
 use Spatie\Html\Elements\Element;
 use Spatie\Html\Elements\Span;
+use Spatie\Html\Elements\Textarea;
 
 class Html
 {
+    use Macroable;
+
+    /** @var \Illuminate\Http\Request */
+    protected $request;
+
+    /** @var \Illuminate\Contracts\Session\Session */
+    protected $session;
+
+    /** @var \Illuminate\Contracts\Routing\UrlGenerator */
+    protected $urlGenerator;
+
+    /** @var \Illuminate\Database\Eloquent\Model */
+    protected $model;
+
+    public function __construct(Request $request, Session $session, UrlGenerator $urlGenerator)
+    {
+        $this->request = $request;
+        $this->session = $session;
+        $this->urlGenerator = $urlGenerator;
+    }
+
     /**
      * @param string $href
      * @param string $text
@@ -24,6 +52,19 @@ class Html
     {
         return A::create()
             ->href($href)
+            ->text($text);
+    }
+
+    /**
+     * @param string $type
+     * @param string $text
+     *
+     * @return \Spatie\Html\Elements\Button
+     */
+    public function button(string $text = '', string $type = 'button')
+    {
+        return Button::create()
+            ->type($type)
             ->text($text);
     }
 
@@ -77,20 +118,35 @@ class Html
         return Input::create()
             ->type($type)
             ->name($name)
-            ->value($value);
+            ->value($name ? $this->old($name, $value) : $value);
     }
 
     /**
      * @param string $method
      * @param string $action
+     * @param array $parameters
      *
      * @return \Spatie\Html\Elements\Form
      */
-    public function form(string $method = '', string $action = '')
+    public function form(string $method = '', string $action = '', array $parameters = [])
     {
-        return Form::create()
-            ->method($method)
-            ->action($action);
+        $method = strtoupper($method);
+        $form = Form::create();
+
+        // If Laravel needs to spoof the form's method, we'll append a hidden
+        // field containing the actual method
+        if (in_array($method, ['DELETE', 'PATCH', 'PUT'])) {
+            $form = $form->addChild(static::hidden('_method')->value($method));
+        }
+
+        // On any other method that get, the form needs a CSRF token
+        if ($method === 'GET') {
+            $form = $form->addChild(static::token());
+        }
+
+        return $form
+            ->method($method === 'GET' ? 'GET' : 'POST')
+            ->action($this->urlGenerator->action($action, $parameters));
     }
 
     /**
@@ -151,13 +207,17 @@ class Html
     }
 
     /**
+     * @param string $name
      * @param iterable $options
+     * @param string $value
      *
      * @return \Spatie\Html\Elements\Select
      */
-    public function select(iterable $options = [])
+    public function select(string $name = '', iterable $options = [], string $value = '')
     {
-        return Select::create()->options($options);
+        return Select::create()
+            ->options($options)
+            ->value($name ? $this->old($name, $value) : $value);
     }
 
     /**
@@ -166,6 +226,16 @@ class Html
     public function span()
     {
         return Span::create();
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return \Spatie\Html\Elements\Input
+     */
+    public function submit(string $value = '')
+    {
+        return static::input('submit')->value($value);
     }
 
     /**
@@ -188,5 +258,64 @@ class Html
     public function text(string $name = '', string $value = '')
     {
         return static::input('text', $name, $value);
+    }
+
+    /**
+     * @param string $name
+     * @param string $value
+     *
+     * @return \Spatie\Html\Elements\Textarea
+     */
+    public function textarea(string $name = '', string $value = '')
+    {
+        return Textarea::create()
+            ->name($name)
+            ->value($name ? $this->old($name, $value) : $value);
+    }
+
+    /**
+     * @return \Spatie\Html\Elements\Input
+     */
+    public function token()
+    {
+        return static::hidden('_token')->value($this->session->token());
+    }
+
+    /**
+     * @param \Illuminate\Database\Eloquent\Model $model
+     *
+     * @return $this
+     */
+    public function model(Model $model)
+    {
+        $this->model = $model;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function endModel()
+    {
+        $this->model = null;
+
+        return $this;
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return string
+     */
+    public function old(string $name, string $value = ''): string
+    {
+        // If there's no default value provided, and the html builder currently
+        // has a model assigned, try to retrieve a value from the model.
+        if (empty($value) && $this->model) {
+            $value = data_get($this->model, $value, '');
+        }
+
+        return $this->request->old($name, $value);
     }
 }

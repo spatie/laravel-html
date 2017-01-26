@@ -23,6 +23,8 @@
     ],
     "require": {
         "php": "^7.1",
+        "illuminate/database": "^5.4",
+        "illuminate/http": "^5.4",
         "illuminate/support": "^5.4"
     },
     "require-dev": {

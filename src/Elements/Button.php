@@ -4,19 +4,9 @@ namespace Spatie\Html\Elements;
 
 use Spatie\Html\BaseElement;
 
-class Input extends BaseElement
+class Button extends BaseElement
 {
-    protected $tag = 'input';
-
-    /**
-     * @param string $name
-     *
-     * @return static
-     */
-    public function name(string $name)
-    {
-        return $this->attribute('name', $name);
-    }
+    protected $tag = 'button';
 
     /**
      * @param string $type

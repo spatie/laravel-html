@@ -27,4 +27,12 @@ class Form extends BaseElement
     {
         return $this->attribute('action', $method);
     }
+
+    /**
+     * @return static
+     */
+    public function acceptsFiles()
+    {
+       return $this->attribute('enctype', 'multipart/form-data');
+    }
 }

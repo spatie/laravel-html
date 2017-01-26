@@ -3,7 +3,7 @@
 namespace Spatie\Html\Exceptions;
 
 use Exception;
-use Spatie\Html\BaseElement;
+use Spatie\Html\HtmlElement;
 
 class CannotRenderChild extends Exception
 {
@@ -12,8 +12,8 @@ class CannotRenderChild extends Exception
      *
      * @return static
      */
-    public static function childMustBeAnElementOrAString($child)
+    public static function childMustBeAnHtmlElementOrAString($child)
     {
-        return new static('The given child should be a '.BaseElement::class.' or a string');
+        return new static('The given child should implement `'.HtmlElement::class.'` or be a string');
     }
 }

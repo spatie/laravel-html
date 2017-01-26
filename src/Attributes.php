@@ -2,6 +2,8 @@
 
 namespace Spatie\Html;
 
+use Spatie\Html\Helpers\Arr;
+
 class Attributes
 {
     /** @var array */

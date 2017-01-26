@@ -33,6 +33,13 @@ $skeleton = new Spatie\Skeleton();
 echo $skeleton->echoPhrase('Hello, Spatie!');
 ```
 
+### Philosophy
+
+- Fluent
+- Html builder class does magic
+- Elements are pure
+- No return type hints for inheritance
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.

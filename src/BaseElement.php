@@ -7,8 +7,9 @@ use Illuminate\Support\HtmlString;
 use Spatie\Html\Exceptions\CannotRenderChild;
 use Spatie\Html\Exceptions\InvalidHtml;
 use Spatie\Html\Exceptions\MissingTag;
+use Spatie\Html\Helpers\Arr;
 
-abstract class BaseElement implements Htmlable
+abstract class BaseElement implements Htmlable, HtmlElement
 {
     /** @var string */
     protected $tag;
@@ -132,15 +133,48 @@ abstract class BaseElement implements Htmlable
         return $this->children([$child]);
     }
 
-    public function text(string $text)
+    /**
+     * @param \Spatie\Html\HtmlElement|string $child
+     *
+     * @return static
+     */
+    public function addChild($child)
     {
-        if ($this->isVoidElement()) {
-            throw new InvalidHtml("Can't set text on `{$this->tag}` because it's a void element");
+        if ((! $child instanceof HtmlElement) && (! is_string($child))) {
+            throw CannotRenderChild::childMustBeAnHtmlElementOrAString($child);
         }
 
         $element = clone $this;
 
-        $element->children = [$text];
+        $element->children[] = $child;
+
+        return $element;
+    }
+
+    /**
+     * @param string $text
+     *
+     * @return static
+     */
+    public function text(string $text)
+    {
+        return $this->html(htmlentities($text, ENT_QUOTES, 'UTF-8', false));
+    }
+
+    /**
+     * @param string $html
+     *
+     * @return static
+     */
+    public function html(string $html)
+    {
+        if ($this->isVoidElement()) {
+            throw new InvalidHtml("Can't set inner contents on `{$this->tag}` because it's a void element");
+        }
+
+        $element = clone $this;
+
+        $element->children = [$html];
 
         return $element;
     }
@@ -148,7 +182,7 @@ abstract class BaseElement implements Htmlable
     public function renderChildren(): HtmlAble
     {
         $children = Arr::map($this->children, function ($child) {
-            if ($child instanceof BaseElement) {
+            if ($child instanceof HtmlElement) {
                 return $child->render();
             }
 
@@ -156,7 +190,7 @@ abstract class BaseElement implements Htmlable
                 return $child;
             }
 
-            throw CannotRenderChild::childMustBeABaseElementOrAString($child);
+            throw CannotRenderChild::childMustBeAnHtmlElementOrAString($child);
         });
 
         return new HtmlString(implode('', $children));

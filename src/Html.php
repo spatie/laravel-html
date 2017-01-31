@@ -5,7 +5,6 @@ namespace Spatie\Html;
 use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
-use Illuminate\Support\Traits\Macroable;
 use Spatie\Html\Elements\A;
 use Spatie\Html\Elements\Button;
 use Spatie\Html\Elements\Div;
@@ -20,8 +19,6 @@ use Spatie\Html\Elements\Textarea;
 
 class Html
 {
-    use Macroable;
-
     /** @var \Illuminate\Http\Request */
     protected $request;
 

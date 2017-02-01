@@ -2,8 +2,6 @@
 
 namespace Spatie\Html\Test\Html;
 
-use Spatie\Html\Test\TestCase;
-
 class SelectTest extends TestCase
 {
     /** @test */
@@ -24,11 +22,11 @@ class SelectTest extends TestCase
         ];
 
         $this->assertHtmlStringEqualsHtmlString(
-            '<select>
+            '<select name="select">
                 <option value="value1">text1</option>
                 <option value="value2">text2</option>
             </select>',
-            $this->html->select($options)->render()
+            $this->html->select('select', $options)->render()
         );
     }
 }

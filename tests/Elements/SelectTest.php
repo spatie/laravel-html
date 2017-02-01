@@ -3,7 +3,6 @@
 namespace Spatie\Html\Test\Elements;
 
 use Spatie\Html\Elements\Select;
-use Spatie\Html\Test\TestCase;
 
 class SelectTest extends TestCase
 {

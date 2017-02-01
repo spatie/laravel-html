@@ -2,9 +2,6 @@
 
 namespace Spatie\Html\Test\Html;
 
-use Spatie\Html\Test\TestCase;
-
-
 class DivTest extends TestCase
 {
     /** @test */

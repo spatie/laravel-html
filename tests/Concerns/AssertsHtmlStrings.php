@@ -1,21 +1,11 @@
 <?php
 
-namespace Spatie\Html\Test;
+namespace Spatie\Html\Test\Concerns;
 
 use DOMDocument;
-use PHPUnit_Framework_TestCase;
-use Spatie\Html\Html;
 
-class TestCase extends PHPUnit_Framework_TestCase
+trait AssertsHtmlStrings
 {
-    /** @var \Spatie\Html\Html */
-    protected $html;
-
-    public function setUp()
-    {
-        $this->html = new Html();
-    }
-
     protected function assertHtmlStringEqualsHtmlString(string $expectedHtml, string $actualHtml)
     {
         $this->assertEquals(

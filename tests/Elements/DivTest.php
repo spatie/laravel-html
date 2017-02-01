@@ -3,7 +3,6 @@
 namespace Spatie\Html\Test\Elements;
 
 use Spatie\Html\Elements\Div;
-use Spatie\Html\Test\TestCase;
 
 class DivTest extends TestCase
 {

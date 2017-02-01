@@ -28,17 +28,36 @@ composer require spatie/laravel-html
 
 ## Usage
 
-``` php
-$skeleton = new Spatie\Skeleton();
-echo $skeleton->echoPhrase('Hello, Spatie!');
+### Concepts
+
+Elements—classes under the `Spatie\Html\Elements` namespace—are generally created via a `Spatie\Html\Html` builder instance.
+
+```php
+$html = app(Html::class);
+
+$html->span()->text('Hello world!');
 ```
 
-### Philosophy
+Element attributes and contents are modified via with fluent methods which return a new instance. This means element instances are immutable.
 
-- Fluent
-- Html builder class does magic
-- Elements are pure
-- No return type hints for inheritance
+```php
+$icon = $html->span()->class('fa');
+
+$icon->class('fa-eye'); // '<span class="fa fa-eye"></span>'
+$icon->class('fa-eye-slash'); // '<span class="fa fa-eye-slash"></span>'
+```
+
+Element classes don't have any knowledge of the outside world. Any coupling to other concepts, like requests and sessions, should happen in the builder class, not on the element classes.
+
+By convention, we assume that builder methods will modify values to our advantage (like pulling old values from the session on a failed form request), and element methods will be deterministic.
+
+```php
+// This will try to resolve an initial value, and fall back to 'hello@example.com'
+$email = $html->email('email', 'hello@example.com');
+
+// This will always have 'hello@example.com' as it's value
+$email = $html->email('email')->value('hello@example.com');
+```
 
 ## Changelog
 

@@ -102,9 +102,9 @@ class Html
     public function input(string $type = '', string $name = '', string $value = '')
     {
         return Input::create()
-            ->type($type)
-            ->name($name)
-            ->value($name ? $this->old($name, $value) : $value);
+            ->attributeIf($type, 'type', $type)
+            ->attributeIf($name, 'name', $name)
+            ->attributeIf($name, 'value', $this->old($name, $value));
     }
 
     /**

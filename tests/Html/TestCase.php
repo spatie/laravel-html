@@ -14,6 +14,9 @@ abstract class TestCase extends \Spatie\Html\Test\TestCase
     /** @var \Mockery\MockInterface */
     protected $request;
 
+    /** @var array */
+    protected $session;
+
     /** @var \Spatie\Html\Html $html */
     protected $html;
 
@@ -28,10 +31,24 @@ abstract class TestCase extends \Spatie\Html\Test\TestCase
             ->withAnyArgs()
             ->zeroOrMoreTimes()
             ->andReturnUsing(function ($key, $value = null) {
-                return $value;
+                return $this->session[$key] ?? $value;
             });
 
         $this->html = new Html($this->request);
+    }
+
+    protected function withModel(array $model)
+    {
+        $this->html->model($model);
+
+        return $this;
+    }
+
+    protected function withSession(array $session)
+    {
+        $this->session = $session;
+
+        return $this;
     }
 
     public function tearDown()

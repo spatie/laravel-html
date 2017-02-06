@@ -2,8 +2,6 @@
 
 namespace Spatie\Html;
 
-use Illuminate\Contracts\Routing\UrlGenerator;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Spatie\Html\Elements\A;
 use Spatie\Html\Elements\Button;
@@ -22,20 +20,12 @@ class Html
     /** @var \Illuminate\Http\Request */
     protected $request;
 
-    /** @var \Illuminate\Contracts\Session\Session */
-    protected $session;
-
-    /** @var \Illuminate\Contracts\Routing\UrlGenerator */
-    protected $urlGenerator;
-
     /** @var \ArrayAccess|array */
     protected $model;
 
-    public function __construct(Request $request, Session $session, UrlGenerator $urlGenerator)
+    public function __construct(Request $request)
     {
         $this->request = $request;
-        $this->session = $session;
-        $this->urlGenerator = $urlGenerator;
     }
 
     /**
@@ -71,7 +61,7 @@ class Html
      */
     public function checkbox(string $name = '', string $value = '')
     {
-        return static::input('checkbox', $name, $value);
+        return $this->input('checkbox', $name, $value);
     }
 
     /**
@@ -89,7 +79,7 @@ class Html
      */
     public function email(string $name = '', string $value = '')
     {
-        return static::input('email', $name, $value);
+        return $this->input('email', $name, $value);
     }
 
     /**
@@ -124,7 +114,7 @@ class Html
      *
      * @return \Spatie\Html\Elements\Form
      */
-    public function form(string $method = 'POST', string $action = '', array $parameters = [])
+    public function form(string $method = 'POST', string $action = '')
     {
         $method = strtoupper($method);
         $form = Form::create();
@@ -132,25 +122,17 @@ class Html
         // If Laravel needs to spoof the form's method, we'll append a hidden
         // field containing the actual method
         if (in_array($method, ['DELETE', 'PATCH', 'PUT'])) {
-            $form = $form->addChild(static::hidden('_method')->value($method));
+            $form = $form->addChild($this->hidden('_method')->value($method));
         }
 
         // On any other method that get, the form needs a CSRF token
-        if ($method === 'GET') {
-            $form = $form->addChild(static::token());
-        }
-
-        // If there's a model bound to the html builder, we'll unset it after
-        // the form gets closed
-        if ($this->model) {
-            $form = $form->onClose(function () {
-                $this->endModel();
-            });
+        if ($method !== 'GET') {
+            $form = $form->addChild($this->token());
         }
 
         return $form
             ->method($method === 'GET' ? 'GET' : 'POST')
-            ->action($action ? $this->urlGenerator->action($action, $parameters) : $action);
+            ->action($action);
     }
 
     /**
@@ -161,7 +143,7 @@ class Html
      */
     public function hidden(string $name = '', string $value = '')
     {
-        return static::input('hidden', $name, $value);
+        return $this->input('hidden', $name, $value);
     }
 
     /**
@@ -182,7 +164,7 @@ class Html
      */
     public function mailto(string $email, string $text = '')
     {
-        return static::a('mailto:'.$email, $text);
+        return $this->a('mailto:'.$email, $text);
     }
 
     /**
@@ -207,7 +189,7 @@ class Html
      */
     public function password(string $name = '', string $value = '')
     {
-        return static::input('password', $name, $value);
+        return $this->input('password', $name, $value);
     }
 
     /**
@@ -220,6 +202,7 @@ class Html
     public function select(string $name = '', iterable $options = [], string $value = '')
     {
         return Select::create()
+            ->attributeIf($name, 'name', $name)
             ->options($options)
             ->value($name ? $this->old($name, $value) : $value);
     }
@@ -239,7 +222,7 @@ class Html
      */
     public function submit(string $value = '')
     {
-        return static::input('submit')->value($value);
+        return $this->input('submit')->value($value);
     }
 
     /**
@@ -250,7 +233,7 @@ class Html
      */
     public function tel(string $number, string $text = '')
     {
-        return static::a('tel:'.$number, $text);
+        return $this->a('tel:'.$number, $text);
     }
 
     /**
@@ -261,7 +244,7 @@ class Html
      */
     public function text(string $name = '', string $value = '')
     {
-        return static::input('text', $name, $value);
+        return $this->input('text', $name, $value);
     }
 
     /**
@@ -282,7 +265,7 @@ class Html
      */
     public function token()
     {
-        return static::hidden('_token')->value($this->session->token());
+        return $this->hidden('_token')->value($this->session->token());
     }
 
     /**

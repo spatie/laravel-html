@@ -2,10 +2,9 @@
 
 namespace Spatie\Html\Test;
 
-use PHPUnit_Framework_TestCase;
 use Spatie\Html\Attributes;
 
-class AttributesTest extends PHPUnit_Framework_TestCase
+class AttributesTest extends TestCase
 {
     /** @test */
     public function it_starts_empty()

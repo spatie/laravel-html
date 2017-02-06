@@ -18,6 +18,16 @@ class Select extends BaseElement
     protected $value = '';
 
     /**
+     * @param string $name
+     *
+     * @return static
+     */
+    public function name(string $name)
+    {
+        return $this->attribute('name', $name);
+    }
+
+    /**
      * @param iterable $options
      *
      * @return static

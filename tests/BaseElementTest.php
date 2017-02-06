@@ -2,12 +2,11 @@
 
 namespace Spatie\Html\Test;
 
-use PHPUnit_Framework_TestCase;
 use Spatie\Html\BaseElement;
 use Spatie\Html\Exceptions\InvalidHtml;
 use Spatie\Html\Exceptions\MissingTag;
 
-class BaseElementTest extends PHPUnit_Framework_TestCase
+class BaseElementTest extends TestCase
 {
     /** @test */
     public function it_cant_be_instantiated_without_a_tag_name_on_the_class()

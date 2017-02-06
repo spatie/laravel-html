@@ -4,6 +4,7 @@ namespace Spatie\Html\Test\Elements;
 
 use Spatie\Html\Elements\Element;
 use Spatie\Html\Exceptions\MissingTag;
+use Spatie\Html\Test\TestCase;
 
 class ElementTest extends TestCase
 {

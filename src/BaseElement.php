@@ -158,6 +158,10 @@ abstract class BaseElement implements Htmlable, HtmlElement
 
     public function child($child)
     {
+        if (is_null($child)) {
+            return $this;
+        }
+
         return $this->children([$child]);
     }
 
@@ -168,13 +172,27 @@ abstract class BaseElement implements Htmlable, HtmlElement
      */
     public function addChild($child)
     {
-        if ((! $child instanceof HtmlElement) && (! is_string($child))) {
-            throw CannotRenderChild::childMustBeAnHtmlElementOrAString($child);
-        }
+        $this->guardAgainstInvalidChild($child);
 
         $element = clone $this;
 
         $element->children[] = $child;
+
+        return $element;
+    }
+
+    /**
+     * @param \Spatie\Html\HtmlElement|string $child
+     *
+     * @return static
+     */
+    public function prependChild($child)
+    {
+        $this->guardAgainstInvalidChild($child);
+
+        $element = clone $this;
+
+        array_unshift($element->children, $child);
 
         return $element;
     }
@@ -205,6 +223,20 @@ abstract class BaseElement implements Htmlable, HtmlElement
         $element->children = [$html];
 
         return $element;
+    }
+
+    /**
+     * Condintionally transform the element. Note that since elements are
+     * immutable, you'll need to return a new instance from the callback.
+     *
+     * @param bool $condition
+     * @param callable $callback
+     */
+    public function if(bool $condition, callable $callback)
+    {
+        return $condition ?
+            $callback($this) :
+            $this;
     }
 
     public function renderChildren(): Htmlable
@@ -271,5 +303,12 @@ abstract class BaseElement implements Htmlable, HtmlElement
     public function toHtml(): string
     {
         return $this->render();
+    }
+
+    protected function guardAgainstInvalidChild($child)
+    {
+        if ((! $child instanceof HtmlElement) && (! is_string($child))) {
+            throw CannotRenderChild::childMustBeAnHtmlElementOrAString($child);
+        }
     }
 }

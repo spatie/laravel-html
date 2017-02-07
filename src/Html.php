@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use Spatie\Html\Elements\A;
 use Spatie\Html\Elements\Button;
 use Spatie\Html\Elements\Div;
+use Spatie\Html\Elements\Fieldset;
 use Spatie\Html\Elements\Form;
 use Spatie\Html\Elements\Input;
 use Spatie\Html\Elements\Label;
+use Spatie\Html\Elements\Legend;
 use Spatie\Html\Elements\Option;
 use Spatie\Html\Elements\Select;
 use Spatie\Html\Elements\Element;
@@ -65,11 +67,13 @@ class Html
     }
 
     /**
+     * @param \Spatie\Html\HtmlElement|string $contents
+     *
      * @return \Spatie\Html\Elements\Div
      */
-    public function div()
+    public function div($contents = null)
     {
-        return Div::create();
+        return Div::create()->child($contents);
     }
 
     /**
@@ -105,6 +109,18 @@ class Html
             ->attributeIf($type, 'type', $type)
             ->attributeIf($name, 'name', $name)
             ->attributeIf($name, 'value', $this->old($name, $value));
+    }
+
+    /**
+     * @param \Spatie\Html\HtmlElement|string $legend
+     *
+     * @return \Spatie\Html\Elements\Fieldset
+     */
+    public function fieldset($legend = null)
+    {
+        return $legend ?
+            Fieldset::create()->legend($legend) :
+            Fieldset::create();
     }
 
     /**
@@ -154,6 +170,16 @@ class Html
     public function label(string $for = '')
     {
         return Label::create()->for($for);
+    }
+
+    /**
+     * @param \Spatie\Html\HtmlElement|string $contents
+     *
+     * @return \Spatie\Html\Elements\Legend
+     */
+    public function legend($contents = null)
+    {
+        return Legend::create()->child($contents);
     }
 
     /**
@@ -208,11 +234,13 @@ class Html
     }
 
     /**
+     * @param \Spatie\Html\HtmlElement|string $contents
+     *
      * @return \Spatie\Html\Elements\Span
      */
-    public function span()
+    public function span($contents = null)
     {
-        return Span::create();
+        return Span::create()->child($contents);
     }
 
     /**

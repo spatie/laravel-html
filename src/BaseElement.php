@@ -92,11 +92,34 @@ abstract class BaseElement implements Htmlable, HtmlElement
         return $element;
     }
 
+    /**
+     * @param string $attribute
+     * @param mixed $fallback
+     *
+     * @return mixed
+     */
     public function getAttribute(string $attribute, string $fallback = '')
     {
         return $this->attributes->getAttribute($attribute, $fallback);
     }
 
+    /**
+     * @param iterable|string $class
+     *
+     * @return static
+     */
+    public function class($class)
+    {
+        return $this->addClass($class);
+    }
+
+    /**
+     * Alias for `class`.
+     *
+     * @param iterable|string $class
+     *
+     * @return static
+     */
     public function addClass($class)
     {
         $element = clone $this;
@@ -106,9 +129,14 @@ abstract class BaseElement implements Htmlable, HtmlElement
         return $element;
     }
 
-    public function class($class)
+    /**
+     * @param string $id
+     *
+     * @return static
+     */
+    public function id(string $id)
     {
-        return $this->addClass($class);
+        return $this->attribute('id', $id);
     }
 
     /**
@@ -179,7 +207,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
         return $element;
     }
 
-    public function renderChildren(): HtmlAble
+    public function renderChildren(): Htmlable
     {
         $children = Arr::map($this->children, function ($child) {
             if ($child instanceof HtmlElement) {
@@ -196,7 +224,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
         return new HtmlString(implode('', $children));
     }
 
-    public function open(): HtmlAble
+    public function open(): Htmlable
     {
         return new HtmlString(
             $this->attributes->isEmpty()
@@ -205,7 +233,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
         );
     }
 
-    public function close(): HtmlAble
+    public function close(): Htmlable
     {
         return new HtmlString(
             $this->isVoidElement()
@@ -240,7 +268,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
         return $this->render();
     }
 
-    public function toHtml()
+    public function toHtml(): string
     {
         return $this->render();
     }

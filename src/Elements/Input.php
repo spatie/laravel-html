@@ -19,6 +19,16 @@ class Input extends BaseElement
     }
 
     /**
+     * @param string $placeholder
+     *
+     * @return static
+     */
+    public function placeholder(string $placeholder)
+    {
+        return $this->attribute('placeholder', $placeholder);
+    }
+
+    /**
      * @param string $type
      *
      * @return static

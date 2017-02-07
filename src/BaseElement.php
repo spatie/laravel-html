@@ -149,6 +149,8 @@ abstract class BaseElement implements Htmlable, HtmlElement
     {
         $element = clone $this;
 
+        $children = Arr::create($children);
+
         $children = $mapper ? Arr::map($children, $mapper) : $children;
 
         $element->children = $children;

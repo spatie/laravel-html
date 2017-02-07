@@ -130,7 +130,7 @@ class Html
      *
      * @return \Spatie\Html\Elements\Form
      */
-    public function form(string $action = '', string $method = 'POST')
+    public function form(string $method = 'POST', string $action = '')
     {
         $method = strtoupper($method);
         $form = Form::create();
@@ -164,12 +164,15 @@ class Html
 
     /**
      * @param string $for
+     * @param \Spatie\Html\HtmlElement|string $contents
      *
      * @return \Spatie\Html\Elements\Label
      */
-    public function label(string $for = '')
+    public function label(string $for = '', $contents = null)
     {
-        return Label::create()->for($for);
+        return Label::create()
+            ->attributeIf($for, 'for', $for)
+            ->child($contents);
     }
 
     /**
@@ -321,9 +324,9 @@ class Html
     /**
      * @param string $name
      *
-     * @return string
+     * @return mixed
      */
-    public function old(string $name, string $value = ''): string
+    public function old(string $name, string $value = '')
     {
         // If there's no default value provided, and the html builder currently
         // has a model assigned, try to retrieve a value from the model.

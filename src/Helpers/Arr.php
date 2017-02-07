@@ -2,6 +2,8 @@
 
 namespace Spatie\Html\Helpers;
 
+use Illuminate\Support\Collection;
+
 class Arr
 {
     /**
@@ -15,6 +17,10 @@ class Arr
      */
     public static function create($something): array
     {
+        if ($something instanceof Collection) {
+            return $something->toArray();
+        }
+
         if ($something instanceof Traversable) {
             return iterator_to_array($something);
         }

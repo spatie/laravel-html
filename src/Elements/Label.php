@@ -6,6 +6,8 @@ use Spatie\Html\BaseElement;
 
 class Label extends BaseElement
 {
+    protected $tag = 'label';
+
     /**
      * @param string $for
      *

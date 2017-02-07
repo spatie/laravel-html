@@ -43,12 +43,12 @@ class Select extends BaseElement
     }
 
     /**
-     * @param iterable $children
+     * @param \Spatie\Html\Elements\Option $children
      * @param callable $mapper
      *
      * @return static
      */
-    public function children(iterable $children, callable $mapper = null)
+    public function addChildren($children, callable $mapper = null)
     {
         $children = $mapper ? Arr::map($children, $mapper) : $children;
 
@@ -58,7 +58,7 @@ class Select extends BaseElement
             }
         }
 
-        $element = parent::children($children);
+        $element = parent::addChildren($children);
 
         $element->applyValueToOptions();
 

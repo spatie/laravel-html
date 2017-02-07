@@ -140,31 +140,41 @@ abstract class BaseElement implements Htmlable, HtmlElement
     }
 
     /**
-     * @param iterable $children
+     * Alias for `addChildren`.
+     *
+     * @param \Spatie\Html\HtmlElement|string|iterable|null $children
      * @param callable $mapper
      *
      * @return static
      */
-    public function children(iterable $children, callable $mapper = null)
+    public function addChildren($children, callable $mapper = null)
     {
+        if (is_null($children)) {
+            return $this;
+        }
+
         $element = clone $this;
 
         $children = Arr::create($children);
 
         $children = $mapper ? Arr::map($children, $mapper) : $children;
 
-        $element->children = $children;
+        $element->children = array_merge($this->children, $children);
 
         return $element;
     }
 
-    public function child($child)
+    /**
+     * Alias for `addChildren`.
+     *
+     * @param \Spatie\Html\HtmlElement|string|iterable|null $children
+     * @param callable $mapper
+     *
+     * @return static
+     */
+    public function children($children, callable $mapper = null)
     {
-        if (is_null($child)) {
-            return $this;
-        }
-
-        return $this->children([$child]);
+        return $this->addChildren($children, $mapper);
     }
 
     /**

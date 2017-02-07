@@ -17,7 +17,7 @@ class FormTest extends TestCase
     {
         $this->assertHtmlStringEqualsHtmlString(
             '<form method="POST" action="/submit"></form>',
-            $this->html->form('/submit', 'POST')
+            $this->html->form('POST', '/submit')
         );
     }
 
@@ -29,7 +29,7 @@ class FormTest extends TestCase
                 '<input type="hidden" name="_method" value="DELETE">'.
                 '<input type="hidden" name="_token" value="abc">'.
             '</form>',
-            $this->html->form('/submit', 'DELETE')
+            $this->html->form('DELETE', '/submit')
         );
     }
 
@@ -38,7 +38,7 @@ class FormTest extends TestCase
     {
         $this->assertHtmlStringEqualsHtmlString(
             '<form action="/submit" method="GET"></form>',
-            $this->html->form('/submit', 'GET')
+            $this->html->form('GET', '/submit')
         );
     }
 }

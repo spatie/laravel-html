@@ -73,7 +73,7 @@ class Html
      */
     public function div($contents = null)
     {
-        return Div::create()->child($contents);
+        return Div::create()->children($contents);
     }
 
     /**
@@ -172,7 +172,7 @@ class Html
     {
         return Label::create()
             ->attributeIf($for, 'for', $for)
-            ->child($contents);
+            ->children($contents);
     }
 
     /**
@@ -182,7 +182,7 @@ class Html
      */
     public function legend($contents = null)
     {
-        return Legend::create()->child($contents);
+        return Legend::create()->children($contents);
     }
 
     /**
@@ -243,7 +243,7 @@ class Html
      */
     public function span($contents = null)
     {
-        return Span::create()->child($contents);
+        return Span::create()->children($contents);
     }
 
     /**

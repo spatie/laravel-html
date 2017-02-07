@@ -77,7 +77,7 @@ class BaseElementTest extends TestCase
     {
         $this->assertEquals(
             '<element>Hi</element>',
-            Element::create()->child(Element::create())->text('Hi')->render()
+            Element::create()->addChild(Element::create())->text('Hi')->render()
         );
     }
 

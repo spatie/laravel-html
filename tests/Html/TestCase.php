@@ -2,6 +2,7 @@
 
 namespace Spatie\Html\Test\Html;
 
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Mockery;
 use Spatie\Html\Html;
@@ -15,7 +16,7 @@ abstract class TestCase extends \Spatie\Html\Test\TestCase
     protected $request;
 
     /** @var array */
-    protected $session;
+    protected $session = [];
 
     /** @var \Spatie\Html\Html $html */
     protected $html;
@@ -29,10 +30,17 @@ abstract class TestCase extends \Spatie\Html\Test\TestCase
         $this->request
             ->shouldReceive('old')
             ->withAnyArgs()
-            ->zeroOrMoreTimes()
             ->andReturnUsing(function ($key, $value = null) {
                 return $this->session[$key] ?? $value;
             });
+
+        $session = Mockery::mock(Session::class)
+            ->shouldReceive('token')
+            ->andReturn('abc');
+
+        $this->request
+            ->shouldReceive('session')
+            ->andReturn($session->getMock());
 
         $this->html = new Html($this->request);
     }

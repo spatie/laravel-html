@@ -114,7 +114,7 @@ class Html
      *
      * @return \Spatie\Html\Elements\Form
      */
-    public function form(string $method = 'POST', string $action = '')
+    public function form(string $action = '', string $method = 'POST')
     {
         $method = strtoupper($method);
         $form = Form::create();
@@ -132,7 +132,7 @@ class Html
 
         return $form
             ->method($method === 'GET' ? 'GET' : 'POST')
-            ->action($action);
+            ->attributeIf($action, 'action', $action);
     }
 
     /**
@@ -265,7 +265,7 @@ class Html
      */
     public function token()
     {
-        return $this->hidden('_token')->value($this->session->token());
+        return $this->hidden('_token')->value($this->request->session()->token());
     }
 
     /**

@@ -25,7 +25,7 @@ class Form extends BaseElement
      */
     public function method(string $method)
     {
-        return $this->attribute('action', $method);
+        return $this->attribute('method', $method);
     }
 
     /**

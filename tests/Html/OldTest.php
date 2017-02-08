@@ -10,7 +10,7 @@ class OldTest extends TestCase
         $this
             ->withSession(['name' => 'Sebastian'])
             ->assertHtmlStringEqualsHtmlString(
-                '<input type="text" name="name" value="Sebastian">',
+                '<input type="text" name="name" id="name" value="Sebastian">',
                 $this->html->text('name')
             );
     }
@@ -21,7 +21,7 @@ class OldTest extends TestCase
         $this
             ->withModel(['name' => 'Sebastian'])
             ->assertHtmlStringEqualsHtmlString(
-                '<input type="text" name="name" value="Sebastian">',
+                '<input type="text" name="name" id="name" value="Sebastian">',
                 $this->html->text('name')
             );
     }
@@ -33,7 +33,7 @@ class OldTest extends TestCase
             ->withModel(['name' => 'Freek'])
             ->withSession(['name' => 'Sebastian'])
             ->assertHtmlStringEqualsHtmlString(
-                '<input type="text" name="name" value="Sebastian">',
+                '<input type="text" name="name" id="name" value="Sebastian">',
                 $this->html->text('name')
             );
     }

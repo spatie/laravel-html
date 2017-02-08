@@ -233,8 +233,9 @@ class Html
     {
         return Select::create()
             ->attributeIf($name, 'name', $this->name($name))
+            ->attributeIf($name, 'id', $this->name($name))
             ->options($options)
-            ->attributeIf($name, 'value', $this->old($name, $value));
+            ->value($name ? $this->old($name, $value) : '');
     }
 
     /**

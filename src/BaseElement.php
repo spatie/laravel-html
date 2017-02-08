@@ -3,11 +3,11 @@
 namespace Spatie\Html;
 
 use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
-use Spatie\Html\Exceptions\CannotRenderChild;
+use Spatie\Html\Exceptions\InvalidChild;
 use Spatie\Html\Exceptions\InvalidHtml;
 use Spatie\Html\Exceptions\MissingTag;
-use Spatie\Html\Helpers\Arr;
 
 abstract class BaseElement implements Htmlable, HtmlElement
 {
@@ -17,8 +17,8 @@ abstract class BaseElement implements Htmlable, HtmlElement
     /** @var \Spatie\Html\Attributes */
     protected $attributes;
 
-    /** @var array */
-    protected $children = [];
+    /** @var \Illuminate\Support\Collection */
+    protected $children;
 
     public function __construct()
     {
@@ -27,6 +27,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
         }
 
         $this->attributes = new Attributes();
+        $this->children = new Collection();
     }
 
     public static function create()
@@ -140,10 +141,8 @@ abstract class BaseElement implements Htmlable, HtmlElement
     }
 
     /**
-     * Alias for `addChildren`.
-     *
      * @param \Spatie\Html\HtmlElement|string|iterable|null $children
-     * @param callable $mapper
+     * @param ?callable $mapper
      *
      * @return static
      */
@@ -153,22 +152,46 @@ abstract class BaseElement implements Htmlable, HtmlElement
             return $this;
         }
 
+        $children = $this->parseChildren($children, $mapper);
+
         $element = clone $this;
 
-        $children = Arr::create($children);
-
-        $children = $mapper ? Arr::map($children, $mapper) : $children;
-
-        $element->children = array_merge($this->children, $children);
+        $element->children = $element->children->merge($children);
 
         return $element;
     }
 
     /**
-     * Alias for `addChildren`.
+     * Alias for `addChidren`.
      *
      * @param \Spatie\Html\HtmlElement|string|iterable|null $children
-     * @param callable $mapper
+     * @param ?callable $mapper
+     *
+     * @return static
+     */
+    public function addChild($child, callable $mapper = null)
+    {
+        return $this->addChildren($child, $mapper);
+    }
+
+    /**
+     * Alias for `addChidren`.
+     *
+     * @param \Spatie\Html\HtmlElement|string|iterable|null $children
+     * @param ?callable $mapper
+     *
+     * @return static
+     */
+    public function child($child, callable $mapper = null)
+    {
+        return $this->addChildren($child, $mapper);
+    }
+
+    /**
+     * Alias for `addChidren`.
+     *
+     * @param \Spatie\Html\HtmlElement|string|iterable|null $children
+     * @param ?callable $mapper
      *
      * @return static
      */
@@ -178,35 +201,33 @@ abstract class BaseElement implements Htmlable, HtmlElement
     }
 
     /**
-     * @param \Spatie\Html\HtmlElement|string $child
+     * @param \Spatie\Html\HtmlElement|string|iterable|null $children
+     * @param ?callable $mapper
      *
      * @return static
      */
-    public function addChild($child)
+    public function prependChildren($children, callable $mapper = null)
     {
-        $this->guardAgainstInvalidChild($child);
+        $children = $this->parseChildren($children, $mapper);
 
         $element = clone $this;
 
-        $element->children[] = $child;
+        $element->children = $children->merge($element->children);
 
         return $element;
     }
 
     /**
-     * @param \Spatie\Html\HtmlElement|string $child
+     * Alias for `prependChildren`.
+     *
+     * @param \Spatie\Html\HtmlElement|string|iterable|null $children
+     * @param ?callable $mapper
      *
      * @return static
      */
-    public function prependChild($child)
+    public function prependChild($children, callable $mapper = null)
     {
-        $this->guardAgainstInvalidChild($child);
-
-        $element = clone $this;
-
-        array_unshift($element->children, $child);
-
-        return $element;
+        return $this->prependChildren($children, $mapper);
     }
 
     /**
@@ -232,7 +253,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
 
         $element = clone $this;
 
-        $element->children = [$html];
+        $element->children = new Collection([$html]);
 
         return $element;
     }
@@ -246,14 +267,16 @@ abstract class BaseElement implements Htmlable, HtmlElement
      */
     public function if(bool $condition, callable $callback)
     {
-        return $condition ?
-            $callback($this) :
-            $this;
+        if ($condition) {
+            return $callback($this);
+        }
+
+        return $this;
     }
 
     public function renderChildren(): Htmlable
     {
-        $children = Arr::map($this->children, function ($child) {
+        $children = $this->children->map(function ($child): string {
             if ($child instanceof HtmlElement) {
                 return $child->render();
             }
@@ -262,10 +285,10 @@ abstract class BaseElement implements Htmlable, HtmlElement
                 return $child;
             }
 
-            throw CannotRenderChild::childMustBeAnHtmlElementOrAString($child);
+            throw InvalidChild::childMustBeAnHtmlElementOrAString();
         });
 
-        return new HtmlString(implode('', $children));
+        return new HtmlString($children->implode(''));
     }
 
     public function open(): Htmlable
@@ -305,6 +328,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
     public function __clone()
     {
         $this->attributes = clone $this->attributes;
+        $this->children = clone $this->children;
     }
 
     public function __toString(): string
@@ -317,10 +341,29 @@ abstract class BaseElement implements Htmlable, HtmlElement
         return $this->render();
     }
 
-    protected function guardAgainstInvalidChild($child)
+    protected function parseChildren($children, callable $mapper = null): Collection
     {
-        if ((! $child instanceof HtmlElement) && (! is_string($child))) {
-            throw CannotRenderChild::childMustBeAnHtmlElementOrAString($child);
+        if ($children instanceof HtmlElement) {
+            $children = [$children];
+        }
+
+        $children = Collection::make($children);
+
+        if ($mapper) {
+            $children = $children->map($mapper);
+        }
+
+        $this->guardAgainstInvalidChildren($children);
+
+        return $children;
+    }
+
+    protected function guardAgainstInvalidChildren(Collection $children)
+    {
+        foreach ($children as $child) {
+            if (( ! $child instanceof HtmlElement) && ( ! is_string($child))) {
+                throw InvalidChild::childMustBeAnHtmlElementOrAString();
+            }
         }
     }
 }

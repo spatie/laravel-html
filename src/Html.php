@@ -107,7 +107,8 @@ class Html
     {
         return Input::create()
             ->attributeIf($type, 'type', $type)
-            ->attributeIf($name, 'name', $name)
+            ->attributeIf($name, 'name', $this->name($name))
+            ->attributeIf($name, 'id', $this->name($name))
             ->attributeIf($name, 'value', $this->old($name, $value));
     }
 
@@ -163,15 +164,15 @@ class Html
     }
 
     /**
+     * @param \Spatie\Html\HtmlElement|iterable|string|null $contents
      * @param string $for
-     * @param \Spatie\Html\HtmlElement|string $contents
      *
      * @return \Spatie\Html\Elements\Label
      */
-    public function label(string $for = '', $contents = null)
+    public function label($contents = null, string $for = '')
     {
         return Label::create()
-            ->attributeIf($for, 'for', $for)
+            ->attributeIf($for, 'for', $this->name($for))
             ->children($contents);
     }
 
@@ -182,7 +183,7 @@ class Html
      */
     public function legend($contents = null)
     {
-        return Legend::create()->children($contents);
+        return Legend::create()->html($contents);
     }
 
     /**
@@ -231,9 +232,9 @@ class Html
     public function select(string $name = '', iterable $options = [], string $value = '')
     {
         return Select::create()
-            ->attributeIf($name, 'name', $name)
+            ->attributeIf($name, 'name', $this->name($name))
             ->options($options)
-            ->value($name ? $this->old($name, $value) : $value);
+            ->attributeIf($name, 'value', $this->old($name, $value));
     }
 
     /**
@@ -287,8 +288,9 @@ class Html
     public function textarea(string $name = '', string $value = '')
     {
         return Textarea::create()
-            ->name($name)
-            ->value($name ? $this->old($name, $value) : $value);
+            ->attributeIf($name, 'name', $this->name($name))
+            ->attributeIf($name, 'id', $this->name($name))
+            ->attributeIf($name, 'value', $this->old($name, $value));
     }
 
     /**
@@ -326,7 +328,7 @@ class Html
      *
      * @return mixed
      */
-    public function old(string $name, string $value = '')
+    protected function old(string $name, string $value = '')
     {
         // If there's no default value provided, and the html builder currently
         // has a model assigned, try to retrieve a value from the model.
@@ -335,5 +337,17 @@ class Html
         }
 
         return $this->request->old($name, $value);
+    }
+
+    protected function name(string $name): string
+    {
+        return $name;
+    }
+
+    protected function ensureModelIsAvailable()
+    {
+        if (empty($this->model)) {
+            throw new Exception('Method requires a model to be set on the html builder');
+        }
     }
 }

@@ -25,6 +25,6 @@ class Textarea extends BaseElement
      */
     public function value(string $value)
     {
-        return $this->attribute('value', $value);
+        return $this->html($value);
     }
 }

@@ -274,8 +274,12 @@ abstract class BaseElement implements Htmlable, HtmlElement
         return $this;
     }
 
-    public function renderChildren(): Htmlable
+    public function open(): Htmlable
     {
+        $tag = $this->attributes->isEmpty()
+            ? '<'.$this->tag.'>'
+            : "<{$this->tag} {$this->attributes->render()}>";
+
         $children = $this->children->map(function ($child): string {
             if ($child instanceof HtmlElement) {
                 return $child->render();
@@ -286,18 +290,9 @@ abstract class BaseElement implements Htmlable, HtmlElement
             }
 
             throw InvalidChild::childMustBeAnHtmlElementOrAString();
-        });
+        })->implode('');
 
-        return new HtmlString($children->implode(''));
-    }
-
-    public function open(): Htmlable
-    {
-        return new HtmlString(
-            $this->attributes->isEmpty()
-                ? '<'.$this->tag.'>'
-                : "<{$this->tag} {$this->attributes->render()}>"
-        );
+        return new HtmlString($tag.$children);
     }
 
     public function close(): Htmlable
@@ -312,7 +307,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
     public function render(): Htmlable
     {
         return new HtmlString(
-            $this->open().$this->renderChildren().$this->close()
+            $this->open().$this->close()
         );
     }
 
@@ -352,6 +347,8 @@ abstract class BaseElement implements Htmlable, HtmlElement
         if ($mapper) {
             $children = $children->map($mapper);
         }
+
+        $children = $children->filter();
 
         $this->guardAgainstInvalidChildren($children);
 

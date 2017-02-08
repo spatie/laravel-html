@@ -2,7 +2,7 @@
 
 namespace Spatie\Html\Helpers;
 
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
 class Arr
 {

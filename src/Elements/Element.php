@@ -2,7 +2,7 @@
 
 namespace Spatie\Html\Elements;
 
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 use ReflectionClass;
 use Spatie\Html\Attributes;
 use Spatie\Html\BaseElement;

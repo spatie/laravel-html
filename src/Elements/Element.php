@@ -2,6 +2,7 @@
 
 namespace Spatie\Html\Elements;
 
+use Illuminate\Database\Eloquent\Collection;
 use ReflectionClass;
 use Spatie\Html\Attributes;
 use Spatie\Html\BaseElement;
@@ -19,6 +20,7 @@ class Element extends BaseElement
 
         $element->tag = $tag;
         $element->attributes = new Attributes();
+        $element->children = new Collection();
 
         return $element;
     }

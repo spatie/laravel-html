@@ -3,8 +3,9 @@
 namespace Spatie\Html\Elements;
 
 use Spatie\Html\BaseElement;
+use Spatie\Html\Selectable;
 
-class Option extends BaseElement
+class Option extends BaseElement implements Selectable
 {
     /** @var string */
     protected $tag = 'option';
@@ -20,9 +21,9 @@ class Option extends BaseElement
     /**
      * @param bool $condition
      *
-     * @return \Spatie\Html\Elements\Option
+     * @return static
      */
-    public function selectedIf($condition)
+    public function selectedIf(bool $condition)
     {
         return $condition ?
             $this->selected() :

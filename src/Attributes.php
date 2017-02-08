@@ -77,8 +77,6 @@ class Attributes
      */
     public function addClass($class)
     {
-        $class = Arr::create($class);
-
         $class = Arr::getToggledValues($class);
 
         $this->classes = array_unique(

@@ -9,6 +9,14 @@ class Input extends BaseElement
     protected $tag = 'input';
 
     /**
+     * @return static
+     */
+    public function autofocus()
+    {
+        return $this->attribute('autofocus');
+    }
+
+    /**
      * @param string $name
      *
      * @return static

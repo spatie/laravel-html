@@ -9,6 +9,14 @@ class Textarea extends BaseElement
     protected $tag = 'textarea';
 
     /**
+     * @return static
+     */
+    public function autofocus()
+    {
+        return $this->attribute('autofocus');
+    }
+
+    /**
      * @param string $name
      *
      * @return static

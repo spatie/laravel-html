@@ -2,6 +2,7 @@
 
 namespace Spatie\Html;
 
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Http\Request;
 use Spatie\Html\Elements\A;
 use Spatie\Html\Elements\Button;
@@ -315,6 +316,20 @@ class Html
     }
 
     /**
+     * @param \ArrayAccess|array $model
+     * @param string $method
+     * @param string $action
+     *
+     * @return \Spatie\Html\Elements\Form
+     */
+    public function modelForm($model, string $method = 'POST', string $action = ''): Form
+    {
+        $this->$model($model);
+
+        return $this->form($method, $action);
+    }
+
+    /**
      * @return $this
      */
     public function endModel()
@@ -322,6 +337,16 @@ class Html
         $this->model = null;
 
         return $this;
+    }
+
+    /**
+     * @return \Illuminate\Contracts\Support\Htmlable
+     */
+    public function endModelForm(): Htmlable
+    {
+        $this->endModel();
+
+        return $this->form()->close();
     }
 
     /**

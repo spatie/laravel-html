@@ -13,7 +13,7 @@ class Input extends BaseElement
      *
      * @return static
      */
-    public function name(string $name)
+    public function name(?string $name)
     {
         return $this->attribute('name', $name);
     }
@@ -23,7 +23,7 @@ class Input extends BaseElement
      *
      * @return static
      */
-    public function placeholder(string $placeholder)
+    public function placeholder(?string $placeholder)
     {
         return $this->attribute('placeholder', $placeholder);
     }
@@ -33,7 +33,7 @@ class Input extends BaseElement
      *
      * @return static
      */
-    public function type(string $type)
+    public function type(?string $type)
     {
         return $this->attribute('type', $type);
     }
@@ -43,7 +43,7 @@ class Input extends BaseElement
      *
      * @return static
      */
-    public function value(string $value)
+    public function value(?string $value)
     {
         return $this->attribute('value', $value);
     }

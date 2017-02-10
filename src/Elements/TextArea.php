@@ -13,7 +13,7 @@ class Textarea extends BaseElement
      *
      * @return static
      */
-    public function name(string $name)
+    public function name(?string $name)
     {
         return $this->attribute('name', $name);
     }
@@ -23,7 +23,7 @@ class Textarea extends BaseElement
      *
      * @return static
      */
-    public function value(string $value)
+    public function value(?string $value)
     {
         return $this->html($value);
     }

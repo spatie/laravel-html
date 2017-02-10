@@ -21,7 +21,7 @@ class Select extends BaseElement
      *
      * @return static
      */
-    public function name(string $name)
+    public function name(?string $name)
     {
         return $this->attribute('name', $name);
     }
@@ -46,7 +46,7 @@ class Select extends BaseElement
      *
      * @return static
      */
-    public function value(string $value)
+    public function value(?string $value)
     {
         $element = clone $this;
 

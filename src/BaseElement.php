@@ -41,11 +41,11 @@ abstract class BaseElement implements Htmlable, HtmlElement
      *
      * @return static
      */
-    public function attribute(string $attribute, string $value = '')
+    public function attribute(string $attribute, ?string $value = '')
     {
         $element = clone $this;
 
-        $element->attributes->setAttribute($attribute, $value);
+        $element->attributes->setAttribute($attribute, (string) $value);
 
         return $element;
     }
@@ -57,7 +57,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
      *
      * @return static
      */
-    public function attributeIf(bool $condition, string $attribute, string $value = '')
+    public function attributeIf(bool $condition, string $attribute, ?string $value = '')
     {
         return $condition ?
             $this->attribute($attribute, $value) :
@@ -99,7 +99,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
      *
      * @return mixed
      */
-    public function getAttribute(string $attribute, string $fallback = '')
+    public function getAttribute(string $attribute, ?string $fallback = '')
     {
         return $this->attributes->getAttribute($attribute, $fallback);
     }
@@ -235,7 +235,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
      *
      * @return static
      */
-    public function text(string $text)
+    public function text(?string $text)
     {
         return $this->html(htmlentities($text, ENT_QUOTES, 'UTF-8', false));
     }
@@ -245,7 +245,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
      *
      * @return static
      */
-    public function html(string $html)
+    public function html(?string $html)
     {
         if ($this->isVoidElement()) {
             throw new InvalidHtml("Can't set inner contents on `{$this->tag}` because it's a void element");

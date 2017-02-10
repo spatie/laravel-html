@@ -13,7 +13,7 @@ class Button extends BaseElement
      *
      * @return static
      */
-    public function type(string $type)
+    public function type(?string $type)
     {
         return $this->attribute('type', $type);
     }
@@ -23,7 +23,7 @@ class Button extends BaseElement
      *
      * @return static
      */
-    public function value(string $value)
+    public function value(?string $value)
     {
         return $this->attribute('value', $value);
     }

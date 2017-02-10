@@ -36,6 +36,15 @@ class BaseElementTest extends TestCase
     }
 
     /** @test */
+    public function it_can_set_an_attribute_to_null()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<div foo=""></div>',
+            Div::create()->attribute('foo', null)->render()
+        );
+    }
+
+    /** @test */
     public function it_can_set_an_attribute_with_attribute()
     {
         $this->assertHtmlStringEqualsHtmlString(

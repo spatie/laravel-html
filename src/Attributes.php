@@ -29,7 +29,7 @@ class Attributes
                 $value = '';
             }
 
-            $this->setAttribute($attribute, $value);
+            $this->setAttribute($attribute, (string) $value);
         }
     }
 

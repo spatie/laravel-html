@@ -13,7 +13,7 @@ class A extends BaseElement
      *
      * @return static
      */
-    public function href(string $href)
+    public function href(?string $href)
     {
         return $this->attribute('href', $href);
     }

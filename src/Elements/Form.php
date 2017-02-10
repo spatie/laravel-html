@@ -13,7 +13,7 @@ class Form extends BaseElement
      *
      * @return static
      */
-    public function action(string $action)
+    public function action(?string $action)
     {
         return $this->attribute('action', $action);
     }
@@ -23,7 +23,7 @@ class Form extends BaseElement
      *
      * @return static
      */
-    public function method(string $method)
+    public function method(?string $method)
     {
         return $this->attribute('method', $method);
     }

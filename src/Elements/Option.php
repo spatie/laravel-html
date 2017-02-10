@@ -43,7 +43,7 @@ class Option extends BaseElement implements Selectable
      *
      * @return static
      */
-    public function value(string $value)
+    public function value(?string $value)
     {
         return $this->attribute('value', $value);
     }

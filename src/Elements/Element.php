@@ -14,7 +14,7 @@ class Element extends BaseElement
      *
      * @return static
      */
-    public static function withTag(string $tag)
+    public static function withTag(?string $tag)
     {
         $element = (new ReflectionClass(static::class))->newInstanceWithoutConstructor();
 

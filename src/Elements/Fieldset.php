@@ -13,7 +13,7 @@ class Fieldset extends BaseElement
      *
      * @return static
      */
-    public function legend(string $contents)
+    public function legend(?string $contents)
     {
         return $this->prependChild(
             Legend::create()->text($contents)

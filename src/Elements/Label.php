@@ -13,7 +13,7 @@ class Label extends BaseElement
      *
      * @return static
      */
-    public function for(string $for)
+    public function for(?string $for)
     {
         return $this->attribute('for', $for);
     }

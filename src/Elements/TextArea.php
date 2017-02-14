@@ -23,7 +23,7 @@ class Textarea extends BaseElement
      */
     public function name(?string $name)
     {
-        return $this->attribute('name', $name);
+        return $this->attribute('fieldName', $name);
     }
 
     /**

@@ -37,7 +37,7 @@ class Html
      *
      * @return \Spatie\Html\Elements\A
      */
-    public function a(string $href, string $text = '')
+    public function a(?string $href, ?string $text = '')
     {
         return A::create()
             ->href($href)
@@ -50,7 +50,7 @@ class Html
      *
      * @return \Spatie\Html\Elements\Button
      */
-    public function button(string $text = '', string $type = 'button')
+    public function button(?string $text = '', ?string $type = 'button')
     {
         return Button::create()
             ->type($type)
@@ -62,7 +62,7 @@ class Html
      *
      * @return \Spatie\Html\Elements\Input
      */
-    public function checkbox(string $name = '', string $value = '')
+    public function checkbox(string $name = '', ?string $value = '')
     {
         return $this->input('checkbox', $name, $value);
     }
@@ -82,7 +82,7 @@ class Html
      *
      * @return \Spatie\Html\Elements\Input
      */
-    public function email(string $name = '', string $value = '')
+    public function email(string $name = '', ?string $value = '')
     {
         return $this->input('email', $name, $value);
     }
@@ -104,12 +104,12 @@ class Html
      *
      * @return \Spatie\Html\Elements\Input
      */
-    public function input(string $type = '', string $name = '', string $value = '')
+    public function input(?string $type = '', string $name = '', ?string $value = '')
     {
         return Input::create()
             ->attributeIf($type, 'type', $type)
-            ->attributeIf($name, 'name', $this->name($name))
-            ->attributeIf($name, 'id', $this->name($name))
+            ->attributeIf($name, 'fieldName', $this->fieldName($name))
+            ->attributeIf($name, 'id', $this->fieldName($name))
             ->attributeIf($name, 'value', $this->old($name, $value));
     }
 
@@ -159,7 +159,7 @@ class Html
      *
      * @return \Spatie\Html\Elements\Input
      */
-    public function hidden(string $name = '', string $value = '')
+    public function hidden(string $name = '', ?string $value = '')
     {
         return $this->input('hidden', $name, $value);
     }
@@ -173,7 +173,7 @@ class Html
     public function label($contents = null, string $for = '')
     {
         return Label::create()
-            ->attributeIf($for, 'for', $this->name($for))
+            ->attributeIf($for, 'for', $this->fieldName($for))
             ->children($contents);
     }
 
@@ -205,7 +205,7 @@ class Html
      *
      * @return \Spatie\Html\Elements\Option
      */
-    public function option(string $text = '', string $value = '', $selected = false)
+    public function option(?string $text = '', ?string $value = '', $selected = false)
     {
         return Option::create()
             ->text($text)
@@ -218,7 +218,7 @@ class Html
      *
      * @return \Spatie\Html\Elements\Input
      */
-    public function password(string $name = '', string $value = '')
+    public function password(string $name = '', ?string $value = '')
     {
         return $this->input('password', $name, $value);
     }
@@ -230,11 +230,11 @@ class Html
      *
      * @return \Spatie\Html\Elements\Select
      */
-    public function select(string $name = '', iterable $options = [], string $value = '')
+    public function select(string $name = '', iterable $options = [], ?string $value = '')
     {
         return Select::create()
-            ->attributeIf($name, 'name', $this->name($name))
-            ->attributeIf($name, 'id', $this->name($name))
+            ->attributeIf($name, 'fieldName', $this->fieldName($name))
+            ->attributeIf($name, 'id', $this->fieldName($name))
             ->options($options)
             ->value($name ? $this->old($name, $value) : '');
     }
@@ -254,7 +254,7 @@ class Html
      *
      * @return \Spatie\Html\Elements\Input
      */
-    public function submit(string $value = '')
+    public function submit(?string $value = '')
     {
         return $this->input('submit')->value($value);
     }
@@ -265,7 +265,7 @@ class Html
      *
      * @return \Spatie\Html\Elements\A
      */
-    public function tel(string $number, string $text = '')
+    public function tel(?string $number, ?string $text = '')
     {
         return $this->a('tel:'.$number, $text);
     }
@@ -276,7 +276,7 @@ class Html
      *
      * @return \Spatie\Html\Elements\Input
      */
-    public function text(string $name = '', string $value = '')
+    public function text(string $name = '', ?string $value = '')
     {
         return $this->input('text', $name, $value);
     }
@@ -287,11 +287,11 @@ class Html
      *
      * @return \Spatie\Html\Elements\Textarea
      */
-    public function textarea(string $name = '', string $value = '')
+    public function textarea(string $name = '', ?string $value = '')
     {
         return Textarea::create()
-            ->attributeIf($name, 'name', $this->name($name))
-            ->attributeIf($name, 'id', $this->name($name))
+            ->attributeIf($name, 'fieldName', $this->fieldName($name))
+            ->attributeIf($name, 'id', $this->fieldName($name))
             ->attributeIf($name, 'value', $this->old($name, $value));
     }
 
@@ -354,7 +354,7 @@ class Html
      *
      * @return mixed
      */
-    protected function old(string $name, string $value = '')
+    protected function old(string $name, ?string $value = '')
     {
         // If there's no default value provided, and the html builder currently
         // has a model assigned, try to retrieve a value from the model.
@@ -365,7 +365,7 @@ class Html
         return $this->request->old($name, $value);
     }
 
-    protected function name(string $name): string
+    protected function fieldName(string $name): string
     {
         return $name;
     }

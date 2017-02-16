@@ -218,9 +218,9 @@ class Html
      *
      * @return \Spatie\Html\Elements\Input
      */
-    public function password(string $name = '', ?string $value = '')
+    public function password(string $name = '')
     {
-        return $this->input('password', $name, $value);
+        return $this->input('password', $name)->value('');
     }
 
     /**

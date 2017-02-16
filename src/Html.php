@@ -108,7 +108,7 @@ class Html
     {
         return Input::create()
             ->attributeIf($type, 'type', $type)
-            ->attributeIf($name, 'fieldName', $this->fieldName($name))
+            ->attributeIf($name, 'name', $this->fieldName($name))
             ->attributeIf($name, 'id', $this->fieldName($name))
             ->attributeIf($name, 'value', $this->old($name, $value));
     }
@@ -324,7 +324,7 @@ class Html
      */
     public function modelForm($model, string $method = 'POST', string $action = ''): Form
     {
-        $this->$model($model);
+        $this->model($model);
 
         return $this->form($method, $action);
     }
@@ -356,6 +356,10 @@ class Html
      */
     protected function old(string $name, ?string $value = '')
     {
+        if (empty($name)) {
+            return null;
+        }
+
         // If there's no default value provided, and the html builder currently
         // has a model assigned, try to retrieve a value from the model.
         if (empty($value) && $this->model) {

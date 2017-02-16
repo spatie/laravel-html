@@ -41,6 +41,16 @@ class Input extends BaseElement
      *
      * @return static
      */
+    public function required()
+    {
+        return $this->attribute('required');
+    }
+
+    /**
+     * @param string $type
+     *
+     * @return static
+     */
     public function type(?string $type)
     {
         return $this->attribute('type', $type);

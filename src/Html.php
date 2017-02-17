@@ -233,7 +233,7 @@ class Html
     public function select(string $name = '', iterable $options = [], ?string $value = '')
     {
         return Select::create()
-            ->attributeIf($name, 'fieldName', $this->fieldName($name))
+            ->attributeIf($name, 'name', $this->fieldName($name))
             ->attributeIf($name, 'id', $this->fieldName($name))
             ->options($options)
             ->value($name ? $this->old($name, $value) : '');
@@ -290,7 +290,7 @@ class Html
     public function textarea(string $name = '', ?string $value = '')
     {
         return Textarea::create()
-            ->attributeIf($name, 'fieldName', $this->fieldName($name))
+            ->attributeIf($name, 'name', $this->fieldName($name))
             ->attributeIf($name, 'id', $this->fieldName($name))
             ->attributeIf($name, 'value', $this->old($name, $value));
     }

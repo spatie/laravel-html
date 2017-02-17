@@ -23,7 +23,7 @@ class Select extends BaseElement
      */
     public function name(?string $name)
     {
-        return $this->attribute('fieldName', $name);
+        return $this->attribute('name', $name);
     }
 
     /**

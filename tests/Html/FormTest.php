@@ -8,7 +8,7 @@ class FormTest extends TestCase
     public function it_can_create_a_form()
     {
         $this->assertHtmlStringEqualsHtmlString(
-            '<form method="POST"><input type="hidden" fieldName="_token" id="_token" value="abc"></form>',
+            '<form method="POST"><input type="hidden" name="_token" id="_token" value="abc"></form>',
             $this->html->form()
         );
     }
@@ -26,8 +26,8 @@ class FormTest extends TestCase
     {
         $this->assertHtmlStringEqualsHtmlString(
             '<form action="/submit" method="POST">'.
-                '<input type="hidden" fieldName="_method" id="_method" value="DELETE">'.
-                '<input type="hidden" fieldName="_token" id="_token" value="abc">'.
+                '<input type="hidden" name="_method" id="_method" value="DELETE">'.
+                '<input type="hidden" name="_token" id="_token" value="abc">'.
             '</form>',
             $this->html->form('DELETE', '/submit')
         );

@@ -8,10 +8,10 @@ class OldTest extends TestCase
     public function it_returns_a_session_value_if_its_available_in_the_session()
     {
         $this
-            ->withSession(['fieldName' => 'Sebastian'])
+            ->withSession(['name' => 'Sebastian'])
             ->assertHtmlStringEqualsHtmlString(
-                '<input type="text" fieldName="fieldName" id="fieldName" value="Sebastian">',
-                $this->html->text('fieldName')
+                '<input type="text" name="name" id="name" value="Sebastian">',
+                $this->html->text('name')
             );
     }
 
@@ -19,10 +19,10 @@ class OldTest extends TestCase
     public function it_returns_a_model_value_if_its_available_in_the_model()
     {
         $this
-            ->withModel(['fieldName' => 'Sebastian'])
+            ->withModel(['name' => 'Sebastian'])
             ->assertHtmlStringEqualsHtmlString(
-                '<input type="text" fieldName="fieldName" id="fieldName" value="Sebastian">',
-                $this->html->text('fieldName')
+                '<input type="text" name="name" id="name" value="Sebastian">',
+                $this->html->text('name')
             );
     }
 
@@ -30,11 +30,11 @@ class OldTest extends TestCase
     public function it_returns_a_session_value_if_its_available_in_the_model_and_the_session()
     {
         $this
-            ->withModel(['fieldName' => 'Freek'])
-            ->withSession(['fieldName' => 'Sebastian'])
+            ->withModel(['name' => 'Freek'])
+            ->withSession(['name' => 'Sebastian'])
             ->assertHtmlStringEqualsHtmlString(
-                '<input type="text" fieldName="fieldName" id="fieldName" value="Sebastian">',
-                $this->html->text('fieldName')
+                '<input type="text" name="name" id="name" value="Sebastian">',
+                $this->html->text('name')
             );
     }
 }

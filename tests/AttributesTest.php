@@ -156,10 +156,10 @@ class AttributesTest extends TestCase
     public function it_accepts_multiple_attributes()
     {
         $attributes = new Attributes();
-        $attributes->setAttributes(['fieldName' => 'email', 'required']);
+        $attributes->setAttributes(['name' => 'email', 'required']);
 
         $this->assertArraySubset(
-            ['fieldName' => 'email', 'required' => null],
+            ['name' => 'email', 'required' => null],
             $attributes->toArray()
         );
     }

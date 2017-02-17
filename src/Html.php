@@ -342,7 +342,7 @@ class Html
     /**
      * @return \Illuminate\Contracts\Support\Htmlable
      */
-    public function endModelForm(): Htmlable
+    public function closeModelForm(): Htmlable
     {
         $this->endModel();
 

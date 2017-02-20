@@ -292,7 +292,7 @@ class Html
         return Textarea::create()
             ->attributeIf($name, 'name', $this->fieldName($name))
             ->attributeIf($name, 'id', $this->fieldName($name))
-            ->attributeIf($name, 'value', $this->old($name, $value));
+            ->value($this->old($name, $value));
     }
 
     /**

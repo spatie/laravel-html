@@ -62,9 +62,11 @@ class Html
      *
      * @return \Spatie\Html\Elements\Input
      */
-    public function checkbox(string $name = '', ?string $value = '')
+    public function checkbox(string $name = '', ?string $value = '1', ?bool $checked = false)
     {
-        return $this->input('checkbox', $name, $value);
+        return $this->input('checkbox', $name)
+            ->value($value)
+            ->attributeIf($this->old($name, $checked), 'checked');
     }
 
     /**

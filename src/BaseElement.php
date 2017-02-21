@@ -285,7 +285,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
                 return $child->render();
             }
 
-            if (is_null($child) {
+            if (is_null($child)) {
                 return '';
             }
 

@@ -162,7 +162,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
     }
 
     /**
-     * Alias for `addChidren`.
+     * Alias for `addChildren`.
      *
      * @param \Spatie\Html\HtmlElement|string|iterable|null $children
      * @param ?callable $mapper
@@ -175,7 +175,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
     }
 
     /**
-     * Alias for `addChidren`.
+     * Alias for `addChildren`.
      *
      * @param \Spatie\Html\HtmlElement|string|iterable|null $children
      * @param ?callable $mapper
@@ -188,7 +188,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
     }
 
     /**
-     * Alias for `addChidren`.
+     * Alias for `addChildren`.
      *
      * @param \Spatie\Html\HtmlElement|string|iterable|null $children
      * @param ?callable $mapper

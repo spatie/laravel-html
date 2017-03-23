@@ -254,11 +254,11 @@ class Html
     /**
      * @param string $value
      *
-     * @return \Spatie\Html\Elements\Input
+     * @return \Spatie\Html\Elements\Button
      */
-    public function submit(?string $value = '')
+    public function submit(?string $text = '')
     {
-        return $this->input('submit')->value($value);
+        return $this->button($text, 'submit');
     }
 
     /**

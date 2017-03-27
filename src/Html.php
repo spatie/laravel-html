@@ -37,10 +37,10 @@ class Html
      *
      * @return \Spatie\Html\Elements\A
      */
-    public function a(?string $href, ?string $text = '')
+    public function a(?string $href = '', ?string $text = '')
     {
         return A::create()
-            ->href($href)
+            ->attributeIf($href, 'href', $href)
             ->text($text);
     }
 

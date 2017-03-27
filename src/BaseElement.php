@@ -2,12 +2,12 @@
 
 namespace Spatie\Html;
 
-use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
-use Spatie\Html\Exceptions\InvalidChild;
-use Spatie\Html\Exceptions\InvalidHtml;
 use Spatie\Html\Exceptions\MissingTag;
+use Spatie\Html\Exceptions\InvalidHtml;
+use Spatie\Html\Exceptions\InvalidChild;
+use Illuminate\Contracts\Support\Htmlable;
 
 abstract class BaseElement implements Htmlable, HtmlElement
 {
@@ -362,7 +362,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
     protected function guardAgainstInvalidChildren(Collection $children)
     {
         foreach ($children as $child) {
-            if (( ! $child instanceof HtmlElement) && ( ! is_string($child))) {
+            if ((! $child instanceof HtmlElement) && (! is_string($child))) {
                 throw InvalidChild::childMustBeAnHtmlElementOrAString();
             }
         }

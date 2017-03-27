@@ -2,10 +2,10 @@
 
 namespace Spatie\Html\Elements;
 
-use Illuminate\Support\Collection;
 use ReflectionClass;
 use Spatie\Html\Attributes;
 use Spatie\Html\BaseElement;
+use Illuminate\Support\Collection;
 
 class Element extends BaseElement
 {

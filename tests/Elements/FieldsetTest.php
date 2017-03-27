@@ -2,8 +2,8 @@
 
 namespace Spatie\Html\Test\Elements;
 
-use Spatie\Html\Elements\Fieldset;
 use Spatie\Html\Test\TestCase;
+use Spatie\Html\Elements\Fieldset;
 
 class FieldsetTest extends TestCase
 {

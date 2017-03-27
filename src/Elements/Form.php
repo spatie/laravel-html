@@ -33,6 +33,6 @@ class Form extends BaseElement
      */
     public function acceptsFiles()
     {
-       return $this->attribute('enctype', 'multipart/form-data');
+        return $this->attribute('enctype', 'multipart/form-data');
     }
 }

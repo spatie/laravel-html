@@ -2,8 +2,8 @@
 
 namespace Spatie\Html\Test\Elements;
 
-use Spatie\Html\Elements\Legend;
 use Spatie\Html\Test\TestCase;
+use Spatie\Html\Elements\Legend;
 
 class LegendTest extends TestCase
 {

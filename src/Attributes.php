@@ -18,7 +18,6 @@ class Attributes
     public function setAttributes(iterable $attributes)
     {
         foreach ($attributes as $attribute => $value) {
-
             if ($attribute === 'class') {
                 $this->addClass($value);
                 continue;

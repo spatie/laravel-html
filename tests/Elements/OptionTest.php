@@ -2,8 +2,8 @@
 
 namespace Spatie\Html\Test\Elements;
 
-use Spatie\Html\Elements\Option;
 use Spatie\Html\Test\TestCase;
+use Spatie\Html\Elements\Option;
 
 class OptionTest extends TestCase
 {

@@ -2,8 +2,8 @@
 
 namespace Spatie\Html\Elements;
 
-use Spatie\Html\BaseElement;
 use Spatie\Html\Selectable;
+use Spatie\Html\BaseElement;
 
 class Option extends BaseElement implements Selectable
 {

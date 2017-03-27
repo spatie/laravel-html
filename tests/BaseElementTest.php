@@ -2,10 +2,10 @@
 
 namespace Spatie\Html\Test;
 
-use Illuminate\Support\Collection;
 use Spatie\Html\BaseElement;
-use Spatie\Html\Exceptions\InvalidHtml;
+use Illuminate\Support\Collection;
 use Spatie\Html\Exceptions\MissingTag;
+use Spatie\Html\Exceptions\InvalidHtml;
 
 class BaseElementTest extends TestCase
 {
@@ -14,7 +14,8 @@ class BaseElementTest extends TestCase
     {
         $this->expectException(MissingTag::class);
 
-        new class extends BaseElement {};
+        new class extends BaseElement {
+        };
     }
 
     /** @test */
@@ -96,7 +97,6 @@ class BaseElementTest extends TestCase
             Div::create()->attributes(['foo', 'bar' => 'baz'])->render()
         );
     }
-
 
     /** @test */
     public function it_can_add_a_class_with_add_class()

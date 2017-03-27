@@ -2,8 +2,8 @@
 
 namespace Spatie\Html\Elements;
 
-use Spatie\Html\BaseElement;
 use Spatie\Html\Selectable;
+use Spatie\Html\BaseElement;
 
 class Select extends BaseElement
 {
@@ -60,7 +60,6 @@ class Select extends BaseElement
     protected function applyValueToOptions()
     {
         $this->children = $this->children->map(function ($child) {
-
             if ($child instanceof Selectable) {
                 return $child->selectedIf($this->value === $child->getAttribute('value'));
             }

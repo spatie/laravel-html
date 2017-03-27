@@ -4,7 +4,7 @@ namespace Spatie\Html\Elements;
 
 use Spatie\Html\BaseElement;
 
-class Textarea extends BaseElement
+class TextArea extends BaseElement
 {
     protected $tag = 'textarea';
 

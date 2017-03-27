@@ -2,8 +2,8 @@
 
 namespace Spatie\Html\Test\Elements;
 
-use Spatie\Html\Elements\Select;
 use Spatie\Html\Test\TestCase;
+use Spatie\Html\Elements\Select;
 
 class SelectTest extends TestCase
 {

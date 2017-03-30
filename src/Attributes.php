@@ -111,6 +111,8 @@ class Attributes
                 continue;
             }
 
+            $value = htmlentities($value, ENT_QUOTES, 'UTF-8', false);
+
             $attributeStrings[] = "{$attribute}=\"{$value}\"";
         }
 

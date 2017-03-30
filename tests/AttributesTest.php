@@ -198,4 +198,13 @@ class AttributesTest extends TestCase
 
         $this->assertEquals('foo="0"', $attributes->render());
     }
+
+    /** @test */
+    public function it_can_escape_values_when_rendered()
+    {
+        $attributes = new Attributes();
+        $attributes->setAttribute('foo', '<bar baz=""></bar>');
+
+        $this->assertEquals('foo="&lt;bar baz=&quot;&quot;&gt;&lt;/bar&gt;"', $attributes->render());
+    }
 }

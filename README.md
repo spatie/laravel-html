@@ -7,8 +7,11 @@
 [![StyleCI](https://styleci.io/repos/78114062/shield?branch=master)](https://styleci.io/repos/78114062)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-html.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-html)
 
-
 This package helps you generate HTML using a clean, simple and easy to read API. All elements can be dynamically generated and put together. The HTML builder helps you generate dynamically assigned form elements based on your selected model, the session or a default value.
+
+### Documentation
+
+You'll find full documentation [here](https://docs.spatie.be/laravel-html).
 
 ### Generating elements
 

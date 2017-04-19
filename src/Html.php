@@ -64,9 +64,8 @@ class Html
      */
     public function checkbox(string $name = '', ?bool $checked = false, ?string $value = '1')
     {
-        return $this->input('checkbox', $name)
-            ->value($value)
-            ->attributeIf($this->old($name, $checked), 'checked');
+        return $this->input('checkbox', $name, $value)
+            ->attributeIf((bool) $this->old($name, $checked), 'checked');
     }
 
     /**
@@ -112,7 +111,7 @@ class Html
             ->attributeIf($type, 'type', $type)
             ->attributeIf($name, 'name', $this->fieldName($name))
             ->attributeIf($name, 'id', $this->fieldName($name))
-            ->attributeIf($name, 'value', $this->old($name, $value));
+            ->attributeIf($name && $this->old($name, $value), 'value', $this->old($name, $value));
     }
 
     /**
@@ -223,6 +222,17 @@ class Html
     public function password(string $name = '')
     {
         return $this->input('password', $name)->value('');
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return \Spatie\Html\Elements\Input
+     */
+    public function radio(string $name = '', ?bool $checked = false, ?string $value = '')
+    {
+        return $this->input('radio', $name, $value)
+            ->attributeIf((bool) $this->old($name, $checked), 'checked');
     }
 
     /**

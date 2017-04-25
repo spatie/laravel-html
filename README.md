@@ -15,7 +15,7 @@ You'll find full documentation [here](https://docs.spatie.be/laravel-html).
 
 ### Generating elements
 
-For example creating a new `span` element with a class is super easy with the [fluent methods for elements](/laravel-html/v1/general-usage/element-methods):
+For example creating a new `span` element with a class is super easy with the [fluent methods for elements](https://docs.spatie.be/laravel-html/v1/general-usage/element-methods):
 
  ```php
 html()->span()->text('Hello world!')->class('fa fa-eye');

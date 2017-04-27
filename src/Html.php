@@ -37,11 +37,11 @@ class Html
      *
      * @return \Spatie\Html\Elements\A
      */
-    public function a(?string $href = '', ?string $text = '')
+    public function a(?string $href = '', ?string $contents = '')
     {
         return A::create()
             ->attributeIf($href, 'href', $href)
-            ->text($text);
+            ->html($contents);
     }
 
     /**
@@ -50,11 +50,11 @@ class Html
      *
      * @return \Spatie\Html\Elements\Button
      */
-    public function button(?string $text = '', ?string $type = 'button')
+    public function button(?string $contents = '', ?string $type = '')
     {
         return Button::create()
-            ->type($type)
-            ->text($text);
+            ->attributeIf($type, 'type', $type)
+            ->html($contents);
     }
 
     /**

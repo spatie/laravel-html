@@ -81,6 +81,26 @@ You can install the package via composer:
 composer require spatie/laravel-html
 ```
 
+Next, you must install the service provider:
+
+```php
+// config/app.php
+'providers' => [
+    ...
+    Spatie\Html\HtmlServiceProvider::class,
+];
+```
+
+And optionally register an alias for the facade.
+
+```php
+// config/app.php
+'aliases' => [
+    ...
+    'Html' => Spatie\Html\Facades\Html::class,
+];
+```
+
 ## Usage
 
 ### Concepts

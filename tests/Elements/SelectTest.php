@@ -47,7 +47,7 @@ class SelectTest extends TestCase
     {
         $this->assertHtmlStringEqualsHtmlString(
             '<select>
-                <option selected="selected">Placeholder</option>
+                <option value="" selected="selected">Placeholder</option>
                 <option value="value1">text1</option>
                 <option value="value2">text2</option>
             </select>',
@@ -63,7 +63,7 @@ class SelectTest extends TestCase
     {
         $this->assertHtmlStringEqualsHtmlString(
             '<select>
-                <option>Placeholder</option>
+                <option value="">Placeholder</option>
                 <option value="value1" selected="selected">text1</option>
                 <option value="value2">text2</option>
             </select>',

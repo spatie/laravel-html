@@ -1,9 +1,12 @@
 # Changelog
 
-All notable changes to `laravel-html` will be documented in this file
+All notable changes to `laravel-html` will be documented in this file.
+
+## 1.3.0 - 2017-05-08
+- Added a `placeholder` method to `Select` for default empty values
 
 ## 1.2.0 - 2017-04-28
-- Added a facade
+- Added a `Html` facade
 
 ## 1.1.1 - 2017-04-27
 - Fixed an issue where html was escaped when you didn't want it to do that, like in buttons and links

@@ -59,7 +59,7 @@ class SelectTest extends TestCase
     }
 
     /** @test */
-    public function it_only_selects_the_placeholder_if_nothing_else_has_been_selected()
+    public function it_doesnt_select_the_placeholder_if_something_has_already_been_selected()
     {
         $this->assertHtmlStringEqualsHtmlString(
             '<select>

@@ -45,6 +45,7 @@ class Select extends BaseElement
     {
         return $this->prependChild(
             Option::create()
+                ->value('')
                 ->text($text)
                 ->selectedIf(! $this->hasSelection())
         );

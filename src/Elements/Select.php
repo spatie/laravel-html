@@ -41,6 +41,15 @@ class Select extends BaseElement
         });
     }
 
+    public function placeholder(string $text)
+    {
+        return $this->prependChild(
+            Option::create()
+                ->text($text)
+                ->selectedIf(! $this->hasSelection())
+        );
+    }
+
     /**
      * @param string $value
      *
@@ -55,6 +64,11 @@ class Select extends BaseElement
         $element->applyValueToOptions();
 
         return $element;
+    }
+
+    protected function hasSelection(): bool
+    {
+        return $this->children->contains->hasAttribute('selected');
     }
 
     protected function applyValueToOptions()

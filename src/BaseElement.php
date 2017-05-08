@@ -105,6 +105,16 @@ abstract class BaseElement implements Htmlable, HtmlElement
     }
 
     /**
+     * @param string $attribute
+     *
+     * @return bool
+     */
+    public function hasAttribute(string $attribute): bool
+    {
+        return $this->attributes->hasAttribute($attribute);
+    }
+
+    /**
      * @param iterable|string $class
      *
      * @return static

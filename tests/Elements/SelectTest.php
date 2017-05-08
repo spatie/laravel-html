@@ -41,4 +41,37 @@ class SelectTest extends TestCase
                 ->render()
         );
     }
+
+    /** @test */
+    public function it_can_have_a_placeholder_option()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<select>
+                <option selected="selected">Placeholder</option>
+                <option value="value1">text1</option>
+                <option value="value2">text2</option>
+            </select>',
+            Select::create()
+                ->options(['value1' => 'text1', 'value2' => 'text2'])
+                ->placeholder('Placeholder')
+                ->render()
+        );
+    }
+
+    /** @test */
+    public function it_only_selects_the_placeholder_if_nothing_else_has_been_selected()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<select>
+                <option>Placeholder</option>
+                <option value="value1" selected="selected">text1</option>
+                <option value="value2">text2</option>
+            </select>',
+            Select::create()
+                ->options(['value1' => 'text1', 'value2' => 'text2'])
+                ->value('value1')
+                ->placeholder('Placeholder')
+                ->render()
+        );
+    }
 }

@@ -71,6 +71,11 @@ class Attributes
         return $this->attributes[$attribute] ?? $fallback;
     }
 
+    public function hasAttribute(string $attribute): bool
+    {
+        return array_key_exists($attribute, $this->attributes);
+    }
+
     /**
      * @param string|iterable $class
      */

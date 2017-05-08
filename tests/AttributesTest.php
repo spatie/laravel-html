@@ -207,4 +207,14 @@ class AttributesTest extends TestCase
 
         $this->assertEquals('foo="&lt;bar baz=&quot;&quot;&gt;&lt;/bar&gt;"', $attributes->render());
     }
+
+    /** @test */
+    public function it_can_determine_wether_an_attribute_exists()
+    {
+        $attributes = new Attributes();
+        $attributes->setAttribute('foo', 'bar');
+
+        $this->assertTrue($attributes->hasAttribute('foo'));
+        $this->assertFalse($attributes->hasAttribute('bar'));
+    }
 }

@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 1.4.0 - 2017-05-16
+- Added a `placeholder` method to `Textarea`
+
 ## 1.3.1 - 2017-05-09
 - Added an empty `value` to `Select::placeholder`
 

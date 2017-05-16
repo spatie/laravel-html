@@ -17,6 +17,14 @@ class Textarea extends BaseElement
     }
 
     /**
+     * @return static
+     */
+    public function placeholder(string $placeholder)
+    {
+        return $this->attribute('placeholder', $placeholder);
+    }
+
+    /**
      * @param string $name
      *
      * @return static

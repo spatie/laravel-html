@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 1.3.1 - 2017-05-09
+- Added an empty `value` to `Select::placeholder`
+
 ## 1.3.0 - 2017-05-08
 - Added a `placeholder` method to `Select` for default empty values
 

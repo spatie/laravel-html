@@ -2,21 +2,24 @@
 
 namespace Spatie\Html;
 
-use Spatie\Html\Elements\A;
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use Illuminate\Support\HtmlString;
+use Spatie\Html\Attributes;
+use Spatie\Html\Elements\A;
+use Spatie\Html\Elements\Button;
 use Spatie\Html\Elements\Div;
+use Spatie\Html\Elements\Element;
+use Spatie\Html\Elements\Fieldset;
 use Spatie\Html\Elements\Form;
-use Spatie\Html\Elements\Span;
 use Spatie\Html\Elements\Input;
 use Spatie\Html\Elements\Label;
-use Spatie\Html\Elements\Button;
 use Spatie\Html\Elements\Legend;
 use Spatie\Html\Elements\Option;
 use Spatie\Html\Elements\Select;
-use Spatie\Html\Elements\Element;
-use Spatie\Html\Elements\Fieldset;
+use Spatie\Html\Elements\Span;
 use Spatie\Html\Elements\Textarea;
-use Illuminate\Contracts\Support\Htmlable;
 
 class Html
 {
@@ -55,6 +58,25 @@ class Html
         return Button::create()
             ->attributeIf($type, 'type', $type)
             ->html($contents);
+    }
+
+    /**
+     * @param string|array|\Illuminate\Support\Collection $classes
+     *
+     * @return \Illuminate\Contracts\Support\Htmlable
+     */
+    public function class($classes): Htmlable
+    {
+        if ($classes instanceof Collection) {
+            $classes = $classes->toArray();
+        }
+
+        $attributes = new Attributes();
+        $attributes->addClass($classes);
+
+        return new HtmlString(
+            $attributes->render()
+        );
     }
 
     /**

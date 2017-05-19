@@ -81,6 +81,10 @@ class Attributes
      */
     public function addClass($class)
     {
+        if (is_string($class)) {
+            $class = explode(' ', $class);
+        }
+
         $class = Arr::getToggledValues($class);
 
         $this->classes = array_unique(

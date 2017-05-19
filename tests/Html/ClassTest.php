@@ -9,7 +9,6 @@ class ClassTest extends TestCase
     {
         $classes = [
             'foo' => true,
-            'foo' => true,
             'bar' => false,
             'baz',
         ];

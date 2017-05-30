@@ -37,4 +37,23 @@ class OldTest extends TestCase
                 $this->html->text('name')
             );
     }
+
+    /** @test */
+    public function it_supports_array_values_from_the_session()
+    {
+        $this
+            ->withSession(['name' => ['Freek', 'Sebastian']])
+            ->assertHtmlStringEqualsHtmlString(
+                '<select name="name[]" id="name" multiple>
+                    <option value="Freek" selected="selected">Freek</option>
+                    <option value="John">John</option>
+                    <option value="Sebastian" selected="selected">Sebastian</option>
+                </select>',
+                $this->html->multiselect('name', [
+                    'Freek' => 'Freek',
+                    'John' => 'John',
+                    'Sebastian' => 'Sebastian',
+                ])
+            );
+    }
 }

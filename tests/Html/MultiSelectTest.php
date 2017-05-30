@@ -5,7 +5,7 @@ namespace Spatie\Html\Test\Html;
 class MultiSelectTest extends TestCase
 {
     /** @test */
-    public function it_can_render_a_select_element()
+    public function it_can_render_a_multiple_select_element()
     {
         $this->assertHtmlStringEqualsHtmlString(
             '<select multiple></select>',
@@ -14,7 +14,7 @@ class MultiSelectTest extends TestCase
     }
 
     /** @test */
-    public function it_can_render_a_select_element_with_options()
+    public function it_can_render_a_multiple_select_element_with_options()
     {
         $options = [
             'value1' => 'text1',
@@ -31,7 +31,7 @@ class MultiSelectTest extends TestCase
     }
 
     /** @test */
-    public function it_can_render_a_select_element_with_multiple_options_selected()
+    public function it_can_render_a_multiple_select_element_with_options_selected()
     {
         $options = [
             'value1' => 'text1',

@@ -22,7 +22,7 @@ class MultiSelectTest extends TestCase
         ];
 
         $this->assertHtmlStringEqualsHtmlString(
-            '<select name="select" id="select" multiple>
+            '<select name="select[]" id="select" multiple>
                 <option value="value1">text1</option>
                 <option value="value2">text2</option>
             </select>',
@@ -40,7 +40,7 @@ class MultiSelectTest extends TestCase
         ];
 
         $this->assertHtmlStringEqualsHtmlString(
-            '<select name="select" id="select" multiple>
+            '<select name="select[]" id="select" multiple>
                 <option value="value1" selected="selected">text1</option>
                 <option value="value2">text2</option>
                 <option value="value3" selected="selected">text3</option>

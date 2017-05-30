@@ -273,6 +273,26 @@ class Html
     }
 
     /**
+     * @param string $name
+     * @param iterable $options
+     * @param iterable $values
+     * @return \Spatie\Html\Elements\Select
+     */
+    public function multiselect(string $name = '', iterable $options = [], iterable $values = [])
+    {
+        return Select::create()
+            ->attribute('multiple')
+            ->attributeIf($name, 'name', $this->fieldName($name))
+            ->attributeIf($name, 'id', $this->fieldName($name))
+            ->addChildren($options, function ($text, $value) use ($values) {
+                return Option::create()
+                    ->value($value)
+                    ->text($text)
+                    ->selectedIf(in_array($value, $values));
+            });
+    }
+
+    /**
      * @param \Spatie\Html\HtmlElement|string $contents
      *
      * @return \Spatie\Html\Elements\Span

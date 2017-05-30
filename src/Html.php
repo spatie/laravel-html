@@ -284,7 +284,7 @@ class Html
 
         return Select::create()
             ->attribute('multiple')
-            ->attributeIf($name, 'name', $this->fieldName($name) . '[]')
+            ->attributeIf($name, 'name', $this->fieldName($name).'[]')
             ->attributeIf($name, 'id', $this->fieldName($name))
             ->addChildren($options, function ($text, $value) use ($values) {
                 return Option::create()

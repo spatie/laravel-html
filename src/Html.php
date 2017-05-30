@@ -280,9 +280,11 @@ class Html
      */
     public function multiselect(string $name = '', iterable $options = [], iterable $values = [])
     {
+        $values = $name ? $this->old($name, $values) : [];
+
         return Select::create()
             ->attribute('multiple')
-            ->attributeIf($name, 'name', $this->fieldName($name))
+            ->attributeIf($name, 'name', $this->fieldName($name) . '[]')
             ->attributeIf($name, 'id', $this->fieldName($name))
             ->addChildren($options, function ($text, $value) use ($values) {
                 return Option::create()
@@ -407,7 +409,7 @@ class Html
      *
      * @return mixed
      */
-    protected function old(string $name, ?string $value = '')
+    protected function old(string $name, $value = '')
     {
         if (empty($name)) {
             return;

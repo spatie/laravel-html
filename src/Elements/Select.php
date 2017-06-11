@@ -2,6 +2,7 @@
 
 namespace Spatie\Html\Elements;
 
+use Illuminate\Support\Collection;
 use Spatie\Html\Selectable;
 use Spatie\Html\BaseElement;
 
@@ -13,8 +14,20 @@ class Select extends BaseElement
     /** @var array */
     protected $options = [];
 
-    /** @var string */
+    /** @var string|iterable */
     protected $value = '';
+
+    /**
+     * @return static
+     */
+    public function multiple()
+    {
+        $element = $this->attribute('multiple');
+
+        $element->applyValueToOptions();
+
+        return $element;
+    }
 
     /**
      * @param string $name
@@ -52,11 +65,11 @@ class Select extends BaseElement
     }
 
     /**
-     * @param string $value
+     * @param string|iterable $value
      *
      * @return static
      */
-    public function value(?string $value)
+    public function value($value)
     {
         $element = clone $this;
 
@@ -74,9 +87,15 @@ class Select extends BaseElement
 
     protected function applyValueToOptions()
     {
-        $this->children = $this->children->map(function ($child) {
+        $value = Collection::make($this->value);
+
+        if (! $this->hasAttribute('multiple')) {
+            $value = $value->take(1);
+        }
+
+        $this->children = $this->children->map(function ($child) use ($value) {
             if ($child instanceof Selectable) {
-                return $child->selectedIf($this->value === $child->getAttribute('value'));
+                return $child->selectedIf($value->contains($child->getAttribute('value')));
             }
 
             return $child;

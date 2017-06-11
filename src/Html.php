@@ -388,7 +388,7 @@ class Html
      *
      * @return mixed
      */
-    protected function old(string $name, $value = '')
+    protected function old(string $name, $value = null)
     {
         if (empty($name)) {
             return;

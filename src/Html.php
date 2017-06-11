@@ -269,7 +269,7 @@ class Html
             ->attributeIf($name, 'name', $this->fieldName($name))
             ->attributeIf($name, 'id', $this->fieldName($name))
             ->options($options)
-            ->value($name ? $this->old($name, $value) : '');
+            ->value($name ? $this->old($name, $value) : $value);
     }
 
     /**

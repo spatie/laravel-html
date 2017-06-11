@@ -2,9 +2,9 @@
 
 namespace Spatie\Html\Elements;
 
-use Illuminate\Support\Collection;
 use Spatie\Html\Selectable;
 use Spatie\Html\BaseElement;
+use Illuminate\Support\Collection;
 
 class Select extends BaseElement
 {
@@ -69,7 +69,7 @@ class Select extends BaseElement
      *
      * @return static
      */
-    public function value($value)
+    public function value($value = null)
     {
         $element = clone $this;
 

@@ -2,10 +2,10 @@
 
 namespace Spatie\Html\Elements;
 
+use Illuminate\Support\Str;
 use Spatie\Html\Selectable;
 use Spatie\Html\BaseElement;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 
 class Select extends BaseElement
 {
@@ -30,7 +30,7 @@ class Select extends BaseElement
         $name = $element->getAttribute('name');
 
         if ($name && ! Str::endsWith($name, '[]')) {
-            $element = $element->name($name . '[]');
+            $element = $element->name($name.'[]');
         }
 
         $element->applyValueToOptions();

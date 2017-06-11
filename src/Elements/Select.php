@@ -5,6 +5,7 @@ namespace Spatie\Html\Elements;
 use Spatie\Html\Selectable;
 use Spatie\Html\BaseElement;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class Select extends BaseElement
 {
@@ -22,7 +23,15 @@ class Select extends BaseElement
      */
     public function multiple()
     {
-        $element = $this->attribute('multiple');
+        $element = clone $this;
+
+        $element = $element->attribute('multiple');
+
+        $name = $element->getAttribute('name');
+
+        if ($name && ! Str::endsWith($name, '[]')) {
+            $element = $element->name($name . '[]');
+        }
 
         $element->applyValueToOptions();
 

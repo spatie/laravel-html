@@ -92,6 +92,23 @@ class SelectTest extends TestCase
     }
 
     /** @test */
+    public function it_can_convert_multiple_select_name()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<select multiple="multiple" name="foo[]">
+                <option value="value1">text1</option>
+                <option value="value2">text2</option>
+                <option value="value3">text3</option>
+            </select>',
+            Select::create()
+                  ->name('foo')
+                  ->options(['value1' => 'text1', 'value2' => 'text2', 'value3' => 'text3'])
+                  ->multiple()
+                  ->render()
+        );
+    }
+
+    /** @test */
     public function it_can_have_multiple_values()
     {
         $this->assertHtmlStringEqualsHtmlString(

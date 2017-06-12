@@ -17,7 +17,7 @@ You'll find full documentation [here](https://docs.spatie.be/laravel-html).
 
 For example creating a new `span` element with a class is super easy with the [fluent methods for elements](https://docs.spatie.be/laravel-html/v1/general-usage/element-methods):
 
- ```php
+```php
 html()->span()->text('Hello world!')->class('fa fa-eye');
 ```
 
@@ -108,15 +108,13 @@ And optionally register an alias for the facade.
 Elements—classes under the `Spatie\Html\Elements` namespace—are generally created via a `Spatie\Html\Html` builder instance.
 
 ```php
-$html = app(Html::class);
-
-$html->span()->text('Hello world!');
+html()->span()->text('Hello world!');
 ```
 
 Element attributes and contents are modified via with fluent methods which return a new instance. This means element instances are immutable.
 
 ```php
-$icon = $html->span()->class('fa');
+$icon = html()->span()->class('fa');
 
 $icon->class('fa-eye'); // '<span class="fa fa-eye"></span>'
 $icon->class('fa-eye-slash'); // '<span class="fa fa-eye-slash"></span>'
@@ -128,10 +126,10 @@ By convention, we assume that builder methods will modify values to our advantag
 
 ```php
 // This will try to resolve an initial value, and fall back to 'hello@example.com'
-$email = $html->email('email', 'hello@example.com');
+$email = html()->email('email', 'hello@example.com');
 
 // This will always have 'hello@example.com' as it's value
-$email = $html->email('email')->value('hello@example.com');
+$email = html()->email('email')->value('hello@example.com');
 ```
 
 ## Changelog
@@ -140,7 +138,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 ## Testing
 
-``` bash
+```bash
 $ composer test
 ```
 

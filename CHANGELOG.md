@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.0.0 - 2017-06-13
+- Minimum requirements have been reduced to PHP 7.0
+- Added a `html()` helper function that returns an instance of `Html`
+- Added `Macroable` to all elements and `Html`
+- Loosened type hints in method signatures for flexibility
+- Added `Html::multiselect` method
+- Added `Select::multiple` method
+
 ## 1.5.0 - 2017-05-19
 - Added `class` method to `Html`
 

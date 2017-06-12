@@ -409,7 +409,7 @@ class Html
 
     /**
      * @param string $name
-     * 
+     *
      * @return string
      */
     protected function fieldName($name)

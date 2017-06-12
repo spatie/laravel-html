@@ -20,7 +20,7 @@ class Arr
      *
      * @return array
      */
-    public static function getToggledValues($map): array
+    public static function getToggledValues($map)
     {
         return Collection::make($map)->map(function ($condition, $value) {
             if (is_numeric($value)) {

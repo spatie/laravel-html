@@ -37,11 +37,11 @@ abstract class BaseElement implements Htmlable, HtmlElement
 
     /**
      * @param string $attribute
-     * @param string $value
+     * @param string|null $value
      *
      * @return static
      */
-    public function attribute(string $attribute, ?string $value = '')
+    public function attribute($attribute, $value = null)
     {
         $element = clone $this;
 
@@ -53,11 +53,11 @@ abstract class BaseElement implements Htmlable, HtmlElement
     /**
      * @param bool $condition
      * @param string $attribute
-     * @param string $value
+     * @param string|null $value
      *
      * @return static
      */
-    public function attributeIf(bool $condition, string $attribute, ?string $value = '')
+    public function attributeIf($condition, $attribute, $value = null)
     {
         return $condition ?
             $this->attribute($attribute, $value) :
@@ -69,7 +69,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
      *
      * @return static
      */
-    public function attributes(iterable $attributes)
+    public function attributes($attributes)
     {
         $element = clone $this;
 
@@ -80,11 +80,10 @@ abstract class BaseElement implements Htmlable, HtmlElement
 
     /**
      * @param string $attribute
-     * @param string $value
      *
      * @return static
      */
-    public function forgetAttribute(string $attribute)
+    public function forgetAttribute($attribute)
     {
         $element = clone $this;
 
@@ -99,7 +98,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
      *
      * @return mixed
      */
-    public function getAttribute(string $attribute, ?string $fallback = '')
+    public function getAttribute($attribute, $fallback = null)
     {
         return $this->attributes->getAttribute($attribute, $fallback);
     }
@@ -109,7 +108,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
      *
      * @return bool
      */
-    public function hasAttribute(string $attribute): bool
+    public function hasAttribute($attribute)
     {
         return $this->attributes->hasAttribute($attribute);
     }
@@ -145,18 +144,18 @@ abstract class BaseElement implements Htmlable, HtmlElement
      *
      * @return static
      */
-    public function id(string $id)
+    public function id($id)
     {
         return $this->attribute('id', $id);
     }
 
     /**
      * @param \Spatie\Html\HtmlElement|string|iterable|null $children
-     * @param ?callable $mapper
+     * @param callable|null $mapper
      *
      * @return static
      */
-    public function addChildren($children, callable $mapper = null)
+    public function addChildren($children, $mapper = null)
     {
         if (is_null($children)) {
             return $this;
@@ -175,11 +174,11 @@ abstract class BaseElement implements Htmlable, HtmlElement
      * Alias for `addChildren`.
      *
      * @param \Spatie\Html\HtmlElement|string|iterable|null $children
-     * @param ?callable $mapper
+     * @param callable|null $mapper
      *
      * @return static
      */
-    public function addChild($child, callable $mapper = null)
+    public function addChild($child, $mapper = null)
     {
         return $this->addChildren($child, $mapper);
     }
@@ -188,11 +187,11 @@ abstract class BaseElement implements Htmlable, HtmlElement
      * Alias for `addChildren`.
      *
      * @param \Spatie\Html\HtmlElement|string|iterable|null $children
-     * @param ?callable $mapper
+     * @param callable|null $mapper
      *
      * @return static
      */
-    public function child($child, callable $mapper = null)
+    public function child($child, $mapper = null)
     {
         return $this->addChildren($child, $mapper);
     }
@@ -201,22 +200,22 @@ abstract class BaseElement implements Htmlable, HtmlElement
      * Alias for `addChildren`.
      *
      * @param \Spatie\Html\HtmlElement|string|iterable|null $children
-     * @param ?callable $mapper
+     * @param callable|null $mapper
      *
      * @return static
      */
-    public function children($children, callable $mapper = null)
+    public function children($children, $mapper = null)
     {
         return $this->addChildren($children, $mapper);
     }
 
     /**
      * @param \Spatie\Html\HtmlElement|string|iterable|null $children
-     * @param ?callable $mapper
+     * @param callable|null $mapper
      *
      * @return static
      */
-    public function prependChildren($children, callable $mapper = null)
+    public function prependChildren($children, $mapper = null)
     {
         $children = $this->parseChildren($children, $mapper);
 
@@ -231,31 +230,31 @@ abstract class BaseElement implements Htmlable, HtmlElement
      * Alias for `prependChildren`.
      *
      * @param \Spatie\Html\HtmlElement|string|iterable|null $children
-     * @param ?callable $mapper
+     * @param callable|null $mapper
      *
      * @return static
      */
-    public function prependChild($children, callable $mapper = null)
+    public function prependChild($children, $mapper = null)
     {
         return $this->prependChildren($children, $mapper);
     }
 
     /**
-     * @param string $text
+     * @param string|null $text
      *
      * @return static
      */
-    public function text(?string $text)
+    public function text($text)
     {
         return $this->html(htmlentities($text, ENT_QUOTES, 'UTF-8', false));
     }
 
     /**
-     * @param string $html
+     * @param string|null $html
      *
      * @return static
      */
-    public function html(?string $html)
+    public function html($html)
     {
         if ($this->isVoidElement()) {
             throw new InvalidHtml("Can't set inner contents on `{$this->tag}` because it's a void element");
@@ -284,7 +283,10 @@ abstract class BaseElement implements Htmlable, HtmlElement
         return $this;
     }
 
-    public function open(): Htmlable
+    /**
+     * @return \Illuminate\Contracts\Support\Htmlable
+     */
+    public function open()
     {
         $tag = $this->attributes->isEmpty()
             ? '<'.$this->tag.'>'
@@ -309,7 +311,10 @@ abstract class BaseElement implements Htmlable, HtmlElement
         return new HtmlString($tag.$children);
     }
 
-    public function close(): Htmlable
+    /**
+     * @return \Illuminate\Contracts\Support\Htmlable
+     */
+    public function close()
     {
         return new HtmlString(
             $this->isVoidElement()
@@ -318,7 +323,10 @@ abstract class BaseElement implements Htmlable, HtmlElement
         );
     }
 
-    public function render(): Htmlable
+    /**
+     * @return \Illuminate\Contracts\Support\Htmlable
+     */
+    public function render()
     {
         return new HtmlString(
             $this->open().$this->close()
@@ -350,7 +358,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
         return $this->render();
     }
 
-    protected function parseChildren($children, callable $mapper = null): Collection
+    protected function parseChildren($children, $mapper = null): Collection
     {
         if ($children instanceof HtmlElement) {
             $children = [$children];

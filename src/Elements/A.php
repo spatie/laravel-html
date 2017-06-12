@@ -9,11 +9,11 @@ class A extends BaseElement
     protected $tag = 'a';
 
     /**
-     * @param string $href
+     * @param string|null $href
      *
      * @return static
      */
-    public function href(?string $href)
+    public function href($href)
     {
         return $this->attribute('href', $href);
     }

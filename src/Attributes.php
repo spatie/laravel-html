@@ -14,8 +14,10 @@ class Attributes
 
     /**
      * @param iterable $attributes
+     *
+     * @return $this
      */
-    public function setAttributes(iterable $attributes)
+    public function setAttributes($attributes)
     {
         foreach ($attributes as $attribute => $value) {
             if ($attribute === 'class') {
@@ -30,13 +32,17 @@ class Attributes
 
             $this->setAttribute($attribute, (string) $value);
         }
+
+        return $this;
     }
 
     /**
      * @param string $attribute
-     * @param string $value
+     * @param string|null $value
+     *
+     * @return $this
      */
-    public function setAttribute(string $attribute, string $value = '')
+    public function setAttribute($attribute, $value = null)
     {
         if ($attribute === 'class') {
             $this->addClass($value);
@@ -45,9 +51,16 @@ class Attributes
         }
 
         $this->attributes[$attribute] = $value;
+
+        return $this;
     }
 
-    public function forgetAttribute(string $attribute)
+    /**
+     * @param string $attribute
+     * 
+     * @return $this
+     */
+    public function forgetAttribute($attribute)
     {
         if ($attribute === 'class') {
             $this->classes = [];
@@ -62,7 +75,13 @@ class Attributes
         return $this;
     }
 
-    public function getAttribute(string $attribute, string $fallback = null): ?string
+    /**
+     * @param string $attribute
+     * @param mixed $fallback
+     * 
+     * @return mixed
+     */
+    public function getAttribute($attribute, $fallback = null)
     {
         if ($attribute === 'class') {
             return implode(' ', $this->classes);
@@ -92,12 +111,18 @@ class Attributes
         );
     }
 
-    public function isEmpty(): bool
+    /**
+     * @return bool
+     */
+    public function isEmpty()
     {
         return empty($this->attributes) && empty($this->classes);
     }
 
-    public function toArray(): array
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         if (empty($this->classes)) {
             return $this->attributes;
@@ -106,7 +131,10 @@ class Attributes
         return array_merge(['class' => implode(' ', $this->classes)], $this->attributes);
     }
 
-    public function render(): string
+    /**
+     * @return string
+     */
+    public function render()
     {
         if ($this->isEmpty()) {
             return '';

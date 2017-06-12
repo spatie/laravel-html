@@ -17,9 +17,11 @@ class Textarea extends BaseElement
     }
 
     /**
+     * @param string|null $placeholder
+     * 
      * @return static
      */
-    public function placeholder(string $placeholder)
+    public function placeholder($placeholder)
     {
         return $this->attribute('placeholder', $placeholder);
     }
@@ -29,17 +31,17 @@ class Textarea extends BaseElement
      *
      * @return static
      */
-    public function name(?string $name)
+    public function name($name)
     {
         return $this->attribute('name', $name);
     }
 
     /**
-     * @param string $value
+     * @param string|null $value
      *
      * @return static
      */
-    public function value(?string $value)
+    public function value($value)
     {
         return $this->html($value);
     }

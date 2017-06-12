@@ -39,11 +39,11 @@ class Select extends BaseElement
     }
 
     /**
-     * @param string $name
+     * @param string|null $name
      *
      * @return static
      */
-    public function name(?string $name)
+    public function name($name)
     {
         return $this->attribute('name', $name);
     }
@@ -53,7 +53,7 @@ class Select extends BaseElement
      *
      * @return static
      */
-    public function options(iterable $options)
+    public function options($options)
     {
         return $this->addChildren($options, function ($text, $value) {
             return Option::create()
@@ -63,7 +63,12 @@ class Select extends BaseElement
         });
     }
 
-    public function placeholder(string $text)
+    /**
+     * @param string|null $test
+     *
+     * @return static
+     */
+    public function placeholder($text)
     {
         return $this->prependChild(
             Option::create()
@@ -89,7 +94,7 @@ class Select extends BaseElement
         return $element;
     }
 
-    protected function hasSelection(): bool
+    protected function hasSelection()
     {
         return $this->children->contains->hasAttribute('selected');
     }

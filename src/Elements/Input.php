@@ -17,28 +17,26 @@ class Input extends BaseElement
     }
 
     /**
-     * @param string $name
+     * @param string|null $name
      *
      * @return static
      */
-    public function name(?string $name)
+    public function name($name)
     {
         return $this->attribute('name', $name);
     }
 
     /**
-     * @param string $placeholder
+     * @param string|null $placeholder
      *
      * @return static
      */
-    public function placeholder(?string $placeholder)
+    public function placeholder($placeholder)
     {
         return $this->attribute('placeholder', $placeholder);
     }
 
     /**
-     * @param string $type
-     *
      * @return static
      */
     public function required()
@@ -47,21 +45,21 @@ class Input extends BaseElement
     }
 
     /**
-     * @param string $type
+     * @param string|null $type
      *
      * @return static
      */
-    public function type(?string $type)
+    public function type($type)
     {
         return $this->attribute('type', $type);
     }
 
     /**
-     * @param string $value
+     * @param string|null $value
      *
      * @return static
      */
-    public function value(?string $value)
+    public function value($value)
     {
         return $this->attribute('value', $value);
     }

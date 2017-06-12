@@ -9,21 +9,21 @@ class Button extends BaseElement
     protected $tag = 'button';
 
     /**
-     * @param string $type
+     * @param string|null $type
      *
      * @return static
      */
-    public function type(?string $type)
+    public function type($type)
     {
         return $this->attribute('type', $type);
     }
 
     /**
-     * @param string $value
+     * @param string|null $value
      *
      * @return static
      */
-    public function value(?string $value)
+    public function value($value)
     {
         return $this->attribute('value', $value);
     }

@@ -9,11 +9,11 @@ class Label extends BaseElement
     protected $tag = 'label';
 
     /**
-     * @param string $for
+     * @param string|null $for
      *
      * @return static
      */
-    public function for(?string $for)
+    public function for($for)
     {
         return $this->attribute('for', $for);
     }

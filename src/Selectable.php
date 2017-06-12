@@ -10,9 +10,10 @@ interface Selectable
     public function selected();
 
     /**
+     * @param bool $condition
      * @return static
      */
-    public function selectedIf(bool $condition);
+    public function selectedIf($condition);
 
     /**
      * @return static

@@ -9,21 +9,21 @@ class Form extends BaseElement
     protected $tag = 'form';
 
     /**
-     * @param string $action
+     * @param string|null $action
      *
      * @return static
      */
-    public function action(?string $action)
+    public function action($action)
     {
         return $this->attribute('action', $action);
     }
 
     /**
-     * @param string $method
+     * @param string|null $method
      *
      * @return static
      */
-    public function method(?string $method)
+    public function method($method)
     {
         return $this->attribute('method', $method);
     }

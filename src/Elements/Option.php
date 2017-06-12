@@ -23,7 +23,7 @@ class Option extends BaseElement implements Selectable
      *
      * @return static
      */
-    public function selectedIf(bool $condition)
+    public function selectedIf($condition)
     {
         return $condition ?
             $this->selected() :
@@ -39,11 +39,11 @@ class Option extends BaseElement implements Selectable
     }
 
     /**
-     * @param string $value
+     * @param string|null $value
      *
      * @return static
      */
-    public function value(?string $value)
+    public function value($value)
     {
         return $this->attribute('value', $value);
     }

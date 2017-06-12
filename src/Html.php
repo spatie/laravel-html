@@ -34,12 +34,12 @@ class Html
     }
 
     /**
-     * @param string $href
-     * @param string $text
+     * @param string|null $href
+     * @param string|null $text
      *
      * @return \Spatie\Html\Elements\A
      */
-    public function a(?string $href = '', ?string $contents = '')
+    public function a($href = null, $contents = null)
     {
         return A::create()
             ->attributeIf($href, 'href', $href)
@@ -47,12 +47,12 @@ class Html
     }
 
     /**
-     * @param string $type
-     * @param string $text
+     * @param string|null $type
+     * @param string|null $text
      *
      * @return \Spatie\Html\Elements\Button
      */
-    public function button(?string $contents = '', ?string $type = '')
+    public function button($contents = null, $type = null)
     {
         return Button::create()
             ->attributeIf($type, 'type', $type)
@@ -60,7 +60,7 @@ class Html
     }
 
     /**
-     * @param string|array|\Illuminate\Support\Collection $classes
+     * @param \Illuminate\Support\Collection|iterable|string $classes
      *
      * @return \Illuminate\Contracts\Support\Htmlable
      */
@@ -79,18 +79,20 @@ class Html
     }
 
     /**
-     * @param string $value
+     * @param string|null $name
+     * @param bool $checked
+     * @param string|null $value
      *
      * @return \Spatie\Html\Elements\Input
      */
-    public function checkbox(string $name = '', ?bool $checked = false, ?string $value = '1')
+    public function checkbox($name = null, $checked = false, $value = '1')
     {
         return $this->input('checkbox', $name, $value)
             ->attributeIf((bool) $this->old($name, $checked), 'checked');
     }
 
     /**
-     * @param \Spatie\Html\HtmlElement|string $contents
+     * @param \Spatie\Html\HtmlElement|string|null $contents
      *
      * @return \Spatie\Html\Elements\Div
      */
@@ -100,11 +102,12 @@ class Html
     }
 
     /**
-     * @param string $value
+     * @param string|null $name
+     * @param string|null $value
      *
      * @return \Spatie\Html\Elements\Input
      */
-    public function email(string $name = '', ?string $value = '')
+    public function email($name = '', $value = '')
     {
         return $this->input('email', $name, $value);
     }
@@ -114,19 +117,19 @@ class Html
      *
      * @return \Spatie\Html\Elements\Element
      */
-    public function element(string $tag)
+    public function element($tag)
     {
         return Element::withTag($tag);
     }
 
     /**
-     * @param string $type
-     * @param string $name
-     * @param string $value
+     * @param string|null $type
+     * @param string|null $name
+     * @param string|null $value
      *
      * @return \Spatie\Html\Elements\Input
      */
-    public function input(?string $type = '', string $name = '', ?string $value = '')
+    public function input($type = null, $name = null, $value = null)
     {
         return Input::create()
             ->attributeIf($type, 'type', $type)
@@ -136,7 +139,7 @@ class Html
     }
 
     /**
-     * @param \Spatie\Html\HtmlElement|string $legend
+     * @param \Spatie\Html\HtmlElement|string|null $legend
      *
      * @return \Spatie\Html\Elements\Fieldset
      */
@@ -149,12 +152,11 @@ class Html
 
     /**
      * @param string $method
-     * @param string $action
-     * @param array $parameters
+     * @param string|null $action
      *
      * @return \Spatie\Html\Elements\Form
      */
-    public function form(string $method = 'POST', string $action = '')
+    public function form($method = 'POST', $action = null)
     {
         $method = strtoupper($method);
         $form = Form::create();
@@ -176,23 +178,23 @@ class Html
     }
 
     /**
-     * @param string $name
-     * @param string $value
+     * @param string|null $name
+     * @param string|null $value
      *
      * @return \Spatie\Html\Elements\Input
      */
-    public function hidden(string $name = '', ?string $value = '')
+    public function hidden($name = null, $value = null)
     {
         return $this->input('hidden', $name, $value);
     }
 
     /**
      * @param \Spatie\Html\HtmlElement|iterable|string|null $contents
-     * @param string $for
+     * @param string|null $for
      *
      * @return \Spatie\Html\Elements\Label
      */
-    public function label($contents = null, string $for = '')
+    public function label($contents = null, $for = null)
     {
         return Label::create()
             ->attributeIf($for, 'for', $this->fieldName($for))
@@ -200,7 +202,7 @@ class Html
     }
 
     /**
-     * @param \Spatie\Html\HtmlElement|string $contents
+     * @param \Spatie\Html\HtmlElement|string|null $contents
      *
      * @return \Spatie\Html\Elements\Legend
      */
@@ -211,23 +213,23 @@ class Html
 
     /**
      * @param string $email
-     * @param string $text
+     * @param string|null $text
      *
      * @return \Spatie\Html\Elements\A
      */
-    public function mailto(string $email, string $text = '')
+    public function mailto($email, $text = null)
     {
         return $this->a('mailto:'.$email, $text);
     }
 
     /**
-     * @param string $text
-     * @param string $value
+     * @param string|null $text
+     * @param string|null $value
      * @param bool $selected
      *
      * @return \Spatie\Html\Elements\Option
      */
-    public function option(?string $text = '', ?string $value = '', $selected = false)
+    public function option($text = null, $value = null, $selected = false)
     {
         return Option::create()
             ->text($text)
@@ -236,34 +238,36 @@ class Html
     }
 
     /**
-     * @param string $value
+     * @param string|null $value
      *
      * @return \Spatie\Html\Elements\Input
      */
-    public function password(string $name = '')
+    public function password($name = null)
     {
-        return $this->input('password', $name)->value('');
+        return $this->input('password', $name);
     }
 
     /**
-     * @param string $value
+     * @param string|null $name
+     * @param bool $checked
+     * @param string|null $value
      *
      * @return \Spatie\Html\Elements\Input
      */
-    public function radio(string $name = '', ?bool $checked = false, ?string $value = '')
+    public function radio($name = null, $checked = false, $value = null)
     {
         return $this->input('radio', $name, $value)
             ->attributeIf((bool) $this->old($name, $checked), 'checked');
     }
 
     /**
-     * @param string $name
+     * @param string|null $name
      * @param iterable $options
-     * @param string|iterable $value
+     * @param string|iterable|null $value
      *
      * @return \Spatie\Html\Elements\Select
      */
-    public function select(string $name = '', iterable $options = [], $value = '')
+    public function select($name = null, $options = [], $value = null)
     {
         return Select::create()
             ->attributeIf($name, 'name', $this->fieldName($name))
@@ -273,7 +277,7 @@ class Html
     }
 
     /**
-     * @param \Spatie\Html\HtmlElement|string $contents
+     * @param \Spatie\Html\HtmlElement|string|null $contents
      *
      * @return \Spatie\Html\Elements\Span
      */
@@ -283,44 +287,44 @@ class Html
     }
 
     /**
-     * @param string $value
+     * @param string|null $test
      *
      * @return \Spatie\Html\Elements\Button
      */
-    public function submit(?string $text = '')
+    public function submit($text = null)
     {
         return $this->button($text, 'submit');
     }
 
     /**
      * @param string $number
-     * @param string $text
+     * @param string|null $text
      *
      * @return \Spatie\Html\Elements\A
      */
-    public function tel(?string $number, ?string $text = '')
+    public function tel($number, $text = null)
     {
         return $this->a('tel:'.$number, $text);
     }
 
     /**
-     * @param string $name
-     * @param string $value
+     * @param string|null $name
+     * @param string|null $value
      *
      * @return \Spatie\Html\Elements\Input
      */
-    public function text(string $name = '', ?string $value = '')
+    public function text($name = null, $value = null)
     {
         return $this->input('text', $name, $value);
     }
 
     /**
-     * @param string $name
-     * @param string $value
+     * @param string|null $name
+     * @param string|null $value
      *
      * @return \Spatie\Html\Elements\Textarea
      */
-    public function textarea(string $name = '', ?string $value = '')
+    public function textarea($name = null, $value = null)
     {
         return Textarea::create()
             ->attributeIf($name, 'name', $this->fieldName($name))
@@ -350,12 +354,12 @@ class Html
 
     /**
      * @param \ArrayAccess|array $model
-     * @param string $method
-     * @param string $action
+     * @param string|null $method
+     * @param string|null $action
      *
      * @return \Spatie\Html\Elements\Form
      */
-    public function modelForm($model, string $method = 'POST', string $action = ''): Form
+    public function modelForm($model, $method = 'POST', $action = null): Form
     {
         $this->model($model);
 
@@ -384,11 +388,11 @@ class Html
 
     /**
      * @param string $name
-     * @param mixed  $value
+     * @param mixed $value
      *
      * @return mixed
      */
-    protected function old(string $name, $value = null)
+    protected function old($name, $value = null)
     {
         if (empty($name)) {
             return;
@@ -403,7 +407,12 @@ class Html
         return $this->request->old($name, $value);
     }
 
-    protected function fieldName(string $name): string
+    /**
+     * @param string $name
+     * 
+     * @return string
+     */
+    protected function fieldName($name)
     {
         return $name;
     }

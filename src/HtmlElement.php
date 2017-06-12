@@ -2,9 +2,10 @@
 
 namespace Spatie\Html;
 
-use Illuminate\Contracts\Support\Htmlable;
-
 interface HtmlElement
 {
-    public function render(): Htmlable;
+    /**
+     * @return \Illuminate\Contracts\Support\Htmlable
+     */
+    public function render();
 }

@@ -57,7 +57,7 @@ class Attributes
 
     /**
      * @param string $attribute
-     * 
+     *
      * @return $this
      */
     public function forgetAttribute($attribute)
@@ -78,7 +78,7 @@ class Attributes
     /**
      * @param string $attribute
      * @param mixed $fallback
-     * 
+     *
      * @return mixed
      */
     public function getAttribute($attribute, $fallback = null)

@@ -226,6 +226,23 @@ class Html
     }
 
     /**
+     * @param string|null $name
+     * @param iterable $options
+     * @param string|iterable|null $value
+     *
+     * @return \Spatie\Html\Elements\Select
+     */
+    public function multiselect($name = null, $options = [], $value = null)
+    {
+        return Select::create()
+            ->attributeIf($name, 'name', $this->fieldName($name))
+            ->attributeIf($name, 'id', $this->fieldName($name))
+            ->options($options)
+            ->value($name ? $this->old($name, $value) : $value)
+            ->multiple();
+    }
+
+    /**
      * @param string|null $text
      * @param string|null $value
      * @param bool $selected

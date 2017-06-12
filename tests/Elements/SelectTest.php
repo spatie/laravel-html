@@ -85,9 +85,9 @@ class SelectTest extends TestCase
                 <option value="value3">text3</option>
             </select>',
             Select::create()
-                  ->options(['value1' => 'text1', 'value2' => 'text2', 'value3' => 'text3'])
-                  ->multiple()
-                  ->render()
+                ->options(['value1' => 'text1', 'value2' => 'text2', 'value3' => 'text3'])
+                ->multiple()
+                ->render()
         );
     }
 

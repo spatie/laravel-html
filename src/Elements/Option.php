@@ -2,14 +2,14 @@
 
 namespace Spatie\Html\Elements;
 
-use Illuminate\Support\Traits\Macroable;
-use Spatie\Html\BaseElement;
 use Spatie\Html\Selectable;
+use Spatie\Html\BaseElement;
+use Illuminate\Support\Traits\Macroable;
 
 class Option extends BaseElement implements Selectable
 {
     use Macroable;
-    
+
     /** @var string */
     protected $tag = 'option';
 

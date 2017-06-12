@@ -2,29 +2,29 @@
 
 namespace Spatie\Html;
 
-use Illuminate\Contracts\Support\Htmlable;
-use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
-use Illuminate\Support\HtmlString;
-use Illuminate\Support\Traits\Macroable;
 use Spatie\Html\Elements\A;
-use Spatie\Html\Elements\Button;
+use Illuminate\Http\Request;
 use Spatie\Html\Elements\Div;
-use Spatie\Html\Elements\Element;
-use Spatie\Html\Elements\Fieldset;
 use Spatie\Html\Elements\Form;
+use Spatie\Html\Elements\Span;
 use Spatie\Html\Elements\Input;
 use Spatie\Html\Elements\Label;
+use Spatie\Html\Elements\Button;
 use Spatie\Html\Elements\Legend;
 use Spatie\Html\Elements\Option;
 use Spatie\Html\Elements\Select;
-use Spatie\Html\Elements\Span;
+use Spatie\Html\Elements\Element;
+use Illuminate\Support\Collection;
+use Illuminate\Support\HtmlString;
+use Spatie\Html\Elements\Fieldset;
 use Spatie\Html\Elements\Textarea;
+use Illuminate\Support\Traits\Macroable;
+use Illuminate\Contracts\Support\Htmlable;
 
 class Html
 {
     use Macroable;
-    
+
     /** @var \Illuminate\Http\Request */
     protected $request;
 
@@ -412,7 +412,7 @@ class Html
 
     /**
      * @param string $name
-     * 
+     *
      * @return string
      */
     protected function fieldName($name)

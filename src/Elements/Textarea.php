@@ -2,11 +2,14 @@
 
 namespace Spatie\Html\Elements;
 
+use Illuminate\Support\Traits\Macroable;
 use Spatie\Html\BaseElement;
 
 class Textarea extends BaseElement
 {
-    protected $tag = 'textarea';
+    use Macroable;
+
+    protected $tag = 'textarea';    
 
     /**
      * @return static

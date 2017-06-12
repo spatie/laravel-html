@@ -2,10 +2,13 @@
 
 namespace Spatie\Html\Elements;
 
+use Illuminate\Support\Traits\Macroable;
 use Spatie\Html\BaseElement;
 
 class Input extends BaseElement
 {
+    use Macroable;
+
     protected $tag = 'input';
 
     /**

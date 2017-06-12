@@ -18,7 +18,7 @@ class Textarea extends BaseElement
 
     /**
      * @param string|null $placeholder
-     * 
+     *
      * @return static
      */
     public function placeholder($placeholder)

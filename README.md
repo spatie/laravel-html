@@ -13,6 +13,10 @@ This package helps you generate HTML using a clean, simple and easy to read API.
 
 You'll find full documentation [here](https://docs.spatie.be/laravel-html).
 
+### Upgrading to 2.0
+
+Version 2.0 was tagged because it could break some very specific cases, but you most likely don't have any work upgrading! Check out the [upgrade](#upgrading) for a detailed explanation.
+
 ### Generating elements
 
 For example creating a new `span` element with a class is super easy with the [fluent methods for elements](https://docs.spatie.be/laravel-html/v1/general-usage/element-methods):
@@ -131,6 +135,17 @@ $email = html()->email('email', 'hello@example.com');
 // This will always have 'hello@example.com' as it's value
 $email = html()->email('email')->value('hello@example.com');
 ```
+
+## Upgrading
+
+### From v1 to v2
+
+Version 2 was created because the typehints in version 1 was holding the package back for specific cases (like multiple select which requires an array of values instead of a string which was assumed).
+
+In most cases, bumping the version number in `composer.json` and running `composer update` should be non-breaking. Here are some caveats to look out for:
+
+- The package now ships with a `html()` function by default, which returns an instance of the `Html` builder class. If you've defined your own method, you'll need to remove it.
+- Various type hints have been removed throughout the package, if you've extended a class to override it's methods, you'll need to update them accordingly (everything still behaves the same!)
 
 ## Changelog
 

@@ -74,4 +74,71 @@ class SelectTest extends TestCase
                 ->render()
         );
     }
+
+    /** @test */
+    public function it_can_have_a_multiple_option()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<select multiple="multiple">
+                <option value="value1">text1</option>
+                <option value="value2">text2</option>
+                <option value="value3">text3</option>
+            </select>',
+            Select::create()
+                  ->options(['value1' => 'text1', 'value2' => 'text2', 'value3' => 'text3'])
+                  ->multiple()
+                  ->render()
+        );
+    }
+
+    /** @test */
+    public function it_can_convert_multiple_select_name()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<select multiple="multiple" name="foo[]">
+                <option value="value1">text1</option>
+                <option value="value2">text2</option>
+                <option value="value3">text3</option>
+            </select>',
+            Select::create()
+                  ->name('foo')
+                  ->options(['value1' => 'text1', 'value2' => 'text2', 'value3' => 'text3'])
+                  ->multiple()
+                  ->render()
+        );
+    }
+
+    /** @test */
+    public function it_can_have_multiple_values()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<select multiple="multiple">
+                <option value="value1" selected="selected">text1</option>
+                <option value="value2">text2</option>
+                <option value="value3" selected="selected">text3</option>
+            </select>',
+            Select::create()
+                  ->options(['value1' => 'text1', 'value2' => 'text2', 'value3' => 'text3'])
+                  ->value(['value1', 'value3'])
+                  ->multiple()
+                  ->render()
+        );
+    }
+
+    /** @test */
+    public function it_can_have_one_multiple_value()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<select multiple="multiple">
+                <option value="value1">text1</option>
+                <option value="value2">text2</option>
+                <option value="value3" selected="selected">text3</option>
+            </select>',
+            Select::create()
+                  ->options(['value1' => 'text1', 'value2' => 'text2', 'value3' => 'text3'])
+                  ->value('value3')
+                  ->multiple()
+                  ->render()
+        );
+    }
 }

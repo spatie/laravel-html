@@ -259,17 +259,17 @@ class Html
     /**
      * @param string $name
      * @param iterable $options
-     * @param string $value
+     * @param string|iterable $value
      *
      * @return \Spatie\Html\Elements\Select
      */
-    public function select(string $name = '', iterable $options = [], ?string $value = '')
+    public function select(string $name = '', iterable $options = [], $value = '')
     {
         return Select::create()
             ->attributeIf($name, 'name', $this->fieldName($name))
             ->attributeIf($name, 'id', $this->fieldName($name))
             ->options($options)
-            ->value($name ? $this->old($name, $value) : '');
+            ->value($name ? $this->old($name, $value) : $value);
     }
 
     /**
@@ -384,10 +384,11 @@ class Html
 
     /**
      * @param string $name
+     * @param mixed  $value
      *
      * @return mixed
      */
-    protected function old(string $name, ?string $value = '')
+    protected function old(string $name, $value = null)
     {
         if (empty($name)) {
             return;

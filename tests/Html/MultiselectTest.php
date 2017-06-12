@@ -8,8 +8,8 @@ class MultiselectTest extends TestCase
     public function it_can_create_a_multiselect()
     {
         $options = [
-            'value1' => 'text1', 
-            'value2' => 'text2', 
+            'value1' => 'text1',
+            'value2' => 'text2',
             'value3' => 'text3',
         ];
 

@@ -15,7 +15,7 @@ You'll find full documentation [here](https://docs.spatie.be/laravel-html).
 
 ### Upgrading to 2.0
 
-Version 2.0 was tagged because it could break some very specific cases, but you most likely don't have any work upgrading! Check out the [upgrade](#upgrading) for a detailed explanation.
+Version 2.0 was tagged because it could break some very specific cases, but you most likely don't have any work upgrading! Check out ["Upgrading"](#upgrading) for a detailed explanation.
 
 ### Generating elements
 

@@ -48,5 +48,15 @@
     },
     "config": {
         "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Spatie\\Html\\HtmlServiceProvider"
+            ],
+            "aliases": {
+                "Html": "Spatie\\Html\\Facades\\Html"
+            }
+        }
     }
 }

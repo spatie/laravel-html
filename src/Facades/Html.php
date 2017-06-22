@@ -2,8 +2,8 @@
 
 namespace Spatie\Html\Facades;
 
-use Illuminate\Support\Facades\Facade;
 use Spatie\Html\Html as HtmlBuilder;
+use Illuminate\Support\Facades\Facade;
 
 class Html extends Facade
 {

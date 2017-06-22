@@ -3,8 +3,9 @@
 namespace Spatie\Html\Facades;
 
 use Spatie\Html\Html as HtmlBuilder;
+use Illuminate\Support\Facades\Facade;
 
-class Html
+class Html extends Facade
 {
     /**
      * Get the registered name of the component.

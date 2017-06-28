@@ -38,4 +38,15 @@ class Form extends BaseElement
     {
         return $this->attribute('enctype', 'multipart/form-data');
     }
+
+    /**
+     * @param string $route
+     * @param array $parameters
+     *
+     * @return static
+     */
+    public function route($route, $parameters = [])
+    {
+        return $this->action(app('url')->route($route, $parameters));
+    }
 }

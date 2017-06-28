@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.0.1 - 2017-06-28
+- Fixed the `Html` facade
+
 ## 2.0.0 - 2017-06-13
 - Minimum requirements have been reduced to PHP 7.0
 - Added a `html()` helper function that returns an instance of `Html`

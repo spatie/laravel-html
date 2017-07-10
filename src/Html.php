@@ -434,7 +434,7 @@ class Html
      */
     protected function fieldName($name)
     {
-        return str_replace('[]', '', $name);
+        return $name;
     }
 
     protected function ensureModelIsAvailable()

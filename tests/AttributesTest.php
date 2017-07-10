@@ -209,6 +209,15 @@ class AttributesTest extends TestCase
     }
 
     /** @test */
+    public function it_can_render_square_brackets()
+    {
+        $attributes = new Attributes();
+        $attributes->setAttribute('names[]', 'Sebastian');
+
+        $this->assertEquals('names[]="Sebastian"', $attributes->render());
+    }
+
+    /** @test */
     public function it_can_determine_wether_an_attribute_exists()
     {
         $attributes = new Attributes();

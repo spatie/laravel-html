@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.0.2 - 2017-07-14
+- Fixed an issue that stripped square brackets from element attributes
+
 ## 2.0.1 - 2017-06-28
 - Fixed the `Html` facade
 

@@ -23,12 +23,12 @@
     ],
     "require": {
         "php": "^7.0",
-        "illuminate/http": "~5.4",
-        "illuminate/support": "~5.4"
+        "illuminate/http": "~5.4|~5.5.x-dev",
+        "illuminate/support": "~5.4|~5.5.x-dev"
     },
     "require-dev": {
         "mockery/mockery": "^0.9.7",
-        "phpunit/phpunit": "^6.0"
+        "phpunit/phpunit": "^6.2"
     },
     "autoload": {
         "psr-4": {

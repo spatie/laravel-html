@@ -49,34 +49,34 @@ class File extends BaseElement
     }
 
     /**
-    * @param string|null $name
-    *
-    * @return static
-    */
+     * @param string|null $name
+     *
+     * @return static
+     */
     public function accept($type)
     {
         return $this->attribute('accept', $type);
     }
 
     /**
-    * @return static
-    */
+     * @return static
+     */
     public function acceptAudio()
     {
         return $this->attribute('accept', self::ACCEPT_AUDIO);
     }
 
     /**
-    * @return static
-    */
+     * @return static
+     */
     public function acceptVideo()
     {
         return $this->attribute('accept', self::ACCEPT_VIDEO);
     }
 
     /**
-    * @return static
-    */
+     * @return static
+     */
     public function acceptImage()
     {
         return $this->attribute('accept', self::ACCEPT_IMAGE);

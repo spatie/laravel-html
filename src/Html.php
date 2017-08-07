@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Spatie\Html\Elements\Div;
 use Spatie\Html\Elements\Form;
 use Spatie\Html\Elements\Span;
+use Spatie\Html\Elements\File;
 use Spatie\Html\Elements\Input;
 use Spatie\Html\Elements\Label;
 use Spatie\Html\Elements\Button;
@@ -336,6 +337,18 @@ class Html
     public function text($name = null, $value = null)
     {
         return $this->input('text', $name, $value);
+    }
+
+    /**
+     * @param string|null $name
+     *
+     * @return \Spatie\Html\Elements\File
+     */
+    public function file($name = null)
+    {
+        return File::create()
+            ->attributeIf($name, 'name', $this->fieldName($name))
+            ->attributeIf($name, 'id', $this->fieldName($name));
     }
 
     /**

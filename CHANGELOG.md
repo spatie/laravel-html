@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.1.0 - 2017-08-24
+- Added `Html::file` and a `File` element for file inputs
+
 ## 2.0.2 - 2017-07-14
 - Fixed an issue that stripped square brackets from element attributes
 

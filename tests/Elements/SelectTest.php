@@ -141,4 +141,22 @@ class SelectTest extends TestCase
                   ->render()
         );
     }
+
+    /** @test */
+    public function it_can_have_an_optgroup()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<select>
+                <optgroup label="Cats">
+                    <option value="leopard">Leopard</option>
+                </optgroup>
+                <optgroup label="Dogs">
+                    <option value="spaniel">Spaniel</option>
+                </optgroup>
+            </select>',
+            Select::create()
+                ->options([ 'Cats' => ['leopard' => 'Leopard'], 'Dogs' => ['spaniel' => 'Spaniel'], ])
+                ->render()
+        );
+    }
 }

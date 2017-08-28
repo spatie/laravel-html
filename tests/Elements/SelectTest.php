@@ -155,7 +155,7 @@ class SelectTest extends TestCase
                 </optgroup>
             </select>',
             Select::create()
-                ->options([ 'Cats' => ['leopard' => 'Leopard'], 'Dogs' => ['spaniel' => 'Spaniel'], ])
+                ->options(['Cats' => ['leopard' => 'Leopard'], 'Dogs' => ['spaniel' => 'Spaniel']])
                 ->render()
         );
     }

@@ -59,19 +59,16 @@ class Select extends BaseElement
     public function options($options)
     {
         return $this->addChildren($options, function ($text, $value) {
-            if(is_array($text))
-            {
+            if (is_array($text)) {
                 return Optgroup::create()
                     ->label($value)
-                    ->addChildren($text, function($text, $value){
+                    ->addChildren($text, function ($text, $value) {
                         return Option::create()
                             ->value($value)
                             ->text($text)
                             ->selectedIf($value === $this->value);
                     });
-            }
-            else
-            {
+            } else {
                 return Option::create()
                     ->value($value)
                     ->text($text)

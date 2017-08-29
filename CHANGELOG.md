@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.2.0 - 2017-08-29
+- Added `Optgroup` element
+- Added the ability to create optgroups in `Options` by passing an array of groups with options
+
 ## 2.1.0 - 2017-08-24
 - Added `Html::file` and a `File` element for file inputs
 

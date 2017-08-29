@@ -60,21 +60,34 @@ class Select extends BaseElement
     {
         return $this->addChildren($options, function ($text, $value) {
             if (is_array($text)) {
-                return Optgroup::create()
-                    ->label($value)
-                    ->addChildren($text, function ($text, $value) {
-                        return Option::create()
-                            ->value($value)
-                            ->text($text)
-                            ->selectedIf($value === $this->value);
-                    });
-            } else {
+                return $this->optgroup($value, $text);
+            }
+
+            return Option::create()
+                ->value($value)
+                ->text($text)
+                ->selectedIf($value === $this->value);
+        });
+    }
+
+    /**
+     * @param string $label
+     * @param iterable $options
+     *
+     * @return static
+     */
+    public function optgroup($label, $options)
+    {
+        return Optgroup::create()
+            ->label($label)
+            ->addChildren($options, function ($text, $value) {
                 return Option::create()
                     ->value($value)
                     ->text($text)
                     ->selectedIf($value === $this->value);
-            }
-        });
+            });
+
+        return $this->addChild($optgroup);
     }
 
     /**

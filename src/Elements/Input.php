@@ -86,4 +86,14 @@ class Input extends BaseElement
     {
         return $this->attribute('value', $value);
     }
+
+    /**
+     * @param string|null $style
+     *
+     * @return static
+     */
+    public function style($style)
+    {
+        return $this->attribute('style', $style);
+    }
 }

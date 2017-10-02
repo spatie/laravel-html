@@ -150,6 +150,22 @@ abstract class BaseElement implements Htmlable, HtmlElement
     }
 
     /**
+     * @param array|string|null $style
+     *
+     * @return static
+     */
+    public function style($style)
+    {
+        if (is_array($style)) {
+            $style = implode('; ', array_map(function ($value, $attribute) {
+                return "{$attribute}: {$value}";
+            }, $style, array_keys($style)));
+        }
+
+        return $this->attribute('style', $style);
+    }
+
+    /**
      * @param \Spatie\Html\HtmlElement|string|iterable|null $children
      * @param callable|null $mapper
      *

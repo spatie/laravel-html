@@ -127,6 +127,24 @@ class BaseElementTest extends TestCase
     }
 
     /** @test */
+    public function it_can_set_style_from_a_string()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<div style="color: red"></div>',
+            Div::create()->style('color: red')->render()
+        );
+    }
+
+    /** @test */
+    public function it_can_set_style_from_an_array()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<div style="color: red"></div>',
+            Div::create()->style(['color' => 'red'])->render()
+        );
+    }
+
+    /** @test */
     public function it_can_set_text()
     {
         $this->assertHtmlStringEqualsHtmlString(

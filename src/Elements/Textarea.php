@@ -48,7 +48,7 @@ class Textarea extends BaseElement
     {
         return $this->html($value);
     }
-    
+
     /**
      * @param string|null $style
      *

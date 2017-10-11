@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.5.0 - 2017-10-11
+- Added `Html::reset` for form reset buttons
+
 ## 2.4.1 - 2017-09-07
 - Nothing changed, but `2.2.0` was accidentally tagged as `2.4.0`. This release contains the actual latest version at the time of writing.
 

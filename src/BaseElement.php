@@ -391,7 +391,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
     public function __call($name, $arguments)
     {
         if (ends_with($name, 'If')) {
-            $name = str_before($name, 'If');
+            $name = str_replace('If', '', $name);
             if (! method_exists($this, $name)) {
                 throw new BadMethodCallException("$name is not a valid method for this class");
             }

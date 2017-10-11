@@ -64,6 +64,23 @@ class BaseElementTest extends TestCase
     }
 
     /** @test */
+    public function it_can_set_an_class_with_class_if()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<div class="bar"></div>',
+            Div::create()->classIf(true, 'bar')->classIf(false, 'baz')->render()
+        );
+    }
+
+    /** @test */
+    public function it_can_not_accept_any_if_method()
+    {
+        $this->expectException(\BadMethodCallException::class);
+
+        Div::create()->barIf(true, 'bar')->render();
+    }
+
+    /** @test */
     public function it_can_forget_an_attribute()
     {
         $this->assertHtmlStringEqualsHtmlString(

@@ -397,6 +397,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
             }
 
             $condition = (bool) array_shift($arguments);
+            
             return $condition ?
                 $this->{$name}(...$arguments) :
                 $this;

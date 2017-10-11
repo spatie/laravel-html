@@ -166,6 +166,17 @@ abstract class BaseElement implements Htmlable, HtmlElement
     }
 
     /**
+     * @param string $name
+     * @param string $value
+     *
+     * @return static
+     */
+    public function data($name, $value)
+    {
+        return $this->attribute("data-{$name}", $value);
+    }
+
+    /**
      * @param \Spatie\Html\HtmlElement|string|iterable|null $children
      * @param callable|null $mapper
      *

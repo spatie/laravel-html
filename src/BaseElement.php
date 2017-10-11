@@ -4,6 +4,8 @@ namespace Spatie\Html;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
+use Illuminate\Support\Str;
+use Illuminate\Support\Traits\Macroable;
 use Spatie\Html\Exceptions\MissingTag;
 use Spatie\Html\Exceptions\InvalidHtml;
 use Spatie\Html\Exceptions\InvalidChild;
@@ -11,6 +13,10 @@ use Illuminate\Contracts\Support\Htmlable;
 
 abstract class BaseElement implements Htmlable, HtmlElement
 {
+    use Macroable {
+        __call as __macro_call;
+    }
+
     /** @var string */
     protected $tag;
 
@@ -48,20 +54,6 @@ abstract class BaseElement implements Htmlable, HtmlElement
         $element->attributes->setAttribute($attribute, (string) $value);
 
         return $element;
-    }
-
-    /**
-     * @param bool $condition
-     * @param string $attribute
-     * @param string|null $value
-     *
-     * @return static
-     */
-    public function attributeIf($condition, $attribute, $value = null)
-    {
-        return $condition ?
-            $this->attribute($attribute, $value) :
-            $this;
     }
 
     /**
@@ -384,6 +376,33 @@ abstract class BaseElement implements Htmlable, HtmlElement
             'img', 'input', 'keygen', 'link', 'menuitem',
             'meta', 'param', 'source', 'track', 'wbr',
         ]);
+    }
+
+    /**
+     * Dynamically handle calls to the class.
+     * Check for methods finishing by If or fallback to Macroable
+     *
+     * @param  string  $method
+     * @param  array   $parameters
+     * @return mixed
+     *
+     * @throws \BadMethodCallException
+     */
+    public function __call($name, $arguments)
+    {
+        if (Str::endsWith($name, 'If')) {
+            $name = str_replace('If', '', $name);
+            if (! method_exists($this, $name)) {
+                throw new \BadMethodCallException("$name is not a valid method for this class");
+            }
+
+            $condition = (bool) array_shift($arguments);
+            return $condition ?
+                $this->{$name}(...$arguments) :
+                $this;
+        }
+
+        return __macro_call($name, ...$arguments);
     }
 
     public function __clone()

@@ -2,6 +2,7 @@
 
 namespace Spatie\Html\Test;
 
+use BadMethodCallException;
 use Spatie\Html\BaseElement;
 use Illuminate\Support\Collection;
 use Spatie\Html\Exceptions\MissingTag;
@@ -75,7 +76,7 @@ class BaseElementTest extends TestCase
     /** @test */
     public function it_can_not_accept_any_if_method()
     {
-        $this->expectException(\BadMethodCallException::class);
+        $this->expectException(BadMethodCallException::class);
 
         Div::create()->barIf(true, 'bar')->render();
     }

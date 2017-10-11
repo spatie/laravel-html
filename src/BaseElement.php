@@ -2,7 +2,7 @@
 
 namespace Spatie\Html;
 
-use Illuminate\Support\Str;
+use BadMethodCallException;
 use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
 use Spatie\Html\Exceptions\MissingTag;
@@ -386,24 +386,24 @@ abstract class BaseElement implements Htmlable, HtmlElement
      * @param  array   $parameters
      * @return mixed
      *
-     * @throws \BadMethodCallException
+     * @throws BadMethodCallException
      */
     public function __call($name, $arguments)
     {
-        if (Str::endsWith($name, 'If')) {
-            $name = str_replace('If', '', $name);
+        if (ends_with($name, 'If')) {
+            $name = str_before($name, 'If');
             if (! method_exists($this, $name)) {
-                throw new \BadMethodCallException("$name is not a valid method for this class");
+                throw new BadMethodCallException("$name is not a valid method for this class");
             }
 
             $condition = (bool) array_shift($arguments);
-            
+
             return $condition ?
                 $this->{$name}(...$arguments) :
                 $this;
         }
 
-        return __macro_call($name, ...$arguments);
+        return $this->__macro_call($name, ...$arguments);
     }
 
     public function __clone()

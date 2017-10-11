@@ -2,12 +2,12 @@
 
 namespace Spatie\Html;
 
+use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
-use Illuminate\Support\Str;
-use Illuminate\Support\Traits\Macroable;
 use Spatie\Html\Exceptions\MissingTag;
 use Spatie\Html\Exceptions\InvalidHtml;
+use Illuminate\Support\Traits\Macroable;
 use Spatie\Html\Exceptions\InvalidChild;
 use Illuminate\Contracts\Support\Htmlable;
 
@@ -380,7 +380,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
 
     /**
      * Dynamically handle calls to the class.
-     * Check for methods finishing by If or fallback to Macroable
+     * Check for methods finishing by If or fallback to Macroable.
      *
      * @param  string  $method
      * @param  array   $parameters

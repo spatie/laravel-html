@@ -308,13 +308,23 @@ class Html
     }
 
     /**
-     * @param string|null $test
+     * @param string|null $text
      *
      * @return \Spatie\Html\Elements\Button
      */
     public function submit($text = null)
     {
         return $this->button($text, 'submit');
+    }
+
+    /**
+     * @param string|null $text
+     *
+     * @return \Spatie\Html\Elements\Button
+     */
+    public function reset($text = null)
+    {
+        return $this->button($text, 'reset');
     }
 
     /**

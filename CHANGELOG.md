@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.6.0 - 2017-10-11
+- Added `BaseElement::setChildren` to replace all children
+- Fixed a bug that didn't select options in optgroups when applying a value
+
 ## 2.5.0 - 2017-10-11
 - Added `Html::reset` for form reset buttons
 

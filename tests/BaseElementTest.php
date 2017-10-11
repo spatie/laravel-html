@@ -348,6 +348,15 @@ class BaseElementTest extends TestCase
     {
         return Div::create()->text($text);
     }
+
+    /** @test */
+    public function it_can_set_a_data_attribute()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<div data-foo="bar"></div>',
+            Div::create()->data('foo', 'bar')->render()
+        );
+    }
 }
 
 class Div extends BaseElement

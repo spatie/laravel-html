@@ -134,7 +134,16 @@ class Select extends BaseElement
             $value = $value->take(1);
         }
 
-        $this->children = $this->children->map(function ($child) use ($value) {
+        $this->children = $this->applyValueToElements($value, $this->children);
+    }
+
+    protected function applyValueToElements($value, Collection $children)
+    {
+        return $children->map(function ($child) use ($value) {
+            if ($child instanceof Optgroup) {
+                return $child->setChildren($this->applyValueToElements($value, $child->children));
+            }
+
             if ($child instanceof Selectable) {
                 return $child->selectedIf($value->contains($child->getAttribute('value')));
             }

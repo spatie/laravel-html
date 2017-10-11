@@ -226,6 +226,23 @@ abstract class BaseElement implements Htmlable, HtmlElement
     }
 
     /**
+     * Replace all children with an array of elements.
+     *
+     * @param \Spatie\Html\HtmlElement[] $children
+     * @param callable|null $mapper
+     *
+     * @return static
+     */
+    public function setChildren($children, $mapper = null)
+    {
+        $element = clone $this;
+
+        $element->children = new Collection();
+
+        return $element->addChildren($children, $mapper);
+    }
+
+    /**
      * @param \Spatie\Html\HtmlElement|string|iterable|null $children
      * @param callable|null $mapper
      *

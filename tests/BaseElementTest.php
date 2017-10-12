@@ -2,6 +2,7 @@
 
 namespace Spatie\Html\Test;
 
+use BadMethodCallException;
 use Spatie\Html\BaseElement;
 use Illuminate\Support\Collection;
 use Spatie\Html\Exceptions\MissingTag;
@@ -61,6 +62,23 @@ class BaseElementTest extends TestCase
             '<div foo="bar"></div>',
             Div::create()->attributeIf(true, 'foo', 'bar')->attributeIf(false, 'bar', 'baz')->render()
         );
+    }
+
+    /** @test */
+    public function it_can_set_an_class_with_class_if()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<div class="bar"></div>',
+            Div::create()->classIf(true, 'bar')->classIf(false, 'baz')->render()
+        );
+    }
+
+    /** @test */
+    public function it_can_not_accept_any_if_method()
+    {
+        $this->expectException(BadMethodCallException::class);
+
+        Div::create()->barIf(true, 'bar')->render();
     }
 
     /** @test */

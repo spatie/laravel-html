@@ -6,12 +6,9 @@ use ReflectionClass;
 use Spatie\Html\Attributes;
 use Spatie\Html\BaseElement;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Traits\Macroable;
 
 class Element extends BaseElement
 {
-    use Macroable;
-
     /**
      * @param string $tag
      *

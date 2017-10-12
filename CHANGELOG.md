@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.8.1 - 2017-10-12
+- Fixed a bug with values that are a `"0"` string
+
 ## 2.8.0 - 2017-10-12
 - Added a magic `__call` method that responds to methods ending with `If`, so any method can be called with a condition as it's first argument. The method will only be applied if the condition is truthy.
 

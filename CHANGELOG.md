@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.8.0 - 2017-10-12
+- Added a magic `__call` method that responds to methods ending with `If`, so any method can be called with a condition as it's first argument. The method will only be applied if the condition is truthy.
+
+## 2.7.0 - 2017-10-11
+- Added `BaseElement::data` for data attributes
+
 ## 2.6.0 - 2017-10-11
 - Added `BaseElement::setChildren` to replace all children
 - Fixed a bug that didn't select options in optgroups when applying a value

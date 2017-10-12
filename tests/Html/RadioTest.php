@@ -39,4 +39,13 @@ class RadioTest extends TestCase
             $this->html->radio('my_radio', true, 1)
         );
     }
+
+    /** @test */
+    public function it_can_create_a_radio_button_with_a_name_and_a_zero_value()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input type="radio" name="my_radio" id="my_radio" checked="checked" value="0">',
+            $this->html->radio('my_radio', true, 0)
+        );
+    }
 }

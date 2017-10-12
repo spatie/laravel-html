@@ -139,7 +139,7 @@ class Html
             ->attributeIf($type, 'type', $type)
             ->attributeIf($name, 'name', $this->fieldName($name))
             ->attributeIf($name, 'id', $this->fieldName($name))
-            ->attributeIf($name && $this->old($name, $value), 'value', $this->old($name, $value));
+            ->attributeIf($name && (isset($value) || $this->old($name, $value)), 'value', isset($value) ? $value : $this->old($name, $value));
     }
 
     /**

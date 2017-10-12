@@ -39,4 +39,13 @@ class CheckboxTest extends TestCase
             $this->html->checkbox('my_checkbox', true, 'foo')
         );
     }
+
+    /** @test */
+    public function it_can_create_a_checkbox_with_a_name_and_a_zero_value()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input type="checkbox" name="my_checkbox" id="my_checkbox" checked="checked" value="0">',
+            $this->html->checkbox('my_checkbox', true, 0)
+        );
+    }
 }

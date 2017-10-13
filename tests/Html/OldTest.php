@@ -24,6 +24,13 @@ class OldTest extends TestCase
                 '<input type="text" name="name" id="name" value="Sebastian">',
                 $this->html->text('name')
             );
+
+        $this
+            ->withModel(['email' => 'sebastian@spatie.be'])
+            ->assertHtmlStringEqualsHtmlString(
+                '<input type="email" name="email" id="email" value="sebastian@spatie.be">',
+                $this->html->email('email')
+            );
     }
 
     /** @test */

@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.8.2 - 2017-10-13
+- Fixed a bug with values that are a `"0"` string
+
 ## 2.8.1 - 2017-10-12
 - Fixed a bug with values that are a `"0"` string
 

@@ -135,11 +135,13 @@ class Html
      */
     public function input($type = null, $name = null, $value = null)
     {
+        $hasValue = $name && ($this->old($name, $value) || ! is_null($value));
+
         return Input::create()
             ->attributeIf($type, 'type', $type)
             ->attributeIf($name, 'name', $this->fieldName($name))
             ->attributeIf($name, 'id', $this->fieldName($name))
-            ->attributeIf($name && (isset($value) || $this->old($name, $value)), 'value', isset($value) ? $value : $this->old($name, $value));
+            ->attributeIf($hasValue, 'value', $this->old($name, $value));
     }
 
     /**

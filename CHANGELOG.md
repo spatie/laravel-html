@@ -16,6 +16,7 @@ All notable changes to `laravel-html` will be documented in this file.
 - Fixed a bug that didn't select options in optgroups when applying a value
 
 ## 2.5.0 - 2017-10-11
+- Added `BaseElement::style` for setting the style attribute (with a string or an associative array)
 - Added `Html::reset` for form reset buttons
 
 ## 2.4.1 - 2017-09-07

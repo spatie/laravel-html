@@ -7,6 +7,7 @@ use Spatie\Html\BaseElement;
 use Illuminate\Support\Collection;
 use Spatie\Html\Exceptions\MissingTag;
 use Spatie\Html\Exceptions\InvalidHtml;
+use Spatie\Html\Exceptions\InvalidChild;
 
 class BaseElementTest extends TestCase
 {
@@ -181,12 +182,28 @@ class BaseElementTest extends TestCase
     }
 
     /** @test */
+    public function it_cant_set_html_if_its_not_an_html_element()
+    {
+        $this->expectException(InvalidChild::class);
+
+        Div::create()->html(true)->render();
+    }
+
+    /** @test */
     public function setting_text_overwrites_existing_children()
     {
         $this->assertHtmlStringEqualsHtmlString(
             '<div>Hi</div>',
             Div::create()->addChild(Div::create())->text('Hi')->render()
         );
+    }
+
+    /** @test */
+    public function it_cant_add_child_if_its_not_an_html_element_or_a_string()
+    {
+        $this->expectException(InvalidChild::class);
+
+        Div::create()->addChild(true)->render();
     }
 
     /** @test */

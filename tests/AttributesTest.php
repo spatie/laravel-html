@@ -76,9 +76,10 @@ class AttributesTest extends TestCase
     {
         $attributes = new Attributes();
         $attributes->setAttribute('href', '#');
+        $attributes->setAttribute('class', 'foobar');
 
         $this->assertArraySubset(
-            ['href' => '#'],
+            ['href' => '#', 'class' => 'foobar'],
             $attributes->toArray()
         );
     }
@@ -156,7 +157,11 @@ class AttributesTest extends TestCase
     public function it_accepts_multiple_attributes()
     {
         $attributes = new Attributes();
-        $attributes->setAttributes(['name' => 'email', 'required']);
+        $attributes->setAttributes([
+            'name' => 'email',
+            'class' => 'foobar',
+            'required',
+        ]);
 
         $this->assertArraySubset(
             ['name' => 'email', 'required' => null],

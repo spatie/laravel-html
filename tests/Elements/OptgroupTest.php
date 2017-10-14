@@ -16,6 +16,7 @@ class OptgroupTest extends TestCase
         );
     }
 
+    /** @test */
     public function it_can_create_an_element_with_a_label()
     {
         $this->assertHtmlStringEqualsHtmlString(

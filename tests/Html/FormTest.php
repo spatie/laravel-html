@@ -13,10 +13,13 @@ class FormTest extends TestCase
         );
     }
 
+    /** @test */
     public function it_can_create_a_form_with_a_custom_action()
     {
         $this->assertHtmlStringEqualsHtmlString(
-            '<form method="POST" action="/submit"></form>',
+            '<form method="POST" action="/submit">'.
+                '<input type="hidden" name="_token" id="_token" value="abc">
+            </form>',
             $this->html->form('POST', '/submit')
         );
     }

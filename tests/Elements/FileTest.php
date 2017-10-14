@@ -50,6 +50,11 @@ class FileTest extends TestCase
             '<input type="file" accept="audio/*">',
             File::create()->accept(File::ACCEPT_AUDIO)
         );
+
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input type="file" accept="audio/*">',
+            File::create()->acceptAudio()
+        );
     }
 
     /** @test */
@@ -59,6 +64,11 @@ class FileTest extends TestCase
             '<input type="file" accept="video/*">',
             File::create()->accept(File::ACCEPT_VIDEO)
         );
+
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input type="file" accept="video/*">',
+            File::create()->acceptVideo()
+        );
     }
 
     /** @test */
@@ -67,6 +77,11 @@ class FileTest extends TestCase
         $this->assertHtmlStringEqualsHtmlString(
             '<input type="file" accept="image/*">',
             File::create()->accept(File::ACCEPT_IMAGE)
+        );
+
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input type="file" accept="image/*">',
+            File::create()->acceptImage()
         );
     }
 

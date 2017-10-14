@@ -1,9 +1,6 @@
 <?php
 
-namespace Spatie\Html\Test\Elements;
-
-use Spatie\Html\Test\TestCase;
-use Spatie\Html\Elements\Input;
+namespace Spatie\Html\Test\Html;
 
 class InputTest extends TestCase
 {
@@ -12,7 +9,7 @@ class InputTest extends TestCase
     {
         $this->assertHtmlStringEqualsHtmlString(
             '<input>',
-            Input::create()
+            $this->html->input()
         );
     }
 
@@ -21,7 +18,7 @@ class InputTest extends TestCase
     {
         $this->assertHtmlStringEqualsHtmlString(
             '<input type="text">',
-            Input::create()->type('text')
+            $this->html->input('text')
         );
     }
 
@@ -29,8 +26,8 @@ class InputTest extends TestCase
     public function it_can_create_an_input_with_a_name()
     {
         $this->assertHtmlStringEqualsHtmlString(
-            '<input name="foo">',
-            Input::create()->name('foo')
+            '<input id="foo" type="text" name="foo">',
+            $this->html->input('text', 'foo')
         );
     }
 
@@ -38,8 +35,8 @@ class InputTest extends TestCase
     public function it_can_create_an_input_with_a_value()
     {
         $this->assertHtmlStringEqualsHtmlString(
-            '<input value="bar">',
-            Input::create()->value('bar')
+            '<input id="foo" type="text" name="foo" value="bar">',
+            $this->html->input('text', 'foo', 'bar')
         );
     }
 
@@ -48,7 +45,7 @@ class InputTest extends TestCase
     {
         $this->assertHtmlStringEqualsHtmlString(
             '<input placeholder="Foo bar">',
-            Input::create()->placeholder('Foo bar')
+            $this->html->input()->placeholder('Foo bar')
         );
     }
 
@@ -57,7 +54,7 @@ class InputTest extends TestCase
     {
         $this->assertHtmlStringEqualsHtmlString(
             '<input required>',
-            Input::create()->required()
+            $this->html->input()->required()
         );
     }
 
@@ -66,7 +63,7 @@ class InputTest extends TestCase
     {
         $this->assertHtmlStringEqualsHtmlString(
             '<input autofocus>',
-            Input::create()->autofocus()
+            $this->html->input()->autofocus()
         );
     }
 
@@ -75,12 +72,12 @@ class InputTest extends TestCase
     {
         $this->assertHtmlStringEqualsHtmlString(
             '<input type="checkbox" checked="checked">',
-            Input::create()->type('checkbox')->checked(true)
+            $this->html->input('checkbox')->checked(true)
         );
 
         $this->assertHtmlStringEqualsHtmlString(
             '<input type="checkbox" checked="checked">',
-            Input::create()->type('checkbox')->checked()
+            $this->html->input('checkbox')->checked(true)
         );
     }
 
@@ -89,12 +86,12 @@ class InputTest extends TestCase
     {
         $this->assertHtmlStringEqualsHtmlString(
             '<input type="checkbox">',
-            Input::create()->type('checkbox')->checked()->checked(false)
+            $this->html->input('checkbox')->checked()->checked(false)
         );
 
         $this->assertHtmlStringEqualsHtmlString(
             '<input type="checkbox">',
-            Input::create()->type('checkbox')->checked()->unchecked()
+            $this->html->input('checkbox')->checked()->unchecked()
         );
     }
 }

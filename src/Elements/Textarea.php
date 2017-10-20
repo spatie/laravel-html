@@ -37,6 +37,14 @@ class Textarea extends BaseElement
     }
 
     /**
+     * @return static
+     */
+    public function required()
+    {
+        return $this->attribute('required');
+    }
+
+    /**
      * @param string|null $value
      *
      * @return static

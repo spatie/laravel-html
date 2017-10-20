@@ -44,6 +44,15 @@ class TextareaTest extends TestCase
     }
 
     /** @test */
+    public function it_can_create_a_required_textarea()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<textarea required>My epic</textarea>',
+            Textarea::create()->value('My epic')->required()
+        );
+    }
+
+    /** @test */
     public function it_can_create_a_textarea_with_a_value()
     {
         $this->assertHtmlStringEqualsHtmlString(

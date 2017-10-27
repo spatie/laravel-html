@@ -45,7 +45,6 @@ class OldTest extends TestCase
             );
     }
 
-
     /** @test */
     public function it_returns_a_session_value_from_a_name_with_an_array()
     {

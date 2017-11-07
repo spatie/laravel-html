@@ -103,6 +103,14 @@ class Select extends BaseElement
     }
 
     /**
+     * @return static
+     */
+    public function required()
+    {
+        return $this->attribute('required');
+    }
+
+    /**
      * @param string|iterable $value
      *
      * @return static

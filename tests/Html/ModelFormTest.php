@@ -8,7 +8,7 @@ class ModelFormTest extends TestCase
     public function it_can_create_a_form_from_a_model()
     {
         $this->assertHtmlStringEqualsHtmlString(
-            '<form method="post">'.
+            '<form method="POST">'.
                 '<input id="_token" name="_token" type="hidden" value="abc">'.
             '</form>',
             $this->html->modelForm([])

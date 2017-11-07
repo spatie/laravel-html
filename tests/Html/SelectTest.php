@@ -14,6 +14,15 @@ class SelectTest extends TestCase
     }
 
     /** @test */
+    public function it_can_render_a_select_element_required()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<select required></select>',
+            $this->html->select()->required()->render()
+        );
+    }
+
+    /** @test */
     public function it_can_render_a_select_element_with_options()
     {
         $options = [

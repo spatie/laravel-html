@@ -2,8 +2,11 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.10.0 - 2017-11-08
+- Added `required` method to `Select`
+
 ## 2.9.0 - 2017-10-20
-- Added a `required` to `Textarea`
+- Added `required` method to `Textarea`
 
 ## 2.8.2 - 2017-10-13
 - Fixed a bug with values that are a `"0"` string

@@ -13,6 +13,13 @@ class OldTest extends TestCase
                 '<input type="text" name="name" id="name" value="Sebastian">',
                 $this->html->text('name')
             );
+
+        $this
+            ->withSession(['number' => 0])
+            ->assertHtmlStringEqualsHtmlString(
+                '<input type="number" name="number" id="number" value="0">',
+                $this->html->input('number', 'number')
+            );
     }
 
     /** @test */
@@ -30,6 +37,13 @@ class OldTest extends TestCase
             ->assertHtmlStringEqualsHtmlString(
                 '<input type="email" name="email" id="email" value="sebastian@spatie.be">',
                 $this->html->email('email')
+            );
+
+        $this
+            ->withModel(['number' => 0])
+            ->assertHtmlStringEqualsHtmlString(
+                '<input type="number" name="number" id="number" value="0">',
+                $this->html->input('number', 'number')
             );
     }
 

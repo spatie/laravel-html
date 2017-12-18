@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.10.1 - 2017-12-18
+- Fixed old values containing `0`
+
 ## 2.10.0 - 2017-11-08
 - Added `required` method to `Select`
 

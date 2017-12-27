@@ -3,9 +3,9 @@
 namespace Spatie\Html\Test;
 
 use BadMethodCallException;
-use Illuminate\Support\HtmlString;
 use Spatie\Html\BaseElement;
 use Illuminate\Support\Collection;
+use Illuminate\Support\HtmlString;
 use Spatie\Html\Exceptions\MissingTag;
 use Spatie\Html\Exceptions\InvalidHtml;
 use Spatie\Html\Exceptions\InvalidChild;

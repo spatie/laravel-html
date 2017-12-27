@@ -296,11 +296,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
             throw new InvalidHtml("Can't set inner contents on `{$this->tag}` because it's a void element");
         }
 
-        $element = clone $this;
-
-        $element->children = new Collection([$html]);
-
-        return $element;
+        return $this->setChildren($html);
     }
 
     /**

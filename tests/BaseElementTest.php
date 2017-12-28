@@ -5,6 +5,7 @@ namespace Spatie\Html\Test;
 use BadMethodCallException;
 use Spatie\Html\BaseElement;
 use Illuminate\Support\Collection;
+use Illuminate\Support\HtmlString;
 use Spatie\Html\Exceptions\MissingTag;
 use Spatie\Html\Exceptions\InvalidHtml;
 use Spatie\Html\Exceptions\InvalidChild;
@@ -178,6 +179,15 @@ class BaseElementTest extends TestCase
         $this->assertHtmlStringEqualsHtmlString(
             '<div><span>Yo</span></div>',
             Div::create()->html('<span>Yo</span>')->render()
+        );
+    }
+
+    /** @test */
+    public function it_can_set_html_from_htmlstring()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<div><span>Yo</span></div>',
+            Div::create()->html(new HtmlString('<span>Yo</span>'))->render()
         );
     }
 

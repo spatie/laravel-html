@@ -58,4 +58,15 @@ class OldTest extends TestCase
                 $this->html->text('name')
             );
     }
+
+    /** @test */
+    public function it_returns_a_session_value_from_a_name_with_an_array()
+    {
+        $this
+            ->withSession(array_dot(['name' => [1 => ['a' => 'Sebastian']]]))
+            ->assertHtmlStringEqualsHtmlString(
+                '<input type="text" name="name[1][a]" id="name[1][a]" value="Sebastian">',
+                $this->html->text('name[1][a]')
+            );
+    }
 }

@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.10.2 - 2017-12-28
+- `Htmlable` elements can now be used in the `html()` method
+- Array notation is now implicitly converted to dot notation in `old` (e.g. `foo[1] -> foo.1`)
+
 ## 2.10.1 - 2017-12-18
 - Fixed old values containing `0`
 

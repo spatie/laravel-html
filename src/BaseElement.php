@@ -399,7 +399,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
                 $this;
         }
 
-        return $this->__macro_call($name, ...$arguments);
+        return $this->__macro_call($name, $arguments);
     }
 
     public function __clone()

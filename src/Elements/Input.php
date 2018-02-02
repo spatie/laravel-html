@@ -83,4 +83,12 @@ class Input extends BaseElement
     {
         return $this->attribute('value', $value);
     }
+
+    /**
+     * @return static
+     */
+    public function readonly()
+    {
+        return $this->attribute('readonly');
+    }
 }

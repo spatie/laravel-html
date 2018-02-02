@@ -94,4 +94,13 @@ class InputTest extends TestCase
             $this->html->input('checkbox')->checked()->unchecked()
         );
     }
+
+    /** @test */
+    public function it_can_create_an_input_that_is_readonly()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input readonly>',
+            $this->html->input()->readonly()
+        );
+    }
 }

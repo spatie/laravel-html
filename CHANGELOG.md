@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.11.0 - 2018-02-02
+- Add `readonly` method to input
+
 ## 2.10.3 - 2018-01-09
 - Fix `__call` when using macros
 

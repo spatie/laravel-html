@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.12.0 - 2018-02-08
+- Added Laravel 5.6 compatibility
+- Fixed an issue with checkbox values
+
 ## 2.11.0 - 2018-02-02
 - Add `readonly` method to input
 

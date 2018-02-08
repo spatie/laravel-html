@@ -8,7 +8,7 @@ class CheckboxTest extends TestCase
     public function it_can_create_a_checkbox()
     {
         $this->assertHtmlStringEqualsHtmlString(
-            '<input type="checkbox">',
+            '<input type="checkbox" value="1">',
             $this->html->checkbox()
         );
     }

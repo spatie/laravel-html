@@ -91,7 +91,11 @@ class Html
      */
     public function checkbox($name = null, $checked = false, $value = '1')
     {
-        return $this->input('checkbox', $name, $value)
+        return Input::create()
+            ->attribute('type', 'checkbox')
+            ->attributeIf($name, 'name', $this->fieldName($name))
+            ->attributeIf($name, 'id', $this->fieldName($name))
+            ->attributeIf(! is_null($value), 'value', $value)
             ->attributeIf((bool) $this->old($name, $checked), 'checked');
     }
 

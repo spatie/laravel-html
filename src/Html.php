@@ -95,7 +95,7 @@ class Html
             ->attribute('type', 'checkbox')
             ->attributeIf($name, 'name', $this->fieldName($name))
             ->attributeIf($name, 'id', $this->fieldName($name))
-            ->attributeIf(!is_null($value), 'value', $value)
+            ->attributeIf(! is_null($value), 'value', $value)
             ->attributeIf((bool) $this->old($name, $checked), 'checked');
     }
 

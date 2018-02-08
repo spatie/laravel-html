@@ -2,28 +2,25 @@
 
 namespace Spatie\Html\Test\Concerns;
 
+use DOMElement;
 use DOMDocument;
 
 trait AssertsHtmlStrings
 {
     protected function assertHtmlStringEqualsHtmlString(string $expectedHtml, string $actualHtml)
     {
-        $this->assertEquals(
-            $this->convertToDomDocument($expectedHtml),
-            $this->convertToDomDocument($actualHtml),
-            '',
-            0.0,
-            10,
-            true
+        $this->assertEqualXMLStructure(
+            $this->convertToDomElement($expectedHtml),
+            $this->convertToDomElement($actualHtml)
         );
     }
 
-    protected function convertToDomDocument(string $html): DOMDocument
+    protected function convertToDomElement(string $html): DOMElement
     {
         $domDocument = new DOMDocument();
         $domDocument->loadHTML($html);
         $domDocument->preserveWhiteSpace = false;
 
-        return $domDocument;
+        return $domDocument->documentElement;
     }
 }

@@ -31,7 +31,7 @@ class Form extends BaseElement
     /**
      * @return static
      */
-    public function novalidate($method)
+    public function novalidate()
     {
         return $this->attribute('novalidate');
     }

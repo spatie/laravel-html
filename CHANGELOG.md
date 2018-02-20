@@ -2,7 +2,7 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
-## 2.13.0 - 2018-02-20
+## 2.13.1 - 2018-02-20
 - Add `novalidate` to `Form`
 
 ## 2.12.1 - 2018-02-08

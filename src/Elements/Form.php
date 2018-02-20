@@ -31,6 +31,14 @@ class Form extends BaseElement
     /**
      * @return static
      */
+    public function novalidate($method)
+    {
+        return $this->attribute('novalidate');
+    }
+
+    /**
+     * @return static
+     */
     public function acceptsFiles()
     {
         return $this->attribute('enctype', 'multipart/form-data');

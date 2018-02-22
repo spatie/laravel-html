@@ -17,7 +17,7 @@ class Input extends BaseElement
     }
 
     /**
-     * @param  bool $checked
+     * @param bool $checked
      *
      * @return static
      */
@@ -26,6 +26,18 @@ class Input extends BaseElement
         return $checked
             ? $this->attribute('checked', 'checked')
             : $this->forgetAttribute('checked');
+    }
+
+    /**
+     * @param bool $disabled
+     *
+     * @return static
+     */
+    public function disabled($disabled = true)
+    {
+        return $disabled
+            ? $this->attribute('disabled', 'disabled')
+            : $this->forgetAttribute('disabled');
     }
 
     /**

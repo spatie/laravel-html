@@ -103,4 +103,22 @@ class InputTest extends TestCase
             $this->html->input()->readonly()
         );
     }
+
+    /** @test */
+    public function it_can_create_a_date_input()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input type="date">',
+            $this->html->date()
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_time_input()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+                '<input type="time">',
+                $this->html->time()
+            );
+    }
 }

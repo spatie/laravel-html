@@ -121,6 +121,28 @@ class Html
     }
 
     /**
+     * @param string|null $name
+     * @param string|null $value
+     *
+     * @return \Spatie\Html\Elements\Input
+     */
+    public function date($name = '', $value = '')
+    {
+        return $this->input('date', $name, $value);
+    }
+
+    /**
+     * @param string|null $name
+     * @param string|null $value
+     *
+     * @return \Spatie\Html\Elements\Input
+     */
+    public function time($name = '', $value = '')
+    {
+        return $this->input('time', $name, $value);
+    }
+
+    /**
      * @param string $tag
      *
      * @return \Spatie\Html\Elements\Element

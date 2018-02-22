@@ -2,8 +2,11 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.14.0 - 2018-02-22
+- Add `Input::disabled`
+
 ## 2.13.1 - 2018-02-20
-- Add `novalidate` to `Form`
+- Add `Form::novalidate`
 
 ## 2.12.1 - 2018-02-08
 - Fixed Laravel 5.6 compatibility

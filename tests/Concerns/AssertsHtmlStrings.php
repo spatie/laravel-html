@@ -2,7 +2,6 @@
 
 namespace Spatie\Html\Test\Concerns;
 
-use DOMElement;
 use DOMDocument;
 
 trait AssertsHtmlStrings

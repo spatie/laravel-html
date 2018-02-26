@@ -408,7 +408,10 @@ class Html
      */
     public function token()
     {
-        return $this->hidden('_token')->value($this->request->session()->token());
+        return $this
+            ->hidden()
+            ->name('_token')
+            ->value($this->request->session()->token());
     }
 
     /**

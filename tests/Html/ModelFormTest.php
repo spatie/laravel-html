@@ -9,7 +9,7 @@ class ModelFormTest extends TestCase
     {
         $this->assertHtmlStringEqualsHtmlString(
             '<form method="POST">'.
-                '<input id="_token" name="_token" type="hidden" value="abc">'.
+                '<input name="_token" type="hidden" value="abc">'.
             '</form>',
             $this->html->modelForm([])
         );

@@ -21,6 +21,7 @@ use Spatie\Html\Elements\Fieldset;
 use Spatie\Html\Elements\Textarea;
 use Illuminate\Support\Traits\Macroable;
 use Illuminate\Contracts\Support\Htmlable;
+use Spatie\Html\Elements\Img;
 
 class Html
 {
@@ -218,6 +219,19 @@ class Html
     public function hidden($name = null, $value = null)
     {
         return $this->input('hidden', $name, $value);
+    }
+
+    /**
+     * @param string|null $src
+     * @param string|null $alt
+     *
+     * @return \Spatie\Html\Elements\Img
+     */
+    public function img($src = null, $alt = null)
+    {
+        return Img::create()
+            ->attributeIf($src, 'src', $src)
+            ->attributeIf($alt, 'alt', $alt);
     }
 
     /**

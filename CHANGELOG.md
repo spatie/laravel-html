@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.16.0 - 2018-02-26
+- Added `Img` element class and `Html::img` factory method
+
 ## 2.15.1 - 2018-02-26
 - Removed `id` from CSRF fields
 

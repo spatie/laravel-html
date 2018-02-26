@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.15.1 - 2018-02-26
+- Removed `id` from CSRF fields
+
 ## 2.15.0 - 2018-02-23
 - Added `Input::date` and `Input::time`
 

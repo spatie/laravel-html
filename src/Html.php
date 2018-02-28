@@ -5,6 +5,7 @@ namespace Spatie\Html;
 use Spatie\Html\Elements\A;
 use Illuminate\Http\Request;
 use Spatie\Html\Elements\Div;
+use Spatie\Html\Elements\Img;
 use Spatie\Html\Elements\File;
 use Spatie\Html\Elements\Form;
 use Spatie\Html\Elements\Span;
@@ -21,7 +22,6 @@ use Spatie\Html\Elements\Fieldset;
 use Spatie\Html\Elements\Textarea;
 use Illuminate\Support\Traits\Macroable;
 use Illuminate\Contracts\Support\Htmlable;
-use Spatie\Html\Elements\Img;
 
 class Html
 {

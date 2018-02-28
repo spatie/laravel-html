@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.17.0 - 2018-02-28
+- Added `Html::value` function that's a public method for `old`
+
 ## 2.16.0 - 2018-02-26
 - Added `Img` element class and `Html::img` factory method
 

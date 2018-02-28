@@ -499,6 +499,20 @@ class Html
     }
 
     /**
+     * Retrieve the value from the current session or assigned model. This is
+     * a public alias for `old`.
+     *
+     * @param string $name
+     * @param mixed $value
+     *
+     * @return mixed
+     */
+    public function value($name, $default = null)
+    {
+        return $this->old($name, $default);
+    }
+
+    /**
      * @param string $name
      *
      * @return string

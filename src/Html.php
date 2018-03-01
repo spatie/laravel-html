@@ -22,6 +22,7 @@ use Spatie\Html\Elements\Textarea;
 use Illuminate\Support\Traits\Macroable;
 use Illuminate\Contracts\Support\Htmlable;
 use Spatie\Html\Elements\Img;
+use Spatie\Html\Elements\I;
 
 class Html
 {
@@ -48,6 +49,18 @@ class Html
     {
         return A::create()
             ->attributeIf($href, 'href', $href)
+            ->html($contents);
+    }
+
+     /**
+     * @param string|null $href
+     * @param string|null $text
+     *
+     * @return \Spatie\Html\Elements\I
+     */
+    public function i($contents = null)
+    {
+        return I::create()
             ->html($contents);
     }
 

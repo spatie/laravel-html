@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.18.0 - 2018-03-02
+- Added `I` element class and `Html::i` factory method
+
 ## 2.17.0 - 2018-02-28
 - Added `Html::value` function that's a public method for `old`
 

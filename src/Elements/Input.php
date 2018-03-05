@@ -61,11 +61,15 @@ class Input extends BaseElement
     }
 
     /**
+     * @param bool $required
+     *
      * @return static
      */
-    public function required()
+    public function required($required = true)
     {
-        return $this->attribute('required');
+        return $required
+            ? $this->attribute('required')
+            : $this->forgetAttribute('required');
     }
 
     /**

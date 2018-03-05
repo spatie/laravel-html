@@ -62,6 +62,24 @@ class InputTest extends TestCase
     }
 
     /** @test */
+    public function it_can_create_an_input_that_is_required_when_passing_true()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input required>',
+            Input::create()->required(true)
+        );
+    }
+
+    /** @test */
+    public function it_wont_create_an_input_that_is_required_when_passing_false()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input>',
+            Input::create()->required(false)
+        );
+    }
+
+    /** @test */
     public function it_can_create_an_input_that_has_autofocus()
     {
         $this->assertHtmlStringEqualsHtmlString(

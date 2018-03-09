@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.19.0 - 2018-03-09
+- Changed `Input::require` to accept a boolean value
+
 ## 2.18.0 - 2018-03-02
 - Added `I` element class and `Html::i` factory method
 

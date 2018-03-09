@@ -398,7 +398,12 @@ abstract class BaseElement implements Htmlable, HtmlElement
                 $this->{$name}(...$arguments) :
                 $this;
         }
-
+        
+        if($name == 'file')
+        { 
+            $this->tag .= ' file="mutlipart/enctype"';
+            return $this;
+        }
         return $this->__macro_call($name, $arguments);
     }
 

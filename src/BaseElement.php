@@ -399,7 +399,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
                 $this;
         }
         
-        if('file')
+        if($name == 'file')
         { 
             $this->tag .= ' file="mutlipart/enctype"';
             return $this;

@@ -333,7 +333,8 @@ class Html
     public function radio($name = null, $checked = false, $value = null)
     {
         return $this->input('radio', $name, $value)
-            ->attributeIf((bool) $this->old($name, $checked), 'checked');
+            ->attributeIf($name, 'id', $value === null ? $name : ($name.'_'.str_slug($value)))
+            ->attributeIf(($value && $this->old($name) == $value) || $checked, 'checked');
     }
 
     /**

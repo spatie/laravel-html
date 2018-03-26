@@ -430,8 +430,6 @@ abstract class BaseElement implements Htmlable, HtmlElement
             $children = $children->map($mapper);
         }
 
-        $children = $children->filter();
-
         $this->guardAgainstInvalidChildren($children);
 
         return $children;

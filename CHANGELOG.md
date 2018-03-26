@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.19.2 - 2018-03-26
+- Fixed comparison function for selected options in `Select`
+
 ## 2.19.1 - 2018-03-23
 - Fixed `Html::radio` auto-generated id's & checked behaviour
 

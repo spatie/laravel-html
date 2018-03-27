@@ -74,4 +74,24 @@ class SelectTest extends TestCase
             $this->html->select('select', $options, '+2')->render()
         );
     }
+
+    /** @test */
+    public function it_considers_empty_values_as_null_when_selecting_an_active_value()
+    {
+        $this->html->modelForm(['select' => null]);
+
+        $options = [
+            'A' => 'A',
+            'B' => 'B',
+        ];
+
+        $this->assertHtmlStringEqualsHtmlString(
+            '<select name="select" id="select">
+                <option value="" selected="selected">-- Choose one --</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+            </select>',
+            $this->html->select('select', $options)->placeholder('-- Choose one --')->render()
+        );
+    }
 }

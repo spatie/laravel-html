@@ -96,7 +96,7 @@ class Select extends BaseElement
     {
         return $this->prependChild(
             Option::create()
-                ->value('')
+                ->value(null)
                 ->text($text)
                 ->selectedIf(! $this->hasSelection())
         );
@@ -150,7 +150,10 @@ class Select extends BaseElement
             }
 
             if ($child instanceof Selectable) {
-                return $child->selectedIf($value->containsStrict($child->getAttribute('value')));
+                // Empty-ish values are checked non-strictly (null & ''). "Real" values strictly. ('2' & '+2')
+                return empty($child->getAttribute('value'))
+                    ? $child->selectedIf($value->contains($child->getAttribute('value')))
+                    : $child->selectedIf($value->containsStrict($child->getAttribute('value')));
             }
 
             return $child;

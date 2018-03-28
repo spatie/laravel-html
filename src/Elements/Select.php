@@ -150,7 +150,7 @@ class Select extends BaseElement
             }
 
             if ($child instanceof Selectable) {
-                return $child->selectedIf($value->containsStrict($child->getAttribute('value')));
+                return $child->selectedIf($value->contains($child->getAttribute('value')));
             }
 
             return $child;

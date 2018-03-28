@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.19.3 - 2018-03-28
+- Revert comparison function change in `2.19.2`
+
 ## 2.19.2 - 2018-03-26
 - Fixed comparison function for selected options in `Select`
 

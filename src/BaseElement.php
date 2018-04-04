@@ -438,7 +438,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
     protected function guardAgainstInvalidChildren(Collection $children)
     {
         foreach ($children as $child) {
-            if ((! $child instanceof HtmlElement) && (! is_string($child))) {
+            if ((! $child instanceof HtmlElement) && (! is_string($child)) && (! is_null($child))) {
                 throw InvalidChild::childMustBeAnHtmlElementOrAString();
             }
         }

@@ -500,14 +500,14 @@ class Html
             return;
         }
 
+        // Convert array format (sth[1]) to dot notation (sth.1)
+        $name = preg_replace('/\[(.+)\]/U', '.$1', $name);
+
         // If there's no default value provided, and the html builder currently
         // has a model assigned, try to retrieve a value from the model.
         if (empty($value) && $this->model) {
-            $value = $this->model[$name] ?? '';
+            $value = data_get($this->model, $name) ?? '';
         }
-
-        // Convert array format (sth[1]) to dot notation (sth.1)
-        $name = preg_replace('/\[(.+)\]/U', '.$1', $name);
 
         return $this->request->old($name, $value);
     }

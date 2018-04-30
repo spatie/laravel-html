@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.19.7 - 2018-04-30
+- Allow radio input check "0" value
+
 ## 2.19.6 - 2018-04-30
 - Correctly prefill form array attributes from the model
 

@@ -67,4 +67,21 @@ class RadioTest extends TestCase
             ])
         );
     }
+
+    /** @test */
+    public function it_can_create_multiple_radio_buttons_and_check_the_zero_value()
+    {
+        $this->html->model(['is_admin' => '0']);
+
+        $this->assertHtmlStringEqualsHtmlString(
+            '<div>'.
+                '<input type="radio" name="is_admin" id="is_admin_1" value="1">'.
+                '<input type="radio" name="is_admin" id="is_admin_0" checked="checked" value="0">'.
+            '</div>',
+            $this->html->div([
+                $this->html->radio('is_admin', false, '1'),
+                $this->html->radio('is_admin', false, '0'),
+            ])
+        );
+    }
 }

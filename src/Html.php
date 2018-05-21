@@ -341,16 +341,17 @@ class Html
      * @param string|null $name
      * @param iterable $options
      * @param string|iterable|null $value
+     * @param bool $strict
      *
      * @return \Spatie\Html\Elements\Select
      */
-    public function select($name = null, $options = [], $value = null)
+    public function select($name = null, $options = [], $value = null, $strict = false)
     {
         return Select::create()
             ->attributeIf($name, 'name', $this->fieldName($name))
             ->attributeIf($name, 'id', $this->fieldName($name))
             ->options($options)
-            ->value($name ? $this->old($name, $value) : $value);
+            ->value($name ? $this->old($name, $value) : $value, $strict);
     }
 
     /**

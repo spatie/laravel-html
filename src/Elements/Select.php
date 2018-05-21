@@ -19,9 +19,10 @@ class Select extends BaseElement
     protected $value = '';
 
     /**
+     * @param bool $strict
      * @return static
      */
-    public function multiple()
+    public function multiple($strict = false)
     {
         $element = clone $this;
 
@@ -33,7 +34,7 @@ class Select extends BaseElement
             $element = $element->name($name.'[]');
         }
 
-        $element->applyValueToOptions();
+        $element->applyValueToOptions($strict);
 
         return $element;
     }
@@ -50,38 +51,33 @@ class Select extends BaseElement
 
     /**
      * @param iterable $options
-     *
+     * @param bool $strict
      * @return static
      */
-    public function options($options)
+    public function options($options, $strict = false)
     {
-        return $this->addChildren($options, function ($text, $value) {
+        return $this->addChildren($options, function ($text, $value) use ($strict) {
             if (is_array($text)) {
-                return $this->optgroup($value, $text);
+                return $this->optgroup($value, $text, $strict);
             }
 
-            return Option::create()
-                ->value($value)
-                ->text($text)
-                ->selectedIf($value === $this->value);
+            return $this->createOption($text, $value, $strict);
         });
     }
 
     /**
      * @param string $label
      * @param iterable $options
+     * @param bool $strict
      *
      * @return static
      */
-    public function optgroup($label, $options)
+    public function optgroup($label, $options, $strict = false)
     {
         return Optgroup::create()
             ->label($label)
-            ->addChildren($options, function ($text, $value) {
-                return Option::create()
-                    ->value($value)
-                    ->text($text)
-                    ->selectedIf($value === $this->value);
+            ->addChildren($options, function ($text, $value) use ($strict) {
+                return $this->createOption($text, $value, $strict);
             });
 
         return $this->addChild($optgroup);
@@ -95,9 +91,7 @@ class Select extends BaseElement
     public function placeholder($text)
     {
         return $this->prependChild(
-            Option::create()
-                ->value(null)
-                ->text($text)
+            $this->createOption($text, null)
                 ->selectedIf(! $this->hasSelection())
         );
     }
@@ -112,16 +106,17 @@ class Select extends BaseElement
 
     /**
      * @param string|iterable $value
+     * @param bool $strict
      *
      * @return static
      */
-    public function value($value = null)
+    public function value($value = null, $strict = false)
     {
         $element = clone $this;
 
         $element->value = $value;
 
-        $element->applyValueToOptions();
+        $element->applyValueToOptions($strict);
 
         return $element;
     }
@@ -131,7 +126,22 @@ class Select extends BaseElement
         return $this->children->contains->hasAttribute('selected');
     }
 
-    protected function applyValueToOptions()
+    protected function createOption($text, $value = null, $strict = false)
+    {
+        $selected = false;
+        if (null !== $value) {
+            $selected = $strict ?
+                $value === $this->value :
+                $value == $this->value;
+        }
+
+        return Option::create()
+            ->value($value)
+            ->text($text)
+            ->selectedIf($selected);
+    }
+
+    protected function applyValueToOptions($strict = false)
     {
         $value = Collection::make($this->value);
 
@@ -139,18 +149,23 @@ class Select extends BaseElement
             $value = $value->take(1);
         }
 
-        $this->children = $this->applyValueToElements($value, $this->children);
+        $this->children = $this->applyValueToElements($value, $this->children, $strict);
     }
 
-    protected function applyValueToElements($value, Collection $children)
+    protected function applyValueToElements($value, Collection $children, $strict = false)
     {
-        return $children->map(function ($child) use ($value) {
+        return $children->map(function ($child) use ($strict, $value) {
             if ($child instanceof Optgroup) {
-                return $child->setChildren($this->applyValueToElements($value, $child->children));
+                return $child->setChildren($this->applyValueToElements($value, $child->children, $strict));
             }
 
             if ($child instanceof Selectable) {
-                return $child->selectedIf($value->contains($child->getAttribute('value')));
+                $attribute = $child->getAttribute('value');
+                $contains = $strict ?
+                    $value->containsStrict($attribute) :
+                    $value->contains($attribute);
+
+                return $child->selectedIf($contains);
             }
 
             return $child;

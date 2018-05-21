@@ -71,7 +71,7 @@ class SelectTest extends TestCase
                 <option value="2">2</option>
                 <option value="+2" selected="selected">+2</option>
             </select>',
-            $this->html->select('select', $options, '+2')->render()
+            $this->html->select('select', $options, '+2', true)->render()
         );
     }
 }

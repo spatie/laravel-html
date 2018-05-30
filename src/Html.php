@@ -223,7 +223,7 @@ class Html
      */
     public function mailto($email, $text = null)
     {
-        return $this->a('mailto:'.$email, $text);
+        return $this->a('mailto:'.$email, $text ?: $email);
     }
 
     /**

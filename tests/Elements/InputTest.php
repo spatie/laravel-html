@@ -115,4 +115,13 @@ class InputTest extends TestCase
             Input::create()->type('checkbox')->checked()->unchecked()
         );
     }
+
+    /** @test */
+    public function it_can_disable_an_input()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input type="checkbox" disabled>',
+            Input::create()->type('checkbox')->disabled()
+        );
+    }
 }

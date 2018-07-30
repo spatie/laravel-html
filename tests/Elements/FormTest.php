@@ -42,4 +42,13 @@ class FormTest extends TestCase
             Form::create()->acceptsFiles()
         );
     }
+
+    /** @test */
+    public function it_can_create_a_form_that_add_novalidate_attribute()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<form enctype="multipart/form-data" novalidate=""></form>',
+            Form::create()->novalidate()->acceptsFiles()
+        );
+    }
 }

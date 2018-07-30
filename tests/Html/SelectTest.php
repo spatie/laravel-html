@@ -68,7 +68,7 @@ class SelectTest extends TestCase
         $this->assertHtmlStringEqualsHtmlString(
             '<select name="select" id="select">
                 <option value="0">0</option>
-                <option value="2">2</option>
+                <option selected="selected" value="2">2</option>
                 <option value="+2" selected="selected">+2</option>
             </select>',
             $this->html->select('select', $options, '+2')->render()

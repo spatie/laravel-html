@@ -40,6 +40,24 @@ class SelectTest extends TestCase
     }
 
     /** @test */
+    public function it_can_render_a_select_element_with_disabled_options()
+    {
+        $options = [
+            'value1' => 'text1',
+            'value2' => 'text2',
+        ];
+
+        $this->assertHtmlStringEqualsHtmlString(
+            '<select id="option" name="option">
+                <option disabled="disabled" value="">text1</option>
+                <option value="value1">text1</option>
+                <option value="value2">text2</option>
+            </select>',
+            $this->html->select('option', $options)->disabledPlaceholder('text1')->render()
+        );
+    }
+
+    /** @test */
     public function it_can_render_a_select_element_with_options_with_a_selected_value()
     {
         $options = [

@@ -103,6 +103,21 @@ class Select extends BaseElement
     }
 
     /**
+     * @param string|null $text
+     *
+     * @return static
+     */
+    public function disabledPlaceholder($text)
+    {
+        return $this->prependChild(
+            Option::create()
+                ->value(null)
+                ->text($text)
+                ->disabledIf(! $this->hasDisabled())
+        );
+    }
+
+    /**
      * @return static
      */
     public function required()
@@ -129,6 +144,11 @@ class Select extends BaseElement
     protected function hasSelection()
     {
         return $this->children->contains->hasAttribute('selected');
+    }
+
+    protected function hasDisabled()
+    {
+        return $this->children->contains->hasAttribute('disabled');
     }
 
     protected function applyValueToOptions()

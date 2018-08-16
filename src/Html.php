@@ -70,10 +70,11 @@ class Html
      *
      * @return \Spatie\Html\Elements\Button
      */
-    public function button($contents = null, $type = null)
+    public function button($contents = null, $type = null,$name = '')
     {
         return Button::create()
             ->attributeIf($type, 'type', $type)
+            ->attributeIf($name, 'name', $this->fieldName($name))
             ->html($contents);
     }
 

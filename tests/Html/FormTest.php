@@ -42,7 +42,7 @@ class FormTest extends TestCase
         $this->html->form('DELETE', '/submit');
         $this->assertHtmlStringEqualsHtmlString(
             '<p>delete</p>',
-            $this->html->value('_method', 'DELETE')
+            $this->html->value('_method', 'delete')
         );
         $this->assertHtmlStringEqualsHtmlString(
             '<p>abc</p>',

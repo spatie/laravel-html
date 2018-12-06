@@ -105,10 +105,7 @@ class Html
      */
     public function checkbox($name = null, $checked = false, $value = '1')
     {
-        return Input::create()
-            ->attribute('type', 'checkbox')
-            ->attributeIf($name, 'name', $this->fieldName($name))
-            ->attributeIf($name, 'id', $this->fieldName($name))
+        return $this->input('checkbox', $name, $value)
             ->attributeIf(! is_null($value), 'value', $value)
             ->attributeIf((bool) $this->old($name, $checked), 'checked');
     }
@@ -334,6 +331,7 @@ class Html
     {
         return $this->input('radio', $name, $value)
             ->attributeIf($name, 'id', $value === null ? $name : ($name.'_'.str_slug($value)))
+            ->attributeIf(! is_null($value), 'value', $value)
             ->attributeIf((! is_null($value) && $this->old($name) == $value) || $checked, 'checked');
     }
 

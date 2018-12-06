@@ -30,7 +30,7 @@ abstract class TestCase extends \Spatie\Html\Test\TestCase
         $this->request
             ->shouldReceive('old')
             ->withNoArgs()
-            ->andReturnUsing(function() {
+            ->andReturnUsing(function () {
                 return $this->session;
             });
 

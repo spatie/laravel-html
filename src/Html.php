@@ -391,7 +391,7 @@ class Html
      */
     public function tel($number, $text = null)
     {
-        return $this->a('tel:'.$number, $text);
+        return $this->a('tel:'.$number, $text ?: $number);
     }
 
     /**

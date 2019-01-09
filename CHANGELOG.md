@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.19.9 - 2019-01-10
+
+- improve default of tel link
+
 ## 2.19.8 - 2018-09-04
 - Add support for Laravel 5.7
 

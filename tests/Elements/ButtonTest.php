@@ -51,6 +51,4 @@ class ButtonTest extends TestCase
              Button::create()->name('foo')->value('bar')
          );
      }
-
-
 }

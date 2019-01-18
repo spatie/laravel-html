@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.20.0 - 2019-01-18
+- Added `unless` method and magic `__call` handler (e.g. `$input->valueUnless(false, 5)`)
+- Added `size` attribute method to `Input`
+- Added `name` attribute method to `Button`
+- Fixed checkbox value repopulation after request
+
 ## 2.19.7 - 2018-04-30
 - Allow radio input check "0" value
 

@@ -8,7 +8,7 @@ class TelTest extends TestCase
     public function it_can_create_a_tel_link()
     {
         $this->assertHtmlStringEqualsHtmlString(
-            '<a href="tel:+19999999999"></a>',
+            '<a href="tel:+19999999999">+19999999999</a>',
             $this->html->tel('+19999999999')
         );
     }

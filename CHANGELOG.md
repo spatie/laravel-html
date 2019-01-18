@@ -8,6 +8,12 @@ All notable changes to `laravel-html` will be documented in this file.
 - Added `name` attribute method to `Button`
 - Fixed checkbox value repopulation after request
 
+## 2.19.9 - 2019-01-10
+- Improve default of `tel` link
+
+## 2.19.8 - 2018-09-04
+- Add support for Laravel 5.7
+
 ## 2.19.7 - 2018-04-30
 - Allow radio input check "0" value
 

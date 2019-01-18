@@ -29,6 +29,13 @@ abstract class TestCase extends \Spatie\Html\Test\TestCase
 
         $this->request
             ->shouldReceive('old')
+            ->withNoArgs()
+            ->andReturnUsing(function () {
+                return $this->session;
+            });
+
+        $this->request
+            ->shouldReceive('old')
             ->withAnyArgs()
             ->andReturnUsing(function ($key, $value = null) {
                 return $this->session[$key] ?? $value;

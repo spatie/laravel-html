@@ -70,10 +70,11 @@ class Html
      *
      * @return \Spatie\Html\Elements\Button
      */
-    public function button($contents = null, $type = null)
+    public function button($contents = null, $type = null, $name = '')
     {
         return Button::create()
             ->attributeIf($type, 'type', $type)
+            ->attributeIf($name, 'name', $this->fieldName($name))
             ->html($contents);
     }
 
@@ -105,10 +106,7 @@ class Html
      */
     public function checkbox($name = null, $checked = false, $value = '1')
     {
-        return Input::create()
-            ->attribute('type', 'checkbox')
-            ->attributeIf($name, 'name', $this->fieldName($name))
-            ->attributeIf($name, 'id', $this->fieldName($name))
+        return $this->input('checkbox', $name, $value)
             ->attributeIf(! is_null($value), 'value', $value)
             ->attributeIf((bool) $this->old($name, $checked), 'checked');
     }
@@ -278,7 +276,7 @@ class Html
      */
     public function mailto($email, $text = null)
     {
-        return $this->a('mailto:'.$email, $text);
+        return $this->a('mailto:'.$email, $text ?: $email);
     }
 
     /**
@@ -334,6 +332,7 @@ class Html
     {
         return $this->input('radio', $name, $value)
             ->attributeIf($name, 'id', $value === null ? $name : ($name.'_'.str_slug($value)))
+            ->attributeIf(! is_null($value), 'value', $value)
             ->attributeIf((! is_null($value) && $this->old($name) == $value) || $checked, 'checked');
     }
 
@@ -391,7 +390,7 @@ class Html
      */
     public function tel($number, $text = null)
     {
-        return $this->a('tel:'.$number, $text);
+        return $this->a('tel:'.$number, $text ?: $number);
     }
 
     /**
@@ -503,9 +502,10 @@ class Html
         // Convert array format (sth[1]) to dot notation (sth.1)
         $name = preg_replace('/\[(.+)\]/U', '.$1', $name);
 
-        // If there's no default value provided, and the html builder currently
-        // has a model assigned, try to retrieve a value from the model.
-        if (empty($value) && $this->model) {
+        // If there's no default value provided, the html builder currently
+        // has a model assigned and there aren't old input items,
+        // try to retrieve a value from the model.
+        if (empty($value) && $this->model && empty($this->request->old())) {
             $value = data_get($this->model, $name) ?? '';
         }
 

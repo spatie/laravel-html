@@ -107,4 +107,14 @@ class Input extends BaseElement
     {
         return $this->attribute('readonly');
     }
+
+    /**
+     * @param string|null $size
+     *
+     * @return static
+     */
+    public function size($size)
+    {
+        return $this->attribute('size', $size);
+    }
 }

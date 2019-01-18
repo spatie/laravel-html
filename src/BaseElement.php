@@ -421,10 +421,8 @@ abstract class BaseElement implements Htmlable, HtmlElement
         switch ($type) {
             case 'If':
                 return $this->if($condition, $callback);
-
             case 'Unless':
                 return $this->unless($condition, $callback);
-
             default:
                 return $this;
         }

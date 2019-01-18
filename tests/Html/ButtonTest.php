@@ -40,12 +40,12 @@ class ButtonTest extends TestCase
         );
     }
 
-     /** @test */
-     public function it_can_create_a_button_with_a_type_and_name()
-     {
-         $this->assertHtmlStringEqualsHtmlString(
+    /** @test */
+    public function it_can_create_a_button_with_a_type_and_name()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
              '<button name="buttonname" type="submit">Hi</button>',
-             $this->html->button('Hi', 'submit','buttonname')
+             $this->html->button('Hi', 'submit', 'buttonname')
          );
-     }
+    }
 }

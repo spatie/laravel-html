@@ -64,6 +64,11 @@ class BaseElementTest extends TestCase
             '<div foo="bar"></div>',
             Div::create()->attributeIf(true, 'foo', 'bar')->attributeIf(false, 'bar', 'baz')->render()
         );
+
+        $this->assertHtmlStringEqualsHtmlString(
+            '<div foo="bar"></div>',
+            Div::create()->attributeUnless(false, 'foo', 'bar')->attributeUnless(true, 'bar', 'baz')->render()
+        );
     }
 
     /** @test */
@@ -383,6 +388,16 @@ class BaseElementTest extends TestCase
                 return $div->addClass('foo');
             })
             ->if(false, function (Div $div) {
+                return $div->addClass('bar');
+            });
+
+        $this->assertHtmlStringEqualsHtmlString('<div class="foo"></div>', $div);
+
+        $div = Div::create()
+            ->unless(false, function (Div $div) {
+                return $div->addClass('foo');
+            })
+            ->unless(true, function (Div $div) {
                 return $div->addClass('bar');
             });
 

@@ -33,4 +33,22 @@ class ButtonTest extends TestCase
             Button::create()->value(1)
         );
     }
+
+    /** @test */
+    public function it_can_create_a_button_with_a_name()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<button name="foo"></button>',
+            Button::create()->name('foo')
+        );
+    }
+
+     /** @test */
+     public function it_can_create_a_button_with_a_name_and_value()
+     {
+         $this->assertHtmlStringEqualsHtmlString(
+             '<button name="foo" value="bar"></button>',
+             Button::create()->name('foo')->value('bar')
+         );
+     }
 }

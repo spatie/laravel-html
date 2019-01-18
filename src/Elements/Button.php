@@ -27,4 +27,14 @@ class Button extends BaseElement
     {
         return $this->attribute('value', $value);
     }
+
+    /**
+     * @param string $name
+     *
+     * @return static
+     */
+    public function name($name)
+    {
+        return $this->attribute('name', $name);
+    }
 }

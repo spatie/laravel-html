@@ -48,7 +48,4 @@ class ButtonTest extends TestCase
              $this->html->button('Hi', 'submit','buttonname')
          );
      }
- 
-
-
 }

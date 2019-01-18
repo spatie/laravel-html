@@ -114,6 +114,19 @@ class OldTest extends TestCase
                 '<input type="number" name="relation[order][number]" id="relation[order][number]" value="0">',
                 $this->html->input('number', 'relation[order][number]')
             );
+
+        $this
+            ->withModel(['name' => ['option_1' => '1']])
+            ->assertHtmlStringEqualsHtmlString(
+                '<div>'.
+                    '<input type="checkbox" name="name[option_1]" id="name[option_1]" value="1" checked="checked">'.
+                    '<input type="checkbox" name="name[option_2]" id="name[option_2]" value="1">'.
+                '</div>',
+                $this->html->div([
+                    $this->html->checkbox('name[option_1]'),
+                    $this->html->checkbox('name[option_2]'),
+                ])
+            );
     }
 
     /** @test */
@@ -125,6 +138,20 @@ class OldTest extends TestCase
             ->assertHtmlStringEqualsHtmlString(
                 '<input type="text" name="relation[name][first_name]" id="relation[name][first_name]" value="Sebastian">',
                 $this->html->text('relation[name][first_name]')
+            );
+
+        $this
+            ->withModel(['name' => ['option_1' => '1']])
+            ->withSession(array_dot(['name' => ['option_2' => '1']]))
+            ->assertHtmlStringEqualsHtmlString(
+                '<div>'.
+                    '<input type="checkbox" name="name[option_1]" id="name[option_1]" value="1">'.
+                    '<input type="checkbox" name="name[option_2]" id="name[option_2]" value="1" checked="checked">'.
+                '</div>',
+                $this->html->div([
+                    $this->html->checkbox('name[option_1]'),
+                    $this->html->checkbox('name[option_2]'),
+                ])
             );
     }
 }

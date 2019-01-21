@@ -505,7 +505,7 @@ class Html
         // If there's no default value provided, the html builder currently
         // has a model assigned and there aren't old input items,
         // try to retrieve a value from the model.
-        if (empty($value) && $this->model && empty($this->request->old())) {
+        if (is_null($value) && $this->model && empty($this->request->old())) {
             $value = data_get($this->model, $name) ?? '';
         }
 

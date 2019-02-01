@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.20.1 - 2019-02-01
+
+- use Arr:: and Str:: functions
+
 ## 2.20.0 - 2019-01-18
 - Added `unless` method and magic `__call` handler (e.g. `$input->valueUnless(false, 5)`)
 - Added `size` attribute method to `Input`

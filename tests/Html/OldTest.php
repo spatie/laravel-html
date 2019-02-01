@@ -2,6 +2,8 @@
 
 namespace Spatie\Html\Test\Html;
 
+use Illuminate\Support\Arr;
+
 class OldTest extends TestCase
 {
     /** @test */
@@ -63,7 +65,7 @@ class OldTest extends TestCase
     public function it_returns_a_session_value_from_a_name_with_an_array()
     {
         $this
-            ->withSession(array_dot(['name' => [1 => ['a' => 'Sebastian']]]))
+            ->withSession(Arr::dot(['name' => [1 => ['a' => 'Sebastian']]]))
             ->assertHtmlStringEqualsHtmlString(
                 '<input type="text" name="name[1][a]" id="name[1][a]" value="Sebastian">',
                 $this->html->text('name[1][a]')
@@ -134,7 +136,7 @@ class OldTest extends TestCase
     {
         $this
             ->withModel(['relation' => ['name' => ['first_name' => 'Freek']]])
-            ->withSession(array_dot(['relation' => ['name' => ['first_name' => 'Sebastian']]]))
+            ->withSession(Arr::dot(['relation' => ['name' => ['first_name' => 'Sebastian']]]))
             ->assertHtmlStringEqualsHtmlString(
                 '<input type="text" name="relation[name][first_name]" id="relation[name][first_name]" value="Sebastian">',
                 $this->html->text('relation[name][first_name]')
@@ -142,7 +144,7 @@ class OldTest extends TestCase
 
         $this
             ->withModel(['name' => ['option_1' => '1']])
-            ->withSession(array_dot(['name' => ['option_2' => '1']]))
+            ->withSession(Arr::dot(['name' => ['option_2' => '1']]))
             ->assertHtmlStringEqualsHtmlString(
                 '<div>'.
                     '<input type="checkbox" name="name[option_1]" id="name[option_1]" value="1">'.

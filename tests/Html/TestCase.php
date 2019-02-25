@@ -21,7 +21,7 @@ abstract class TestCase extends \Spatie\Html\Test\TestCase
     /** @var \Spatie\Html\Html $html */
     protected $html;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -66,7 +66,7 @@ abstract class TestCase extends \Spatie\Html\Test\TestCase
         return $this;
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         Mockery::close();
     }

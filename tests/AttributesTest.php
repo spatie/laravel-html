@@ -22,10 +22,8 @@ class AttributesTest extends TestCase
         $attributes = new Attributes();
         $attributes->addClass('foo bar');
 
-        $this->assertArraySubset(
-            ['class' => 'foo bar'],
-            $attributes->toArray()
-        );
+        $this->assertArrayHasKey('class', $attributes->toArray());
+        $this->assertEquals('foo bar', $attributes->toArray()['class']);
     }
 
     /** @test */
@@ -34,10 +32,8 @@ class AttributesTest extends TestCase
         $attributes = new Attributes();
         $attributes->addClass(['foo', 'bar']);
 
-        $this->assertArraySubset(
-            ['class' => 'foo bar'],
-            $attributes->toArray()
-        );
+        $this->assertArrayHasKey('class', $attributes->toArray());
+        $this->assertEquals('foo bar', $attributes->toArray()['class']);
     }
 
     /** @test */
@@ -49,10 +45,8 @@ class AttributesTest extends TestCase
             'bar' => false,
         ]);
 
-        $this->assertArraySubset(
-            ['class' => 'foo'],
-            $attributes->toArray()
-        );
+        $this->assertArrayHasKey('class', $attributes->toArray());
+        $this->assertEquals('foo', $attributes->toArray()['class']);
     }
 
     /** @test */
@@ -65,10 +59,8 @@ class AttributesTest extends TestCase
             'baz',
         ]);
 
-        $this->assertArraySubset(
-            ['class' => 'foo baz'],
-            $attributes->toArray()
-        );
+        $this->assertArrayHasKey('class', $attributes->toArray());
+        $this->assertEquals('foo baz', $attributes->toArray()['class']);
     }
 
     /** @test */
@@ -78,10 +70,11 @@ class AttributesTest extends TestCase
         $attributes->setAttribute('href', '#');
         $attributes->setAttribute('class', 'foobar');
 
-        $this->assertArraySubset(
-            ['href' => '#', 'class' => 'foobar'],
-            $attributes->toArray()
-        );
+        $this->assertArrayHasKey('href', $attributes->toArray());
+        $this->assertEquals('#', $attributes->toArray()['href']);
+
+        $this->assertArrayHasKey('class', $attributes->toArray());
+        $this->assertEquals('foobar', $attributes->toArray()['class']);
     }
 
     /** @test */
@@ -90,10 +83,8 @@ class AttributesTest extends TestCase
         $attributes = new Attributes();
         $attributes->setAttribute('required');
 
-        $this->assertArraySubset(
-            ['required' => null],
-            $attributes->toArray()
-        );
+        $this->assertArrayHasKey('required', $attributes->toArray());
+        $this->assertNull($attributes->toArray()['required']);
     }
 
     /** @test */
@@ -163,10 +154,11 @@ class AttributesTest extends TestCase
             'required',
         ]);
 
-        $this->assertArraySubset(
-            ['name' => 'email', 'required' => null],
-            $attributes->toArray()
-        );
+        $this->assertArrayHasKey('name', $attributes->toArray());
+        $this->assertEquals('email', $attributes->toArray()['name']);
+
+        $this->assertArrayHasKey('required', $attributes->toArray());
+        $this->assertEmpty($attributes->toArray()['required']);
     }
 
     /** @test */

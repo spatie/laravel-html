@@ -8,13 +8,12 @@ trait AssertsHtmlStrings
 {
     protected function assertHtmlStringEqualsHtmlString(string $expectedHtml, string $actualHtml)
     {
-        $this->assertEquals(
+        $this->assertEqualsCanonicalizing(
             $this->convertToDomDocument($expectedHtml),
             $this->convertToDomDocument($actualHtml),
             '',
             0.0,
-            10,
-            true
+            10
         );
     }
 

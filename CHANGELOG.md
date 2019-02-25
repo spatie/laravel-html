@@ -2,9 +2,15 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.21.0 - 2019-02-26
+- Added Laravel 5.8 support
+- Dropped PHP 7.0 support
+- Dropped Laravel 5.4 support
+- Dropped PHPUnit 6 support
+
 ## 2.20.1 - 2019-02-01
 
-- use Arr:: and Str:: functions
+- use `Arr::` and `Str::` functions
 
 ## 2.20.0 - 2019-01-18
 - Added `unless` method and magic `__call` handler (e.g. `$input->valueUnless(false, 5)`)

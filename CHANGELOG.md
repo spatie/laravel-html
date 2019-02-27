@@ -2,7 +2,7 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
-## 2.21.0 - 2019-02-26
+## 2.21.0 - 2019-02-27
 - Added Laravel 5.8 support
 - Dropped PHP 7.0 support
 - Dropped Laravel 5.4 support

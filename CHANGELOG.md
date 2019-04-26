@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.22.0 - 2019-04-26
+- Changed the `value` parameter in `data` to an optional parameter
+
 ## 2.21.0 - 2019-02-27
 - Added Laravel 5.8 support
 - Dropped PHP 7.0 support

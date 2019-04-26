@@ -163,7 +163,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
      *
      * @return static
      */
-    public function data($name, $value)
+    public function data($name, $value = null)
     {
         return $this->attribute("data-{$name}", $value);
     }

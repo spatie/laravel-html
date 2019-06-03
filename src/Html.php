@@ -146,6 +146,23 @@ class Html
     /**
      * @param string|null $name
      * @param string|null $value
+     * @param string|null $min
+     * @param string|null $max
+     * @param string|null $step
+     *
+     * @return \Spatie\Html\Elements\Input
+     */
+    public function range($name = '', $value = '', $min = null, $max = null, $step = null)
+    {
+        return $this->input('range', $name, $value)
+            ->attributeNotNull($min, 'min', $min)
+            ->attributeNotNull($max, 'max', $max)
+            ->attributeNotNull($step, 'step', $step);
+    }
+
+    /**
+     * @param string|null $name
+     * @param string|null $value
      *
      * @return \Spatie\Html\Elements\Input
      */

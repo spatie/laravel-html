@@ -27,7 +27,7 @@ Say we're adding a text input field in a form that's bound to a model:
 // <input type="text" name="name" id="name" value="Sebastian" />
 ```
 
-Since we're passing the input field's name `name` to the builder, it will try to infer it from the model, filling in `Sebastian` despite us providing `Alex` as its value. If we want to ensure that `Alex` is the value of the input element, we need to set the value *after* the element has been created by the HTML builder.
+Since we're passing the input field's name `name` to the builder, it will try to infer it from the model, filling in `Sebastian` despite us providing `Alex` as it's value. If we want to ensure that `Alex` is the value of the input element, we need to set the value *after* the element has been created by the HTML builder.
 
 ```php
 {{ html()->model(new User(['name' => 'Sebastian'])) }}
@@ -35,19 +35,7 @@ Since we're passing the input field's name `name` to the builder, it will try to
 // <input type="text" name="name" id="name" value="Alex" />
 ```
 
-Here, the builder creates a field, using `Sebastian` as its value. Afterwards, we chain a `value` call on the element object itself, which doesn't have any outside context, to overwrite the value, which was previously set, to `Alex`.
-
-## Checking radio and checkboxes
-
-To correctly check/uncheck radio and checkboxes use the `checked` method:
-
-```php
-{{ html()->model(new User(['title' => 'Mr'])) }}
-{{ html()->radio('title')->value('Mr')->checked(old('title', $user->title === 'Mr')) }}
-{{ html()->radio('title')->value('Ms')->checked(old('title', $user->title === 'Ms')) }}
-// <input type="radio" name="title" value="Mr" checked="checked" />
-// <input type="radio" name="title" value="Ms" />
-```
+Here, the builder creates a field, using `Sebastian` as it's value. Afterwards, we chain a `value` call on the element object itself, which doesn't have any outside context, to overwrite the value, which was previously set, to `Alex`.
 
 ## Rendering elements
 

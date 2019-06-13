@@ -7,13 +7,13 @@ weight: 2
 
 The following builder methods can be used to generate general HTML elements like links, `div`s, `span`s, etc... All these methods return instances of `Spatie\Html\Elements`. Of course all [element methods](/laravel-html/v1/general-usage/element-methods) are available on the returned instances.
 
-- `function a($href = null, $text = null): A`
-- `function button($text = null, $type = 'button'): Button`
+- `function a(?string $href = '', ?string $text = ''): A`
+- `function button(?string $text = '', ?string $type = 'button'): Button`
 - `function div($contents = null): Div`
-- `function element($tag): Element`
-- `function mailto($email, $text = null): A`
+- `function element(string $tag): Element`
+- `function mailto(string $email, string $text = ''): A`
 - `function span($contents = null): Span`
-- `function tel($number, $text = null): A`
+- `function tel(?string $number, ?string $text = ''): A`
 
 
 ## Working with a model
@@ -39,7 +39,7 @@ The HTML builder has some great methods for building entire forms. By default al
 ### `form()` method
 
 ```php
-function form($method = 'POST', $action = null)
+function form(string $method = 'POST', string $action = '')
 ```
 
 The `form()` method will return a `Spatie\Html\Elements\Form` class. It will have the `_token` and `_method` fields as children by default.
@@ -87,19 +87,18 @@ To make things easier we've added the `modelForm()` and `closeModelForm()` metho
 
 ## Form-related elements
 
-- `function checkbox($name = null, $checked = false, $value = '1'): Input`
-- `function email($name = null, $value = null): Input`
-- `function input($type = null, $name = null, $value = null): Input`
+- `function checkbox(string $name = '', ?bool $checked = false, ?string $value = '1'): Input`
+- `function email(string $name = '', ?string $value = ''): Input`
+- `function input(?string $type = '', string $name = '', ?string $value = ''): Input`
 - `function fieldset($legend = null): Fieldset`
-- `function hidden($name = null, $value = null): Input`
-- `function label($contents = null, $for = null): Label`
+- `function hidden(string $name = '', ?string $value = ''): Input`
+- `function label($contents = null, string $for = ''): Label`
 - `function legend($contents = null): Legend`
-- `function multiselect($name = null, $options = [], $value = null): Select`
-- `function option($text = null, $value = null, $selected = false): Option`
-- `function password($name = null): Input`
-- `function radio($name = null, $checked = false, $value = null): Input`
-- `function select($name = null, $options = [], $value = null): Select`
-- `function submit($text = null): Button`
-- `function text($name = null, $value = null): Input`
-- `function textarea($name = null, $value = null): Textarea`
+- `function option(?string $text = '', ?string $value = '', $selected = false): Option`
+- `function password(string $name = ''): Input`
+- `function radio(string $name = '', ?bool $checked = false, ?string $value = ''): Input`
+- `function select(string $name = '', iterable $options = [], ?string $value = ''): Select`
+- `function submit(?string $text = ''): Button`
+- `function text(string $name = '', ?string $value = ''): Input`
+- `function textarea(string $name = '', ?string $value = ''): Textarea`
 - `function token(): Input`

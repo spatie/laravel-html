@@ -1,6 +1,6 @@
 ---
-title: v2
+title: v1
 slogan: Generate html with ease
 githubUrl: https://github.com/spatie/laravel-html
-branch: master
+branch: v1
 ---

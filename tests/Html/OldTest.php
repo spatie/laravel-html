@@ -156,4 +156,22 @@ class OldTest extends TestCase
                 ])
             );
     }
+
+    /** @test */
+    public function it_returns_a_empty_value_if_its_a_password_field()
+    {
+        $this
+            ->withModel(['password' => 'abc'])
+            ->assertHtmlStringEqualsHtmlString(
+                '<input type="password" name="password" id="password">',
+                $this->html->password('password')
+            );
+
+        $this
+            ->withModel(['secret' => 'abc'])
+            ->assertHtmlStringEqualsHtmlString(
+                '<input type="password" name="secret" id="secret">',
+                $this->html->password('secret')
+            );
+    }
 }

@@ -328,6 +328,20 @@ abstract class BaseElement implements Htmlable, HtmlElement
     }
 
     /**
+     * Conditionally transform the element. Note that since elements are
+     * immutable, you'll need to return a new instance from the callback.
+     *
+     * @param mixed $value
+     * @param \Closure $callback
+     *
+     * @return mixed
+     */
+    public function ifNotNull($value, \Closure $callback)
+    {
+        return ! is_null($value) ? $callback($this) : $this;
+    }
+
+    /**
      * @return \Illuminate\Contracts\Support\Htmlable
      */
     public function open()
@@ -398,7 +412,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
      */
     public function __call($name, $arguments)
     {
-        if (ends_with($name, $conditions = ['If', 'Unless'])) {
+        if (ends_with($name, $conditions = ['If', 'Unless', 'IfNotNull'])) {
             foreach ($conditions as $condition) {
                 if (! method_exists($this, $method = str_replace($condition, '', $name))) {
                     continue;
@@ -413,16 +427,18 @@ abstract class BaseElement implements Htmlable, HtmlElement
 
     protected function callConditionalMethod($type, $method, array $arguments)
     {
-        $condition = (bool) array_shift($arguments);
+        $value = array_shift($arguments);
         $callback = function () use ($method, $arguments) {
             return $this->{$method}(...$arguments);
         };
 
         switch ($type) {
             case 'If':
-                return $this->if($condition, $callback);
+                return $this->if((bool) $value, $callback);
             case 'Unless':
-                return $this->unless($condition, $callback);
+                return $this->unless((bool) $value, $callback);
+            case 'IfNotNull':
+                return $this->ifNotNull($value, $callback);
             default:
                 return $this;
         }

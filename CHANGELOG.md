@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.22.1 - 2019-07-16
+
+- prevent password fields to be filled
+
 ## 2.22.0 - 2019-04-26
 - Changed the `value` parameter in `data` to an optional parameter
 

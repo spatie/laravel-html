@@ -155,9 +155,9 @@ class Html
     public function range($name = '', $value = '', $min = null, $max = null, $step = null)
     {
         return $this->input('range', $name, $value)
-            ->attributeNotNull($min, 'min', $min)
-            ->attributeNotNull($max, 'max', $max)
-            ->attributeNotNull($step, 'step', $step);
+            ->attributeIfNotNull($min, 'min', $min)
+            ->attributeIfNotNull($max, 'max', $max)
+            ->attributeIfNotNull($step, 'step', $step);
     }
 
     /**

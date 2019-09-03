@@ -336,7 +336,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
      *
      * @return mixed
      */
-    public function notNull($value, \Closure $callback)
+    public function ifNotNull($value, \Closure $callback)
     {
         return ! is_null($value) ? $callback($this) : $this;
     }

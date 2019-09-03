@@ -3,6 +3,7 @@
 namespace Spatie\Html;
 
 use DateTimeImmutable;
+use Illuminate\Support\Str;
 use Spatie\Html\Elements\A;
 use Spatie\Html\Elements\I;
 use Illuminate\Http\Request;
@@ -111,7 +112,7 @@ class Html
     public function checkbox($name = null, $checked = null, $value = '1')
     {
         return $this->input('checkbox', $name, $value)
-            ->attributeIf(! is_null($value), 'value', $value)
+            ->attributeIf(!is_null($value), 'value', $value)
             ->attributeIf((bool) $this->old($name, $checked), 'checked');
     }
 
@@ -147,7 +148,7 @@ class Html
     {
         $element = $this->input('date', $name, $value);
 
-        if (! $format || empty($element->getAttribute('value'))) {
+        if (!$format || empty($element->getAttribute('value'))) {
             return $element;
         }
 
@@ -182,7 +183,7 @@ class Html
     {
         $element = $this->input('time', $name, $value);
 
-        if (! $format || empty($element->getAttribute('value'))) {
+        if (!$format || empty($element->getAttribute('value'))) {
             return $element;
         }
 
@@ -208,7 +209,7 @@ class Html
      */
     public function input($type = null, $name = null, $value = null)
     {
-        $hasValue = $name && ($type !== 'password' && ! is_null($this->old($name, $value)) || ! is_null($value));
+        $hasValue = $name && ($type !== 'password' && !is_null($this->old($name, $value)) || !is_null($value));
 
         return Input::create()
             ->attributeIf($type, 'type', $type)
@@ -225,8 +226,7 @@ class Html
     public function fieldset($legend = null)
     {
         return $legend ?
-            Fieldset::create()->legend($legend) :
-            Fieldset::create();
+            Fieldset::create()->legend($legend) : Fieldset::create();
     }
 
     /**
@@ -311,7 +311,7 @@ class Html
      */
     public function mailto($email, $text = null)
     {
-        return $this->a('mailto:'.$email, $text ?: $email);
+        return $this->a('mailto:' . $email, $text ?: $email);
     }
 
     /**
@@ -366,9 +366,9 @@ class Html
     public function radio($name = null, $checked = null, $value = null)
     {
         return $this->input('radio', $name, $value)
-            ->attributeIf($name, 'id', $value === null ? $name : ($name.'_'.str_slug($value)))
-            ->attributeIf(! is_null($value), 'value', $value)
-            ->attributeIf((! is_null($value) && $this->old($name) == $value) || $checked, 'checked');
+            ->attributeIf($name, 'id', $value === null ? $name : ($name . '_' . Str::slug($value)))
+            ->attributeIf(!is_null($value), 'value', $value)
+            ->attributeIf((!is_null($value) && $this->old($name) == $value) || $checked, 'checked');
     }
 
     /**
@@ -425,7 +425,7 @@ class Html
      */
     public function tel($number, $text = null)
     {
-        return $this->a('tel:'.$number, $text ?: $number);
+        return $this->a('tel:' . $number, $text ?: $number);
     }
 
     /**

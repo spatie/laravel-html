@@ -2,9 +2,16 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.23.0 - 2019-09-04
+
+- Laravel 6 support
+- Better handling for `0` values in inputs
+- Add `range` for range inputs
+- Format date and time values
+
 ## 2.22.1 - 2019-07-16
 
-- prevent password fields to be filled
+- Prevent password fields to be filled
 
 ## 2.22.0 - 2019-04-26
 - Changed the `value` parameter in `data` to an optional parameter

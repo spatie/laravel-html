@@ -2,6 +2,7 @@
 
 namespace Spatie\Html;
 
+use DateTimeImmutable;
 use Spatie\Html\Elements\A;
 use Spatie\Html\Elements\I;
 use Illuminate\Http\Request;
@@ -27,6 +28,9 @@ use Illuminate\Contracts\Support\Htmlable;
 class Html
 {
     use Macroable;
+
+    const HTML_DATE_FORMAT = 'Y-m-d';
+    const HTML_TIME_FORMAT = 'H:i:s';
 
     /** @var \Illuminate\Http\Request */
     protected $request;
@@ -135,23 +139,37 @@ class Html
     /**
      * @param string|null $name
      * @param string|null $value
+     * @param bool $format
      *
      * @return \Spatie\Html\Elements\Input
      */
-    public function date($name = null, $value = null)
+    public function date($name = '', $value = null, $format = true)
     {
-        return $this->input('date', $name, $value);
+        $element = $this->input('date', $name, $value);
+
+        if (! $format || empty($element->getAttribute('value'))) {
+            return $element;
+        }
+
+        return $element->value($this->formatDateTime($element->getAttribute('value'), self::HTML_DATE_FORMAT));
     }
 
     /**
      * @param string|null $name
      * @param string|null $value
+     * @param bool $format
      *
      * @return \Spatie\Html\Elements\Input
      */
-    public function time($name = null, $value = null)
+    public function time($name = '', $value = null, $format = true)
     {
-        return $this->input('time', $name, $value);
+        $element = $this->input('time', $name, $value);
+
+        if (! $format || empty($element->getAttribute('value'))) {
+            return $element;
+        }
+
+        return $element->value($this->formatDateTime($element->getAttribute('value'), self::HTML_TIME_FORMAT));
     }
 
     /**
@@ -540,6 +558,26 @@ class Html
     {
         if (empty($this->model)) {
             throw new Exception('Method requires a model to be set on the html builder');
+        }
+    }
+
+    /**
+     * @param string $value
+     * @param string $format DateTime formatting string supported by date_format()
+     * @return string
+     */
+    protected function formatDateTime($value, $format)
+    {
+        if (empty($value)) {
+            return $value;
+        }
+
+        try {
+            $date = new DateTimeImmutable($value);
+
+            return $date->format($format);
+        } catch (\Exception $e) {
+            return $value;
         }
     }
 }

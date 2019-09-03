@@ -412,7 +412,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
      */
     public function __call($name, $arguments)
     {
-        if (ends_with($name, $conditions = ['If', 'Unless', 'NotNull'])) {
+        if (ends_with($name, $conditions = ['If', 'Unless', 'IfNotNull'])) {
             foreach ($conditions as $condition) {
                 if (! method_exists($this, $method = str_replace($condition, '', $name))) {
                     continue;
@@ -437,7 +437,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
                 return $this->if((bool) $value, $callback);
             case 'Unless':
                 return $this->unless((bool) $value, $callback);
-            case 'NotNull':
+            case 'IfNotNull':
                 return $this->notNull($value, $callback);
             default:
                 return $this;

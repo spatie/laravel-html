@@ -50,6 +50,31 @@ class OldTest extends TestCase
     }
 
     /** @test */
+    public function it_returns_specified_value_even_if_a_model_value_its_available_in_the_model()
+    {
+        $this
+            ->withModel(['name' => 'Sebastian'])
+            ->assertHtmlStringEqualsHtmlString(
+                '<input type="text" name="name" id="name" value="Freek">',
+                $this->html->text('name', 'Freek')
+            );
+
+        $this
+            ->withModel(['name' => 1])
+            ->assertHtmlStringEqualsHtmlString(
+                '<input type="text" name="name" id="name" value="0">',
+                $this->html->text('name', 0)
+            );
+
+        $this
+            ->withModel(['name' => true])
+            ->assertHtmlStringEqualsHtmlString(
+                '<input type="checkbox" name="name" id="name" value="1">',
+                $this->html->checkbox('name', false)
+            );
+    }
+
+    /** @test */
     public function it_returns_a_session_value_if_its_available_in_the_model_and_the_session()
     {
         $this

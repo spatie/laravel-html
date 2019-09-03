@@ -70,7 +70,7 @@ class Html
      *
      * @return \Spatie\Html\Elements\Button
      */
-    public function button($contents = null, $type = null, $name = '')
+    public function button($contents = null, $type = null, $name = null)
     {
         return Button::create()
             ->attributeIf($type, 'type', $type)
@@ -104,7 +104,7 @@ class Html
      *
      * @return \Spatie\Html\Elements\Input
      */
-    public function checkbox($name = null, $checked = false, $value = '1')
+    public function checkbox($name = null, $checked = null, $value = '1')
     {
         return $this->input('checkbox', $name, $value)
             ->attributeIf(! is_null($value), 'value', $value)
@@ -127,7 +127,7 @@ class Html
      *
      * @return \Spatie\Html\Elements\Input
      */
-    public function email($name = '', $value = '')
+    public function email($name = null, $value = null)
     {
         return $this->input('email', $name, $value);
     }
@@ -138,7 +138,7 @@ class Html
      *
      * @return \Spatie\Html\Elements\Input
      */
-    public function date($name = '', $value = '')
+    public function date($name = null, $value = null)
     {
         return $this->input('date', $name, $value);
     }
@@ -149,7 +149,7 @@ class Html
      *
      * @return \Spatie\Html\Elements\Input
      */
-    public function time($name = '', $value = '')
+    public function time($name = null, $value = null)
     {
         return $this->input('time', $name, $value);
     }
@@ -328,7 +328,7 @@ class Html
      *
      * @return \Spatie\Html\Elements\Input
      */
-    public function radio($name = null, $checked = false, $value = null)
+    public function radio($name = null, $checked = null, $value = null)
     {
         return $this->input('radio', $name, $value)
             ->attributeIf($name, 'id', $value === null ? $name : ($name.'_'.str_slug($value)))
@@ -505,7 +505,7 @@ class Html
         // If there's no default value provided, the html builder currently
         // has a model assigned and there aren't old input items,
         // try to retrieve a value from the model.
-        if (empty($value) && $this->model && empty($this->request->old())) {
+        if (is_null($value) && $this->model && empty($this->request->old())) {
             $value = data_get($this->model, $name) ?? '';
         }
 

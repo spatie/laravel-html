@@ -438,7 +438,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
             case 'Unless':
                 return $this->unless((bool) $value, $callback);
             case 'IfNotNull':
-                return $this->notNull($value, $callback);
+                return $this->ifNotNull($value, $callback);
             default:
                 return $this;
         }

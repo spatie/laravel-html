@@ -332,6 +332,19 @@ class Html
     }
 
     /**
+     * @param string|null $name
+     * @param string|null $value
+     * @param string|null $step
+     *
+     * @return \Spatie\Html\Elements\Input
+     */
+    public function number($name = null, $value = null, $step = null)
+    {
+        return $this->input('number', $name, $value)
+                ->attributeIf($step, 'step', $step);
+    }
+
+    /**
      * @param string|null $text
      * @param string|null $value
      * @param bool $selected

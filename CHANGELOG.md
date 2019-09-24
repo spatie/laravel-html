@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.24.0 - 2019-09-04
+
+- Added number input
+
 ## 2.23.0 - 2019-09-04
 
 - Laravel 6 support

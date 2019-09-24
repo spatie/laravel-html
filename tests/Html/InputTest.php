@@ -206,7 +206,7 @@ class InputTest extends TestCase
             $this->html->time('time')
         );
     }
-  
+
     /** @test */
     public function it_can_create_a_range_input()
     {
@@ -240,6 +240,33 @@ class InputTest extends TestCase
         $this->assertHtmlStringEqualsHtmlString(
             '<input type="range" name="test" id="test" value="30" max="100" step="10">',
             $this->html->range('test', '30', null, '100', '10')
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_number_input()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input type="number">',
+            $this->html->number()
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_number_input_with_value()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input type="number" name="test" id="test" value="0">',
+            $this->html->number('test', '0')
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_number_input_with_step()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input type="number" name="test" id="test" value="0" step="0.01">',
+            $this->html->number('test', '0', '0.01')
         );
     }
 }

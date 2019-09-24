@@ -334,6 +334,8 @@ class Html
     /**
      * @param string|null $name
      * @param string|null $value
+     * @param string|null $min
+     * @param string|null $max
      * @param string|null $step
      *
      * @return \Spatie\Html\Elements\Input

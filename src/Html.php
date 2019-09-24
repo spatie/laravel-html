@@ -332,6 +332,23 @@ class Html
     }
 
     /**
+     * @param string|null $name
+     * @param string|null $value
+     * @param string|null $min
+     * @param string|null $max
+     * @param string|null $step
+     *
+     * @return \Spatie\Html\Elements\Input
+     */
+    public function number($name = null, $value = null, $min = null, $max = null, $step = null)
+    {
+        return $this->input('number', $name, $value)
+                ->attributeIfNotNull($min, 'min', $min)
+                ->attributeIfNotNull($max, 'max', $max)
+                ->attributeIfNotNull($step, 'step', $step);
+    }
+
+    /**
      * @param string|null $text
      * @param string|null $value
      * @param bool $selected

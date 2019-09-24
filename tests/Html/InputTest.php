@@ -206,7 +206,7 @@ class InputTest extends TestCase
             $this->html->time('time')
         );
     }
-  
+
     /** @test */
     public function it_can_create_a_range_input()
     {
@@ -233,13 +233,49 @@ class InputTest extends TestCase
             $this->html->range('test', '0', '0', '100', '10')
         );
     }
-  
+
     /** @test */
     public function it_can_create_a_range_input_with_max_step()
     {
         $this->assertHtmlStringEqualsHtmlString(
             '<input type="range" name="test" id="test" value="30" max="100" step="10">',
             $this->html->range('test', '30', null, '100', '10')
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_number_input()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input type="number">',
+            $this->html->number()
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_number_input_with_min_max()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input type="number" name="test" id="test" value="0" min="0" max="100">',
+            $this->html->number('test', '0', '0', '100')
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_number_input_with_min_max_step()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input type="number" name="test" id="test" value="0" min="0" max="100" step="10">',
+            $this->html->number('test', '0', '0', '100', '10')
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_number_input_with_max_step()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input type="number" name="test" id="test" value="30" max="100" step="10">',
+            $this->html->number('test', '30', null, '100', '10')
         );
     }
 }

@@ -253,20 +253,29 @@ class InputTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_a_number_input_with_value()
+    public function it_can_create_a_number_input_with_min_max()
     {
         $this->assertHtmlStringEqualsHtmlString(
-            '<input type="number" name="test" id="test" value="0">',
-            $this->html->number('test', '0')
+            '<input type="number" name="test" id="test" value="0" min="0" max="100">',
+            $this->html->number('test', '0', '0', '100')
         );
     }
 
     /** @test */
-    public function it_can_create_a_number_input_with_step()
+    public function it_can_create_a_number_input_with_min_max_step()
     {
         $this->assertHtmlStringEqualsHtmlString(
-            '<input type="number" name="test" id="test" value="0" step="0.01">',
-            $this->html->number('test', '0', '0.01')
+            '<input type="number" name="test" id="test" value="0" min="0" max="100" step="10">',
+            $this->html->number('test', '0', '0', '100', '10')
+        );
+    }
+  
+    /** @test */
+    public function it_can_create_a_number_input_with_max_step()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input type="number" name="test" id="test" value="30" max="100" step="10">',
+            $this->html->number('test', '30', null, '100', '10')
         );
     }
 }

@@ -338,10 +338,12 @@ class Html
      *
      * @return \Spatie\Html\Elements\Input
      */
-    public function number($name = null, $value = null, $step = null)
+    public function number($name = null, $value = null, $min = null, $max = null, $step = null)
     {
         return $this->input('number', $name, $value)
-                ->attributeIf($step, 'step', $step);
+                ->attributeIfNotNull($min, 'min', $min)
+                ->attributeIfNotNull($max, 'max', $max)
+                ->attributeIfNotNull($step, 'step', $step);
     }
 
     /**

@@ -233,7 +233,7 @@ class InputTest extends TestCase
             $this->html->range('test', '0', '0', '100', '10')
         );
     }
-  
+
     /** @test */
     public function it_can_create_a_range_input_with_max_step()
     {
@@ -269,7 +269,7 @@ class InputTest extends TestCase
             $this->html->number('test', '0', '0', '100', '10')
         );
     }
-  
+
     /** @test */
     public function it_can_create_a_number_input_with_max_step()
     {

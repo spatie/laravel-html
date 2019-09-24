@@ -325,7 +325,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
      */
     public function unless(bool $condition, \Closure $callback)
     {
-        return $this->if(!$condition, $callback);
+        return $this->if(! $condition, $callback);
     }
 
     /**
@@ -339,7 +339,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
      */
     public function ifNotNull($value, \Closure $callback)
     {
-        return !is_null($value) ? $callback($this) : $this;
+        return ! is_null($value) ? $callback($this) : $this;
     }
 
     /**
@@ -348,7 +348,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
     public function open()
     {
         $tag = $this->attributes->isEmpty()
-            ? '<' . $this->tag . '>'
+            ? '<'.$this->tag.'>'
             : "<{$this->tag} {$this->attributes->render()}>";
 
         $children = $this->children->map(function ($child): string {
@@ -367,7 +367,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
             throw InvalidChild::childMustBeAnHtmlElementOrAString();
         })->implode('');
 
-        return new HtmlString($tag . $children);
+        return new HtmlString($tag.$children);
     }
 
     /**
@@ -388,7 +388,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
     public function render()
     {
         return new HtmlString(
-            $this->open() . $this->close()
+            $this->open().$this->close()
         );
     }
 
@@ -415,7 +415,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
     {
         if (Str::endsWith($name, $conditions = ['If', 'Unless', 'IfNotNull'])) {
             foreach ($conditions as $condition) {
-                if (!method_exists($this, $method = str_replace($condition, '', $name))) {
+                if (! method_exists($this, $method = str_replace($condition, '', $name))) {
                     continue;
                 }
 
@@ -481,7 +481,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
     protected function guardAgainstInvalidChildren(Collection $children)
     {
         foreach ($children as $child) {
-            if ((!$child instanceof HtmlElement) && (!is_string($child)) && (!is_null($child))) {
+            if ((! $child instanceof HtmlElement) && (! is_string($child)) && (! is_null($child))) {
                 throw InvalidChild::childMustBeAnHtmlElementOrAString();
             }
         }

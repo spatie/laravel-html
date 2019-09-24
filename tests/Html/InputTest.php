@@ -168,7 +168,7 @@ class InputTest extends TestCase
             $this->html->time('test_time', '')
         );
     }
-  
+
     /** @test */
     public function it_can_create_a_time_input_with_time_string_and_format()
     {
@@ -177,7 +177,7 @@ class InputTest extends TestCase
             $this->html->time('test_time', '11:30')
         );
     }
-  
+
     /** @test */
     public function it_can_create_a_time_input_with_string_and_format()
     {
@@ -186,7 +186,7 @@ class InputTest extends TestCase
             $this->html->time('test_time', '2017-09-04T23:33:32')
         );
     }
-  
+
     /** @test */
     public function it_can_create_a_time_input_with_invalid_time()
     {

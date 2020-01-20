@@ -185,7 +185,7 @@ class InputTest extends TestCase
 
         $this->assertHtmlStringEqualsHtmlString(
             '<input id="test_datetime" name="test_datetime" type="datetime-local" value="2020-01-20T15:00:12"/>',
-            $this->html->date('test_datetime')
+            $this->html->datetime('test_datetime')
         );
     }
 
@@ -193,7 +193,7 @@ class InputTest extends TestCase
     public function it_can_create_a_datetime_input_with_invalid_date()
     {
         $this->assertHtmlStringEqualsHtmlString(
-            '<input id="test_datetime" name="test_date" type="datetime-local" value="notadate"/>',
+            '<input id="test_datetime" name="test_datetime" type="datetime-local" value="notadate"/>',
             $this->html->datetime('test_datetime', 'notadate')
         );
     }

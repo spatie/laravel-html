@@ -179,7 +179,7 @@ class InputTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_a_date_input_and_format_model_date()
+    public function it_can_create_a_datetime_input_and_format_model_date()
     {
         $this->html->model(['test_datetime' => '2020-01-20T15:00:12']);
 
@@ -190,7 +190,7 @@ class InputTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_a_date_input_with_invalid_date()
+    public function it_can_create_a_datetime_input_with_invalid_date()
     {
         $this->assertHtmlStringEqualsHtmlString(
             '<input id="test_datetime" name="test_date" type="date" value="notadate"/>',

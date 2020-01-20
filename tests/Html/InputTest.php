@@ -152,6 +152,53 @@ class InputTest extends TestCase
     }
 
     /** @test */
+    public function it_can_create_a_datetime_input()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input type="datetime-local">',
+            $this->html->datetime()
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_datetime_input_with_blank_date()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input id="test_datetime" name="test_datetime" type="datetime-local" value=""/>',
+            $this->html->datetime('test_datetime', '')
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_datetime_input_and_format_date()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input id="test_datetime" name="test_datetime" type="date" value="2020-01-20T15:00:12"/>',
+            $this->html->datetime('test_datetime', '2020-01-20T15:00:12')
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_date_input_and_format_model_date()
+    {
+        $this->html->model(['test_datetime' => '2020-01-20T15:00:12']);
+
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input id="test_datetime" name="test_datetime" type="datetime-local" value="2020-01-20T15:00:12"/>',
+            $this->html->date('test_datetime')
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_date_input_with_invalid_date()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input id="test_datetime" name="test_date" type="date" value="notadate"/>',
+            $this->html->datetime('test_datetime', 'notadate')
+        );
+    }
+
+    /** @test */
     public function it_can_create_a_time_input()
     {
         $this->assertHtmlStringEqualsHtmlString(

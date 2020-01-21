@@ -158,6 +158,25 @@ class Html
     /**
      * @param string|null $name
      * @param string|null $value
+     * @param bool $format
+     *
+     * @return \Spatie\Html\Elements\Input
+     */
+    public function datetime($name = '', $value = null, $format = true)
+    {
+        $element = $this->input('datetime-local', $name, $value);
+
+        if (! $format || empty($element->getAttribute('value'))) {
+            return $element;
+        }
+
+        return $element->value($this->formatDateTime($element->getAttribute('value'),
+            self::HTML_DATE_FORMAT.'\T'.self::HTML_TIME_FORMAT));
+    }
+
+    /**
+     * @param string|null $name
+     * @param string|null $value
      * @param string|null $min
      * @param string|null $max
      * @param string|null $step

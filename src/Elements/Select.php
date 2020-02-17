@@ -2,10 +2,10 @@
 
 namespace Spatie\Html\Elements;
 
-use Illuminate\Support\Str;
-use Spatie\Html\Selectable;
-use Spatie\Html\BaseElement;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
+use Spatie\Html\BaseElement;
+use Spatie\Html\Selectable;
 
 class Select extends BaseElement
 {

@@ -2,8 +2,8 @@
 
 namespace Spatie\Html\Test\Elements;
 
-use Spatie\Html\Test\TestCase;
 use Spatie\Html\Elements\Button;
+use Spatie\Html\Test\TestCase;
 
 class ButtonTest extends TestCase
 {

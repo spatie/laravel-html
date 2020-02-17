@@ -2,8 +2,8 @@
 
 namespace Spatie\Html\Test\Elements;
 
-use Spatie\Html\Test\TestCase;
 use Spatie\Html\Elements\Input;
+use Spatie\Html\Test\TestCase;
 
 class InputTest extends TestCase
 {

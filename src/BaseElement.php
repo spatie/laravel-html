@@ -3,14 +3,14 @@
 namespace Spatie\Html;
 
 use BadMethodCallException;
-use Illuminate\Support\Str;
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
-use Spatie\Html\Exceptions\MissingTag;
-use Spatie\Html\Exceptions\InvalidHtml;
+use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 use Spatie\Html\Exceptions\InvalidChild;
-use Illuminate\Contracts\Support\Htmlable;
+use Spatie\Html\Exceptions\InvalidHtml;
+use Spatie\Html\Exceptions\MissingTag;
 
 abstract class BaseElement implements Htmlable, HtmlElement
 {

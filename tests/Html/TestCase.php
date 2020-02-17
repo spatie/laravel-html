@@ -2,10 +2,10 @@
 
 namespace Spatie\Html\Test\Html;
 
+use Illuminate\Contracts\Session\Session;
+use Illuminate\Http\Request;
 use Mockery;
 use Spatie\Html\Html;
-use Illuminate\Http\Request;
-use Illuminate\Contracts\Session\Session;
 use Spatie\Html\Test\Concerns\AssertsHtmlStrings;
 
 abstract class TestCase extends \Spatie\Html\Test\TestCase

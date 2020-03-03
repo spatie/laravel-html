@@ -59,5 +59,7 @@
                 "Html": "Spatie\\Html\\Facades\\Html"
             }
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

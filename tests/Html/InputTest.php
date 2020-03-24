@@ -105,6 +105,24 @@ class InputTest extends TestCase
     }
 
     /** @test */
+    public function it_can_create_an_input_without_readonly()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input>',
+            $this->html->input()->readonly(false)
+        );
+    }
+
+    /** @test */
+    public function it_can_remove_readonly_from_a_readonly_input()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input>',
+            $this->html->input()->readonly()->readonly(false)
+        );
+    }
+
+    /** @test */
     public function it_can_create_a_date_input()
     {
         $this->assertHtmlStringEqualsHtmlString(

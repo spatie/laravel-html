@@ -29,11 +29,15 @@ class Form extends BaseElement
     }
 
     /**
+     * @param bool $novalidate
+     *
      * @return static
      */
-    public function novalidate()
+    public function novalidate($novalidate = true)
     {
-        return $this->attribute('novalidate');
+        return $novalidate
+            ? $this->attribute('novalidate')
+            : $this->forgetAttribute('novalidate');
     }
 
     /**

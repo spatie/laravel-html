@@ -44,11 +44,29 @@ class FormTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_a_form_that_add_novalidate_attribute()
+    public function it_can_create_a_form_with_a_novalidate_attribute()
     {
         $this->assertHtmlStringEqualsHtmlString(
             '<form enctype="multipart/form-data" novalidate=""></form>',
             Form::create()->novalidate()->acceptsFiles()
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_form_that_has_novalidate_when_passing_true()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<form enctype="multipart/form-data" novalidate=""></form>',
+            Form::create()->novalidate(true)->acceptsFiles()
+        );
+    }
+
+    /** @test */
+    public function it_wont_create_a_form_that_has_novalidate_when_passing_false()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<form enctype="multipart/form-data"></form>',
+            Form::create()->novalidate(false)->acceptsFiles()
         );
     }
 }

@@ -60,4 +60,94 @@ class TextareaTest extends TestCase
             Textarea::create()->value('My epic')
         );
     }
+
+    /** @test */
+    public function it_can_create_a_textarea_that_is_required_when_passing_true()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<textarea required>My epic</textarea>',
+            Textarea::create()->value('My epic')->required(true)
+        );
+    }
+
+    /** @test */
+    public function it_wont_create_a_textarea_that_is_required_when_passing_false()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<textarea>My epic</textarea>',
+            Textarea::create()->value('My epic')->required(false)
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_disabled_textarea()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<textarea disabled>My epic</textarea>',
+            Textarea::create()->value('My epic')->disabled()
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_textarea_that_is_disabled_when_passing_true()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<textarea disabled>My epic</textarea>',
+            Textarea::create()->value('My epic')->disabled(true)
+        );
+    }
+
+    /** @test */
+    public function it_wont_create_a_textarea_that_is_disabled_when_passing_false()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<textarea>My epic</textarea>',
+            Textarea::create()->value('My epic')->disabled(false)
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_readonly_textarea()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<textarea readonly>My epic</textarea>',
+            Textarea::create()->value('My epic')->readonly()
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_textarea_that_is_readonly_when_passing_true()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<textarea readonly>My epic</textarea>',
+            Textarea::create()->value('My epic')->readonly(true)
+        );
+    }
+
+    /** @test */
+    public function it_wont_create_a_textarea_that_is_readonly_when_passing_false()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<textarea>My epic</textarea>',
+            Textarea::create()->value('My epic')->readonly(false)
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_textarea_with_maxlength()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<textarea maxlength="25">My epic</textarea>',
+            Textarea::create()->value('My epic')->maxlength(25)
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_textarea_with_minlength()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<textarea minlength="25">My epic</textarea>',
+            Textarea::create()->value('My epic')->minlength(25)
+        );
+    }
 }

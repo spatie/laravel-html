@@ -26,6 +26,24 @@ class FileTest extends TestCase
     }
 
     /** @test */
+    public function it_can_create_a_file_that_has_autofocus_when_passing_true()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input type="file" autofocus>',
+            File::create()->autofocus(true)
+        );
+    }
+
+    /** @test */
+    public function it_wont_create_a_file_that_has_autofocus_when_passing_false()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input type="file">',
+            File::create()->autofocus(false)
+        );
+    }
+
+    /** @test */
     public function it_can_create_an_required_file()
     {
         $this->assertHtmlStringEqualsHtmlString(

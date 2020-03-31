@@ -25,6 +25,7 @@ echo Element::withTag('p')->text('This is the content!');
 
 ## `Button`
 
+- `function name(?string $name)`
 - `function type(?string $type)`
 - `function value(?string $value)`
 
@@ -34,26 +35,53 @@ echo Element::withTag('p')->text('This is the content!');
 
 - `function legend(?string $contents)`
 
+## `File`
+- `function accept(?string $value)`
+- `function acceptAudio()`
+- `function acceptImage()`
+- `function acceptVideo()`
+- `function autofocus()`
+- `function multiple()`
+- `function name(?string $name)`
+- `function required()`
+
 ## `Form`
 
 - `function action(?string $action)`
 - `function method(?string $method)`
 - `function acceptsFiles()`
 
+## `I`
+
+## `Img`
+
+- `function alt(?string $alt)`
+- `function src(?string $src)`
+
 ## `Input`
 
 - `function autofocus()`
+- `function checked($checked = true)`
+- `function disabled($disabled = true)`
 - `function name(?string $name)`
 - `function placeholder(?string $placeholder)`
-- `function required()`
+- `function readonly($readonly = true)`
+- `function required($required = true)`
+- `function size($size)`
 - `function type(?string $type)`
+- `function unchecked()`
 - `function value(?string $value)`
+
 
 ## `Label`
 
 - `function for(?string $for)`
 
 ## `Legend`
+
+## `Optgroup`
+
+- `function label(?string $label)`
 
 ## `Option`
 
@@ -64,10 +92,13 @@ echo Element::withTag('p')->text('This is the content!');
 
 ## `Select`
 
+- `function multiple()`
 - `function name(?string $name)`
+- `function optgroup(string $label, iterable $options)`
 - `function options(iterable $options)`
+- `function placeholder(?$text)`
+- `function required()`
 - `function value(?string $value)`
-- `function applyValueToOptions()`
 
 ## `Span`
 
@@ -75,4 +106,6 @@ echo Element::withTag('p')->text('This is the content!');
 
 - `function autofocus()`
 - `function name(?string $name)`
+- `function placeholder(?string $placeholder)`
+- `function required()`
 - `function value(?string $value)`

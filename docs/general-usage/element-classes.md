@@ -102,6 +102,7 @@ echo Element::withTag('p')->text('This is the content!');
 - `function optgroup(string $label, iterable $options)`
 - `function options(iterable $options)`
 - `function placeholder(?$text)`
+- `function readonly(?$readonly)`
 - `function required(?$required)`
 - `function value(?string $value)`
 

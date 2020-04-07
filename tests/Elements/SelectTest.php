@@ -277,4 +277,37 @@ class SelectTest extends TestCase
             Select::create()->required(false)->options(['value1' => 'text1'])->render()
         );
     }
+
+    /** @test */
+    public function it_can_create_a_select_that_is_readonly()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<select readonly>
+                <option value="value1">text1</option>
+            </select>',
+            Select::create()->readonly()->options(['value1' => 'text1'])->render()
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_select_that_is_readonly_when_passing_true()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<select readonly>
+                <option value="value1">text1</option>
+            </select>',
+            Select::create()->readonly(true)->options(['value1' => 'text1'])->render()
+        );
+    }
+
+    /** @test */
+    public function it_wont_create_a_select_that_is_readonly_when_passing_false()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<select>
+                <option value="value1">text1</option>
+            </select>',
+            Select::create()->readonly(false)->options(['value1' => 'text1'])->render()
+        );
+    }
 }

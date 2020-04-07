@@ -8,6 +8,7 @@ use Spatie\Html\BaseElement;
 use Spatie\Html\Elements\Attributes\Autofocus;
 use Spatie\Html\Elements\Attributes\Disabled;
 use Spatie\Html\Elements\Attributes\Name;
+use Spatie\Html\Elements\Attributes\Readonly;
 use Spatie\Html\Elements\Attributes\Required;
 use Spatie\Html\Selectable;
 
@@ -17,6 +18,7 @@ class Select extends BaseElement
     use Disabled;
     use Name;
     use Required;
+    use Readonly;
 
     /** @var string */
     protected $tag = 'select';

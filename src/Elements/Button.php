@@ -3,38 +3,15 @@
 namespace Spatie\Html\Elements;
 
 use Spatie\Html\BaseElement;
+use Spatie\Html\Elements\Attributes\Name;
+use Spatie\Html\Elements\Attributes\Type;
+use Spatie\Html\Elements\Attributes\Value;
 
 class Button extends BaseElement
 {
+    use Value;
+    use Name;
+    use Type;
+
     protected $tag = 'button';
-
-    /**
-     * @param string|null $type
-     *
-     * @return static
-     */
-    public function type($type)
-    {
-        return $this->attribute('type', $type);
-    }
-
-    /**
-     * @param string|null $value
-     *
-     * @return static
-     */
-    public function value($value)
-    {
-        return $this->attribute('value', $value);
-    }
-
-    /**
-     * @param string $name
-     *
-     * @return static
-     */
-    public function name($name)
-    {
-        return $this->attribute('name', $name);
-    }
 }

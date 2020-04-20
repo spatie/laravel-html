@@ -3,54 +3,54 @@
 namespace Spatie\Html\Elements;
 
 use Spatie\Html\BaseElement;
+use Spatie\Html\Elements\Attributes\Autofocus;
+use Spatie\Html\Elements\Attributes\Disabled;
+use Spatie\Html\Elements\Attributes\MinMaxLength;
+use Spatie\Html\Elements\Attributes\Name;
+use Spatie\Html\Elements\Attributes\Placeholder;
+use Spatie\Html\Elements\Attributes\Readonly;
+use Spatie\Html\Elements\Attributes\Required;
 
 class Textarea extends BaseElement
 {
+    use Autofocus;
+    use Placeholder;
+    use Name;
+    use Required;
+    use Disabled;
+    use Readonly;
+    use MinMaxLength;
+
     protected $tag = 'textarea';
-
-    /**
-     * @return static
-     */
-    public function autofocus()
-    {
-        return $this->attribute('autofocus');
-    }
-
-    /**
-     * @param string|null $placeholder
-     *
-     * @return static
-     */
-    public function placeholder($placeholder)
-    {
-        return $this->attribute('placeholder', $placeholder);
-    }
-
-    /**
-     * @param string $name
-     *
-     * @return static
-     */
-    public function name($name)
-    {
-        return $this->attribute('name', $name);
-    }
-
-    /**
-     * @return static
-     */
-    public function required()
-    {
-        return $this->attribute('required');
-    }
 
     /**
      * @param string|null $value
      *
      * @return static
+     * @throws \Spatie\Html\Exceptions\InvalidHtml
      */
     public function value($value)
     {
         return $this->html($value);
+    }
+
+    /**
+     * @param int $rows
+     *
+     * @return static
+     */
+    public function rows(int $rows)
+    {
+        return $this->attribute('rows', $rows);
+    }
+
+    /**
+     * @param int $cols
+     *
+     * @return static
+     */
+    public function cols(int $cols)
+    {
+        return $this->attribute('cols', $cols);
     }
 }

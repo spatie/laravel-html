@@ -178,4 +178,136 @@ class SelectTest extends TestCase
                 ->render()
         );
     }
+
+    /** @test */
+    public function it_can_create_a_disabled_select()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<select disabled>
+                <option value="value1">text1</option>
+            </select>',
+            Select::create()->disabled()->options(['value1' => 'text1'])->render()
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_select_that_is_disabled_when_passing_true()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<select disabled>
+                <option value="value1">text1</option>
+            </select>',
+            Select::create()->disabled(true)->options(['value1' => 'text1'])->render()
+        );
+    }
+
+    /** @test */
+    public function it_wont_create_a_select_that_is_disabled_when_passing_false()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<select>
+                <option value="value1">text1</option>
+            </select>',
+            Select::create()->disabled(false)->options(['value1' => 'text1'])->render()
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_select_that_has_autofocus()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<select autofocus>
+                <option value="value1">text1</option>
+            </select>',
+            Select::create()->autofocus()->options(['value1' => 'text1'])->render()
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_select_that_has_autofocus_when_passing_true()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<select autofocus>
+                <option value="value1">text1</option>
+            </select>',
+            Select::create()->autofocus(true)->options(['value1' => 'text1'])->render()
+        );
+    }
+
+    /** @test */
+    public function it_wont_create_a_select_that_has_autofocus_when_passing_false()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<select>
+                <option value="value1">text1</option>
+            </select>',
+            Select::create()->autofocus(false)->options(['value1' => 'text1'])->render()
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_select_that_is_required()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<select required>
+                <option value="value1">text1</option>
+            </select>',
+            Select::create()->required()->options(['value1' => 'text1'])->render()
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_select_that_is_required_when_passing_true()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<select required>
+                <option value="value1">text1</option>
+            </select>',
+            Select::create()->required(true)->options(['value1' => 'text1'])->render()
+        );
+    }
+
+    /** @test */
+    public function it_wont_create_a_select_that_is_required_when_passing_false()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<select>
+                <option value="value1">text1</option>
+            </select>',
+            Select::create()->required(false)->options(['value1' => 'text1'])->render()
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_select_that_is_readonly()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<select readonly>
+                <option value="value1">text1</option>
+            </select>',
+            Select::create()->readonly()->options(['value1' => 'text1'])->render()
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_select_that_is_readonly_when_passing_true()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<select readonly>
+                <option value="value1">text1</option>
+            </select>',
+            Select::create()->readonly(true)->options(['value1' => 'text1'])->render()
+        );
+    }
+
+    /** @test */
+    public function it_wont_create_a_select_that_is_readonly_when_passing_false()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<select>
+                <option value="value1">text1</option>
+            </select>',
+            Select::create()->readonly(false)->options(['value1' => 'text1'])->render()
+        );
+    }
 }

@@ -3,17 +3,36 @@
 namespace Spatie\Html\Elements;
 
 use Spatie\Html\BaseElement;
+use Spatie\Html\Elements\Attributes\Autofocus;
+use Spatie\Html\Elements\Attributes\Disabled;
+use Spatie\Html\Elements\Attributes\MinMaxLength;
+use Spatie\Html\Elements\Attributes\Name;
+use Spatie\Html\Elements\Attributes\Placeholder;
+use Spatie\Html\Elements\Attributes\Readonly;
+use Spatie\Html\Elements\Attributes\Required;
+use Spatie\Html\Elements\Attributes\Type;
+use Spatie\Html\Elements\Attributes\Value;
 
 class Input extends BaseElement
 {
+    use Autofocus;
+    use Disabled;
+    use MinMaxLength;
+    use Name;
+    use Placeholder;
+    use Readonly;
+    use Required;
+    use Type;
+    use Value;
+
     protected $tag = 'input';
 
     /**
      * @return static
      */
-    public function autofocus()
+    public function unchecked()
     {
-        return $this->attribute('autofocus');
+        return $this->checked(false);
     }
 
     /**
@@ -26,90 +45,6 @@ class Input extends BaseElement
         return $checked
             ? $this->attribute('checked', 'checked')
             : $this->forgetAttribute('checked');
-    }
-
-    /**
-     * @param bool $disabled
-     *
-     * @return static
-     */
-    public function disabled($disabled = true)
-    {
-        return $disabled
-            ? $this->attribute('disabled', 'disabled')
-            : $this->forgetAttribute('disabled');
-    }
-
-    /**
-     * @param string|null $name
-     *
-     * @return static
-     */
-    public function name($name)
-    {
-        return $this->attribute('name', $name);
-    }
-
-    /**
-     * @param string|null $placeholder
-     *
-     * @return static
-     */
-    public function placeholder($placeholder)
-    {
-        return $this->attribute('placeholder', $placeholder);
-    }
-
-    /**
-     * @param bool $required
-     *
-     * @return static
-     */
-    public function required($required = true)
-    {
-        return $required
-            ? $this->attribute('required')
-            : $this->forgetAttribute('required');
-    }
-
-    /**
-     * @param string|null $type
-     *
-     * @return static
-     */
-    public function type($type)
-    {
-        return $this->attribute('type', $type);
-    }
-
-    /**
-     * @return static
-     */
-    public function unchecked()
-    {
-        return $this->checked(false);
-    }
-
-    /**
-     * @param string|null $value
-     *
-     * @return static
-     */
-    public function value($value)
-    {
-        return $this->attribute('value', $value);
-    }
-
-    /**
-     * @param bool $readonly
-     *
-     * @return static
-     */
-    public function readonly($readonly = true)
-    {
-        return $readonly
-            ? $this->attribute('readonly')
-            : $this->forgetAttribute('readonly');
     }
 
     /**

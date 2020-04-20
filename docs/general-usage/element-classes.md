@@ -40,7 +40,7 @@ echo Element::withTag('p')->text('This is the content!');
 - `function acceptAudio()`
 - `function acceptImage()`
 - `function acceptVideo()`
-- `function autofocus()`
+- `function autofocus(?$autofocus)`
 - `function multiple()`
 - `function name(?string $name)`
 - `function required()`
@@ -50,6 +50,8 @@ echo Element::withTag('p')->text('This is the content!');
 - `function action(?string $action)`
 - `function method(?string $method)`
 - `function acceptsFiles()`
+- `function novalidate($novalidate = true)`
+
 
 ## `I`
 
@@ -60,7 +62,7 @@ echo Element::withTag('p')->text('This is the content!');
 
 ## `Input`
 
-- `function autofocus()`
+- `function autofocus(?$autofocus)`
 - `function checked($checked = true)`
 - `function disabled($disabled = true)`
 - `function name(?string $name)`
@@ -71,7 +73,8 @@ echo Element::withTag('p')->text('This is the content!');
 - `function type(?string $type)`
 - `function unchecked()`
 - `function value(?string $value)`
-
+- `function maxlength(int $maxlength)`
+- `function minlength(int $minlength)`
 
 ## `Label`
 
@@ -92,20 +95,30 @@ echo Element::withTag('p')->text('This is the content!');
 
 ## `Select`
 
+- `function autofocus(?$autofocus)`
+- `function disabled(?$disabled)`
 - `function multiple()`
 - `function name(?string $name)`
 - `function optgroup(string $label, iterable $options)`
 - `function options(iterable $options)`
 - `function placeholder(?$text)`
-- `function required()`
+- `function readonly(?$readonly)`
+- `function required(?$required)`
 - `function value(?string $value)`
 
 ## `Span`
 
-## `TextArea`
+## `Textarea`
 
 - `function autofocus()`
+- `function cols(int $cols)`
+- `function disabled(?$disabled)`
+- `function maxlength(int $maxlength)`
+- `function minlength(int $minlength)`
 - `function name(?string $name)`
 - `function placeholder(?string $placeholder)`
+- `function readonly(?$readonly)`
 - `function required()`
+- `function required(?$required)`
+- `function rows(int $rows)`
 - `function value(?string $value)`

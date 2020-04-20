@@ -89,6 +89,24 @@ class InputTest extends TestCase
     }
 
     /** @test */
+    public function it_can_create_an_input_that_has_autofocus_when_passing_true()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input autofocus>',
+            Input::create()->autofocus(true)
+        );
+    }
+
+    /** @test */
+    public function it_wont_create_an_input_that_has_autofocus_when_passing_false()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input>',
+            Input::create()->autofocus(false)
+        );
+    }
+
+    /** @test */
     public function it_can_check_an_input()
     {
         $this->assertHtmlStringEqualsHtmlString(
@@ -122,6 +140,24 @@ class InputTest extends TestCase
         $this->assertHtmlStringEqualsHtmlString(
             '<input type="checkbox" disabled>',
             Input::create()->type('checkbox')->disabled()
+        );
+    }
+
+    /** @test */
+    public function it_can_create_an_input_with_maxlength()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input type="text" maxlength="25">',
+            Input::create()->type('text')->maxlength(25)
+        );
+    }
+
+    /** @test */
+    public function it_can_create_an_input_with_minlength()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input type="text" minlength="25">',
+            Input::create()->type('text')->minlength(25)
         );
     }
 }

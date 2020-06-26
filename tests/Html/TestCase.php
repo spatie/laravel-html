@@ -18,7 +18,7 @@ abstract class TestCase extends \Spatie\Html\Test\TestCase
     /** @var array */
     protected $session = [];
 
-    /** @var \Spatie\Html\Html $html */
+    /** @var \Spatie\Html\Html */
     protected $html;
 
     public function setUp(): void

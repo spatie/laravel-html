@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.26.0 - 2020-09-08
+
+- add Laravel 8 support
+
 ## 2.25.0 - 2020-03-02
 
 - add Laravel 7 support

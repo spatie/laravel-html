@@ -2,9 +2,13 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
-## 2.26.0 - 2020-09-08
+## 2.27.0 - 2020-09-09
 
-- add Laravel 8 support
+- Add support for Laravel 8
+
+## 2.26.0 - 2020-04-20
+
+- Internal refactor to normalize availabel attribute methods
 
 ## 2.25.0 - 2020-03-02
 

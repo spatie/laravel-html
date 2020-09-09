@@ -22,6 +22,7 @@ class Attributes
         foreach ($attributes as $attribute => $value) {
             if ($attribute === 'class') {
                 $this->addClass($value);
+
                 continue;
             }
 
@@ -145,6 +146,7 @@ class Attributes
         foreach ($this->toArray() as $attribute => $value) {
             if ($value === '') {
                 $attributeStrings[] = $attribute;
+
                 continue;
             }
 

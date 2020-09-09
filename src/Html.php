@@ -170,8 +170,10 @@ class Html
             return $element;
         }
 
-        return $element->value($this->formatDateTime($element->getAttribute('value'),
-            self::HTML_DATE_FORMAT.'\T'.self::HTML_TIME_FORMAT));
+        return $element->value($this->formatDateTime(
+            $element->getAttribute('value'),
+            self::HTML_DATE_FORMAT.'\T'.self::HTML_TIME_FORMAT
+        ));
     }
 
     /**

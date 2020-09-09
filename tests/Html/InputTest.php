@@ -220,9 +220,9 @@ class InputTest extends TestCase
     public function it_can_create_a_time_input()
     {
         $this->assertHtmlStringEqualsHtmlString(
-                '<input type="time">',
-                $this->html->time()
-            );
+            '<input type="time">',
+            $this->html->time()
+        );
     }
 
     /** @test */

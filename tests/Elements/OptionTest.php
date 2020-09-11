@@ -56,4 +56,13 @@ class OptionTest extends TestCase
             Option::create()->value('0')->text('Choose...')->selectedIf(false)
         );
     }
+
+    /** @test */
+    public function it_can_disable_an_optgroup()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<option disabled></option>',
+            Option::create()->disabled()
+        );
+    }
 }

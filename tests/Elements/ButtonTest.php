@@ -51,4 +51,13 @@ class ButtonTest extends TestCase
             Button::create()->name('foo')->value('bar')
         );
     }
+
+    /** @test */
+    public function it_can_disable_a_button()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<button disabled></button>',
+            Button::create()->disabled()
+        );
+    }
 }

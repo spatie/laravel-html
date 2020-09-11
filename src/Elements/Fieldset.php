@@ -3,9 +3,12 @@
 namespace Spatie\Html\Elements;
 
 use Spatie\Html\BaseElement;
+use Spatie\Html\Elements\Attributes\Disabled;
 
 class Fieldset extends BaseElement
 {
+    use Disabled;
+
     protected $tag = 'fieldset';
 
     /**

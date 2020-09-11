@@ -3,11 +3,13 @@
 namespace Spatie\Html\Elements;
 
 use Spatie\Html\BaseElement;
+use Spatie\Html\Elements\Attributes\Disabled;
 use Spatie\Html\Elements\Attributes\Value;
 use Spatie\Html\Selectable;
 
 class Option extends BaseElement implements Selectable
 {
+    use Disabled;
     use Value;
 
     /** @var string */

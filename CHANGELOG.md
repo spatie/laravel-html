@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.28.0 - 2020-09-30
+
+- add the disabled method to all elements that support the attribute (#165)
+
 ## 2.27.0 - 2020-09-09
 
 - Add support for Laravel 8

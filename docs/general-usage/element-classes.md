@@ -25,6 +25,7 @@ echo Element::withTag('p')->text('This is the content!');
 
 ## `Button`
 
+- `function disabled($disabled = true)`
 - `function name(?string $name)`
 - `function type(?string $type)`
 - `function value(?string $value)`
@@ -33,6 +34,7 @@ echo Element::withTag('p')->text('This is the content!');
 
 ## `Fieldset`
 
+- `function disabled($disabled = true)`
 - `function legend(?string $contents)`
 
 ## `File`
@@ -84,10 +86,12 @@ echo Element::withTag('p')->text('This is the content!');
 
 ## `Optgroup`
 
+- `function disabled($disabled = true)`
 - `function label(?string $label)`
 
 ## `Option`
 
+- `function disabled($disabled = true)`
 - `function selected()`
 - `function selectedIf(bool $condition)`
 - `function unselected()`

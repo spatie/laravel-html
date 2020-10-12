@@ -10,7 +10,7 @@ This package helps you generate HTML using a clean, simple and easy to read API.
 
 ## Support us
 
-[![Image](https://github-ads.s3.eu-central-1.amazonaws.com/laravel-html.jpg)](https://spatie.be/github-ad-click/laravel-html)
+[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/laravel-html.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/laravel-html)
 
 We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
 

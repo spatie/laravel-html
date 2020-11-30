@@ -22,7 +22,7 @@
         }
     ],
     "require": {
-        "php": "^7.2",
+        "php": "^8.0|^7.2",
         "illuminate/http": "^6.0|^7.0|^8.0",
         "illuminate/support": "^6.0|^7.0|^8.0"
     },

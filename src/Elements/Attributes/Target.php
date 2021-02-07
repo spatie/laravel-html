@@ -9,8 +9,8 @@ trait Target
      *
      * @return static
      */
-    public function target($name)
+    public function target($target)
     {
-        return $this->attribute('target', $name);
+        return $this->attribute('target', $target);
     }
 }

@@ -3,9 +3,12 @@
 namespace Spatie\Html\Elements;
 
 use Spatie\Html\BaseElement;
+use Spatie\Html\Elements\Attributes\Target;
 
 class A extends BaseElement
 {
+    use Target;
+
     protected $tag = 'a';
 
     /**

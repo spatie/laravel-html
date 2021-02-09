@@ -24,4 +24,13 @@ class ATest extends TestCase
             A::create()->href('https://spatie.be')
         );
     }
+
+    /** @test */
+    public function it_can_create_an_a_element_with_a_target()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<a target="_blank"></a>',
+            A::create()->target('_blank')
+        );
+    }
 }

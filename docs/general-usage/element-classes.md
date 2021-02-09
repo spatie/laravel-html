@@ -22,6 +22,7 @@ echo Element::withTag('p')->text('This is the content!');
 ## `A`
 
 - `function href(?string $href)`
+- `function target(string $target)`
 
 ## `Button`
 
@@ -53,6 +54,7 @@ echo Element::withTag('p')->text('This is the content!');
 - `function method(?string $method)`
 - `function acceptsFiles()`
 - `function novalidate($novalidate = true)`
+- `function target(string $target)`
 
 
 ## `I`

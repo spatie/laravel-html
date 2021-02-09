@@ -69,4 +69,13 @@ class FormTest extends TestCase
             Form::create()->novalidate(false)->acceptsFiles()
         );
     }
+
+    /** @test */
+    public function it_can_create_a_form_with_a_target()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<form target="_blank"></form>',
+            Form::create()->target('_blank')
+        );
+    }
 }

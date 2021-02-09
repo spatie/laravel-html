@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.29.0 - 2021-02-09
+
+- Add `target` attribute method to links and button
+
 ## 2.28.1 - 2020-11-30
 
 - add support for PHP 8

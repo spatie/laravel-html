@@ -30,4 +30,40 @@ class SpanTest extends TestCase
             $this->html->span('<em>Hi</em>')
         );
     }
+
+    /** @test */
+    public function it_can_create_a_span_with_integer_content()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<span>50</span>',
+            $this->html->span(50)
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_span_with_float_content()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<span>50.5</span>',
+            $this->html->span(50.5)
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_span_with_hexadecimal_content()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<span>1337</span>',
+            $this->html->span(0x539)
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_span_with_octal_content()
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<span>83</span>',
+            $this->html->span(0123)
+        );
+    }
 }

@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 2.30.0 - 2022-07-09
+
+- Better support for numeric values in attributes
+
 ## 2.29.0 - 2021-02-09
 
 - Add `target` attribute method to links and button

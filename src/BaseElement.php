@@ -170,7 +170,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
     }
 
     /**
-     * @param \Spatie\Html\HtmlElement|string|iterable|null $children
+     * @param \Spatie\Html\HtmlElement|string|iterable|int|float|null $children
      * @param callable|null $mapper
      *
      * @return static
@@ -193,7 +193,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
     /**
      * Alias for `addChildren`.
      *
-     * @param \Spatie\Html\HtmlElement|string|iterable|null $children
+     * @param \Spatie\Html\HtmlElement|string|iterable|int|float|null $children
      * @param callable|null $mapper
      *
      * @return static
@@ -206,7 +206,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
     /**
      * Alias for `addChildren`.
      *
-     * @param \Spatie\Html\HtmlElement|string|iterable|null $children
+     * @param \Spatie\Html\HtmlElement|string|iterable|int|float|null $children
      * @param callable|null $mapper
      *
      * @return static
@@ -219,7 +219,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
     /**
      * Alias for `addChildren`.
      *
-     * @param \Spatie\Html\HtmlElement|string|iterable|null $children
+     * @param \Spatie\Html\HtmlElement|string|iterable|int|float|null $children
      * @param callable|null $mapper
      *
      * @return static
@@ -247,7 +247,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
     }
 
     /**
-     * @param \Spatie\Html\HtmlElement|string|iterable|null $children
+     * @param \Spatie\Html\HtmlElement|string|iterable|int|float|null $children
      * @param callable|null $mapper
      *
      * @return static
@@ -266,7 +266,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
     /**
      * Alias for `prependChildren`.
      *
-     * @param \Spatie\Html\HtmlElement|string|iterable|null $children
+     * @param \Spatie\Html\HtmlElement|string|iterable|int|float|null $children
      * @param callable|null $mapper
      *
      * @return static
@@ -360,7 +360,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
                 return '';
             }
 
-            if (is_string($child)) {
+            if (is_string($child) || is_numeric($child)) {
                 return $child;
             }
 
@@ -481,9 +481,11 @@ abstract class BaseElement implements Htmlable, HtmlElement
     protected function guardAgainstInvalidChildren(Collection $children)
     {
         foreach ($children as $child) {
-            if ((! $child instanceof HtmlElement) && (! is_string($child)) && (! is_null($child))) {
-                throw InvalidChild::childMustBeAnHtmlElementOrAString();
+            if ($child instanceof HtmlElement || is_null($child) || is_string($child) || is_numeric($child)) {
+                continue;
             }
+
+            throw InvalidChild::childMustBeAnHtmlElementOrAString();
         }
     }
 }

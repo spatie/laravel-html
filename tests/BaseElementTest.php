@@ -17,7 +17,7 @@ class BaseElementTest extends TestCase
     {
         $this->expectException(MissingTag::class);
 
-        new class extends BaseElement {
+        new class() extends BaseElement {
         };
     }
 
@@ -226,7 +226,7 @@ class BaseElementTest extends TestCase
     {
         $this->expectException(InvalidHtml::class);
 
-        $img = new class extends BaseElement {
+        $img = new class() extends BaseElement {
             protected $tag = 'img';
         };
 

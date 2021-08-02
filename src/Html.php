@@ -30,8 +30,8 @@ class Html
 {
     use Macroable;
 
-    const HTML_DATE_FORMAT = 'Y-m-d';
-    const HTML_TIME_FORMAT = 'H:i:s';
+    public const HTML_DATE_FORMAT = 'Y-m-d';
+    public const HTML_TIME_FORMAT = 'H:i:s';
 
     /** @var \Illuminate\Http\Request */
     protected $request;

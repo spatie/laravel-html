@@ -8,7 +8,7 @@ use Spatie\Html\Elements\Attributes\Disabled;
 use Spatie\Html\Elements\Attributes\MinMaxLength;
 use Spatie\Html\Elements\Attributes\Name;
 use Spatie\Html\Elements\Attributes\Placeholder;
-use Spatie\Html\Elements\Attributes\Readonly;
+use Spatie\Html\Elements\Attributes\ReadonlyTrait;
 use Spatie\Html\Elements\Attributes\Required;
 use Spatie\Html\Elements\Attributes\Type;
 use Spatie\Html\Elements\Attributes\Value;
@@ -20,7 +20,7 @@ class Input extends BaseElement
     use MinMaxLength;
     use Name;
     use Placeholder;
-    use Readonly;
+    use ReadonlyTrait;
     use Required;
     use Type;
     use Value;

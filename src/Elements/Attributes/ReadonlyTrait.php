@@ -2,7 +2,7 @@
 
 namespace Spatie\Html\Elements\Attributes;
 
-trait Readonly
+trait ReadonlyTrait
 {
     /**
      * @param bool $readonly

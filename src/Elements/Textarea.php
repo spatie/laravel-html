@@ -8,7 +8,7 @@ use Spatie\Html\Elements\Attributes\Disabled;
 use Spatie\Html\Elements\Attributes\MinMaxLength;
 use Spatie\Html\Elements\Attributes\Name;
 use Spatie\Html\Elements\Attributes\Placeholder;
-use Spatie\Html\Elements\Attributes\Readonly;
+use Spatie\Html\Elements\Attributes\ReadonlyTrait;
 use Spatie\Html\Elements\Attributes\Required;
 
 class Textarea extends BaseElement
@@ -18,7 +18,7 @@ class Textarea extends BaseElement
     use Name;
     use Required;
     use Disabled;
-    use Readonly;
+    use ReadonlyTrait;
     use MinMaxLength;
 
     protected $tag = 'textarea';

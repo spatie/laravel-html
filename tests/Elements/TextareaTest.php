@@ -111,7 +111,7 @@ class TextareaTest extends TestCase
     {
         $this->assertHtmlStringEqualsHtmlString(
             '<textarea readonly>My epic</textarea>',
-            Textarea::create()->value('My epic')->readonly()
+            Textarea::create()->value('My epic')->isReadonly()
         );
     }
 
@@ -120,7 +120,7 @@ class TextareaTest extends TestCase
     {
         $this->assertHtmlStringEqualsHtmlString(
             '<textarea readonly>My epic</textarea>',
-            Textarea::create()->value('My epic')->readonly(true)
+            Textarea::create()->value('My epic')->isReadonly(true)
         );
     }
 
@@ -129,7 +129,7 @@ class TextareaTest extends TestCase
     {
         $this->assertHtmlStringEqualsHtmlString(
             '<textarea>My epic</textarea>',
-            Textarea::create()->value('My epic')->readonly(false)
+            Textarea::create()->value('My epic')->isReadonly(false)
         );
     }
 

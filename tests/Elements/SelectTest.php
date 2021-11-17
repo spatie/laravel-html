@@ -285,7 +285,7 @@ class SelectTest extends TestCase
             '<select readonly>
                 <option value="value1">text1</option>
             </select>',
-            Select::create()->readonly()->options(['value1' => 'text1'])->render()
+            Select::create()->isReadonly()->options(['value1' => 'text1'])->render()
         );
     }
 
@@ -296,7 +296,7 @@ class SelectTest extends TestCase
             '<select readonly>
                 <option value="value1">text1</option>
             </select>',
-            Select::create()->readonly(true)->options(['value1' => 'text1'])->render()
+            Select::create()->isReadonly(true)->options(['value1' => 'text1'])->render()
         );
     }
 
@@ -307,7 +307,7 @@ class SelectTest extends TestCase
             '<select>
                 <option value="value1">text1</option>
             </select>',
-            Select::create()->readonly(false)->options(['value1' => 'text1'])->render()
+            Select::create()->isReadonly(false)->options(['value1' => 'text1'])->render()
         );
     }
 }

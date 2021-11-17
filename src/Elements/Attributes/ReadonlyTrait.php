@@ -9,7 +9,7 @@ trait ReadonlyTrait
      *
      * @return static
      */
-    public function readonly($readonly = true)
+    public function isReadonly($readonly = true)
     {
         return $readonly
             ? $this->attribute('readonly')

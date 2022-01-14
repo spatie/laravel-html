@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 3.1.0 - 2022-01-14
+
+- allow Laravel 9
+
 ## 3.0.0 - 2021-11-17
 
 This release adds compatiblity with PHP 8.1

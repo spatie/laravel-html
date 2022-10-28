@@ -7,20 +7,20 @@ All `Spatie\Html\Elements` have some methods that make working with elements eas
 
 ## Available methods
 
-- [`attribute()`](#codeattributecode)
-- [`attributes()`](#codeattributescode)
-- [`forgetAttribute()`](#codeforgetattributecode)
-- [`getAttribute()`](#codegetattributecode)
-- [`class()`](#codeclasscode)
-- [`id()`](#codeidcode)
-- [`data()`](#codedatacode)
-- [`child()` and `children()`](#codechildcode-and-codechildrencode)
-- [`prependChild()` and `prependChildren()`](#codeprependchildcode-or-codeprependchildrencode)
-- [`text()`](#codetextcode)
-- [`if()`](#codeifcode)
-- [`open()`](#codeopencode)
-- [`close()`](#codeclosecode)
-- [`render()`](#coderendercode)
+- [`attribute()`](#attribute)
+- [`attributes()`](#attributes)
+- [`forgetAttribute()`](#forgetattribute)
+- [`getAttribute()`](#getattribute)
+- [`class()`](#class)
+- [`id()`](#id)
+- [`data()`](#data)
+- [`child()` and `children()`](#child-and-children)
+- [`prependChild()` and `prependChildren()`](#prependchild-and-prependchildren)
+- [`text()`](#text)
+- [`if()`](#if)
+- [`open()`](#open)
+- [`close()`](#close)
+- [`render()`](#render)
 
 You can also call all those methods with the suffix `If` in order to execute the method only if the first parameter is `true`.
 

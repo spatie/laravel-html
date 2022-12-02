@@ -99,6 +99,8 @@ echo Element::withTag('p')->text('This is the content!');
 - `function unselected()`
 - `function value(?string $value)`
 
+## `P`
+
 ## `Select`
 
 - `function autofocus(?$autofocus)`

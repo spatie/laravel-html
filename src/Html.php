@@ -22,6 +22,7 @@ use Spatie\Html\Elements\Input;
 use Spatie\Html\Elements\Label;
 use Spatie\Html\Elements\Legend;
 use Spatie\Html\Elements\Option;
+use Spatie\Html\Elements\P;
 use Spatie\Html\Elements\Select;
 use Spatie\Html\Elements\Span;
 use Spatie\Html\Elements\Textarea;
@@ -66,6 +67,17 @@ class Html
     public function i($contents = null)
     {
         return I::create()
+            ->html($contents);
+    }
+
+    /**
+     * @param \Spatie\Html\HtmlElement|string|null $contents
+     *
+     * @return \Spatie\Html\Elements\P
+     */
+    public function p($contents = null)
+    {
+        return P::create()
             ->html($contents);
     }
 

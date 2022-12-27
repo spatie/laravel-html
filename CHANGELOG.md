@@ -2,15 +2,17 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 3.2.0 - 2022-12-27
+
+- Add `P` class to render paragraphs
+
 ## 3.1.0 - 2022-01-14
 
-- allow Laravel 9
+- Allow Laravel 9
 
 ## 3.0.0 - 2021-11-17
 
-This release adds compatiblity with PHP 8.1
-
-The only breaking change with v2 is that `readonly` has been renamed to `isReadonly`
+- Add compatiblity with PHP 8.1. The only breaking change with v2 is that `readonly` has been renamed to `isReadonly`.
 
 ## 2.30.0 - 2022-07-09
 

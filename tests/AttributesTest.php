@@ -2,6 +2,8 @@
 
 use Spatie\Html\Attributes;
 
+uses(PHPUnit\Framework\TestCase::class);
+
 it('starts empty', function () {
     $attributes = new Attributes();
 

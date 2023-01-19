@@ -2,15 +2,13 @@
 
 use function PHPUnit\Framework\assertEqualsCanonicalizing;
 
-uses(PHPUnit\Framework\TestCase::class)->in('.');
+uses(Spatie\Html\Test\Html\TestCase::class)->in('Html', 'Elements');
 
 // Functions
 
 /**
  * @param string $expectedHtml
  * @param \Illuminate\Contracts\Support\Htmlable|string $actualHtml
- * 
- * @return void
  */
 function assertHtmlStringEqualsHtmlString($expectedHtml, $actualHtml): void
 {
@@ -26,8 +24,6 @@ function assertHtmlStringEqualsHtmlString($expectedHtml, $actualHtml): void
 /**
  * @param string $expectedHtml
  * @param \Illuminate\Contracts\Support\Htmlable|string $actualHtml
- * 
- * @return DOMDocument
  */
 function convertToDomDocument($html): DOMDocument
 {

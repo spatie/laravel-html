@@ -5,10 +5,11 @@ namespace Spatie\Html\Test\Html;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Mockery;
+use PHPUnit\Framework\TestCase as FrameworkTestCase;
 use Spatie\Html\Html;
 use Spatie\Html\Test\Concerns\AssertsHtmlStrings;
 
-abstract class TestCase extends \Spatie\Html\Test\TestCase
+abstract class TestCase extends FrameworkTestCase
 {
     // use AssertsHtmlStrings;
 
@@ -21,7 +22,7 @@ abstract class TestCase extends \Spatie\Html\Test\TestCase
     /** @var \Spatie\Html\Html */
     protected $html;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -66,7 +67,7 @@ abstract class TestCase extends \Spatie\Html\Test\TestCase
         return $this;
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         Mockery::close();
     }

@@ -7,6 +7,8 @@ use Spatie\Html\Exceptions\InvalidChild;
 use Spatie\Html\Exceptions\InvalidHtml;
 use Spatie\Html\Exceptions\MissingTag;
 
+uses(PHPUnit\Framework\TestCase::class);
+
 class Div extends BaseElement
 {
     protected $tag = 'div';

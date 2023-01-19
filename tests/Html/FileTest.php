@@ -1,24 +1,15 @@
 <?php
 
-namespace Spatie\Html\Test\Html;
+it('can create a file input', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<input type="file">',
+        $this->html->file()
+    );
+});
 
-class FileTest extends TestCase
-{
-    /** @test */
-    public function it_can_create_a_file_input()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<input type="file">',
-            $this->html->file()
-        );
-    }
-
-    /** @test */
-    public function it_can_create_a_file_input_with_a_name()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<input id="archives" type="file" name="archives">',
-            $this->html->file('archives')
-        );
-    }
-}
+it('can create a file input with a name', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<input id="archives" type="file" name="archives">',
+        $this->html->file('archives')
+    );
+});

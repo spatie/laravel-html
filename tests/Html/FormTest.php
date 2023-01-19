@@ -2,89 +2,70 @@
 
 namespace Spatie\Html\Test\Html;
 
-class FormTest extends TestCase
-{
-    /** @test */
-    public function it_can_create_a_form()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<form method="POST"><input type="hidden" name="_token" value="abc"></form>',
-            $this->html->form()
-        );
-    }
 
-    /** @test */
-    public function it_can_create_a_form_with_a_custom_action()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<form method="POST" action="/submit">'.
-                '<input type="hidden" name="_token" value="abc">
-            </form>',
-            $this->html->form('POST', '/submit')
-        );
-    }
+it('can create a form', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<form method="POST"><input type="hidden" name="_token" value="abc"></form>',
+        $this->html->form()
+    );
+});
 
-    /** @test */
-    public function it_can_create_a_form_with_a_target()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<form method="POST" action="/submit" target="_blank">'.
+it('can create a form with a custom action', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<form method="POST" action="/submit">' .
             '<input type="hidden" name="_token" value="abc">
             </form>',
-            $this->html->form('POST', '/submit')->target('_blank')
-        );
-    }
+        $this->html->form('POST', '/submit')
+    );
+});
 
-    /** @test */
-    public function it_can_create_a_form_with_a_custom_method_that_gets_spoofed()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<form action="/submit" method="POST">'.
-                '<input type="hidden" name="_method" id="_method" value="DELETE">'.
-                '<input type="hidden" name="_token" value="abc">'.
+it('can create a form with a target', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<form method="POST" action="/submit" target="_blank">' .
+            '<input type="hidden" name="_token" value="abc">
+            </form>',
+        $this->html->form('POST', '/submit')->target('_blank')
+    );
+});
+
+it('can create a form with a custom method that gets spoofed', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<form action="/submit" method="POST">' .
+            '<input type="hidden" name="_method" id="_method" value="DELETE">' .
+            '<input type="hidden" name="_token" value="abc">' .
             '</form>',
-            $this->html->form('DELETE', '/submit')
-        );
-    }
+        $this->html->form('DELETE', '/submit')
+    );
+});
 
-    /** @test */
-    public function it_can_get_value_from_a_form()
-    {
-        $this->html->form('DELETE', '/submit');
-        assertHtmlStringEqualsHtmlString(
-            '<p>delete</p>',
-            $this->html->value('_method', 'delete')
-        );
-        assertHtmlStringEqualsHtmlString(
-            '<p>abc</p>',
-            $this->html->value('_token', 'abc')
-        );
-    }
+it('can get value from a form', function () {
+    $this->html->form('DELETE', '/submit');
 
-    /** @test */
-    public function it_doesnt_render_a_token_field_when_using_a_get_method()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<form action="/submit" method="GET"></form>',
-            $this->html->form('GET', '/submit')
-        );
-    }
+    assertHtmlStringEqualsHtmlString(
+        '<p>delete</p>',
+        $this->html->value('_method', 'delete')
+    );
 
-    /** @test */
-    public function it_can_create_form_with_end_model()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<form action="submit" method="GET"></form>',
-            $this->html->endModel()->form('GET', 'submit')
-        );
-    }
+    assertHtmlStringEqualsHtmlString(
+        '<p>abc</p>',
+        $this->html->value('_token', 'abc')
+    );
+});
 
-    /** @test */
-    public function it_can_return_close_model_form()
-    {
-        $this->assertSame(
-            '</form>',
-            (string) $this->html->closeModelForm()
-        );
-    }
-}
+it("doesn't render a token field when using a GET method", function () {
+    assertHtmlStringEqualsHtmlString(
+        '<form action="/submit" method="GET"></form>',
+        $this->html->form('GET', '/submit')
+    );
+});
+
+it('can create form with end model', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<form action="submit" method="GET"></form>',
+        $this->html->endModel()->form('GET', 'submit')
+    );
+});
+
+it('can return close model form')
+    ->expect(fn () => (string) $this->html->closeModelForm())
+    ->toEqual('</form>');

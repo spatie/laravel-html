@@ -10,7 +10,7 @@ class SelectTest extends TestCase
     /** @test */
     public function it_can_render_an_empty_version_itself()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<select></select>',
             Select::create()->render()
         );
@@ -19,7 +19,7 @@ class SelectTest extends TestCase
     /** @test */
     public function it_can_render_options()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<select>
                 <option value="value1">text1</option>
             </select>',
@@ -30,7 +30,7 @@ class SelectTest extends TestCase
     /** @test */
     public function it_can_have_a_value()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<select>
                 <option value="value1">text1</option>
                 <option selected value="value2">text2</option>
@@ -45,7 +45,7 @@ class SelectTest extends TestCase
     /** @test */
     public function it_can_have_a_placeholder_option()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<select>
                 <option value="" selected="selected">Placeholder</option>
                 <option value="value1">text1</option>
@@ -61,7 +61,7 @@ class SelectTest extends TestCase
     /** @test */
     public function it_doesnt_select_the_placeholder_if_something_has_already_been_selected()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<select>
                 <option value="">Placeholder</option>
                 <option value="value1" selected="selected">text1</option>
@@ -78,7 +78,7 @@ class SelectTest extends TestCase
     /** @test */
     public function it_can_have_a_multiple_option()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<select multiple="multiple">
                 <option value="value1">text1</option>
                 <option value="value2">text2</option>
@@ -94,7 +94,7 @@ class SelectTest extends TestCase
     /** @test */
     public function it_can_convert_multiple_select_name()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<select multiple="multiple" name="foo[]">
                 <option value="value1">text1</option>
                 <option value="value2">text2</option>
@@ -111,7 +111,7 @@ class SelectTest extends TestCase
     /** @test */
     public function it_can_have_multiple_values()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<select multiple="multiple">
                 <option value="value1" selected="selected">text1</option>
                 <option value="value2">text2</option>
@@ -128,7 +128,7 @@ class SelectTest extends TestCase
     /** @test */
     public function it_can_have_one_multiple_value()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<select multiple="multiple">
                 <option value="value1">text1</option>
                 <option value="value2">text2</option>
@@ -145,7 +145,7 @@ class SelectTest extends TestCase
     /** @test */
     public function it_can_have_an_optgroup()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<select>
                 <optgroup label="Cats">
                     <option value="leopard">Leopard</option>
@@ -163,7 +163,7 @@ class SelectTest extends TestCase
     /** @test */
     public function it_can_select_an_item_in_an_optgroup()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<select>
                 <optgroup label="Cats">
                     <option value="leopard" selected="selected">Leopard</option>
@@ -182,7 +182,7 @@ class SelectTest extends TestCase
     /** @test */
     public function it_can_create_a_disabled_select()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<select disabled>
                 <option value="value1">text1</option>
             </select>',
@@ -193,7 +193,7 @@ class SelectTest extends TestCase
     /** @test */
     public function it_can_create_a_select_that_is_disabled_when_passing_true()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<select disabled>
                 <option value="value1">text1</option>
             </select>',
@@ -204,7 +204,7 @@ class SelectTest extends TestCase
     /** @test */
     public function it_wont_create_a_select_that_is_disabled_when_passing_false()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<select>
                 <option value="value1">text1</option>
             </select>',
@@ -215,7 +215,7 @@ class SelectTest extends TestCase
     /** @test */
     public function it_can_create_a_select_that_has_autofocus()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<select autofocus>
                 <option value="value1">text1</option>
             </select>',
@@ -226,7 +226,7 @@ class SelectTest extends TestCase
     /** @test */
     public function it_can_create_a_select_that_has_autofocus_when_passing_true()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<select autofocus>
                 <option value="value1">text1</option>
             </select>',
@@ -237,7 +237,7 @@ class SelectTest extends TestCase
     /** @test */
     public function it_wont_create_a_select_that_has_autofocus_when_passing_false()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<select>
                 <option value="value1">text1</option>
             </select>',
@@ -248,7 +248,7 @@ class SelectTest extends TestCase
     /** @test */
     public function it_can_create_a_select_that_is_required()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<select required>
                 <option value="value1">text1</option>
             </select>',
@@ -259,7 +259,7 @@ class SelectTest extends TestCase
     /** @test */
     public function it_can_create_a_select_that_is_required_when_passing_true()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<select required>
                 <option value="value1">text1</option>
             </select>',
@@ -270,7 +270,7 @@ class SelectTest extends TestCase
     /** @test */
     public function it_wont_create_a_select_that_is_required_when_passing_false()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<select>
                 <option value="value1">text1</option>
             </select>',
@@ -281,7 +281,7 @@ class SelectTest extends TestCase
     /** @test */
     public function it_can_create_a_select_that_is_readonly()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<select readonly>
                 <option value="value1">text1</option>
             </select>',
@@ -292,7 +292,7 @@ class SelectTest extends TestCase
     /** @test */
     public function it_can_create_a_select_that_is_readonly_when_passing_true()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<select readonly>
                 <option value="value1">text1</option>
             </select>',
@@ -303,7 +303,7 @@ class SelectTest extends TestCase
     /** @test */
     public function it_wont_create_a_select_that_is_readonly_when_passing_false()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<select>
                 <option value="value1">text1</option>
             </select>',

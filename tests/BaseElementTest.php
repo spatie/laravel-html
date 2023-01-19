@@ -1,8 +1,5 @@
 <?php
 
-namespace Spatie\Html\Test;
-
-use BadMethodCallException;
 use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
 use Spatie\Html\BaseElement;
@@ -10,416 +7,328 @@ use Spatie\Html\Exceptions\InvalidChild;
 use Spatie\Html\Exceptions\InvalidHtml;
 use Spatie\Html\Exceptions\MissingTag;
 
-class BaseElementTest extends TestCase
-{
-    /** @test */
-    public function it_cant_be_instantiated_without_a_tag_name_on_the_class()
-    {
-        $this->expectException(MissingTag::class);
-
-        new class () extends BaseElement {
-        };
-    }
-
-    /** @test */
-    public function it_can_be_rendered_to_html()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div></div>',
-            Div::create()->toHtml()
-        );
-    }
-
-    /** @test */
-    public function it_can_set_an_attribute_with_set_attribute()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div foo="bar"></div>',
-            Div::create()->attribute('foo', 'bar')->render()
-        );
-    }
-
-    /** @test */
-    public function it_can_set_an_attribute_to_null()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div foo=""></div>',
-            Div::create()->attribute('foo', null)->render()
-        );
-    }
-
-    /** @test */
-    public function it_can_set_an_attribute_with_attribute()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div foo="bar"></div>',
-            Div::create()->attribute('foo', 'bar')->render()
-        );
-    }
-
-    /** @test */
-    public function it_can_set_an_attribute_with_attribute_if()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div foo="bar"></div>',
-            Div::create()->attributeIf(true, 'foo', 'bar')->attributeIf(false, 'bar', 'baz')->render()
-        );
-
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div foo="bar"></div>',
-            Div::create()->attributeUnless(false, 'foo', 'bar')->attributeUnless(true, 'bar', 'baz')->render()
-        );
-    }
-
-    /** @test */
-    public function it_can_set_an_class_with_class_if()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div class="bar"></div>',
-            Div::create()->classIf(true, 'bar')->classIf(false, 'baz')->render()
-        );
-    }
-
-    /** @test */
-    public function it_can_not_accept_any_if_method()
-    {
-        $this->expectException(BadMethodCallException::class);
-
-        Div::create()->barIf(true, 'bar')->render();
-    }
-
-    /** @test */
-    public function it_can_forget_an_attribute()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div></div>',
-            Div::create()->attribute('foo', 'bar')->forgetAttribute('foo')->render()
-        );
-    }
-
-    /** @test */
-    public function it_can_get_an_attribute()
-    {
-        $element = Div::create()->attribute('foo', 'bar');
-
-        $this->assertEquals('bar', $element->getAttribute('foo'));
-    }
-
-    /** @test */
-    public function it_can_set_an_id()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div id="main"></div>',
-            Div::create()->id('main')->render()
-        );
-    }
-
-    /** @test */
-    public function multiple_attributes_can_be_set_with_attributes()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div foo bar="baz"></div>',
-            Div::create()->attributes(['foo', 'bar' => 'baz'])->render()
-        );
-    }
-
-    /** @test */
-    public function it_can_add_a_class_with_add_class()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div class="foo"></div>',
-            Div::create()->addClass('foo')->render()
-        );
-
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div class="foo bar"></div>',
-            Div::create()->addClass(['foo', 'bar'])->render()
-        );
-
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div class="foo"></div>',
-            Div::create()->addClass(['foo', 'bar' => false])->render()
-        );
-    }
-
-    /** @test */
-    public function it_can_add_a_class_with_class()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div class="foo"></div>',
-            Div::create()->class('foo')->render()
-        );
-    }
-
-    /** @test */
-    public function it_can_set_style_from_a_string()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div style="color: red"></div>',
-            Div::create()->style('color: red')->render()
-        );
-    }
-
-    /** @test */
-    public function it_can_set_style_from_an_array()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div style="color: red"></div>',
-            Div::create()->style(['color' => 'red'])->render()
-        );
-    }
-
-    /** @test */
-    public function it_can_set_text()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div>Hi &amp; Bye</div>',
-            Div::create()->text('Hi & Bye')->render()
-        );
-    }
-
-    /** @test */
-    public function it_can_set_html()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div><span>Yo</span></div>',
-            Div::create()->html('<span>Yo</span>')->render()
-        );
-    }
-
-    /** @test */
-    public function it_can_set_html_from_htmlstring()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div><span>Yo</span></div>',
-            Div::create()->html(new HtmlString('<span>Yo</span>'))->render()
-        );
-    }
-
-    /** @test */
-    public function it_cant_set_html_if_its_not_an_html_element()
-    {
-        $this->expectException(InvalidChild::class);
-
-        Div::create()->html(true)->render();
-    }
-
-    /** @test */
-    public function setting_text_overwrites_existing_children()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div>Hi</div>',
-            Div::create()->addChild(Div::create())->text('Hi')->render()
-        );
-    }
-
-    /** @test */
-    public function it_cant_add_child_if_its_not_an_html_element_or_a_string()
-    {
-        $this->expectException(InvalidChild::class);
-
-        Div::create()->addChild(true)->render();
-    }
-
-    /** @test */
-    public function it_cant_set_text_if_its_a_void_element()
-    {
-        $this->expectException(InvalidHtml::class);
-
-        $img = new class () extends BaseElement {
-            protected $tag = 'img';
-        };
-
-        $img->text('Hi');
-    }
-
-    /** @test */
-    public function it_can_add_a_child_from_a_string()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div>Hello</div>',
-            Div::create()->addChildren('Hello')
-        );
-    }
-
-    /** @test */
-    public function it_can_add_a_child_from_an_element()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div><div>Hello</div></div>',
-            Div::create()->addChildren(Div::create()->text('Hello'))
-        );
-    }
-
-    /** @test */
-    public function it_can_add_children_from_an_array_of_strings()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div>Helloworld</div>',
-            Div::create()->addChildren(['Hello', 'world'])
-        );
-    }
-
-    /** @test */
-    public function it_can_add_children_from_an_array_of_elements()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div><div>Hello</div><div>World</div></div>',
-            Div::create()->addChildren([Div::create()->text('Hello'), Div::create()->text('World')])
-        );
-    }
-
-    /** @test */
-    public function it_can_add_children_from_an_iterable()
-    {
-        $children = Collection::make([Div::create()->text('Hello'), Div::create()->text('World')]);
-
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div><div>Hello</div><div>World</div></div>',
-            Div::create()->addChildren($children)
-        );
-    }
-
-    /** @test */
-    public function it_doesnt_add_a_child_if_the_child_is_null()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div></div>',
-            Div::create()->addChildren(null)
-        );
-    }
-
-    /** @test */
-    public function it_can_transform_children_when_theyre_added()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div><div>Hello</div><div>World</div></div>',
-            Div::create()->addChildren(['Hello', 'World'], [$this, 'wrapInDiv'])
-        );
-
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div><div>Hello</div><div>World</div></div>',
-            Div::create()->addChild(['Hello', 'World'], [$this, 'wrapInDiv'])
-        );
-
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div><div>Hello</div><div>World</div></div>',
-            Div::create()->child(['Hello', 'World'], [$this, 'wrapInDiv'])
-        );
-
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div><div>Hello</div><div>World</div></div>',
-            Div::create()->children(['Hello', 'World'], [$this, 'wrapInDiv'])
-        );
-    }
-
-    /** @test */
-    public function it_can_add_a_child_with_add_child()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div><div>Hello</div></div>',
-            Div::create()->addChild(Div::create()->text('Hello'))
-        );
-    }
-
-    /** @test */
-    public function it_can_add_a_child_with_child()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div><div>Hello</div></div>',
-            Div::create()->child(Div::create()->text('Hello'))
-        );
-    }
-
-    /** @test */
-    public function it_can_add_children_with_children()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div><div>Hello</div></div>',
-            Div::create()->children(Div::create()->text('Hello'))
-        );
-    }
-
-    /** @test */
-    public function it_can_prepend_children_with_prepend_children()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div><div>World</div><div>Hello</div></div>',
-            Div::create()
-                ->addChildren(Div::create()->text('Hello'))
-                ->prependChildren(Div::create()->text('World'))
-        );
-    }
-
-    /** @test */
-    public function it_can_prepend_children_with_prepend_child()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div><div>World</div><div>Hello</div></div>',
-            Div::create()
-                ->addChild(Div::create()->text('Hello'))
-                ->prependChild(Div::create()->text('World'))
-        );
-    }
-
-    /** @test */
-    public function it_can_transform_children_when_theyre_prepended()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div><div>World</div><div>Hello</div></div>',
-            Div::create()
-                ->addChildren(Div::create()->text('Hello'))
-                ->prependChildren(['World'], [$this, 'wrapInDiv'])
-        );
-
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div><div>World</div><div>Hello</div></div>',
-            Div::create()
-                ->addChild(Div::create()->text('Hello'))
-                ->prependChild('World', [$this, 'wrapInDiv'])
-        );
-    }
-
-    /** @test */
-    public function it_can_conditionally_transform_an_element()
-    {
-        $div = Div::create()
-            ->if(true, function (Div $div) {
-                return $div->addClass('foo');
-            })
-            ->if(false, function (Div $div) {
-                return $div->addClass('bar');
-            });
-
-        $this->assertHtmlStringEqualsHtmlString('<div class="foo"></div>', $div);
-
-        $div = Div::create()
-            ->unless(false, function (Div $div) {
-                return $div->addClass('foo');
-            })
-            ->unless(true, function (Div $div) {
-                return $div->addClass('bar');
-            });
-
-        $this->assertHtmlStringEqualsHtmlString('<div class="foo"></div>', $div);
-    }
-
-    public function wrapInDiv(string $text): Div
-    {
-        return Div::create()->text($text);
-    }
-
-    /** @test */
-    public function it_can_set_a_data_attribute()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<div data-foo="bar"></div>',
-            Div::create()->data('foo', 'bar')->render()
-        );
-    }
-}
-
 class Div extends BaseElement
 {
     protected $tag = 'div';
 }
+
+$wrapInDiv = function (string $text): Div {
+    return Div::create()->text($text);
+};
+
+it("can't be instantiated without a tag name on the class", function () {
+    new class() extends BaseElement
+    {
+    };
+})->throws(MissingTag::class);
+
+it('can be rendered to html', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<div></div>',
+        Div::create()->toHtml()
+    );
+});
+
+it('can set an attribute with set attribute', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<div foo="bar"></div>',
+        Div::create()->attribute('foo', 'bar')->render()
+    );
+});
+
+it('can set an attribute to null', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<div foo=""></div>',
+        Div::create()->attribute('foo', null)->render()
+    );
+});
+
+it('can set an attribute with attribute', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<div foo="bar"></div>',
+        Div::create()->attribute('foo', 'bar')->render()
+    );
+});
+
+it('can set an attribute with attribute if', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<div foo="bar"></div>',
+        Div::create()->attributeIf(true, 'foo', 'bar')->attributeIf(false, 'bar', 'baz')->render()
+    );
+
+    assertHtmlStringEqualsHtmlString(
+        '<div foo="bar"></div>',
+        Div::create()->attributeUnless(false, 'foo', 'bar')->attributeUnless(true, 'bar', 'baz')->render()
+    );
+});
+
+it('can set an class with class if', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<div class="bar"></div>',
+        Div::create()->classIf(true, 'bar')->classIf(false, 'baz')->render()
+    );
+});
+
+it('can not accept any if method')
+    ->tap(fn () => Div::create()->barIf(true, 'bar')->render())
+    ->throws(BadMethodCallException::class);
+
+it('can forget an attribute', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<div></div>',
+        Div::create()->attribute('foo', 'bar')->forgetAttribute('foo')->render()
+    );
+});
+
+it('can get an attribute', function () {
+    $element = Div::create()->attribute('foo', 'bar');
+
+    expect($element->getAttribute('foo'))->toEqual('bar');
+});
+
+it('can set an id', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<div id="main"></div>',
+        Div::create()->id('main')->render()
+    );
+});
+
+test('multiple attributes can be set with attributes', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<div foo bar="baz"></div>',
+        Div::create()->attributes(['foo', 'bar' => 'baz'])->render()
+    );
+});
+
+it('can add a class with add class', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<div class="foo"></div>',
+        Div::create()->addClass('foo')->render()
+    );
+
+    assertHtmlStringEqualsHtmlString(
+        '<div class="foo bar"></div>',
+        Div::create()->addClass(['foo', 'bar'])->render()
+    );
+
+    assertHtmlStringEqualsHtmlString(
+        '<div class="foo"></div>',
+        Div::create()->addClass(['foo', 'bar' => false])->render()
+    );
+});
+
+it('can add a class with class', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<div class="foo"></div>',
+        Div::create()->class('foo')->render()
+    );
+});
+
+it('can set style from a string', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<div style="color: red"></div>',
+        Div::create()->style('color: red')->render()
+    );
+});
+
+it('can set style from an array', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<div style="color: red"></div>',
+        Div::create()->style(['color' => 'red'])->render()
+    );
+});
+
+it('can set text', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<div>Hi &amp; Bye</div>',
+        Div::create()->text('Hi & Bye')->render()
+    );
+});
+
+it('can set html', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<div><span>Yo</span></div>',
+        Div::create()->html('<span>Yo</span>')->render()
+    );
+});
+
+it('can set HTML from Htmlstring', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<div><span>Yo</span></div>',
+        Div::create()->html(new HtmlString('<span>Yo</span>'))->render()
+    );
+});
+
+it("can't set HTML if it's not an HTML element", function () {
+    Div::create()->html(true)->render();
+})->throws(InvalidChild::class);
+
+test('setting text overwrites existing children', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<div>Hi</div>',
+        Div::create()->addChild(Div::create())->text('Hi')->render()
+    );
+});
+
+it("can't add child if it's not an HTML element or a string", function () {
+    Div::create()->addChild(true)->render();
+})->throws(InvalidChild::class);
+
+it("can't set text if it's a void element", function () {
+    $img = new class() extends BaseElement
+    {
+        protected $tag = 'img';
+    };
+
+    $img->text('Hi');
+})->throws(InvalidHtml::class);
+
+it('can add a child from a string', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<div>Hello</div>',
+        Div::create()->addChildren('Hello')
+    );
+});
+
+it('can add a child from an element', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<div><div>Hello</div></div>',
+        Div::create()->addChildren(Div::create()->text('Hello'))
+    );
+});
+
+it('can add children from an array of strings', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<div>Helloworld</div>',
+        Div::create()->addChildren(['Hello', 'world'])
+    );
+});
+
+it('can add children from an array of elements', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<div><div>Hello</div><div>World</div></div>',
+        Div::create()->addChildren([Div::create()->text('Hello'), Div::create()->text('World')])
+    );
+});
+
+it('can add children from an iterable', function () {
+    $children = Collection::make([Div::create()->text('Hello'), Div::create()->text('World')]);
+
+    assertHtmlStringEqualsHtmlString(
+        '<div><div>Hello</div><div>World</div></div>',
+        Div::create()->addChildren($children)
+    );
+});
+
+it("doesn't add a child if the child is null", function () {
+    assertHtmlStringEqualsHtmlString(
+        '<div></div>',
+        Div::create()->addChildren(null)
+    );
+});
+
+it("can transform children when they're added", function () use ($wrapInDiv) {
+    assertHtmlStringEqualsHtmlString(
+        '<div><div>Hello</div><div>World</div></div>',
+        Div::create()->addChildren(['Hello', 'World'], $wrapInDiv)
+    );
+
+    assertHtmlStringEqualsHtmlString(
+        '<div><div>Hello</div><div>World</div></div>',
+        Div::create()->addChild(['Hello', 'World'], $wrapInDiv)
+    );
+
+    assertHtmlStringEqualsHtmlString(
+        '<div><div>Hello</div><div>World</div></div>',
+        Div::create()->child(['Hello', 'World'], $wrapInDiv)
+    );
+
+    assertHtmlStringEqualsHtmlString(
+        '<div><div>Hello</div><div>World</div></div>',
+        Div::create()->children(['Hello', 'World'], $wrapInDiv)
+    );
+});
+
+it('can add a child with add child', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<div><div>Hello</div></div>',
+        Div::create()->addChild(Div::create()->text('Hello'))
+    );
+});
+
+it('can add a child with child', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<div><div>Hello</div></div>',
+        Div::create()->child(Div::create()->text('Hello'))
+    );
+});
+
+it('can add children with children', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<div><div>Hello</div></div>',
+        Div::create()->children(Div::create()->text('Hello'))
+    );
+});
+
+it('can prepend children with prepend children', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<div><div>World</div><div>Hello</div></div>',
+        Div::create()
+            ->addChildren(Div::create()->text('Hello'))
+            ->prependChildren(Div::create()->text('World'))
+    );
+});
+
+it('can prepend children with prepend child', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<div><div>World</div><div>Hello</div></div>',
+        Div::create()
+            ->addChild(Div::create()->text('Hello'))
+            ->prependChild(Div::create()->text('World'))
+    );
+});
+
+it("can transform children when they're prepended", function () use ($wrapInDiv) {
+    assertHtmlStringEqualsHtmlString(
+        '<div><div>World</div><div>Hello</div></div>',
+        Div::create()
+            ->addChildren(Div::create()->text('Hello'))
+            ->prependChildren(['World'], $wrapInDiv)
+    );
+
+    assertHtmlStringEqualsHtmlString(
+        '<div><div>World</div><div>Hello</div></div>',
+        Div::create()
+            ->addChild(Div::create()->text('Hello'))
+            ->prependChild('World', $wrapInDiv)
+    );
+});
+
+it('can conditionally transform an element', function () {
+    $div = Div::create()
+        ->if(true, function (Div $div) {
+            return $div->addClass('foo');
+        })
+        ->if(false, function (Div $div) {
+            return $div->addClass('bar');
+        });
+
+    assertHtmlStringEqualsHtmlString('<div class="foo"></div>', $div);
+
+    $div = Div::create()
+        ->unless(false, function (Div $div) {
+            return $div->addClass('foo');
+        })
+        ->unless(true, function (Div $div) {
+            return $div->addClass('bar');
+        });
+
+    assertHtmlStringEqualsHtmlString('<div class="foo"></div>', $div);
+});
+
+it('can set a data attribute', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<div data-foo="bar"></div>',
+        Div::create()->data('foo', 'bar')->render()
+    );
+});

@@ -10,7 +10,7 @@ class ButtonTest extends TestCase
     /** @test */
     public function it_can_create_a_button()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<button></button>',
             Button::create()
         );
@@ -19,7 +19,7 @@ class ButtonTest extends TestCase
     /** @test */
     public function it_can_create_a_button_with_a_type()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<button type="submit"></button>',
             Button::create()->type('submit')
         );
@@ -28,7 +28,7 @@ class ButtonTest extends TestCase
     /** @test */
     public function it_can_create_a_button_with_a_value()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<button value="1"></button>',
             Button::create()->value(1)
         );
@@ -37,7 +37,7 @@ class ButtonTest extends TestCase
     /** @test */
     public function it_can_create_a_button_with_a_name()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<button name="foo"></button>',
             Button::create()->name('foo')
         );
@@ -46,7 +46,7 @@ class ButtonTest extends TestCase
     /** @test */
     public function it_can_create_a_button_with_a_name_and_value()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<button name="foo" value="bar"></button>',
             Button::create()->name('foo')->value('bar')
         );
@@ -55,7 +55,7 @@ class ButtonTest extends TestCase
     /** @test */
     public function it_can_disable_a_button()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<button disabled></button>',
             Button::create()->disabled()
         );

@@ -10,7 +10,7 @@ class OptionTest extends TestCase
     /** @test */
     public function it_can_render_an_empty_version_itself()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<option></option>',
             Option::create()->render()
         );
@@ -19,7 +19,7 @@ class OptionTest extends TestCase
     /** @test */
     public function it_can_render_itself_with_a_text_and_a_value()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<option value="0">Choose...</option>',
             Option::create()->value('0')->text('Choose...')->render()
         );
@@ -28,7 +28,7 @@ class OptionTest extends TestCase
     /** @test */
     public function it_can_render_itself_in_a_selected_state()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<option selected value="0">Choose...</option>',
             Option::create()->value('0')->text('Choose...')->selected('0')
         );
@@ -37,7 +37,7 @@ class OptionTest extends TestCase
     /** @test */
     public function it_can_unselect_itself()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<option value="0">Choose...</option>',
             Option::create()->value('0')->text('Choose...')->selected('0')->unselected()
         );
@@ -46,12 +46,12 @@ class OptionTest extends TestCase
     /** @test */
     public function it_can_conditionally_select_itself()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<option selected value="0">Choose...</option>',
             Option::create()->value('0')->text('Choose...')->selectedIf(true)
         );
 
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<option value="0">Choose...</option>',
             Option::create()->value('0')->text('Choose...')->selectedIf(false)
         );
@@ -60,7 +60,7 @@ class OptionTest extends TestCase
     /** @test */
     public function it_can_disable_an_optgroup()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<option disabled></option>',
             Option::create()->disabled()
         );

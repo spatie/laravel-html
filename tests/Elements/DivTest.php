@@ -10,7 +10,7 @@ class DivTest extends TestCase
     /** @test */
     public function it_can_create_a_div()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<div></div>',
             Div::create()
         );

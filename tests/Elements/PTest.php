@@ -10,7 +10,7 @@ class PTest extends TestCase
     /** @test */
     public function it_can_create_an_p_element()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<p></p>',
             P::create()
         );

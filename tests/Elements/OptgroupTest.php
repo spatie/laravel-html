@@ -10,7 +10,7 @@ class OptgroupTest extends TestCase
     /** @test */
     public function it_can_create_an_optgroup()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<optgroup></optgroup>',
             Optgroup::create()
         );
@@ -19,7 +19,7 @@ class OptgroupTest extends TestCase
     /** @test */
     public function it_can_create_an_element_with_a_label()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<optgroup label="Cats"></optgroup>',
             Optgroup::create()->label('Cats')
         );
@@ -28,7 +28,7 @@ class OptgroupTest extends TestCase
     /** @test */
     public function it_can_disable_an_optgroup()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<optgroup disabled></optgroup>',
             Optgroup::create()->disabled()
         );

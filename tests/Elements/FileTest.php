@@ -10,7 +10,7 @@ class FileTest extends TestCase
     /** @test */
     public function it_can_create_a_file()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<input type="file">',
             File::create()
         );
@@ -19,7 +19,7 @@ class FileTest extends TestCase
     /** @test */
     public function it_can_create_an_autofocused_file()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<input type="file" autofocus>',
             File::create()->autofocus()
         );
@@ -28,7 +28,7 @@ class FileTest extends TestCase
     /** @test */
     public function it_can_create_a_file_that_has_autofocus_when_passing_true()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<input type="file" autofocus>',
             File::create()->autofocus(true)
         );
@@ -37,7 +37,7 @@ class FileTest extends TestCase
     /** @test */
     public function it_wont_create_a_file_that_has_autofocus_when_passing_false()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<input type="file">',
             File::create()->autofocus(false)
         );
@@ -46,7 +46,7 @@ class FileTest extends TestCase
     /** @test */
     public function it_can_create_an_required_file()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<input type="file" required>',
             File::create()->required()
         );
@@ -55,7 +55,7 @@ class FileTest extends TestCase
     /** @test */
     public function it_can_create_a_file_with_a_name()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<input type="file" name="file">',
             File::create()->name('file')
         );
@@ -64,12 +64,12 @@ class FileTest extends TestCase
     /** @test */
     public function it_can_create_a_file_with_accept_audio()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<input type="file" accept="audio/*">',
             File::create()->accept(File::ACCEPT_AUDIO)
         );
 
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<input type="file" accept="audio/*">',
             File::create()->acceptAudio()
         );
@@ -78,12 +78,12 @@ class FileTest extends TestCase
     /** @test */
     public function it_can_create_a_file_with_accept_video()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<input type="file" accept="video/*">',
             File::create()->accept(File::ACCEPT_VIDEO)
         );
 
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<input type="file" accept="video/*">',
             File::create()->acceptVideo()
         );
@@ -92,12 +92,12 @@ class FileTest extends TestCase
     /** @test */
     public function it_can_create_a_file_with_accept_image()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<input type="file" accept="image/*">',
             File::create()->accept(File::ACCEPT_IMAGE)
         );
 
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<input type="file" accept="image/*">',
             File::create()->acceptImage()
         );
@@ -106,7 +106,7 @@ class FileTest extends TestCase
     /** @test */
     public function it_can_create_a_file_with_accept()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<input type="file" accept=".jpg">',
             File::create()->accept('.jpg')
         );
@@ -115,7 +115,7 @@ class FileTest extends TestCase
     /** @test */
     public function it_can_create_a_file_with_multiple()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<input type="file" multiple>',
             File::create()->multiple()
         );

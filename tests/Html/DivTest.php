@@ -7,7 +7,7 @@ class DivTest extends TestCase
     /** @test */
     public function it_can_create_a_div()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<div></div>',
             $this->html->div()
         );
@@ -16,7 +16,7 @@ class DivTest extends TestCase
     /** @test */
     public function it_can_create_a_div_with_integer_content()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<div>500</div>',
             $this->html->div(500)
         );
@@ -25,7 +25,7 @@ class DivTest extends TestCase
     /** @test */
     public function it_can_create_a_div_with_float_content()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<div>500.5</div>',
             $this->html->div(500.5)
         );
@@ -34,7 +34,7 @@ class DivTest extends TestCase
     /** @test */
     public function it_can_create_a_div_with_hexadecimal_content()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<div>420</div>',
             $this->html->div(0x1A4)
         );
@@ -43,7 +43,7 @@ class DivTest extends TestCase
     /** @test */
     public function it_can_create_a_div_with_octal_content()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<div>420</div>',
             $this->html->div(0644)
         );

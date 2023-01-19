@@ -2,9 +2,8 @@
 
 namespace Spatie\Html\Test;
 
-use Spatie\Html\Test\Concerns\AssertsHtmlStrings;
+use PHPUnit\Framework\TestCase as FrameworkTestCase;
 
-class TestCase extends \PHPUnit\Framework\TestCase
+class TestCase extends FrameworkTestCase
 {
-    use AssertsHtmlStrings;
 }

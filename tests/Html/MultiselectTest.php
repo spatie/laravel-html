@@ -13,7 +13,7 @@ class MultiselectTest extends TestCase
             'value3' => 'text3',
         ];
 
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<select id="select" name="select[]" multiple="multiple">
                 <option value="value1" selected>text1</option>
                 <option value="value2" selected>text2</option>

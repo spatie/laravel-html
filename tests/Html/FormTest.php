@@ -7,7 +7,7 @@ class FormTest extends TestCase
     /** @test */
     public function it_can_create_a_form()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<form method="POST"><input type="hidden" name="_token" value="abc"></form>',
             $this->html->form()
         );
@@ -16,7 +16,7 @@ class FormTest extends TestCase
     /** @test */
     public function it_can_create_a_form_with_a_custom_action()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<form method="POST" action="/submit">'.
                 '<input type="hidden" name="_token" value="abc">
             </form>',
@@ -27,7 +27,7 @@ class FormTest extends TestCase
     /** @test */
     public function it_can_create_a_form_with_a_target()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<form method="POST" action="/submit" target="_blank">'.
             '<input type="hidden" name="_token" value="abc">
             </form>',
@@ -38,7 +38,7 @@ class FormTest extends TestCase
     /** @test */
     public function it_can_create_a_form_with_a_custom_method_that_gets_spoofed()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<form action="/submit" method="POST">'.
                 '<input type="hidden" name="_method" id="_method" value="DELETE">'.
                 '<input type="hidden" name="_token" value="abc">'.
@@ -51,11 +51,11 @@ class FormTest extends TestCase
     public function it_can_get_value_from_a_form()
     {
         $this->html->form('DELETE', '/submit');
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<p>delete</p>',
             $this->html->value('_method', 'delete')
         );
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<p>abc</p>',
             $this->html->value('_token', 'abc')
         );
@@ -64,7 +64,7 @@ class FormTest extends TestCase
     /** @test */
     public function it_doesnt_render_a_token_field_when_using_a_get_method()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<form action="/submit" method="GET"></form>',
             $this->html->form('GET', '/submit')
         );
@@ -73,7 +73,7 @@ class FormTest extends TestCase
     /** @test */
     public function it_can_create_form_with_end_model()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<form action="submit" method="GET"></form>',
             $this->html->endModel()->form('GET', 'submit')
         );

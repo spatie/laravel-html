@@ -10,7 +10,7 @@ use Spatie\Html\Test\Concerns\AssertsHtmlStrings;
 
 abstract class TestCase extends \Spatie\Html\Test\TestCase
 {
-    use AssertsHtmlStrings;
+    // use AssertsHtmlStrings;
 
     /** @var \Mockery\MockInterface */
     protected $request;

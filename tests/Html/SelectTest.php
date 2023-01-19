@@ -7,7 +7,7 @@ class SelectTest extends TestCase
     /** @test */
     public function it_can_render_a_select_element()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<select></select>',
             $this->html->select()->render()
         );
@@ -16,7 +16,7 @@ class SelectTest extends TestCase
     /** @test */
     public function it_can_render_a_select_element_required()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<select required></select>',
             $this->html->select()->required()->render()
         );
@@ -30,7 +30,7 @@ class SelectTest extends TestCase
             'value2' => 'text2',
         ];
 
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<select name="select" id="select">
                 <option value="value1">text1</option>
                 <option value="value2">text2</option>
@@ -47,7 +47,7 @@ class SelectTest extends TestCase
             'value2' => 'text2',
         ];
 
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<select name="select" id="select">
                 <option value="value1" selected="selected">text1</option>
                 <option value="value2">text2</option>
@@ -65,7 +65,7 @@ class SelectTest extends TestCase
             '+2' => '+2',
         ];
 
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<select name="select" id="select">
                 <option value="0">0</option>
                 <option selected="selected" value="2">2</option>

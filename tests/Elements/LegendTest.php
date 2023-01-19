@@ -10,7 +10,7 @@ class LegendTest extends TestCase
     /** @test */
     public function it_can_create_a_legend()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<legend></legend>',
             Legend::create()
         );

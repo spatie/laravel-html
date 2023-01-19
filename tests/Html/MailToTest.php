@@ -7,7 +7,7 @@ class MailToTest extends TestCase
     /** @test */
     public function it_can_create_a_mailto_link()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<a href="mailto:hello@example.com">hello@example.com</a>',
             $this->html->mailto('hello@example.com')
         );
@@ -16,7 +16,7 @@ class MailToTest extends TestCase
     /** @test */
     public function it_can_create_a_mailto_link_with_contents()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<a href="mailto:hello@example.com">E-mail</a>',
             $this->html->mailto('hello@example.com', 'E-mail')
         );

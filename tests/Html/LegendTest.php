@@ -7,7 +7,7 @@ class LegendTest extends TestCase
     /** @test */
     public function it_can_create_a_legend()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<legend></legend>',
             $this->html->legend()
         );
@@ -16,7 +16,7 @@ class LegendTest extends TestCase
     /** @test */
     public function it_can_create_a_legend_with_contents()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<legend>Hi</legend>',
             $this->html->legend('Hi')
         );

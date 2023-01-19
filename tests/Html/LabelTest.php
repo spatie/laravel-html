@@ -7,7 +7,7 @@ class LabelTest extends TestCase
     /** @test */
     public function it_can_create_a_label()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<label></label>',
             $this->html->label()
         );
@@ -16,7 +16,7 @@ class LabelTest extends TestCase
     /** @test */
     public function it_can_create_a_label_with_contents()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<label>Hi</label>',
             $this->html->label('Hi')
         );
@@ -25,7 +25,7 @@ class LabelTest extends TestCase
     /** @test */
     public function it_can_create_a_label_with_html_contents()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<label><em>Hi</em></label>',
             $this->html->label('<em>Hi</em>')
         );
@@ -34,7 +34,7 @@ class LabelTest extends TestCase
     /** @test */
     public function it_can_create_a_label_with_a_custom_for_attribute()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<label for="some_input_id">Hi</label>',
             $this->html->label('Hi', 'some_input_id')
         );
@@ -43,7 +43,7 @@ class LabelTest extends TestCase
     /** @test */
     public function it_can_create_a_label_with_integer_content()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<label>5000</label>',
             $this->html->label(5000)
         );
@@ -52,7 +52,7 @@ class LabelTest extends TestCase
     /** @test */
     public function it_can_create_a_label_with_float_content()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<label>5000.5</label>',
             $this->html->label(5000.5)
         );
@@ -61,7 +61,7 @@ class LabelTest extends TestCase
     /** @test */
     public function it_can_create_a_label_with_hexadecimal_content()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<label>291</label>',
             $this->html->label(0x123)
         );
@@ -70,7 +70,7 @@ class LabelTest extends TestCase
     /** @test */
     public function it_can_create_a_label_with_octal_content()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<label>209</label>',
             $this->html->label(0321)
         );

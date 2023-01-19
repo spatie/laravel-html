@@ -4,7 +4,7 @@ namespace Spatie\Html\Test;
 
 use Spatie\Html\Attributes;
 
-class AttributesTest extends TestCase
+class AttributesTest
 {
     /** @test */
     public function it_starts_empty()

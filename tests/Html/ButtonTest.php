@@ -7,7 +7,7 @@ class ButtonTest extends TestCase
     /** @test */
     public function it_can_create_a_button()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<button></button>',
             $this->html->button()
         );
@@ -16,7 +16,7 @@ class ButtonTest extends TestCase
     /** @test */
     public function it_can_create_a_button_with_contents()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<button>Hi</button>',
             $this->html->button('Hi')
         );
@@ -25,7 +25,7 @@ class ButtonTest extends TestCase
     /** @test */
     public function it_can_create_a_button_with_html_contents()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<button><em>Hi</em></button>',
             $this->html->button('<em>Hi</em>')
         );
@@ -34,7 +34,7 @@ class ButtonTest extends TestCase
     /** @test */
     public function it_can_create_a_button_with_a_type()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<button type="submit">Hi</button>',
             $this->html->button('Hi', 'submit')
         );
@@ -43,7 +43,7 @@ class ButtonTest extends TestCase
     /** @test */
     public function it_can_create_a_button_with_a_type_and_name()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<button name="buttonname" type="submit">Hi</button>',
             $this->html->button('Hi', 'submit', 'buttonname')
         );

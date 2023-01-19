@@ -7,7 +7,7 @@ class TextareaTest extends TestCase
     /** @test */
     public function it_can_create_a_textarea()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<textarea></textarea>',
             $this->html->textarea()
         );
@@ -16,7 +16,7 @@ class TextareaTest extends TestCase
     /** @test */
     public function it_can_create_a_textarea_with_a_name()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<textarea id="description" name="description"></textarea>',
             $this->html->textarea('description')
         );
@@ -25,7 +25,7 @@ class TextareaTest extends TestCase
     /** @test */
     public function it_can_create_a_textarea_with_a_value()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<textarea id="description" name="description">Foo bar</textarea>',
             $this->html->textarea('description', 'Foo bar')
         );

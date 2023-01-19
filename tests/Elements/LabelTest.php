@@ -10,7 +10,7 @@ class LabelTest extends TestCase
     /** @test */
     public function it_can_create_a_label()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<label></label>',
             Label::create()
         );
@@ -19,7 +19,7 @@ class LabelTest extends TestCase
     /** @test */
     public function it_can_create_a_label_with_a_custom_for_attribute()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<label for="some_input_id"></label>',
             Label::create()->for('some_input_id')
         );

@@ -10,7 +10,7 @@ class TextareaTest extends TestCase
     /** @test */
     public function it_can_create_a_textarea()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<textarea></textarea>',
             Textarea::create()
         );
@@ -19,7 +19,7 @@ class TextareaTest extends TestCase
     /** @test */
     public function it_can_create_an_autofocused_textarea()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<textarea autofocus></textarea>',
             Textarea::create()->autofocus()
         );
@@ -28,7 +28,7 @@ class TextareaTest extends TestCase
     /** @test */
     public function it_can_create_a_textarea_with_a_placeholder()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<textarea placeholder="Lorem ipsum"></textarea>',
             Textarea::create()->placeholder('Lorem ipsum')
         );
@@ -37,7 +37,7 @@ class TextareaTest extends TestCase
     /** @test */
     public function it_can_create_a_textarea_with_a_name()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<textarea name="text"></textarea>',
             Textarea::create()->name('text')
         );
@@ -46,7 +46,7 @@ class TextareaTest extends TestCase
     /** @test */
     public function it_can_create_a_required_textarea()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<textarea required>My epic</textarea>',
             Textarea::create()->value('My epic')->required()
         );
@@ -55,7 +55,7 @@ class TextareaTest extends TestCase
     /** @test */
     public function it_can_create_a_textarea_with_a_value()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<textarea>My epic</textarea>',
             Textarea::create()->value('My epic')
         );
@@ -64,7 +64,7 @@ class TextareaTest extends TestCase
     /** @test */
     public function it_can_create_a_textarea_that_is_required_when_passing_true()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<textarea required>My epic</textarea>',
             Textarea::create()->value('My epic')->required(true)
         );
@@ -73,7 +73,7 @@ class TextareaTest extends TestCase
     /** @test */
     public function it_wont_create_a_textarea_that_is_required_when_passing_false()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<textarea>My epic</textarea>',
             Textarea::create()->value('My epic')->required(false)
         );
@@ -82,7 +82,7 @@ class TextareaTest extends TestCase
     /** @test */
     public function it_can_create_a_disabled_textarea()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<textarea disabled>My epic</textarea>',
             Textarea::create()->value('My epic')->disabled()
         );
@@ -91,7 +91,7 @@ class TextareaTest extends TestCase
     /** @test */
     public function it_can_create_a_textarea_that_is_disabled_when_passing_true()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<textarea disabled>My epic</textarea>',
             Textarea::create()->value('My epic')->disabled(true)
         );
@@ -100,7 +100,7 @@ class TextareaTest extends TestCase
     /** @test */
     public function it_wont_create_a_textarea_that_is_disabled_when_passing_false()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<textarea>My epic</textarea>',
             Textarea::create()->value('My epic')->disabled(false)
         );
@@ -109,7 +109,7 @@ class TextareaTest extends TestCase
     /** @test */
     public function it_can_create_a_readonly_textarea()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<textarea readonly>My epic</textarea>',
             Textarea::create()->value('My epic')->isReadonly()
         );
@@ -118,7 +118,7 @@ class TextareaTest extends TestCase
     /** @test */
     public function it_can_create_a_textarea_that_is_readonly_when_passing_true()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<textarea readonly>My epic</textarea>',
             Textarea::create()->value('My epic')->isReadonly(true)
         );
@@ -127,7 +127,7 @@ class TextareaTest extends TestCase
     /** @test */
     public function it_wont_create_a_textarea_that_is_readonly_when_passing_false()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<textarea>My epic</textarea>',
             Textarea::create()->value('My epic')->isReadonly(false)
         );
@@ -136,7 +136,7 @@ class TextareaTest extends TestCase
     /** @test */
     public function it_can_create_a_textarea_with_maxlength()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<textarea maxlength="25">My epic</textarea>',
             Textarea::create()->value('My epic')->maxlength(25)
         );
@@ -145,7 +145,7 @@ class TextareaTest extends TestCase
     /** @test */
     public function it_can_create_a_textarea_with_minlength()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<textarea minlength="25">My epic</textarea>',
             Textarea::create()->value('My epic')->minlength(25)
         );

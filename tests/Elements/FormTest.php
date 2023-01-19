@@ -10,7 +10,7 @@ class FormTest extends TestCase
     /** @test */
     public function it_can_create_a_form()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<form></form>',
             Form::create()
         );
@@ -19,7 +19,7 @@ class FormTest extends TestCase
     /** @test */
     public function it_can_create_a_form_with_a_custom_action()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<form action="/submit"></form>',
             Form::create()->action('/submit')
         );
@@ -28,7 +28,7 @@ class FormTest extends TestCase
     /** @test */
     public function it_can_create_a_form_with_a_custom_method()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<form method="POST"></form>',
             Form::create()->method('POST')
         );
@@ -37,7 +37,7 @@ class FormTest extends TestCase
     /** @test */
     public function it_can_create_a_form_that_accepts_files()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<form enctype="multipart/form-data"></form>',
             Form::create()->acceptsFiles()
         );
@@ -46,7 +46,7 @@ class FormTest extends TestCase
     /** @test */
     public function it_can_create_a_form_with_a_novalidate_attribute()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<form enctype="multipart/form-data" novalidate=""></form>',
             Form::create()->novalidate()->acceptsFiles()
         );
@@ -55,7 +55,7 @@ class FormTest extends TestCase
     /** @test */
     public function it_can_create_a_form_that_has_novalidate_when_passing_true()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<form enctype="multipart/form-data" novalidate=""></form>',
             Form::create()->novalidate(true)->acceptsFiles()
         );
@@ -64,7 +64,7 @@ class FormTest extends TestCase
     /** @test */
     public function it_wont_create_a_form_that_has_novalidate_when_passing_false()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<form enctype="multipart/form-data"></form>',
             Form::create()->novalidate(false)->acceptsFiles()
         );
@@ -73,7 +73,7 @@ class FormTest extends TestCase
     /** @test */
     public function it_can_create_a_form_with_a_target()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<form target="_blank"></form>',
             Form::create()->target('_blank')
         );

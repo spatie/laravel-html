@@ -10,7 +10,7 @@ class ImgTest extends TestCase
     /** @test */
     public function it_can_create_an_img()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<img>',
             Img::create()
         );
@@ -19,7 +19,7 @@ class ImgTest extends TestCase
     /** @test */
     public function it_can_create_an_img_with_an_alt_attribute()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<img alt="Sleepy koala">',
             Img::create()->alt('Sleepy koala')
         );
@@ -28,7 +28,7 @@ class ImgTest extends TestCase
     /** @test */
     public function it_can_create_an_img_with_a_src_attribute()
     {
-        $this->assertHtmlStringEqualsHtmlString(
+        assertHtmlStringEqualsHtmlString(
             '<img src="sleepy-koala.jpg">',
             Img::create()->src('sleepy-koala.jpg')
         );

@@ -1,36 +1,25 @@
 <?php
 
-namespace Spatie\Html\Test\Html;
+it('can render a class attribute with classes based on conditions', function () {
+    $classes = [
+        'foo' => true,
+        'bar' => false,
+        'baz',
+    ];
 
-class ClassTest extends TestCase
-{
-    /** @test */
-    public function it_can_render_a_class_attribute_with_classes_based_on_conditions()
-    {
-        $classes = [
-            'foo' => true,
-            'bar' => false,
-            'baz',
-        ];
+    expect($this->html->class($classes))->toEqual('class="foo baz"');
+});
 
-        $this->assertEquals('class="foo baz"', $this->html->class($classes));
-    }
+it('can render a class attribute from a string', function () {
+    expect($this->html->class('foo'))->toEqual('class="foo"')
+        ->and($this->html->class('foo foo'))->toEqual('class="foo"');
+});
 
-    /** @test */
-    public function it_can_render_a_class_attribute_from_a_string()
-    {
-        $this->assertEquals('class="foo"', $this->html->class('foo'));
-        $this->assertEquals('class="foo"', $this->html->class('foo foo'));
-    }
+it('can render a class attribute from a collection', function () {
+    $classes = collect([
+        'foo' => true,
+        'bar' => false,
+    ]);
 
-    /** @test */
-    public function it_can_render_a_class_attribute_from_a_collection()
-    {
-        $classes = collect([
-            'foo' => true,
-            'bar' => false,
-        ]);
-
-        $this->assertEquals('class="foo"', $this->html->class($classes));
-    }
-}
+    expect($this->html->class($classes))->toEqual('class="foo"');
+});

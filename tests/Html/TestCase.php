@@ -16,10 +16,10 @@ abstract class TestCase extends FrameworkTestCase
     // use AssertsHtmlStrings;
 
     /** @var \Mockery\MockInterface */
-    protected $request;
+    public $request;
 
     /** @var array */
-    protected $session = [];
+    public $session = [];
 
     /** @var \Spatie\Html\Html */
     public $html;
@@ -53,20 +53,6 @@ abstract class TestCase extends FrameworkTestCase
             ->andReturn($session->getMock());
 
         $this->html = new Html($this->request);
-    }
-
-    protected function withModel(array $model)
-    {
-        $this->html->model($model);
-
-        return $this;
-    }
-
-    protected function withSession(array $session)
-    {
-        $this->session = $session;
-
-        return $this;
     }
 
     protected function tearDown(): void

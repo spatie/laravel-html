@@ -35,3 +35,13 @@ function convertToDomDocument($html): DOMDocument
 
     return $domDocument;
 }
+
+function withModel(array $model)
+{
+    test()->html->model($model);
+}
+
+function withSession(array $session)
+{
+    test()->session = $session;
+}

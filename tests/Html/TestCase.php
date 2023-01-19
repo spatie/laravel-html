@@ -20,7 +20,7 @@ abstract class TestCase extends FrameworkTestCase
     protected $session = [];
 
     /** @var \Spatie\Html\Html */
-    protected $html;
+    public $html;
 
     protected function setUp(): void
     {

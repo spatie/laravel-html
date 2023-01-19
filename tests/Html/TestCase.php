@@ -5,10 +5,9 @@ namespace Spatie\Html\Test\Html;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Mockery;
-use PHPUnit\Framework\TestCase as FrameworkTestCase;
 use Spatie\Html\Html;
 
-abstract class TestCase extends FrameworkTestCase
+abstract class TestCase extends \Spatie\Html\Test\TestCase
 {
     /** @var \Mockery\MockInterface */
     public $request;

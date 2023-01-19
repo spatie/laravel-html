@@ -9,6 +9,8 @@ use PHPUnit\Framework\TestCase as FrameworkTestCase;
 use Spatie\Html\Html;
 use Spatie\Html\Test\Concerns\AssertsHtmlStrings;
 
+use function PHPUnit\Framework\assertEqualsCanonicalizing;
+
 abstract class TestCase extends FrameworkTestCase
 {
     // use AssertsHtmlStrings;

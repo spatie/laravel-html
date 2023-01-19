@@ -1,81 +1,51 @@
 <?php
 
-namespace Spatie\Html\Test\Elements;
-
 use Spatie\Html\Elements\Form;
-use Spatie\Html\Test\TestCase;
 
-class FormTest extends TestCase
-{
-    /** @test */
-    public function it_can_create_a_form()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<form></form>',
-            Form::create()
-        );
-    }
+it('can create a form')
+    ->assertHtmlStringEqualsHtmlString(
+        '<form></form>',
+        Form::create()
+    );
 
-    /** @test */
-    public function it_can_create_a_form_with_a_custom_action()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<form action="/submit"></form>',
-            Form::create()->action('/submit')
-        );
-    }
+it('can create a form with a custom action')
+    ->assertHtmlStringEqualsHtmlString(
+        '<form action="/submit"></form>',
+        Form::create()->action('/submit')
+    );
 
-    /** @test */
-    public function it_can_create_a_form_with_a_custom_method()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<form method="POST"></form>',
-            Form::create()->method('POST')
-        );
-    }
+it('can create a form with a custom method')
+    ->assertHtmlStringEqualsHtmlString(
+        '<form method="POST"></form>',
+        Form::create()->method('POST')
+    );
 
-    /** @test */
-    public function it_can_create_a_form_that_accepts_files()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<form enctype="multipart/form-data"></form>',
-            Form::create()->acceptsFiles()
-        );
-    }
+it('can create a form that accepts files')
+    ->assertHtmlStringEqualsHtmlString(
+        '<form enctype="multipart/form-data"></form>',
+        Form::create()->acceptsFiles()
+    );
 
-    /** @test */
-    public function it_can_create_a_form_with_a_novalidate_attribute()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<form enctype="multipart/form-data" novalidate=""></form>',
-            Form::create()->novalidate()->acceptsFiles()
-        );
-    }
+it('can create a form with a novalidate attribute')
+    ->assertHtmlStringEqualsHtmlString(
+        '<form enctype="multipart/form-data" novalidate=""></form>',
+        Form::create()->novalidate()->acceptsFiles()
+    );
 
-    /** @test */
-    public function it_can_create_a_form_that_has_novalidate_when_passing_true()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<form enctype="multipart/form-data" novalidate=""></form>',
-            Form::create()->novalidate(true)->acceptsFiles()
-        );
-    }
+it('can create a form that has novalidate when passing true')
+    ->assertHtmlStringEqualsHtmlString(
+        '<form enctype="multipart/form-data" novalidate=""></form>',
+        Form::create()->novalidate(true)->acceptsFiles()
+    );
 
-    /** @test */
-    public function it_wont_create_a_form_that_has_novalidate_when_passing_false()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<form enctype="multipart/form-data"></form>',
-            Form::create()->novalidate(false)->acceptsFiles()
-        );
-    }
+it("won't create a form that has novalidate when passing false")
+    ->assertHtmlStringEqualsHtmlString(
+        '<form enctype="multipart/form-data"></form>',
+        Form::create()->novalidate(false)->acceptsFiles()
+    );
 
-    /** @test */
-    public function it_can_create_a_form_with_a_target()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<form target="_blank"></form>',
-            Form::create()->target('_blank')
-        );
-    }
-}
+it('can create a form with a target')
+    ->assertHtmlStringEqualsHtmlString(
+        '<form target="_blank"></form>',
+        Form::create()->target('_blank')
+    );

@@ -1,69 +1,50 @@
 <?php
 
-namespace Spatie\Html\Test\Html;
+it('can create a span', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<span></span>',
+        $this->html->span()
+    );
+});
 
-class SpanTest extends TestCase
-{
-    /** @test */
-    public function it_can_create_a_span()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<span></span>',
-            $this->html->span()
-        );
-    }
+it('can create a span with contents', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<span>Hi</span>',
+        $this->html->span('Hi')
+    );
+});
 
-    /** @test */
-    public function it_can_create_a_span_with_contents()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<span>Hi</span>',
-            $this->html->span('Hi')
-        );
-    }
+it('can create a span with HTML contents', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<span><em>Hi</em></span>',
+        $this->html->span('<em>Hi</em>')
+    );
+});
 
-    /** @test */
-    public function it_can_create_a_span_with_html_contents()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<span><em>Hi</em></span>',
-            $this->html->span('<em>Hi</em>')
-        );
-    }
+it('can create a span with integer content', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<span>50</span>',
+        $this->html->span(50)
+    );
+});
 
-    /** @test */
-    public function it_can_create_a_span_with_integer_content()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<span>50</span>',
-            $this->html->span(50)
-        );
-    }
+it('can create a span with float content', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<span>50.5</span>',
+        $this->html->span(50.5)
+    );
+});
 
-    /** @test */
-    public function it_can_create_a_span_with_float_content()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<span>50.5</span>',
-            $this->html->span(50.5)
-        );
-    }
+it('can create a span with hexadecimal content', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<span>1337</span>',
+        $this->html->span(0x539)
+    );
+});
 
-    /** @test */
-    public function it_can_create_a_span_with_hexadecimal_content()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<span>1337</span>',
-            $this->html->span(0x539)
-        );
-    }
-
-    /** @test */
-    public function it_can_create_a_span_with_octal_content()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<span>83</span>',
-            $this->html->span(0123)
-        );
-    }
-}
+it('can create a span with octal content', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<span>83</span>',
+        $this->html->span(0123)
+    );
+});

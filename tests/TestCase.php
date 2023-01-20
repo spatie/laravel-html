@@ -2,9 +2,22 @@
 
 namespace Spatie\Html\Test;
 
-use Spatie\Html\Test\Concerns\AssertsHtmlStrings;
-
 class TestCase extends \PHPUnit\Framework\TestCase
 {
-    use AssertsHtmlStrings;
+    /**
+     * @param string $expectedHtml
+     * @param \Illuminate\Contracts\Support\Htmlable|string $actualHtml
+     */
+    public function assertHtmlStringEqualsHtmlString(string $expectedHtml, string $actualHtml): self
+    {
+        $this->assertEqualsCanonicalizing(
+            convertToDomDocument($expectedHtml),
+            convertToDomDocument($actualHtml),
+            '',
+            0.0,
+            10
+        );
+
+        return $this;
+    }
 }

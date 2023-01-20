@@ -6,22 +6,19 @@ use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Mockery;
 use Spatie\Html\Html;
-use Spatie\Html\Test\Concerns\AssertsHtmlStrings;
 
 abstract class TestCase extends \Spatie\Html\Test\TestCase
 {
-    use AssertsHtmlStrings;
-
     /** @var \Mockery\MockInterface */
-    protected $request;
+    public $request;
 
     /** @var array */
-    protected $session = [];
+    public $session = [];
 
     /** @var \Spatie\Html\Html */
-    protected $html;
+    public $html;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -52,21 +49,7 @@ abstract class TestCase extends \Spatie\Html\Test\TestCase
         $this->html = new Html($this->request);
     }
 
-    protected function withModel(array $model)
-    {
-        $this->html->model($model);
-
-        return $this;
-    }
-
-    protected function withSession(array $session)
-    {
-        $this->session = $session;
-
-        return $this;
-    }
-
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         Mockery::close();
     }

@@ -1,226 +1,180 @@
 <?php
 
-namespace Spatie\Html\Test;
-
 use Spatie\Html\Attributes;
 
-class AttributesTest extends TestCase
-{
-    /** @test */
-    public function it_starts_empty()
-    {
-        $attributes = new Attributes();
+uses(PHPUnit\Framework\TestCase::class);
 
-        $this->assertTrue($attributes->isEmpty());
-        $this->assertEmpty($attributes->toArray());
-        $this->assertEmpty($attributes->render());
-    }
+it('starts empty', function () {
+    $attributes = new Attributes();
 
-    /** @test */
-    public function it_accepts_classes_as_strings()
-    {
-        $attributes = new Attributes();
-        $attributes->addClass('foo bar');
+    expect($attributes)
+        ->isEmpty()->toBeTrue()
+        ->toArray()->toBeEmpty()
+        ->render()->toBeEmpty();
+});
 
-        $this->assertArrayHasKey('class', $attributes->toArray());
-        $this->assertEquals('foo bar', $attributes->toArray()['class']);
-    }
+it('accepts classes as strings', function () {
+    $attributes = new Attributes();
+    $attributes->addClass('foo bar');
 
-    /** @test */
-    public function it_accepts_classes_as_an_array()
-    {
-        $attributes = new Attributes();
-        $attributes->addClass(['foo', 'bar']);
+    expect($attributes->toArray())->toHaveKey('class')
+        ->and($attributes->toArray()['class'])->toEqual('foo bar');
+});
 
-        $this->assertArrayHasKey('class', $attributes->toArray());
-        $this->assertEquals('foo bar', $attributes->toArray()['class']);
-    }
+it('accepts classes as an array', function () {
+    $attributes = new Attributes();
+    $attributes->addClass(['foo', 'bar']);
 
-    /** @test */
-    public function it_can_add_classes_conditionally_with_an_associative_array()
-    {
-        $attributes = new Attributes();
-        $attributes->addClass([
-            'foo' => true,
-            'bar' => false,
-        ]);
+    expect($attributes->toArray())->toHaveKey('class')
+        ->and($attributes->toArray()['class'])->toEqual('foo bar');
+});
 
-        $this->assertArrayHasKey('class', $attributes->toArray());
-        $this->assertEquals('foo', $attributes->toArray()['class']);
-    }
+it('can add classes conditionally with an associative array', function () {
+    $attributes = new Attributes();
+    $attributes->addClass([
+        'foo' => true,
+        'bar' => false,
+    ]);
 
-    /** @test */
-    public function it_can_simultaniously_add_classes_conditionally_and_non_conditionally()
-    {
-        $attributes = new Attributes();
-        $attributes->addClass([
-            'foo' => true,
-            'bar' => false,
-            'baz',
-        ]);
+    expect($attributes->toArray())->toHaveKey('class')
+        ->and($attributes->toArray()['class'])->toEqual('foo');
+});
 
-        $this->assertArrayHasKey('class', $attributes->toArray());
-        $this->assertEquals('foo baz', $attributes->toArray()['class']);
-    }
+it('can simultaneously add classes conditionally and non conditionally', function () {
+    $attributes = new Attributes();
+    $attributes->addClass([
+        'foo' => true,
+        'bar' => false,
+        'baz',
+    ]);
 
-    /** @test */
-    public function it_accepts_attributes()
-    {
-        $attributes = new Attributes();
-        $attributes->setAttribute('href', '#');
-        $attributes->setAttribute('class', 'foobar');
+    expect($attributes->toArray())->toHaveKey('class')
+        ->and($attributes->toArray()['class'])->toEqual('foo baz');
+});
 
-        $this->assertArrayHasKey('href', $attributes->toArray());
-        $this->assertEquals('#', $attributes->toArray()['href']);
+it('accepts attributes', function () {
+    $attributes = new Attributes();
+    $attributes->setAttribute('href', '#');
+    $attributes->setAttribute('class', 'foobar');
 
-        $this->assertArrayHasKey('class', $attributes->toArray());
-        $this->assertEquals('foobar', $attributes->toArray()['class']);
-    }
+    expect($attributes->toArray())->toHaveKey('href')
+        ->and($attributes->toArray()['href'])->toEqual('#')
+        ->and($attributes->toArray())->toHaveKey('class')
+        ->and($attributes->toArray()['class'])->toEqual('foobar');
+});
 
-    /** @test */
-    public function it_accepts_attributes_without_values()
-    {
-        $attributes = new Attributes();
-        $attributes->setAttribute('required');
+it('accepts attributes without values', function () {
+    $attributes = new Attributes();
+    $attributes->setAttribute('required');
 
-        $this->assertArrayHasKey('required', $attributes->toArray());
-        $this->assertNull($attributes->toArray()['required']);
-    }
+    expect($attributes->toArray())->toHaveKey('required')
+        ->and($attributes->toArray()['required'])->toBeNull();
+});
 
-    /** @test */
-    public function it_can_forget_an_attribute()
-    {
-        $attributes = new Attributes();
-        $attributes->setAttribute('href', '#');
-        $attributes->forgetAttribute('href');
+it('can forget an attribute', function () {
+    $attributes = new Attributes();
+    $attributes->setAttribute('href', '#');
+    $attributes->forgetAttribute('href');
 
-        $this->assertNull($attributes->getAttribute('href'));
-    }
+    expect($attributes->getAttribute('href'))->toBeNull();
+});
 
-    /** @test */
-    public function it_can_forget_its_classes()
-    {
-        $attributes = new Attributes();
-        $attributes->addClass('foo');
-        $attributes->forgetAttribute('class');
+it("can forget it's classes", function () {
+    $attributes = new Attributes();
+    $attributes->addClass('foo');
+    $attributes->forgetAttribute('class');
 
-        $this->assertEmpty($attributes->getAttribute('class'));
-    }
+    expect($attributes->getAttribute('class'))->toBeEmpty();
+});
 
-    /** @test */
-    public function it_can_get_an_attribute()
-    {
-        $attributes = new Attributes();
-        $attributes->setAttribute('foo', 'bar');
+it('can get an attribute', function () {
+    $attributes = new Attributes();
+    $attributes->setAttribute('foo', 'bar');
 
-        $this->assertEquals('bar', $attributes->getAttribute('foo'));
-    }
+    expect($attributes->getAttribute('foo'))->toEqual('bar');
+});
 
-    /** @test */
-    public function it_can_get_a_class_list()
-    {
-        $attributes = new Attributes();
+it('can get a class list', function () {
+    $attributes = new Attributes();
 
-        $this->assertEquals('', $attributes->getAttribute('class'));
+    expect($attributes->getAttribute('class'))->toEqual('');
 
-        $attributes->addClass(['foo', 'bar']);
+    $attributes->addClass(['foo', 'bar']);
 
-        $this->assertEquals('foo bar', $attributes->getAttribute('class'));
-    }
+    expect($attributes->getAttribute('class'))->toEqual('foo bar');
+});
 
-    /** @test */
-    public function it_returns_null_if_an_attribute_doesnt_exist()
-    {
-        $attributes = new Attributes();
+it("returns null if an attribute doesn't exist", function () {
+    $attributes = new Attributes();
 
-        $this->assertNull($attributes->getAttribute('foo'));
-    }
+    expect($attributes->getAttribute('foo'))->toBeNull();
+});
 
-    /** @test */
-    public function it_can_return_a_fallback_if_an_attribute_doesnt_exist()
-    {
-        $attributes = new Attributes();
+it("can return a fallback if an attribute doesn't exist", function () {
+    $attributes = new Attributes();
 
-        $this->assertEquals('bar', $attributes->getAttribute('foo', 'bar'));
-    }
+    expect($attributes->getAttribute('foo', 'bar'))->toEqual('bar');
+});
 
-    /** @test */
-    public function it_accepts_multiple_attributes()
-    {
-        $attributes = new Attributes();
-        $attributes->setAttributes([
-            'name' => 'email',
-            'class' => 'foobar',
-            'required',
-        ]);
+it('accepts multiple attributes', function () {
+    $attributes = new Attributes();
+    $attributes->setAttributes([
+        'name' => 'email',
+        'class' => 'foobar',
+        'required',
+    ]);
 
-        $this->assertArrayHasKey('name', $attributes->toArray());
-        $this->assertEquals('email', $attributes->toArray()['name']);
+    expect($attributes->toArray())->toHaveKeys(['name', 'required'])
+        ->and($attributes->toArray()['name'])->toEqual('email')
+        ->and($attributes->toArray()['required'])->toBeEmpty();
+});
 
-        $this->assertArrayHasKey('required', $attributes->toArray());
-        $this->assertEmpty($attributes->toArray()['required']);
-    }
+it('can be rendered when empty', function () {
+    $attributes = new Attributes();
 
-    /** @test */
-    public function it_can_be_rendered_when_empty()
-    {
-        $attributes = new Attributes();
+    expect($attributes->render())->toEqual('');
+});
 
-        $this->assertEquals('', $attributes->render());
-    }
+it('can be rendered with an attribute', function () {
+    $attributes = new Attributes();
+    $attributes->setAttribute('foo', 'bar');
 
-    /** @test */
-    public function it_can_be_rendered_with_an_attribute()
-    {
-        $attributes = new Attributes();
-        $attributes->setAttribute('foo', 'bar');
+    expect($attributes->render())->toEqual('foo="bar"');
+});
 
-        $this->assertEquals('foo="bar"', $attributes->render());
-    }
+it('can be rendered with multiple attributes', function () {
+    $attributes = new Attributes();
+    $attributes->setAttributes(['foo' => 'bar', 'baz' => 'qux']);
 
-    /** @test */
-    public function it_can_be_rendered_with_multiple_attributes()
-    {
-        $attributes = new Attributes();
-        $attributes->setAttributes(['foo' => 'bar', 'baz' => 'qux']);
+    expect($attributes->render())->toEqual('foo="bar" baz="qux"');
+});
 
-        $this->assertEquals('foo="bar" baz="qux"', $attributes->render());
-    }
+it('can be rendered with a falsish attribute', function () {
+    $attributes = new Attributes();
+    $attributes->setAttribute('foo', '0');
 
-    /** @test */
-    public function it_can_be_rendered_with_a_falsish_attribute()
-    {
-        $attributes = new Attributes();
-        $attributes->setAttribute('foo', '0');
+    expect($attributes->render())->toEqual('foo="0"');
+});
 
-        $this->assertEquals('foo="0"', $attributes->render());
-    }
+it('can escape values when rendered', function () {
+    $attributes = new Attributes();
+    $attributes->setAttribute('foo', '<bar baz=""></bar>');
 
-    /** @test */
-    public function it_can_escape_values_when_rendered()
-    {
-        $attributes = new Attributes();
-        $attributes->setAttribute('foo', '<bar baz=""></bar>');
+    expect($attributes->render())->toEqual('foo="&lt;bar baz=&quot;&quot;&gt;&lt;/bar&gt;"');
+});
 
-        $this->assertEquals('foo="&lt;bar baz=&quot;&quot;&gt;&lt;/bar&gt;"', $attributes->render());
-    }
+it('can render square brackets', function () {
+    $attributes = new Attributes();
+    $attributes->setAttribute('names[]', 'Sebastian');
 
-    /** @test */
-    public function it_can_render_square_brackets()
-    {
-        $attributes = new Attributes();
-        $attributes->setAttribute('names[]', 'Sebastian');
+    expect($attributes->render())->toEqual('names[]="Sebastian"');
+});
 
-        $this->assertEquals('names[]="Sebastian"', $attributes->render());
-    }
+it('can determine wether an attribute exists', function () {
+    $attributes = new Attributes();
+    $attributes->setAttribute('foo', 'bar');
 
-    /** @test */
-    public function it_can_determine_wether_an_attribute_exists()
-    {
-        $attributes = new Attributes();
-        $attributes->setAttribute('foo', 'bar');
-
-        $this->assertTrue($attributes->hasAttribute('foo'));
-        $this->assertFalse($attributes->hasAttribute('bar'));
-    }
-}
+    expect($attributes)
+        ->hasAttribute('foo')->toBeTrue()
+        ->hasAttribute('bar')->toBeFalse();
+});

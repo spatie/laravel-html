@@ -1,33 +1,22 @@
 <?php
 
-namespace Spatie\Html\Test\Html;
+it('can create a fieldset', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<fieldset></fieldset>',
+        $this->html->fieldset()
+    );
+});
 
-class FieldsetTest extends TestCase
-{
-    /** @test */
-    public function it_can_create_a_fieldset()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<fieldset></fieldset>',
-            $this->html->fieldset()
-        );
-    }
+it('can create a fieldset with a legend', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<fieldset><legend>Legend</legend></fieldset>',
+        $this->html->fieldset('Legend')
+    );
+});
 
-    /** @test */
-    public function it_can_create_a_fieldset_with_a_legend()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<fieldset><legend>Legend</legend></fieldset>',
-            $this->html->fieldset('Legend')
-        );
-    }
-
-    /** @test */
-    public function it_can_add_a_legend_to_the_fieldset()
-    {
-        $this->assertHtmlStringEqualsHtmlString(
-            '<fieldset><legend>Legend</legend></fieldset>',
-            $this->html->fieldset()->legend('Legend')
-        );
-    }
-}
+it('can add a legend to the fieldset', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<fieldset><legend>Legend</legend></fieldset>',
+        $this->html->fieldset()->legend('Legend')
+    );
+});

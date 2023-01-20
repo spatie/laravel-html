@@ -19,8 +19,7 @@ $wrapInDiv = function (string $text): Div {
 };
 
 it("can't be instantiated without a tag name on the class", function () {
-    new class() extends BaseElement
-    {
+    new class () extends BaseElement {
     };
 })->throws(MissingTag::class);
 
@@ -159,8 +158,7 @@ it("can't add child if it's not an HTML element or a string")
     ->throws(InvalidChild::class);
 
 it("can't set text if it's a void element", function () {
-    $img = new class() extends BaseElement
-    {
+    $img = new class () extends BaseElement {
         protected $tag = 'img';
     };
 

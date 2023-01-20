@@ -325,7 +325,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
      */
     public function unless(bool $condition, \Closure $callback)
     {
-        return $this->if(!$condition, $callback);
+        return $this->if(! $condition, $callback);
     }
 
     /**
@@ -339,7 +339,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
      */
     public function ifNotNull($value, \Closure $callback)
     {
-        return !is_null($value) ? $callback($this) : $this;
+        return ! is_null($value) ? $callback($this) : $this;
     }
 
     /**
@@ -415,7 +415,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
     {
         if (Str::endsWith($name, $conditions = ['If', 'Unless', 'IfNotNull'])) {
             foreach ($conditions as $condition) {
-                if (!method_exists($this, $method = str_replace($condition, '', $name))) {
+                if (! method_exists($this, $method = str_replace($condition, '', $name))) {
                     continue;
                 }
 

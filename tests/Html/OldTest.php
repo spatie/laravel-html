@@ -88,7 +88,7 @@ it('returns a model value from a name with an array if its available in the mode
     );
 
     withModel([
-        'contact' => ['email' => 'sebastian@spatie.be']
+        'contact' => ['email' => 'sebastian@spatie.be'],
     ]);
     assertHtmlStringEqualsHtmlString(
         '<input type="email" name="contact[email]" id="contact[email]" value="sebastian@spatie.be">',

@@ -18,4 +18,5 @@ test('can create an a element with a target')
     ->assertHtmlStringEqualsHtmlString(
         '<a target="_blank"></a>',
         A::create()->target('_blank')
-    );;
+    );
+    ;

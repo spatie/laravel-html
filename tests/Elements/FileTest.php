@@ -46,7 +46,8 @@ it('can create a file with accept audio')
     ->assertHtmlStringEqualsHtmlString(
         '<input type="file" accept="audio/*">',
         File::create()->acceptAudio()
-    );;
+    );
+    ;
 
 it('can create a file with accept video')
     ->assertHtmlStringEqualsHtmlString(

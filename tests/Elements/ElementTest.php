@@ -8,5 +8,5 @@ it('can create an element with a tag')
     ->toEqual('<foo></foo>');
 
 it("can't create an element without a tag")
-    ->tap(fn () =>  Element::create())
+    ->tap(fn () => Element::create())
     ->throws(MissingTag::class);

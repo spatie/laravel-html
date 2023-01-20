@@ -1,8 +1,5 @@
 <?php
 
-namespace Spatie\Html\Test\Html;
-
-
 it('can create a form', function () {
     assertHtmlStringEqualsHtmlString(
         '<form method="POST"><input type="hidden" name="_token" value="abc"></form>',

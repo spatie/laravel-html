@@ -1,7 +1,5 @@
 <?php
 
-namespace Spatie\Html\Test\Html;
-
 it('it can create an a element', function () {
     assertHtmlStringEqualsHtmlString(
         '<a></a>',

@@ -1,163 +1,107 @@
 <?php
 
-namespace Spatie\Html\Test\Elements;
-
 use Spatie\Html\Elements\Input;
-use Spatie\Html\Test\TestCase;
 
-class InputTest extends TestCase
-{
-    /** @test */
-    public function it_can_create_an_input()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<input>',
-            Input::create()
-        );
-    }
+it('can create an input')
+    ->assertHtmlStringEqualsHtmlString(
+        '<input>',
+        Input::create()
+    );
 
-    /** @test */
-    public function it_can_create_an_input_with_a_custom_type()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<input type="text">',
-            Input::create()->type('text')
-        );
-    }
+it('can create an input with a custom type')
+    ->assertHtmlStringEqualsHtmlString(
+        '<input type="text">',
+        Input::create()->type('text')
+    );
 
-    /** @test */
-    public function it_can_create_an_input_with_a_name()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<input name="foo">',
-            Input::create()->name('foo')
-        );
-    }
+it('can create an input with a name')
+    ->assertHtmlStringEqualsHtmlString(
+        '<input name="foo">',
+        Input::create()->name('foo')
+    );
 
-    /** @test */
-    public function it_can_create_an_input_with_a_value()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<input value="bar">',
-            Input::create()->value('bar')
-        );
-    }
+it('can create an input with a value')
+    ->assertHtmlStringEqualsHtmlString(
+        '<input value="bar">',
+        Input::create()->value('bar')
+    );
 
-    /** @test */
-    public function it_can_create_an_input_with_a_placeholder()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<input placeholder="Foo bar">',
-            Input::create()->placeholder('Foo bar')
-        );
-    }
+it('can create an input with a placeholder')
+    ->assertHtmlStringEqualsHtmlString(
+        '<input placeholder="Foo bar">',
+        Input::create()->placeholder('Foo bar')
+    );
 
-    /** @test */
-    public function it_can_create_an_input_that_is_required()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<input required>',
-            Input::create()->required()
-        );
-    }
+it('can create an input that is required')
+    ->assertHtmlStringEqualsHtmlString(
+        '<input required>',
+        Input::create()->required()
+    );
 
-    /** @test */
-    public function it_can_create_an_input_that_is_required_when_passing_true()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<input required>',
-            Input::create()->required(true)
-        );
-    }
+it('can create an input that is required when passing true')
+    ->assertHtmlStringEqualsHtmlString(
+        '<input required>',
+        Input::create()->required(true)
+    );
 
-    /** @test */
-    public function it_wont_create_an_input_that_is_required_when_passing_false()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<input>',
-            Input::create()->required(false)
-        );
-    }
+it("won't create an input that is required when passing false")
+    ->assertHtmlStringEqualsHtmlString(
+        '<input>',
+        Input::create()->required(false)
+    );
 
-    /** @test */
-    public function it_can_create_an_input_that_has_autofocus()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<input autofocus>',
-            Input::create()->autofocus()
-        );
-    }
+it('can create an input that has autofocus')
+    ->assertHtmlStringEqualsHtmlString(
+        '<input autofocus>',
+        Input::create()->autofocus()
+    );
 
-    /** @test */
-    public function it_can_create_an_input_that_has_autofocus_when_passing_true()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<input autofocus>',
-            Input::create()->autofocus(true)
-        );
-    }
+it('can create an input that has autofocus when passing true')
+    ->assertHtmlStringEqualsHtmlString(
+        '<input autofocus>',
+        Input::create()->autofocus(true)
+    );
 
-    /** @test */
-    public function it_wont_create_an_input_that_has_autofocus_when_passing_false()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<input>',
-            Input::create()->autofocus(false)
-        );
-    }
+it("won't create an input that has autofocus when passing false")
+    ->assertHtmlStringEqualsHtmlString(
+        '<input>',
+        Input::create()->autofocus(false)
+    );
 
-    /** @test */
-    public function it_can_check_an_input()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<input type="checkbox" checked="checked">',
-            Input::create()->type('checkbox')->checked(true)
-        );
+it('can check an input')
+    ->assertHtmlStringEqualsHtmlString(
+        '<input type="checkbox" checked="checked">',
+        Input::create()->type('checkbox')->checked(true)
+    )
+    ->assertHtmlStringEqualsHtmlString(
+        '<input type="checkbox" checked="checked">',
+        Input::create()->type('checkbox')->checked()
+    );
 
-        assertHtmlStringEqualsHtmlString(
-            '<input type="checkbox" checked="checked">',
-            Input::create()->type('checkbox')->checked()
-        );
-    }
+it('can uncheck an input')
+    ->assertHtmlStringEqualsHtmlString(
+        '<input type="checkbox">',
+        Input::create()->type('checkbox')->checked()->checked(false)
+    )
+    ->assertHtmlStringEqualsHtmlString(
+        '<input type="checkbox">',
+        Input::create()->type('checkbox')->checked()->unchecked()
+    );
 
-    /** @test */
-    public function it_can_uncheck_an_input()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<input type="checkbox">',
-            Input::create()->type('checkbox')->checked()->checked(false)
-        );
+it('can disable an input')
+    ->assertHtmlStringEqualsHtmlString(
+        '<input type="checkbox" disabled>',
+        Input::create()->type('checkbox')->disabled()
+    );
 
-        assertHtmlStringEqualsHtmlString(
-            '<input type="checkbox">',
-            Input::create()->type('checkbox')->checked()->unchecked()
-        );
-    }
+it('can create an input with maxlength')
+    ->assertHtmlStringEqualsHtmlString(
+        '<input type="text" maxlength="25">',
+        Input::create()->type('text')->maxlength(25)
+    );
 
-    /** @test */
-    public function it_can_disable_an_input()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<input type="checkbox" disabled>',
-            Input::create()->type('checkbox')->disabled()
-        );
-    }
-
-    /** @test */
-    public function it_can_create_an_input_with_maxlength()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<input type="text" maxlength="25">',
-            Input::create()->type('text')->maxlength(25)
-        );
-    }
-
-    /** @test */
-    public function it_can_create_an_input_with_minlength()
-    {
-        assertHtmlStringEqualsHtmlString(
-            '<input type="text" minlength="25">',
-            Input::create()->type('text')->minlength(25)
-        );
-    }
-}
+it('can create an input with minlength')
+    ->assertHtmlStringEqualsHtmlString(
+        '<input type="text" minlength="25">',
+        Input::create()->type('text')->minlength(25)
+    );

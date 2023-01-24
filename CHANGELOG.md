@@ -2,6 +2,20 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 3.2.1 - 2023-01-24
+
+### What's Changed
+
+- Convert all tests to Pest by @alexmanase in https://github.com/spatie/laravel-html/pull/183
+- Laravel 10.x Compatibility by @laravel-shift in https://github.com/spatie/laravel-html/pull/184
+
+### New Contributors
+
+- @alexmanase made their first contribution in https://github.com/spatie/laravel-html/pull/183
+- @laravel-shift made their first contribution in https://github.com/spatie/laravel-html/pull/184
+
+**Full Changelog**: https://github.com/spatie/laravel-html/compare/3.2.0...3.2.1
+
 ## 3.2.0 - 2022-12-27
 
 - Add `P` class to render paragraphs

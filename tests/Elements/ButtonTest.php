@@ -7,21 +7,21 @@ it('can create a button')
         '<button></button>',
         Button::create()
     );
-    ;
+;
 
 it('can create a button with a type')
     ->assertHtmlStringEqualsHtmlString(
         '<button type="submit"></button>',
         Button::create()->type('submit')
     );
-    ;
+;
 
 it('can create a button with a value')
     ->assertHtmlStringEqualsHtmlString(
         '<button value="1"></button>',
         Button::create()->value(1)
     );
-    ;
+;
 
 it('can create a button with a name')
     ->assertHtmlStringEqualsHtmlString(

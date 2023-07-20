@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 3.2.2 - 2023-07-20
+
+### What's Changed
+
+- Allow setting a form action to a route by @miken32 in https://github.com/spatie/laravel-html/pull/189
+
+### New Contributors
+
+- @miken32 made their first contribution in https://github.com/spatie/laravel-html/pull/189
+
+**Full Changelog**: https://github.com/spatie/laravel-html/compare/3.2.1...3.2.2
+
 ## 3.2.1 - 2023-01-24
 
 ### What's Changed

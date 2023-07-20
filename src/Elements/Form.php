@@ -22,6 +22,17 @@ class Form extends BaseElement
     }
 
     /**
+     * @param string|null $route
+     * @param mixed $params
+     *
+     * @return static
+     */
+    public function route($route, ...$params)
+    {
+        return $this->action(route($route, ...$params));
+    }
+
+    /**
      * @param string|null $method
      *
      * @return static

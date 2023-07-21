@@ -62,6 +62,13 @@ Generally speaking you'll want to use this in combination with `open()` and `clo
 </form>
 ```
 
+The `route()` method can be chained to `form()` to simplify the specification of a form's action URI:
+```html
+{{ html()->form('PUT')->route('item.update') }}
+```
+This uses Laravel's [`route()` helper](https://laravel.com/docs/10.x/helpers#method-route) under the hood and accepts the same arguments.
+
+
 ### Building a form with a model
 
 To make things easier we've added the `modelForm()` and `closeModelForm()` methods to easily open and close a form that's coupled to a model. Under the hood the `model()` and `endModel()` methods are used.

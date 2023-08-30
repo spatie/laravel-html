@@ -50,9 +50,9 @@ echo Element::withTag('p')->text('This is the content!');
 
 ## `Form`
 
+- `function acceptsFiles()`
 - `function action(?string $action)`
 - `function method(?string $method)`
-- `function acceptsFiles()`
 - `function novalidate($novalidate = true)`
 - `function target(string $target)`
 
@@ -70,6 +70,8 @@ echo Element::withTag('p')->text('This is the content!');
 - `function checked($checked = true)`
 - `function disabled($disabled = true)`
 - `function isReadonly($readonly = true)`
+- `function maxlength(int $maxlength)`
+- `function minlength(int $minlength)`
 - `function name(?string $name)`
 - `function placeholder(?string $placeholder)`
 - `function required($required = true)`
@@ -77,8 +79,6 @@ echo Element::withTag('p')->text('This is the content!');
 - `function type(?string $type)`
 - `function unchecked()`
 - `function value(?string $value)`
-- `function maxlength(int $maxlength)`
-- `function minlength(int $minlength)`
 
 ## `Label`
 

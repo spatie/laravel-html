@@ -3,7 +3,7 @@ title: Element classes
 weight: 3
 ---
 
-This package includes some element classes out of the box, others can be created using the [generic `Spatie\Html\Elements\Element` class](#generic-codeelementcode). 
+This package includes some element classes out of the box, others can be created using the [generic `Spatie\Html\Elements\Element` class](#generic-codeelementcode).
 
 All elements can use the [base element methods](/laravel-html/v1/general-usage/element-methods). Some elements also have some element specific methods to easily set common attributes. These element specific methods can be found bellow.
 
@@ -69,9 +69,9 @@ echo Element::withTag('p')->text('This is the content!');
 - `function autofocus(?$autofocus)`
 - `function checked($checked = true)`
 - `function disabled($disabled = true)`
+- `function isReadonly($readonly = true)`
 - `function name(?string $name)`
 - `function placeholder(?string $placeholder)`
-- `function readonly($readonly = true)`
 - `function required($required = true)`
 - `function size($size)`
 - `function type(?string $type)`
@@ -105,12 +105,12 @@ echo Element::withTag('p')->text('This is the content!');
 
 - `function autofocus(?$autofocus)`
 - `function disabled(?$disabled)`
+- `function isReadonly(?$readonly)`
 - `function multiple()`
 - `function name(?string $name)`
 - `function optgroup(string $label, iterable $options)`
 - `function options(iterable $options)`
 - `function placeholder(?$text)`
-- `function readonly(?$readonly)`
 - `function required(?$required)`
 - `function value(?string $value)`
 
@@ -121,11 +121,11 @@ echo Element::withTag('p')->text('This is the content!');
 - `function autofocus()`
 - `function cols(int $cols)`
 - `function disabled(?$disabled)`
+- `function isReadonly(?$readonly)`
 - `function maxlength(int $maxlength)`
 - `function minlength(int $minlength)`
 - `function name(?string $name)`
 - `function placeholder(?string $placeholder)`
-- `function readonly(?$readonly)`
 - `function required()`
 - `function required(?$required)`
 - `function rows(int $rows)`

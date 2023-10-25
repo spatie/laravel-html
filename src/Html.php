@@ -2,6 +2,7 @@
 
 namespace Spatie\Html;
 
+use BackedEnum;
 use DateTimeImmutable;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Http\Request;
@@ -26,6 +27,7 @@ use Spatie\Html\Elements\P;
 use Spatie\Html\Elements\Select;
 use Spatie\Html\Elements\Span;
 use Spatie\Html\Elements\Textarea;
+use UnitEnum;
 
 class Html
 {
@@ -591,7 +593,9 @@ class Html
         // has a model assigned and there aren't old input items,
         // try to retrieve a value from the model.
         if (is_null($value) && $this->model && empty($this->request->old())) {
-            $value = data_get($this->model, $name) ?? '';
+            $value = ($value = data_get($this->model, $name)) instanceof UnitEnum
+                ? $this->getEnumValue($value)
+                : $value;
         }
 
         return $this->request->old($name, $value);
@@ -646,5 +650,18 @@ class Html
         } catch (\Exception $e) {
             return $value;
         }
+    }
+
+    /**
+     * Get the value from the given enum.
+     *
+     * @param  \UnitEnum|\BackedEnum  $value
+     * @return string|int
+     */
+    protected function getEnumValue($value)
+    {
+        return $value instanceof BackedEnum
+                ? $value->value
+                : $value->name;
     }
 }

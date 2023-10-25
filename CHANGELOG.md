@@ -2,6 +2,23 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 3.3.0 - 2023-10-24
+
+### What's Changed
+
+- Add documentation for new FormElement::route() method by @miken32 in https://github.com/spatie/laravel-html/pull/190
+- Update `.gitattributes` by @totoprayogo1916 in https://github.com/spatie/laravel-html/pull/194
+- Correction to docs re: readonly vs isReadonly by @sgilberg in https://github.com/spatie/laravel-html/pull/195
+- Get value from model with casts php native enum by @bskl in https://github.com/spatie/laravel-html/pull/203
+
+### New Contributors
+
+- @totoprayogo1916 made their first contribution in https://github.com/spatie/laravel-html/pull/194
+- @sgilberg made their first contribution in https://github.com/spatie/laravel-html/pull/195
+- @bskl made their first contribution in https://github.com/spatie/laravel-html/pull/203
+
+**Full Changelog**: https://github.com/spatie/laravel-html/compare/3.2.2...3.3.0
+
 ## 3.2.2 - 2023-07-20
 
 ### What's Changed

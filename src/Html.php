@@ -440,6 +440,21 @@ class Html
     }
 
     /**
+	 * @param  string|null  $name
+	 * @param  string|int|float  $start
+	 * @param  string|int|float  $end
+     * @param string|iterable|null $value
+     *
+     * @return \Spatie\Html\Elements\Select
+	 */
+	public function selectRange($name = null, $start = 0, $end = 1, $value = null)
+	{
+		$options = array_combine($range = range($start, $end), $range);
+
+		return $this->select($name, $options, $value);
+	}
+
+    /**
      * @param \Spatie\Html\HtmlElement|string|null $contents
      *
      * @return \Spatie\Html\Elements\Span

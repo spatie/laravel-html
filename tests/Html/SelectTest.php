@@ -60,3 +60,14 @@ it('can render a select element with options with a selected value when the valu
         $this->html->select('select', $options, '+2')->render()
     );
 });
+
+it('can render a select element with options with a selected value when using select range method', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<select name="select_range" id="select_range">
+            <option value="1">1</option>
+            <option value="2" selected="selected">2</option>
+            <option value="3">3</option>
+        </select>',
+        $this->html->selectRange('select_range', '1', '3', '2')->render()
+    );
+});

@@ -4,6 +4,7 @@ namespace Spatie\Html;
 
 use BackedEnum;
 use DateTimeImmutable;
+use Exception;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -662,7 +663,7 @@ class Html
             $date = new DateTimeImmutable($value);
 
             return $date->format($format);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $value;
         }
     }

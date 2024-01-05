@@ -131,7 +131,7 @@ class Html
     }
 
     /**
-     * @param \Spatie\Html\HtmlElement|string|null $contents
+     * @param \Spatie\Html\HtmlElement|string|iterable|int|float|null $contents
      *
      * @return \Spatie\Html\Elements\Div
      */

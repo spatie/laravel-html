@@ -2,6 +2,20 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 3.4.0 - 2024-01-05
+
+### What's Changed
+
+* Fix docblock to solve phpstan errors when passing an array to html()->div() by @SanderMuller in https://github.com/spatie/laravel-html/pull/210
+* Documentation on how to extend the package by @azamtav in https://github.com/spatie/laravel-html/pull/204
+
+### New Contributors
+
+* @SanderMuller made their first contribution in https://github.com/spatie/laravel-html/pull/210
+* @azamtav made their first contribution in https://github.com/spatie/laravel-html/pull/204
+
+**Full Changelog**: https://github.com/spatie/laravel-html/compare/3.3.0...3.4.0
+
 ## 3.3.0 - 2023-10-24
 
 ### What's Changed

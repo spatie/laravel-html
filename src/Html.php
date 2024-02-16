@@ -154,6 +154,17 @@ class Html
     /**
      * @param string|null $name
      * @param string|null $value
+     *
+     * @return \Spatie\Html\Elements\Input
+     */
+    public function search($name = null, $value = null)
+    {
+        return $this->input('search', $name, $value);
+    }
+
+    /**
+     * @param string|null $name
+     * @param string|null $value
      * @param bool $format
      *
      * @return \Spatie\Html\Elements\Input

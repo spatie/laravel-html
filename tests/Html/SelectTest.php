@@ -60,3 +60,75 @@ it('can render a select element with options with a selected value when the valu
         $this->html->select('select', $options, '+2')->render()
     );
 });
+
+it('can render a select element with options in groups', function () {
+    $options = [
+        'group' => [
+            'value1' => 'text1',
+            'value2' => 'text2',
+        ],
+    ];
+
+    assertHtmlStringEqualsHtmlString(
+        '<select name="select" id="select">
+                <optgroup label="group">
+                    <option value="value1">text1</option>
+                    <option value="value2">text2</option>
+                </optgroup>
+            </select>',
+        $this->html->select('select', $options)->render()
+    );
+});
+
+it('can render a select element with collection of options with a selected value', function () {
+    $options = collect([
+        'value1' => 'text1',
+        'value2' => 'text2',
+    ]);
+
+    assertHtmlStringEqualsHtmlString(
+        '<select name="select" id="select">
+                <option value="value1" selected="selected">text1</option>
+                <option value="value2">text2</option>
+            </select>',
+        $this->html->select('select', $options, 'value1')->render()
+    );
+});
+
+it('can render a select element with a collection of options in groups', function () {
+    $options = [
+        'group' => collect([
+            'value1' => 'text1',
+            'value2' => 'text2',
+        ]),
+    ];
+
+    assertHtmlStringEqualsHtmlString(
+        '<select name="select" id="select">
+                <optgroup label="group">
+                    <option value="value1">text1</option>
+                    <option value="value2">text2</option>
+                </optgroup>
+            </select>',
+        $this->html->select('select', $options)->render()
+    );
+});
+
+it('can render a select element of a collection with options in groups', function () {
+    $options = collect([
+        'group' => collect([
+            'value1' => 'text1',
+            'value2' => 'text2',
+        ]),
+    ]);
+
+    assertHtmlStringEqualsHtmlString(
+        '<select name="select" id="select">
+                <optgroup label="group">
+                    <option value="value1">text1</option>
+                    <option value="value2">text2</option>
+                </optgroup>
+            </select>',
+        $this->html->select('select', $options)->render()
+    );
+});

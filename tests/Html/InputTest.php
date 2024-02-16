@@ -267,3 +267,17 @@ it('can create a number input with max step', function () {
         $this->html->number('test', '30', null, '100', '10')
     );
 });
+
+it('can create a search input', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<input type="search">',
+        $this->html->search()
+    );
+});
+
+it('can create a search input with blank date', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<input id="test_search" name="test_search" type="search" value=""/>',
+        $this->html->search('test_search', '')
+    );
+});

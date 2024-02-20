@@ -108,5 +108,12 @@ To make things easier we've added the `modelForm()` and `closeModelForm()` metho
 - `function select($name = null, $options = [], $value = null): Select`
 - `function submit($text = null): Button`
 - `function text($name = null, $value = null): Input`
+- `function search($name = null, $value = null): Input`
+- `function date($name = '', $value = null, $format = true): Input`
+- `function datetime($name = '', $value = null, $format = true): Input`
+- `function time($name = '', $value = null, $format = true): Input`
+- `function range($name = '', $value = '', $min = null, $max = null, $step = null): Input`
+- `function number($name = null, $value = null, $min = null, $max = null, $step = null): Input`
 - `function textarea($name = null, $value = null): Textarea`
+- `function file($name = null): File`
 - `function token(): Input`

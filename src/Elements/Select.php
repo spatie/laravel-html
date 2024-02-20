@@ -57,7 +57,7 @@ class Select extends BaseElement
     public function options($options)
     {
         return $this->addChildren($options, function ($text, $value) {
-            if (is_array($text)) {
+            if (is_array($text) || $text instanceof Collection) {
                 return $this->optgroup($value, $text);
             }
 
@@ -84,8 +84,6 @@ class Select extends BaseElement
                     ->text($text)
                     ->selectedIf($value === $this->value);
             });
-
-        return $this->addChild($optgroup);
     }
 
     /**

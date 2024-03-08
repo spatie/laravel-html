@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 3.6.0 - 2024-03-08
+
+### What's Changed
+
+* Laravel 11.x Compatibility by @laravel-shift in https://github.com/spatie/laravel-html/pull/214
+
+**Full Changelog**: https://github.com/spatie/laravel-html/compare/3.5.0...3.6.0
+
 ## 3.4.0 - 2024-01-05
 
 ### What's Changed

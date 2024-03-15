@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Contracts\Support\Htmlable;
+
 it('can create a button', function () {
     assertHtmlStringEqualsHtmlString(
         '<button></button>',
@@ -18,6 +20,13 @@ it('can create a button with html contents', function () {
     assertHtmlStringEqualsHtmlString(
         '<button><em>Hi</em></button>',
         $this->html->button('<em>Hi</em>')
+    );
+});
+
+it('can create a button with Htmlable contents', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<button>Hi</button>',
+        $this->html->button(new \Illuminate\View\ComponentSlot('Hi'))
     );
 });
 

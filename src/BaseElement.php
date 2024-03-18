@@ -52,7 +52,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
     {
         $element = clone $this;
 
-        $element->attributes->setAttribute($attribute, (string)$value);
+        $element->attributes->setAttribute($attribute, (string) $value);
 
         return $element;
     }
@@ -325,7 +325,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
      */
     public function unless(bool $condition, \Closure $callback)
     {
-        return $this->if(!$condition, $callback);
+        return $this->if(! $condition, $callback);
     }
 
     /**
@@ -339,7 +339,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
      */
     public function ifNotNull($value, \Closure $callback)
     {
-        return !is_null($value) ? $callback($this) : $this;
+        return ! is_null($value) ? $callback($this) : $this;
     }
 
     /**
@@ -405,8 +405,8 @@ abstract class BaseElement implements Htmlable, HtmlElement
      * Dynamically handle calls to the class.
      * Check for methods finishing by If or fallback to Macroable.
      *
-     * @param string $name
-     * @param array $arguments
+     * @param  string $name
+     * @param  array $arguments
      * @return mixed
      *
      * @throws BadMethodCallException
@@ -415,7 +415,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
     {
         if (Str::endsWith($name, $conditions = ['If', 'Unless', 'IfNotNull'])) {
             foreach ($conditions as $condition) {
-                if (!method_exists($this, $method = str_replace($condition, '', $name))) {
+                if (! method_exists($this, $method = str_replace($condition, '', $name))) {
                     continue;
                 }
 
@@ -435,9 +435,9 @@ abstract class BaseElement implements Htmlable, HtmlElement
 
         switch ($type) {
             case 'If':
-                return $this->if((bool)$value, $callback);
+                return $this->if((bool) $value, $callback);
             case 'Unless':
-                return $this->unless((bool)$value, $callback);
+                return $this->unless((bool) $value, $callback);
             case 'IfNotNull':
                 return $this->ifNotNull($value, $callback);
             default:

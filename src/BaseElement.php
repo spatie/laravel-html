@@ -405,8 +405,8 @@ abstract class BaseElement implements Htmlable, HtmlElement
      * Dynamically handle calls to the class.
      * Check for methods finishing by If or fallback to Macroable.
      *
-     * @param  string $name
-     * @param  array $arguments
+     * @param  string  $name
+     * @param  array   $arguments
      * @return mixed
      *
      * @throws BadMethodCallException

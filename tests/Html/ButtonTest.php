@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Contracts\Support\Htmlable;
-
 it('can create a button', function () {
     assertHtmlStringEqualsHtmlString(
         '<button></button>',

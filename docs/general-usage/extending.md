@@ -7,7 +7,6 @@ If you want to extend the Html package, you can do the following.
 
 Create a class that extends Html:
 
-
 ```php
 <?php
 

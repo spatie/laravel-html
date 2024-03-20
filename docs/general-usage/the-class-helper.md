@@ -3,7 +3,7 @@ title: The class() helper
 weight: 5
 ---
 
-The `class` method on `Html` is a helper to render a `class` attribute similar to [Vue.js' `:class` property](https://vuejs.org/guide/class-and-style.html#Object-Syntax).
+The `class` method on `Html` is a helper to render a `class` attribute similar to [Vue.js' `:class` property](https://vuejs.org/guide/essentials/class-and-style.html#Object-Syntax).
 
 It expects an array (or a `Collection`), and will toggle a set of classes depending on the values of the array.
 

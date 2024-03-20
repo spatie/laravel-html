@@ -5,17 +5,17 @@ weight: 1
 
 ## `Element` classes
 
-This package contains several element classes under the `Spatie\Html\Elements` namespace. It's possible to generate any HTML element with any attribute via these classes and the [fluent element methods](/laravel-html/v1/general-usage/element-methods).
+This package contains several element classes under the `Spatie\Html\Elements` namespace. It's possible to generate any HTML element with any attribute via these classes and the [fluent element methods](/laravel-html/general-usage/element-methods).
 
 `Element` classes on their own don't have any knowledge of the outside world. That's where the `Spatie\Html\Html` builder comes into play.
 
 ## `Html` Builder class
 
-The `Spatie\Html\Html` builder is used to build proper HTML using its [builder methods](/laravel-html/v1/general-usage/html-builder). It will also couple `Spatie\Html\Elements` to other concepts like requests, sessions and models.
+The `Spatie\Html\Html` builder is used to build proper HTML using its [builder methods](/laravel-html/general-usage/html-builder). It will also couple `Spatie\Html\Elements` to other concepts like requests, sessions and models.
 
 For example when building input fields the `Html` builder will pull old values from the session (on a failed form request) or use values of a given model for the `value` attribute of the input.
 
-Because the `Html` builder will generally return `Spatie\Html\Elements`, you can chain most of the [elements' fluent methods](/laravel-html/v1/general-usage/element-methods) directly onto the builder.
+Because the `Html` builder will generally return `Spatie\Html\Elements`, you can chain most of the [elements' fluent methods](/laravel-html/general-usage/element-methods) directly onto the builder.
 
 ## The Difference Between Builder Params and Element Methods
 

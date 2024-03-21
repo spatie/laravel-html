@@ -68,7 +68,7 @@ Get the value of an element's attribute:
 ```php
 echo Div::attribute('data-custom', 'Attribute value')
         ->getAttribute('data-custom');
-// "data-custom"
+// "Attribute value"
 ```
 You may also specify a fallback value:
 

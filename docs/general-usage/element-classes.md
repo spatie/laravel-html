@@ -66,6 +66,7 @@ echo Element::withTag('p')->text('This is the content!');
 
 ## `Input`
 
+- `function autocomplete(?$autocomplete)`
 - `function autofocus(?$autofocus)`
 - `function checked($checked = true)`
 - `function disabled($disabled = true)`
@@ -103,6 +104,7 @@ echo Element::withTag('p')->text('This is the content!');
 
 ## `Select`
 
+- `function autocomplete(?$autocomplete)`
 - `function autofocus(?$autofocus)`
 - `function disabled(?$disabled)`
 - `function isReadonly(?$readonly)`
@@ -118,6 +120,7 @@ echo Element::withTag('p')->text('This is the content!');
 
 ## `Textarea`
 
+- `function autocomplete(?$autocomplete)`
 - `function autofocus()`
 - `function cols(int $cols)`
 - `function disabled(?$disabled)`

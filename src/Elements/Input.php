@@ -3,6 +3,7 @@
 namespace Spatie\Html\Elements;
 
 use Spatie\Html\BaseElement;
+use Spatie\Html\Elements\Attributes\Autocomplete;
 use Spatie\Html\Elements\Attributes\Autofocus;
 use Spatie\Html\Elements\Attributes\Disabled;
 use Spatie\Html\Elements\Attributes\MinMaxLength;
@@ -16,6 +17,7 @@ use Spatie\Html\Elements\Attributes\Value;
 class Input extends BaseElement
 {
     use Autofocus;
+    use Autocomplete;
     use Disabled;
     use MinMaxLength;
     use Name;

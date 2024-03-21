@@ -50,6 +50,12 @@ it("won't create an input that is required when passing false")
         Input::create()->required(false)
     );
 
+it('can create a non-autocompleted input')
+    ->assertHtmlStringEqualsHtmlString(
+        '<input autocomplete="off">',
+        Input::create()->autocomplete(false)
+    );
+
 it('can create an input that has autofocus')
     ->assertHtmlStringEqualsHtmlString(
         '<input autofocus>',

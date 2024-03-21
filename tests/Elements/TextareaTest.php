@@ -14,6 +14,26 @@ it('can create an autofocused textarea')
         Textarea::create()->autofocus()
     );
 
+it('can create a non-autocompleted textarea')
+    ->assertHtmlStringEqualsHtmlString(
+        '<textarea autocomplete="off"></textarea>',
+        Textarea::create()->autocomplete('off')
+    )
+    ->assertHtmlStringEqualsHtmlString(
+        '<textarea autocomplete="off"></textarea>',
+        Textarea::create()->autocomplete(false)
+    );
+
+it('can create a custom-autocompleted textarea')
+    ->assertHtmlStringEqualsHtmlString(
+        '<textarea autocomplete="on"></textarea>',
+        Textarea::create()->autocomplete()
+    )
+    ->assertHtmlStringEqualsHtmlString(
+        '<textarea autocomplete="other-field"></textarea>',
+        Textarea::create()->autocomplete('other-field')
+    );
+
 it('can create a textarea with a placeholder')
     ->assertHtmlStringEqualsHtmlString(
         '<textarea placeholder="Lorem ipsum"></textarea>',

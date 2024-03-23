@@ -173,6 +173,14 @@ it('can create a select that has autofocus')
         Select::create()->autofocus()->options(['value1' => 'text1'])->render()
     );
 
+it('can create a non-autocompleted select')
+    ->assertHtmlStringEqualsHtmlString(
+        '<select autocomplete="off">
+                <option value="value1">text1</option>
+            </select>',
+        Select::create()->autocomplete('off')->options(['value1' => 'text1'])->render()
+    );
+
 it('can create a select that has autofocus when passing true')
     ->assertHtmlStringEqualsHtmlString(
         '<select autofocus>

@@ -7,7 +7,7 @@ This package helps you generate HTML using a clean, simple and easy to read API.
 
 ### Generating elements
 
-For example creating a new `span` element with a class is super easy with the [fluent methods for elements](/laravel-html/v1/general-usage/element-methods):
+For example creating a new `span` element with a class is super easy with the [fluent methods for elements](/laravel-html/general-usage/element-methods):
 
  ```php
 html()->span()->text('Hello world!')->class('fa fa-eye');

@@ -2,6 +2,21 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 3.7.0 - 2024-03-23
+
+### What's Changed
+
+* Fix return value in docs in element-methods.md by @raveren in https://github.com/spatie/laravel-html/pull/218
+* Add autocomplete attribute helper to input, select and textarea by @raveren in https://github.com/spatie/laravel-html/pull/219
+* Fix link with version in documentation by @fey in https://github.com/spatie/laravel-html/pull/217
+
+### New Contributors
+
+* @raveren made their first contribution in https://github.com/spatie/laravel-html/pull/218
+* @fey made their first contribution in https://github.com/spatie/laravel-html/pull/217
+
+**Full Changelog**: https://github.com/spatie/laravel-html/compare/3.6.0...3.7.0
+
 ## 3.6.0 - 2024-03-08
 
 ### What's Changed

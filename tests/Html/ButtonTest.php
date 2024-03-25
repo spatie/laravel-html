@@ -21,6 +21,13 @@ it('can create a button with html contents', function () {
     );
 });
 
+it('can create a button with Htmlable contents', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<button>Hi</button>',
+        $this->html->button(new \Illuminate\View\ComponentSlot('Hi'))
+    );
+});
+
 it('can create a button with a type', function () {
     assertHtmlStringEqualsHtmlString(
         '<button type="submit">Hi</button>',

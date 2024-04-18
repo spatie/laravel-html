@@ -52,6 +52,7 @@ echo Element::withTag('p')->text('This is the content!');
 
 - `function acceptsFiles()`
 - `function action(?string $action)`
+- `function autocomplete(bool|string $autocomplete = true)`
 - `function method(?string $method)`
 - `function novalidate($novalidate = true)`
 - `function target(string $target)`
@@ -66,7 +67,7 @@ echo Element::withTag('p')->text('This is the content!');
 
 ## `Input`
 
-- `function autocomplete(?$autocomplete)`
+- `function autocomplete(bool|string $autocomplete = true)`
 - `function autofocus(?$autofocus)`
 - `function checked($checked = true)`
 - `function disabled($disabled = true)`
@@ -104,7 +105,7 @@ echo Element::withTag('p')->text('This is the content!');
 
 ## `Select`
 
-- `function autocomplete(?$autocomplete)`
+- `function autocomplete(bool|string $autocomplete = true)`
 - `function autofocus(?$autofocus)`
 - `function disabled(?$disabled)`
 - `function isReadonly(?$readonly)`
@@ -120,7 +121,7 @@ echo Element::withTag('p')->text('This is the content!');
 
 ## `Textarea`
 
-- `function autocomplete(?$autocomplete)`
+- `function autocomplete(bool|string $autocomplete = true)`
 - `function autofocus()`
 - `function cols(int $cols)`
 - `function disabled(?$disabled)`

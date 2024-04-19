@@ -465,6 +465,8 @@ abstract class BaseElement implements Htmlable, HtmlElement
     {
         if ($children instanceof HtmlElement) {
             $children = [$children];
+        } elseif ($children instanceof Htmlable) {
+            $children = $children->toHtml();
         }
 
         $children = Collection::make($children);

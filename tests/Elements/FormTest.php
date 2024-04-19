@@ -26,6 +26,12 @@ it('can create a form that accepts files')
         Form::create()->acceptsFiles()
     );
 
+it('can create a form with a non-autocomplete attribute')
+    ->assertHtmlStringEqualsHtmlString(
+        '<form autocomplete="off"></form>',
+        Form::create()->autocomplete(false)
+    );
+
 it('can create a form with a novalidate attribute')
     ->assertHtmlStringEqualsHtmlString(
         '<form enctype="multipart/form-data" novalidate=""></form>',

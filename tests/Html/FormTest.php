@@ -66,3 +66,10 @@ it('can create form with end model', function () {
 it('can return close model form')
     ->expect(fn () => (string) $this->html->closeModelForm())
     ->toEqual('</form>');
+
+it('can create a form with a name', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<form method="GET" name="form-name"></form>',
+        $this->html->form('GET')->name('form-name')
+    );
+});

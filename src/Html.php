@@ -272,8 +272,9 @@ class Html
      */
     public function fieldset($legend = null)
     {
-        return $legend ?
-            Fieldset::create()->legend($legend) : Fieldset::create();
+        return $legend
+            ? Fieldset::create()->legend($legend)
+            : Fieldset::create();
     }
 
     /**
@@ -390,9 +391,9 @@ class Html
     public function number($name = null, $value = null, $min = null, $max = null, $step = null)
     {
         return $this->input('number', $name, $value)
-                ->attributeIfNotNull($min, 'min', $min)
-                ->attributeIfNotNull($max, 'max', $max)
-                ->attributeIfNotNull($step, 'step', $step);
+            ->attributeIfNotNull($min, 'min', $min)
+            ->attributeIfNotNull($max, 'max', $max)
+            ->attributeIfNotNull($step, 'step', $step);
     }
 
     /**
@@ -673,7 +674,7 @@ class Html
     protected function getEnumValue($value)
     {
         return $value instanceof BackedEnum
-                ? $value->value
-                : $value->name;
+            ? $value->value
+            : $value->name;
     }
 }

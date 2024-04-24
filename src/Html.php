@@ -4,6 +4,7 @@ namespace Spatie\Html;
 
 use BackedEnum;
 use DateTimeImmutable;
+use Exception;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -271,8 +272,9 @@ class Html
      */
     public function fieldset($legend = null)
     {
-        return $legend ?
-            Fieldset::create()->legend($legend) : Fieldset::create();
+        return $legend
+            ? Fieldset::create()->legend($legend)
+            : Fieldset::create();
     }
 
     /**
@@ -389,9 +391,9 @@ class Html
     public function number($name = null, $value = null, $min = null, $max = null, $step = null)
     {
         return $this->input('number', $name, $value)
-                ->attributeIfNotNull($min, 'min', $min)
-                ->attributeIfNotNull($max, 'max', $max)
-                ->attributeIfNotNull($step, 'step', $step);
+            ->attributeIfNotNull($min, 'min', $min)
+            ->attributeIfNotNull($max, 'max', $max)
+            ->attributeIfNotNull($step, 'step', $step);
     }
 
     /**
@@ -658,7 +660,7 @@ class Html
             $date = new DateTimeImmutable($value);
 
             return $date->format($format);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $value;
         }
     }
@@ -672,7 +674,7 @@ class Html
     protected function getEnumValue($value)
     {
         return $value instanceof BackedEnum
-                ? $value->value
-                : $value->name;
+            ? $value->value
+            : $value->name;
     }
 }

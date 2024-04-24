@@ -303,3 +303,9 @@ it('can set a data attribute')
         '<div data-foo="bar"></div>',
         Div::create()->data('foo', 'bar')->render()
     );
+
+it('can set a aria attribute')
+    ->assertHtmlStringEqualsHtmlString(
+        '<div aria-describedby="bar"></div>',
+        Div::create()->aria('describedby', 'bar')->render()
+    );

@@ -20,3 +20,13 @@ Next, you need to register the service provider:
     Spatie\Html\HtmlServiceProvider::class,
 ];
 ```
+
+If you're using Laravel 11:
+
+```php
+// bootstrap/providers.php
+return [
+    ...
+    Spatie\Html\HtmlServiceProvider::class,
+];
+```

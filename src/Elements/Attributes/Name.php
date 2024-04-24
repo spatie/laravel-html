@@ -5,7 +5,7 @@ namespace Spatie\Html\Elements\Attributes;
 trait Name
 {
     /**
-     * @param string $name
+     * @param string|null $name
      *
      * @return static
      */

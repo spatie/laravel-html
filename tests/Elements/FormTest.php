@@ -55,3 +55,10 @@ it('can create a form with a target')
         '<form target="_blank"></form>',
         Form::create()->target('_blank')
     );
+
+it('can create a form with a name', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<form name="form-name"></form>',
+        Form::create()->name('form-name')
+    );
+});

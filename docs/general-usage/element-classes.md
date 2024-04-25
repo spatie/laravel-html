@@ -54,6 +54,7 @@ echo Element::withTag('p')->text('This is the content!');
 - `function action(?string $action)`
 - `function autocomplete(bool|string $autocomplete = true)`
 - `function method(?string $method)`
+- `function name(?string $name)`
 - `function novalidate($novalidate = true)`
 - `function target(string $target)`
 

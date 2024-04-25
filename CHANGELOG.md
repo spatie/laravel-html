@@ -2,6 +2,15 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 3.9.0 - 2024-04-25
+
+### What's Changed
+
+* Add use statement by @bskl in https://github.com/spatie/laravel-html/pull/222
+* Add aria helper method by @bskl in https://github.com/spatie/laravel-html/pull/226
+
+**Full Changelog**: https://github.com/spatie/laravel-html/compare/3.8.0...3.9.0
+
 ## 3.8.0 - 2024-04-24
 
 ### What's Changed

@@ -14,6 +14,7 @@ All `Spatie\Html\Elements` have some methods that make working with elements eas
 - [`class()`](#class)
 - [`id()`](#id)
 - [`data()`](#data)
+- [`aria()`](#aria)
 - [`child()` and `children()`](#child-and-children)
 - [`prependChild()` and `prependChildren()`](#prependchild-and-prependchildren)
 - [`text()`](#text)
@@ -101,6 +102,14 @@ Add a data- attribute:
 ```php
 echo Div::data('btn', 123);
 // "<div data-btn="123"></div>"
+```
+
+## `aria()`
+
+Add a aria- attribute:
+```php
+echo Div::aria('describedby', 'bar');
+// "<div aria-describedby="bar"></div>"
 ```
 
 ## `child()` and `children()`

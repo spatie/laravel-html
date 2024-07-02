@@ -7,6 +7,7 @@ use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
+use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 use Spatie\Html\Exceptions\InvalidChild;
 use Spatie\Html\Exceptions\InvalidHtml;
@@ -14,6 +15,8 @@ use Spatie\Html\Exceptions\MissingTag;
 
 abstract class BaseElement implements Htmlable, HtmlElement
 {
+    use Conditionable;
+
     use Macroable {
         __call as __macro_call;
     }

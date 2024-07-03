@@ -315,6 +315,6 @@ it('can make use of the conditionable helper')
     ->assertHtmlStringEqualsHtmlString(
         '<div></div>',
         Div::create()
-            ->when(false, fn(BaseElement $element) => $element->data('foo', 'bar'))
+            ->when(false, fn (BaseElement $element) => $element->data('foo', 'bar'))
             ->render()
     );

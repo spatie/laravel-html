@@ -256,7 +256,7 @@ class Html
      */
     public function input($type = null, $name = null, $value = null)
     {
-        $hasValue = $name && ($type !== 'password' && ! is_null($this->old($name, $value)) || ! is_null($value));
+        $hasValue = ! is_null($value) || ($type !== 'password' && ! is_null($this->old($name, $value)));
 
         return Input::create()
             ->attributeIf($type, 'type', $type)

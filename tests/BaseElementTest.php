@@ -309,3 +309,12 @@ it('can set a aria attribute')
         '<div aria-describedby="bar"></div>',
         Div::create()->aria('describedby', 'bar')->render()
     );
+
+
+it('can make use of the conditionable helper')
+    ->assertHtmlStringEqualsHtmlString(
+        '<div></div>',
+        Div::create()
+            ->when(false, fn(BaseElement $element) => $element->data('foo', 'bar'))
+            ->render()
+    );

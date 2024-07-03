@@ -28,6 +28,13 @@ it('can create an input with a value', function () {
     );
 });
 
+it('can create an input with no name and a value', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<input type="text" value="bar">',
+        $this->html->input('text', null, 'bar')
+    );
+});
+
 it('can create an input with a placeholder', function () {
     assertHtmlStringEqualsHtmlString(
         '<input placeholder="Foo bar">',

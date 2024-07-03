@@ -2,6 +2,15 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 3.10.0 - 2024-07-03
+
+### What's Changed
+
+* Update docs for name attribute by @bskl in https://github.com/spatie/laravel-html/pull/225
+* Add Conditionable trait: now `->when()` helper is available on all elements by @raveren in https://github.com/spatie/laravel-html/pull/234
+
+**Full Changelog**: https://github.com/spatie/laravel-html/compare/3.9.0...3.10.0
+
 ## 3.9.0 - 2024-04-25
 
 ### What's Changed

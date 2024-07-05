@@ -126,7 +126,9 @@ class Select extends BaseElement
 
     protected function applyValueToOptions()
     {
-        $value = Collection::make($this->value);
+        $value = $this->value instanceof \Illuminate\Database\Eloquent\Collection
+            ? $this->value
+            : Collection::make($this->value);
 
         if (! $this->hasAttribute('multiple')) {
             $value = $value->take(1);

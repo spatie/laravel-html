@@ -22,7 +22,7 @@ class A extends BaseElement
     }
 
     /**
-     * @param string|null $href
+     * @param string|null $route
      * @param mixed $params
      *
      * @return static

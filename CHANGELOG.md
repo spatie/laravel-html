@@ -2,6 +2,20 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 3.10.1 - 2024-07-15
+
+### What's Changed
+
+* Fix value omitted when input created with no name by @raveren in https://github.com/spatie/laravel-html/pull/235
+* Fix value omitted when input created with no name by @raveren in https://github.com/spatie/laravel-html/pull/236
+* Fix for Select and model's relationships by @nikosv in https://github.com/spatie/laravel-html/pull/237
+
+### New Contributors
+
+* @nikosv made their first contribution in https://github.com/spatie/laravel-html/pull/237
+
+**Full Changelog**: https://github.com/spatie/laravel-html/compare/3.10.0...3.10.1
+
 ## 3.10.0 - 2024-07-03
 
 ### What's Changed

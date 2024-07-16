@@ -27,4 +27,34 @@ class Img extends BaseElement
     {
         return $this->attribute('src', $src);
     }
+
+    /**
+     * @param string|null $srcset
+     *
+     * @return static
+     */
+    public function srcset($srcset)
+    {
+        return $this->attribute('srcset', $srcset);
+    }
+
+    /**
+     * @param string|null $loading
+     *
+     * @return static
+     */
+    public function loading($loading)
+    {
+        return $this->attribute('loading', $loading);
+    }
+
+    /**
+     * @param string|null $crossorigin
+     *
+     * @return static
+     */
+    public function crossorigin($crossorigin)
+    {
+        return $this->attribute('crossorigin', $crossorigin);
+    }
 }

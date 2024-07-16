@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 3.11.0 - 2024-07-16
+
+### What's Changed
+
+* Add some attributes by @francoism90 in https://github.com/spatie/laravel-html/pull/239
+
+### New Contributors
+
+* @francoism90 made their first contribution in https://github.com/spatie/laravel-html/pull/239
+
+**Full Changelog**: https://github.com/spatie/laravel-html/compare/3.10.1...3.11.0
+
 ## 3.10.1 - 2024-07-15
 
 ### What's Changed

@@ -297,7 +297,7 @@ abstract class BaseElement implements Htmlable, HtmlElement
      */
     public function text($text)
     {
-        return $this->html(htmlentities($text, ENT_QUOTES, 'UTF-8', false));
+        return $this->html(htmlentities($text ?? '', ENT_QUOTES, 'UTF-8', false));
     }
 
     /**

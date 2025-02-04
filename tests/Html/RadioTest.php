@@ -67,8 +67,7 @@ it('can create multiple radio buttons and check the zero value', function () {
     );
 });
 
-it('can create radio button with zero value in first position', function () {
-
+it('can create unchecked radio button with zero value', function () {
     assertHtmlStringEqualsHtmlString(
         '<div>' .
         '<input type="radio" name="my_radio" id="my_radio_0" value="0">' .

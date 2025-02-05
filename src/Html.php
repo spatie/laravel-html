@@ -469,7 +469,8 @@ class Html
      */
     public function submit($text = null)
     {
-        return $this->button($text, 'submit');
+        // patch: textをvalueとして創出することを期待する
+        return $this->button($text, 'submit')->value($text);
     }
 
     /**

@@ -433,7 +433,7 @@ class Html
         return $this->input('radio', $name, $value)
             ->attributeIf($name, 'id', $value === null ? $name : ($name.'_'.Str::slug($value)))
             ->attributeIf(! is_null($value), 'value', $value)
-            ->attributeIf((! is_null($value) && $this->old($name) == $value) || $checked, 'checked');
+            ->attributeIf((! is_null($value) && $this->old($name) === $value) || $checked, 'checked');
     }
 
     /**

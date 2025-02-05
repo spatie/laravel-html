@@ -66,3 +66,16 @@ it('can create multiple radio buttons and check the zero value', function () {
         ])
     );
 });
+
+it('can create unchecked radio button with zero value', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<div>' .
+        '<input type="radio" name="my_radio" id="my_radio_0" value="0">' .
+        '<input type="radio" name="my_radio" id="my_radio_1" checked="checked" value="1">' .
+        '</div>',
+        $this->html->div([
+            $this->html->radio('my_radio', false, 0),
+            $this->html->radio('my_radio', true, 1),
+        ])
+    );
+});

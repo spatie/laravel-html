@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 3.11.3 - 2025-02-17
+
+### What's Changed
+
+* Laravel 12.x Compatibility by @laravel-shift in https://github.com/spatie/laravel-html/pull/251
+
+**Full Changelog**: https://github.com/spatie/laravel-html/compare/3.11.2...3.11.3
+
 ## 3.11.2 - 2025-02-05
 
 ### What's Changed

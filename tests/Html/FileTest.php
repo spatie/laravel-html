@@ -13,3 +13,10 @@ it('can create a file input with a name', function () {
         $this->html->file('archives')
     );
 });
+
+it('can create a file input with disabled when passing true', function () {
+    assertHtmlStringEqualsHtmlString(
+        '<input id="archives" type="file" name="archives" disabled="disabled">',
+        $this->html->file('archives')->disabled(true)
+    );
+});

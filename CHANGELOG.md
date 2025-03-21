@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 3.12.0 - 2025-03-21
+
+### What's Changed
+
+* add disabled option to file input by @it-can in https://github.com/spatie/laravel-html/pull/253
+
+### New Contributors
+
+* @it-can made their first contribution in https://github.com/spatie/laravel-html/pull/253
+
+**Full Changelog**: https://github.com/spatie/laravel-html/compare/3.11.3...3.12.0
+
 ## 3.11.3 - 2025-02-17
 
 ### What's Changed

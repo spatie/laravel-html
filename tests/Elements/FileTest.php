@@ -26,6 +26,18 @@ it("won't create a file that has autofocus when passing false")
         File::create()->autofocus(false)
     );
 
+it('can create a file that has disabled when passing true')
+    ->assertHtmlStringEqualsHtmlString(
+        '<input type="file" disabled>',
+        File::create()->disabled(true)
+    );
+
+it("won't create a file that has disabled when passing false")
+    ->assertHtmlStringEqualsHtmlString(
+        '<input type="file">',
+        File::create()->disabled(false)
+    );
+
 it('can create an required file')
     ->assertHtmlStringEqualsHtmlString(
         '<input type="file" required>',

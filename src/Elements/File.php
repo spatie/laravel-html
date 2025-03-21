@@ -4,12 +4,14 @@ namespace Spatie\Html\Elements;
 
 use Spatie\Html\BaseElement;
 use Spatie\Html\Elements\Attributes\Autofocus;
+use Spatie\Html\Elements\Attributes\Disabled;
 use Spatie\Html\Elements\Attributes\Name;
 use Spatie\Html\Elements\Attributes\Required;
 
 class File extends BaseElement
 {
     use Autofocus;
+    use Disabled;
     use Name;
     use Required;
 

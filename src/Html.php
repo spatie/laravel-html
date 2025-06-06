@@ -43,6 +43,9 @@ class Html
     /** @var \ArrayAccess|array */
     protected $model;
 
+    /** @var \ArrayAccess|array */
+    protected $defaults;
+
     public function __construct(Request $request)
     {
         $this->request = $request;
@@ -588,6 +591,52 @@ class Html
     }
 
     /**
+     * @param \ArrayAccess|array $model
+     *
+     * @return $this
+     */
+    public function defaults($defaults)
+    {
+        $this->defaults = $defaults;
+
+        return $this;
+    }
+
+    /**
+     * @param \ArrayAccess|array $model
+     * @param string|null $method
+     * @param string|null $action
+     *
+     * @return \Spatie\Html\Elements\Form
+     */
+    public function formWithDefaults($defaults, $method = 'POST', $action = null): Form
+    {
+        $this->defaults($defaults);
+
+        return $this->form($method, $action);
+    }
+
+    /**
+     * @return $this
+     */
+    public function endDefaults()
+    {
+        $this->defaults = null;
+
+        return $this;
+    }
+
+    /**
+     * @return \Illuminate\Contracts\Support\Htmlable
+     */
+    public function closeFormWithDefaults(): Htmlable
+    {
+        $this->endDefaults();
+
+        return $this->form()->close();
+    }
+
+    /**
      * @param string $name
      * @param mixed $value
      *
@@ -611,6 +660,10 @@ class Html
                 : $value;
         }
 
+        // use the default values
+        if (is_null($value) && $this->defaults && empty($this->request->old())) {
+            $value = data_get($this->defaults, $name);
+        }
         return $this->request->old($name, $value);
     }
 

@@ -591,7 +591,7 @@ class Html
     }
 
     /**
-     * @param \ArrayAccess|array $model
+     * @param \ArrayAccess|array $defaults
      *
      * @return $this
      */
@@ -603,7 +603,7 @@ class Html
     }
 
     /**
-     * @param \ArrayAccess|array $model
+     * @param \ArrayAccess|array $defaults
      * @param string|null $method
      * @param string|null $action
      *

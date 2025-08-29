@@ -430,9 +430,11 @@ class Html
      */
     public function radio($name = null, $checked = null, $value = null)
     {        
+        $value_as_string = is_bool($value) ? json_encode($value) : $value;
+        
         return $this->input('radio', $name, $value)
-            ->attributeIf($name, 'id', $value === null ? $name : ($name.'_'.Str::slug(is_bool($value) ? json_encode($value) : $value)))
-            ->attributeIf(! is_null($value), 'value', $value)
+            ->attributeIf($name, 'id', $value === null ? $name : ($name.'_'.Str::slug($value_as_string)))
+            ->attributeIf(! is_null($value), 'value', $value_as_string)
             ->attributeIf((! is_null($value) && $this->old($name) === $value) || $checked, 'checked');
     }
 

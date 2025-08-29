@@ -429,11 +429,9 @@ class Html
      * @return \Spatie\Html\Elements\Input
      */
     public function radio($name = null, $checked = null, $value = null)
-    {
-        $value = is_bool($value) ? json_encode($value) : (string) $value;
-        
+    {        
         return $this->input('radio', $name, $value)
-            ->attributeIf($name, 'id', $value === null ? $name : ($name.'_'.Str::slug($value)))
+            ->attributeIf($name, 'id', $value === null ? $name : ($name.'_'.Str::slug(is_bool($value) ? json_encode($value) : $value)))
             ->attributeIf(! is_null($value), 'value', $value)
             ->attributeIf((! is_null($value) && $this->old($name) === $value) || $checked, 'checked');
     }

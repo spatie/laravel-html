@@ -55,7 +55,9 @@ abstract class BaseElement implements Htmlable, HtmlElement
     {
         $element = clone $this;
 
-        $element->attributes->setAttribute($attribute, (string) $value);
+        $value = is_bool($value) ? json_encode($value) : (string) $value;
+        
+        $element->attributes->setAttribute($attribute, $value);
 
         return $element;
     }

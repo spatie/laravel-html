@@ -53,8 +53,8 @@ abstract class BaseElement implements Htmlable, HtmlElement
      */
     public function attribute($attribute, $value = null)
     {
-        $element = clone $this;
-
+        $element = clone $this; 
+        
         $element->attributes->setAttribute($attribute, (string) $value);
 
         return $element;

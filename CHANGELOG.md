@@ -2,6 +2,19 @@
 
 All notable changes to `laravel-html` will be documented in this file.
 
+## 3.12.1 - 2025-10-02
+
+### What's Changed
+
+* Update issue template by @AlexVanderbist in https://github.com/spatie/laravel-html/pull/257
+* Add support for multiples requests in the same process by @gtg-bantonio in https://github.com/spatie/laravel-html/pull/258
+
+### New Contributors
+
+* @gtg-bantonio made their first contribution in https://github.com/spatie/laravel-html/pull/258
+
+**Full Changelog**: https://github.com/spatie/laravel-html/compare/3.12.0...3.12.1
+
 ## 3.12.0 - 2025-03-21
 
 ### What's Changed

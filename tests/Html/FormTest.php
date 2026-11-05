@@ -38,15 +38,8 @@ it('can create a form with a custom method that gets spoofed', function () {
 it('can get value from a form', function () {
     $this->html->form('DELETE', '/submit');
 
-    assertHtmlStringEqualsHtmlString(
-        '<p>delete</p>',
-        $this->html->value('_method', 'delete')
-    );
-
-    assertHtmlStringEqualsHtmlString(
-        '<p>abc</p>',
-        $this->html->value('_token', 'abc')
-    );
+    expect($this->html->value('_method', 'delete'))->toBe('delete');
+    expect($this->html->value('_token', 'abc'))->toBe('abc');
 });
 
 it("doesn't render a token field when using a GET method", function () {
